@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--noir:#0a0a0a;--blanc:#ffffff;--rouge:#e63946;--rouge-dark:#c1121f;--gris-clair:#f8f8f6;--gris-medium:#e0e0e0;--gris-texte:#666;--accent:#2d6a4f;}
+:root{--noir:#0a0a0a;--blanc:#ffffff;--rouge:#e63946;--rouge-dark:#c1121f;--gris-clair:#f8f8f6;--gris-medium:#e0e0e0;--gris-texte:#666;--vert:#2d6a4f;--orange:#f4a261;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"Inter",sans-serif;background:var(--gris-clair);color:var(--noir);min-height:100vh;}
 nav{background:var(--noir);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
@@ -27,16 +27,16 @@ main{max-width:760px;margin:0 auto;padding:40px 20px 80px;}
 .progress-wrap{margin-bottom:40px;}
 .progress-bar-bg{height:4px;background:var(--gris-medium);border-radius:2px;margin-bottom:16px;}
 .progress-bar-fill{height:4px;background:var(--rouge);border-radius:2px;transition:width 0.4s ease;}
-.progress-steps{display:flex;justify-content:space-between;}
-.step-lbl{font-family:"DM Mono",monospace;font-size:11px;color:var(--gris-texte);transition:color 0.3s;}
+.progress-steps{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.step-lbl{font-family:"DM Mono",monospace;font-size:10px;color:var(--gris-texte);transition:color 0.3s;}
 .step-lbl.done{color:var(--rouge);}
 .step-lbl.active{color:var(--noir);font-weight:700;}
 .etape{display:none;animation:fadeIn 0.3s ease;}
 .etape.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .etape-title{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:8px;}
-.etape-sub{font-size:14px;color:var(--gris-texte);margin-bottom:28px;}
-.options-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px;}
+.etape-sub{font-size:14px;color:var(--gris-texte);margin-bottom:28px;line-height:1.5;}
+.options-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;}
 .option-card{background:#fff;border:2px solid var(--gris-medium);border-radius:8px;padding:18px 16px;cursor:pointer;transition:all 0.2s;position:relative;}
 .option-card:hover{border-color:var(--rouge);transform:translateY(-2px);}
 .option-card.selected{border-color:var(--rouge);background:rgba(230,57,70,0.05);}
@@ -45,10 +45,13 @@ main{max-width:760px;margin:0 auto;padding:40px 20px 80px;}
 .option-desc{font-size:12px;color:var(--gris-texte);}
 .multi-note{font-family:"DM Mono",monospace;font-size:11px;color:var(--gris-texte);margin-bottom:20px;padding:8px 12px;background:#fff;border-left:3px solid var(--rouge);border-radius:0 4px 4px 0;}
 .checkbox-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
-.checkbox-item{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--gris-medium);border-radius:6px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s;}
+.checkbox-item{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1.5px solid var(--gris-medium);border-radius:6px;padding:14px 16px;cursor:pointer;transition:border-color 0.2s;}
 .checkbox-item:hover{border-color:var(--rouge);}
-.checkbox-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--rouge);cursor:pointer;}
-.checkbox-item .cb-desc{font-size:12px;color:var(--gris-texte);display:block;margin-top:2px;}
+.checkbox-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--rouge);cursor:pointer;margin-top:2px;flex-shrink:0;}
+.checkbox-item .cb-label{font-size:14px;font-weight:600;margin-bottom:2px;}
+.checkbox-item .cb-desc{font-size:12px;color:var(--gris-texte);line-height:1.4;}
+.section-label{font-family:"DM Mono",monospace;font-size:11px;color:var(--rouge);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;margin-top:20px;padding-bottom:6px;border-bottom:1px solid var(--gris-medium);}
+.section-label:first-child{margin-top:0;}
 .nav-btns{display:flex;gap:12px;margin-top:8px;}
 .btn-next{background:var(--rouge);color:#fff;border:none;padding:14px 32px;font-family:"DM Mono",monospace;font-size:13px;font-weight:500;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:background 0.2s;}
 .btn-next:hover{background:var(--rouge-dark);}
@@ -56,27 +59,36 @@ main{max-width:760px;margin:0 auto;padding:40px 20px 80px;}
 .btn-back:hover{border-color:var(--noir);color:var(--noir);}
 .error-msg{color:var(--rouge);font-size:13px;font-family:"DM Mono",monospace;margin-top:8px;display:none;}
 .results-wrap{display:flex;flex-direction:column;gap:16px;}
-.result-card{background:#fff;border:1.5px solid var(--gris-medium);border-radius:10px;overflow:hidden;transition:transform 0.2s;}
-.result-card:hover{transform:translateY(-2px);}
+.result-card{background:#fff;border:1.5px solid var(--gris-medium);border-radius:10px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+.result-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.08);}
 .result-card-top{padding:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.result-orga{font-family:"DM Mono",monospace;font-size:10px;color:var(--blanc);padding:3px 10px;border-radius:20px;letter-spacing:1px;white-space:nowrap;}
-.result-name{font-weight:700;font-size:16px;margin-bottom:6px;flex:1;}
+.result-orga{font-family:"DM Mono",monospace;font-size:10px;color:#fff;padding:3px 10px;border-radius:20px;letter-spacing:1px;white-space:nowrap;font-weight:600;}
+.result-info{flex:1;}
+.result-name{font-weight:700;font-size:16px;margin-bottom:6px;}
 .result-desc{font-size:13px;color:var(--gris-texte);line-height:1.5;}
-.result-footer{background:var(--gris-clair);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
-.result-link{font-size:12px;color:var(--rouge);text-decoration:none;font-weight:600;letter-spacing:0.5px;}
-.result-link:hover{text-decoration:underline;}
+.result-criteres{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;}
+.result-crit{font-family:"DM Mono",monospace;font-size:10px;background:rgba(0,0,0,0.04);padding:3px 8px;border-radius:3px;color:var(--gris-texte);}
+.result-footer{background:var(--gris-clair);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.result-montant{font-family:"Bebas Neue",sans-serif;font-size:18px;color:var(--rouge);}
+.result-links{display:flex;gap:12px;align-items:center;}
+.result-link{font-size:12px;color:var(--rouge);text-decoration:none;font-weight:600;letter-spacing:0.5px;border:1px solid var(--rouge);padding:5px 12px;border-radius:3px;transition:all 0.2s;}
+.result-link:hover{background:var(--rouge);color:#fff;}
+.result-link.fiche{background:var(--rouge);color:#fff;}
+.result-link.fiche:hover{background:var(--rouge-dark);}
 .no-result{text-align:center;padding:48px 24px;background:#fff;border-radius:10px;}
 .no-result-icon{font-size:48px;margin-bottom:16px;}
 .no-result-title{font-family:"Bebas Neue",sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:8px;}
 .no-result-sub{font-size:14px;color:var(--gris-texte);}
 .result-header{margin-bottom:24px;}
-.result-count{font-family:"Bebas Neue",sans-serif;font-size:36px;color:var(--rouge);}
+.result-count{font-family:"Bebas Neue",sans-serif;font-size:42px;color:var(--rouge);}
 .result-count-sub{font-size:14px;color:var(--gris-texte);margin-top:4px;}
+.result-profil-badge{display:inline-block;background:var(--noir);color:#fff;font-family:"DM Mono",monospace;font-size:11px;padding:4px 12px;border-radius:3px;margin-bottom:16px;}
 .btn-restart{background:transparent;border:1px solid var(--gris-medium);color:var(--gris-texte);padding:10px 24px;font-family:"DM Mono",monospace;font-size:12px;cursor:pointer;border-radius:4px;transition:all 0.2s;margin-top:24px;}
 .btn-restart:hover{border-color:var(--noir);color:var(--noir);}
 footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:28px 50px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:0.5px;}
 footer strong{color:var(--rouge);}
-.res-montant{font-family:"Bebas Neue",sans-serif;font-size:17px;color:var(--rouge);}
+.info-banner{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#856404;}
+.info-banner strong{color:#533f03;}
 </style>
 </head>
 <body>
@@ -92,188 +104,1061 @@ footer strong{color:var(--rouge);}
 <div class="page-header-inner">
 <div class="page-tag">Outil interactif 2026</div>
 <h1 class="page-title">Test d<span>Eligibilite</span></h1>
-<p class="page-sub">Questions adaptees a votre profil -- resultats personnalises</p>
+<p class="page-sub">Questions precises adaptees a votre profil -- aides reelles avec liens vers les fiches completes</p>
 </div>
 </div>
 <main>
 <div class="progress-wrap">
-<div class="progress-bar-bg"><div class="progress-bar-fill" id="progFill" style="width:20%"></div></div>
+<div class="progress-bar-bg"><div class="progress-bar-fill" id="progFill" style="width:14%"></div></div>
 <div class="progress-steps">
-<span class="step-lbl done" id="sl1">1. Profil</span>
-<span class="step-lbl" id="sl2">2. Projet</span>
+<span class="step-lbl active" id="sl1">1. Profil</span>
+<span class="step-lbl" id="sl2">2. Statut</span>
 <span class="step-lbl" id="sl3">3. Affiliation</span>
-<span class="step-lbl" id="sl4">4. Situation</span>
-<span class="step-lbl" id="sl5">5. Resultats</span>
+<span class="step-lbl" id="sl4">4. Projet</span>
+<span class="step-lbl" id="sl5">5. Situation</span>
+<span class="step-lbl" id="sl6">6. Criteres</span>
+<span class="step-lbl" id="sl7">7. Resultats</span>
 </div>
 </div>
+
+<!-- ETAPE 1: PROFIL -->
 <div class="etape active" id="etape1">
 <div class="etape-title">Votre profil</div>
 <p class="etape-sub">Selectionnez votre role principal dans la filiere musicale</p>
 <div class="options-grid">
-<div class="option-card" onclick="selectProfil('artiste')" id="p_artiste"><div class="option-icon">&#127908;</div><div class="option-label">Artiste-Interprete</div><div class="option-desc">Chanteur, musicien, rappeur, DJ</div></div>
-<div class="option-card" onclick="selectProfil('auteur')" id="p_auteur"><div class="option-icon">&#9999;</div><div class="option-label">Auteur-Compositeur</div><div class="option-desc">Parolier, compositeur, beatmaker</div></div>
+<div class="option-card" onclick="selectProfil('artiste')" id="p_artiste"><div class="option-icon">&#127908;</div><div class="option-label">Artiste-Interprete</div><div class="option-desc">Chanteur, musicien, rappeur, DJ, performer</div></div>
+<div class="option-card" onclick="selectProfil('auteur')" id="p_auteur"><div class="option-icon">&#9999;</div><div class="option-label">Auteur-Compositeur</div><div class="option-desc">Parolier, compositeur, beatmaker, editeur</div></div>
 <div class="option-card" onclick="selectProfil('label')" id="p_label"><div class="option-icon">&#127991;</div><div class="option-label">Label / Producteur</div><div class="option-desc">Label independant, producteur phonographique</div></div>
 <div class="option-card" onclick="selectProfil('manager')" id="p_manager"><div class="option-icon">&#129309;</div><div class="option-label">Manager / Agent</div><div class="option-desc">Management artistique, booking</div></div>
 <div class="option-card" onclick="selectProfil('tourneur')" id="p_tourneur"><div class="option-icon">&#127914;</div><div class="option-label">Tourneur / Promoteur</div><div class="option-desc">Organisation de tournees, promotion de concerts</div></div>
 <div class="option-card" onclick="selectProfil('diffuseur')" id="p_diffuseur"><div class="option-icon">&#127963;</div><div class="option-label">Diffuseur / Salle</div><div class="option-desc">Salle de spectacle, festival, club</div></div>
 </div>
-<p class="error-msg" id="err1">Veuillez selectionner votre profil</p>
+<p class="error-msg" id="err1">Veuillez selectionner votre profil pour continuer</p>
 <div class="nav-btns"><button class="btn-next" onclick="goEtape(2)">Suivant</button></div>
 </div>
+
+<!-- ETAPE 2: STATUT JURIDIQUE / STRUCTURE -->
 <div class="etape" id="etape2">
-<div class="etape-title">Type de projet</div>
-<p class="etape-sub">Selectionnez les types de projets concernes (plusieurs choix possibles)</p>
-<div class="multi-note">Vous pouvez selectionner plusieurs types de projets</div>
-<div class="checkbox-list">
-<label class="checkbox-item"><input type="checkbox" value="album" onchange="toggleProjet('album')"><div><span class="option-label">Album / EP / Single</span><span class="cb-desc">Production musicale enregistree</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="concert" onchange="toggleProjet('concert')"><div><span class="option-label">Concert / Tournee</span><span class="cb-desc">Spectacle vivant, dates de scene</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="clip" onchange="toggleProjet('clip')"><div><span class="option-label">Clip / Contenu video</span><span class="cb-desc">Videoclip, contenu audiovisuel</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="formation" onchange="toggleProjet('formation')"><div><span class="option-label">Formation / Developpement</span><span class="cb-desc">Formation professionnelle, montee en competences</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="export" onchange="toggleProjet('export')"><div><span class="option-label">Export / International</span><span class="cb-desc">Developpement hors frontiere, showcase etranger</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="numerique" onchange="toggleProjet('numerique')"><div><span class="option-label">Numerique / Streaming</span><span class="cb-desc">Distribution digitale, promotion en ligne</span></div></label>
-<label class="checkbox-item"><input type="checkbox" value="structure" onchange="toggleProjet('structure')"><div><span class="option-label">Structuration / Creation societe</span><span class="cb-desc">Creation ou developpement de structure</span></div></label>
-</div>
-<p class="error-msg" id="err2">Selectionnez au moins un type de projet</p>
+<div class="etape-title">Statut &amp; Structure</div>
+<p class="etape-sub" id="etape2-sub">Quelques questions sur votre statut professionnel</p>
+<div class="checkbox-list" id="statutList"></div>
+<p class="error-msg" id="err2">Selectionnez au moins une reponse</p>
 <div class="nav-btns"><button class="btn-back" onclick="goEtape(1)">Retour</button><button class="btn-next" onclick="goEtape(3)">Suivant</button></div>
 </div>
+
+<!-- ETAPE 3: AFFILIATION -->
 <div class="etape" id="etape3">
 <div class="etape-title">Affiliation</div>
-<p class="etape-sub" id="affil-sub">Indiquez vos affiliations aux organismes de gestion collective</p>
+<p class="etape-sub" id="etape3-sub">Indiquez vos affiliations aux organismes de gestion collective</p>
 <div class="checkbox-list" id="affiliationList"></div>
 <p class="error-msg" id="err3">Selectionnez au moins une option</p>
 <div class="nav-btns"><button class="btn-back" onclick="goEtape(2)">Retour</button><button class="btn-next" onclick="goEtape(4)">Suivant</button></div>
 </div>
+
+<!-- ETAPE 4: TYPE DE PROJET -->
 <div class="etape" id="etape4">
-<div class="etape-title">Votre situation</div>
-<p class="etape-sub">Quelques informations complementaires pour affiner les resultats</p>
-<div class="checkbox-list" id="situationList"></div>
-<p class="error-msg" id="err4">Selectionnez au moins une option</p>
-<div class="nav-btns"><button class="btn-back" onclick="goEtape(3)">Retour</button><button class="btn-next" onclick="calculerEtAfficher()">Voir mes resultats</button></div>
+<div class="etape-title">Types de projets</div>
+<p class="etape-sub">Quels types de projets cherchez-vous a financer ? (plusieurs choix possibles)</p>
+<div class="multi-note">Selectionnez tous les types qui vous concernent</div>
+<div class="checkbox-list" id="projetList"></div>
+<p class="error-msg" id="err4">Selectionnez au moins un type de projet</p>
+<div class="nav-btns"><button class="btn-back" onclick="goEtape(3)">Retour</button><button class="btn-next" onclick="goEtape(5)">Suivant</button></div>
 </div>
+
+<!-- ETAPE 5: SITUATION ACTUELLE -->
 <div class="etape" id="etape5">
-<div class="result-header"><div class="result-count" id="resultCount">0</div><div class="result-count-sub" id="resultSub">aides identifiees pour votre profil</div></div>
+<div class="etape-title">Votre situation actuelle</div>
+<p class="etape-sub" id="etape5-sub">Ces questions permettent d affiner les aides accessibles</p>
+<div class="multi-note">Cochez tout ce qui correspond a votre situation actuelle</div>
+<div class="checkbox-list" id="situationList"></div>
+<p class="error-msg" id="err5">Selectionnez au moins une option</p>
+<div class="nav-btns"><button class="btn-back" onclick="goEtape(4)">Retour</button><button class="btn-next" onclick="goEtape(6)">Suivant</button></div>
+</div>
+
+<!-- ETAPE 6: CRITERES AVANCES -->
+<div class="etape" id="etape6">
+<div class="etape-title">Criteres avances</div>
+<p class="etape-sub" id="etape6-sub">Quelques questions supplementaires pour les aides les plus selectivess</p>
+<div class="multi-note">Ces criteres determinent les aides les plus specifiques</div>
+<div class="checkbox-list" id="criteresAvList"></div>
+<p class="error-msg" id="err6">Selectionnez au moins une option</p>
+<div class="nav-btns"><button class="btn-back" onclick="goEtape(5)">Retour</button><button class="btn-next" onclick="calculerEtAfficher()">Voir mes resultats</button></div>
+</div>
+
+<!-- ETAPE 7: RESULTATS -->
+<div class="etape" id="etape7">
+<div class="result-header">
+<div class="result-count" id="resultCount">0</div>
+<div class="result-count-sub" id="resultSub">aides identifiees</div>
+<div class="result-profil-badge" id="resultProfilBadge"></div>
+</div>
+<div class="info-banner"><strong>Note :</strong> Resultats indicatifs bases sur vos reponses. Consultez les fiches completes pour les criteres officiels exacts. Les liens vers les fiches detaillees sont disponibles sur chaque carte.</div>
 <div class="results-wrap" id="resultsWrap"></div>
 <button class="btn-restart" onclick="restart()">Recommencer le test</button>
 </div>
+
 </main>
 <footer><strong>LYKY LABEL FRANCE</strong> &mdash; Outil indicatif non contractuel &mdash; Sources : CNM, SACEM, ADAMI, SPEDIDAM, SCPP, SPPF &mdash; 2026</footer>
 <script>
-var etat = {profil:null, projets:[], affiliations:[], situations:[]};
+// ============================================================
+// ETAT GLOBAL
+// ============================================================
+var etat = {profil:null, statuts:[], affiliations:[], projets:[], situations:[], criteresAv:[]};
+var currentEtape = 1;
+var TOTAL_ETAPES = 7;
 
+// ============================================================
+// STATUTS PAR PROFIL (Etape 2)
+// ============================================================
+var statutsParProfil = {
+  artiste:{
+    sub:"Questions sur votre statut professionnel en tant qu artiste",
+    opts:[
+      {v:"intermittent",l:"Intermittent du spectacle",d:"Vous avez le statut d intermittent (au moins 507h/an)"},
+      {v:"pro_active",l:"Activite professionnelle active",d:"Au moins 1 contrat de cession ou feuille de paie spectacle ces 24 mois"},
+      {v:"25cachets_adami",l:"25 cachets salaries sur 2 attestations Conges Spectacles (5 ans)",d:"Critere ADAMI Bourse Parcours Artiste - hors propre structure"},
+      {v:"auto_entrepreneur",l:"Auto-entrepreneur / Artiste-auteur",d:"Statut simplifie sans intermittence"},
+      {v:"debutant",l:"Debutant - moins de 2 ans de carriere pro",d:"Premiere experiences professionnelles"},
+      {v:"associe_adami",l:"Associe(e) ADAMI",d:"Vous avez le statut d associe ADAMI (pas seulement membre ayant droit)"}
+    ]
+  },
+  auteur:{
+    sub:"Questions sur votre statut en tant qu auteur-compositeur",
+    opts:[
+      {v:"sacem_membre",l:"Membre SACEM",d:"Vous avez depose des oeuvres a la SACEM"},
+      {v:"oeuvres_deposees",l:"Oeuvres deposees et en exploitation",d:"Vos compositions generent des droits actifs"},
+      {v:"editeur_contrat",l:"Sous contrat d edition musicale",d:"Vous avez signe un contrat avec un editeur"},
+      {v:"autoproducteur",l:"Autoproducteur (artiste-auteur et producteur)",d:"Vous etes a la fois auteur et producteur de votre musique"},
+      {v:"emergent_auteur",l:"Auteur emergent (moins de 3 ans de catalogue)",d:"Debut de repertoire"}
+    ]
+  },
+  label:{
+    sub:"Questions sur votre structure juridique",
+    opts:[
+      {v:"kbis",l:"Structure juridique existante avec KBIS",d:"SARL, SAS, EURL, Association... - SIRET obligatoire"},
+      {v:"kbis_6mois",l:"Structure creee il y a plus de 6 mois",d:"Critere requis pour de nombreuses aides"},
+      {v:"auto_entrepreneur",l:"Micro-entreprise / Auto-entrepreneur",d:"Statut simplifie"},
+      {v:"creation_structure",l:"En cours de creation de structure",d:"Pas encore de KBIS"},
+      {v:"salaries",l:"Au moins un salarie permanent",d:"Au-dela du gerant seul"}
+    ]
+  },
+  manager:{
+    sub:"Questions sur votre structure et activite",
+    opts:[
+      {v:"kbis",l:"Structure juridique (KBIS)",d:"Societe ou association de management"},
+      {v:"auto_entrepreneur",l:"Auto-entrepreneur",d:"Statut simplifie"},
+      {v:"artiste_actif",l:"Gestion d au moins 1 artiste professionnel actif",d:"Artiste sous contrat de management"},
+      {v:"multi_artiste",l:"Portefeuille de plusieurs artistes",d:"Structure de management multiple"}
+    ]
+  },
+  tourneur:{
+    sub:"Questions sur votre structure et votre activite",
+    opts:[
+      {v:"kbis",l:"Structure juridique (KBIS)",d:"Societe ou association"},
+      {v:"licence_spectacle",l:"Licence entrepreneur de spectacles",d:"Licence valide (categorie 1, 2 ou 3)"},
+      {v:"artiste_signe",l:"Au moins 1 artiste en exclusivite ou representation",d:"Artiste sous contrat de tournee"},
+      {v:"20dates_an",l:"Au moins 20 dates organisees par an",d:"Activite reguliere de tournee"}
+    ]
+  },
+  diffuseur:{
+    sub:"Questions sur votre structure de diffusion",
+    opts:[
+      {v:"kbis",l:"Structure juridique (KBIS / association loi 1901)",d:"Structure formalisee"},
+      {v:"licence_spectacle",l:"Licence entrepreneur de spectacles",d:"Licence de salle / producteur de spectacles"},
+      {v:"salle_labellisee",l:"Salle labellisee (SMAC, Pole regional, CNM...)",d:"Label officiel ministeriel ou CNM"},
+      {v:"moins300places",l:"Capacite inferieure a 300 places",d:"Petite salle - acces au dispositif PMO"},
+      {v:"festival",l:"Festival",d:"Organisation de festival de musique"},
+      {v:"prog_reguliere",l:"Programmation musicale reguliere (saison entiere)",d:"Concerts tout au long de la saison"}
+    ]
+  }
+};
+
+// ============================================================
+// AFFILIATIONS PAR PROFIL (Etape 3)
+// ============================================================
 var affiliationsParProfil = {
+  artiste:{
+    sub:"Etes-vous affilie(e) a un organisme de gestion collective des droits voisins ?",
+    opts:[
+      {v:"adami",l:"Membre / Associe ADAMI",d:"Artistes-interpretes en musique, theatre, audiovisuel"},
+      {v:"spedidam",l:"Membre SPEDIDAM",d:"Musiciens et chanteurs interpretes"},
+      {v:"aucune_artiste",l:"Pas encore affilie(e)",d:"Non inscrit ou en cours d adhesion"}
+    ]
+  },
+  auteur:{
+    sub:"Etes-vous affilie(e) a la SACEM ?",
+    opts:[
+      {v:"sacem",l:"Membre SACEM",d:"Societe des auteurs, compositeurs et editeurs de musique"},
+      {v:"sacem_editeur",l:"Editeur musical SACEM",d:"Vous avez une societe d edition affiliee SACEM"},
+      {v:"aucune_auteur",l:"Pas encore affilie(e) a la SACEM",d:"Non inscrit ou en cours d adhesion"}
+    ]
+  },
+  label:{
+    sub:"Votre label est-il membre d un organisme de producteurs ?",
+    opts:[
+      {v:"scpp",l:"Membre SCPP",d:"Societe civile des producteurs phonographiques"},
+      {v:"sppf",l:"Membre SPPF",d:"Societe civile des producteurs de phonogrammes en France"},
+      {v:"scpp_sppf",l:"Membre SCPP ET SPPF",d:"Affiliation aux deux organismes"},
+      {v:"aucune_label",l:"Non affilie(e) a SCPP ni SPPF",d:"Label sans affiliation producteur actuelle"}
+    ]
+  },
+  manager:{
+    sub:"Affiliation - pas requise pour acceder aux aides CNM",
+    opts:[
+      {v:"no_affil_req",l:"Pas d affiliation specifique requise",d:"Les managers accedent aux aides CNM sans affiliation obligatoire"}
+    ]
+  },
+  tourneur:{
+    sub:"Affiliation - pas requise pour acceder aux aides CNM",
+    opts:[
+      {v:"no_affil_req",l:"Pas d affiliation specifique requise",d:"Les tourneurs accedent aux aides CNM sans affiliation obligatoire"}
+    ]
+  },
+  diffuseur:{
+    sub:"Affiliation - pas requise pour acceder aux aides CNM",
+    opts:[
+      {v:"no_affil_req",l:"Pas d affiliation specifique requise",d:"Les diffuseurs accedent aux aides CNM sans affiliation obligatoire"}
+    ]
+  }
+};
+
+// ============================================================
+// TYPES DE PROJETS PAR PROFIL (Etape 4)
+// ============================================================
+var projetsParProfil = {
   artiste:[
-    {value:"adami",label:"Membre ADAMI",desc:"Gestion droits artistes-interpretes (musique, theatre, cinema)"},
-    {value:"spedidam",label:"Membre SPEDIDAM",desc:"Societe de droits des musiciens interpretes"},
-    {value:"aucune_artiste",label:"Pas encore affilie",desc:"Non inscrit a un organisme de gestion collective"}
+    {v:"enregistrement",l:"Enregistrement (album, EP, single)",d:"Production musicale enregistree - studio, mix, master"},
+    {v:"spectacle",l:"Creation / production de spectacle vivant",d:"Mise en scene, creation artistique d un concert"},
+    {v:"tournee",l:"Tournee / Diffusion",d:"Dates de scene, concerts, tournee nationale"},
+    {v:"clip_audiovisuel",l:"Clip video ou contenu audiovisuel",d:"Videoclip, captation, contenu numerique"},
+    {v:"promotion",l:"Promotion / Communication",d:"Attaché de presse, campagne digitale, RP"},
+    {v:"export",l:"Export / Developpement international",d:"Showcases etrangers, tournees hors France"},
+    {v:"formation_dev",l:"Formation / Developpement de carriere",d:"Formation professionnelle, reseau, compagnonnage"},
+    {v:"contenus_num",l:"Contenus numeriques (podcast, vlog, sessions)",d:"Presence en ligne, communaute, contenu editorial"}
   ],
   auteur:[
-    {value:"sacem",label:"Membre SACEM",desc:"Societe des auteurs, compositeurs et editeurs de musique"},
-    {value:"aucune_auteur",label:"Pas encore affilie a la SACEM",desc:"Non inscrit ou en cours d inscription"}
+    {v:"enregistrement",l:"Autoproduction - Album / EP",d:"Vous produisez et enregistrez votre propre musique"},
+    {v:"spectacle",l:"Creation de spectacle musical",d:"Conception et production d un spectacle"},
+    {v:"edition",l:"Developpement editorial / Edition",d:"Travail avec un editeur, developpement du catalogue"},
+    {v:"export",l:"Export / International",d:"Placement international, showcases, residences"},
+    {v:"bourse_creation",l:"Bourse de creation / Composition",d:"Temps de creation et d ecriture"}
   ],
   label:[
-    {value:"scpp",label:"Membre SCPP",desc:"Societe civile des producteurs phonographiques"},
-    {value:"sppf",label:"Membre SPPF",desc:"Societe civile des producteurs de phonogrammes en France"},
-    {value:"aucune_label",label:"Non affilie a un organisme producteur",desc:"Label independant sans affiliation actuelle"}
+    {v:"enregistrement",l:"Production phonographique (album, EP)",d:"Financement de l enregistrement pour vos artistes"},
+    {v:"clip_audiovisuel",l:"Clip / Videomusique",d:"Production de clips pour vos artistes"},
+    {v:"promotion_mktg",l:"Marketing / Promotion / Showcase",d:"Campagnes, showcases, attaché de presse"},
+    {v:"export",l:"Export / Developpement international",d:"Strategie internationale, showcases etrangers"},
+    {v:"numerique",l:"Numerique / Streaming / Distribution",d:"Strategie plateformes, distribution digitale"},
+    {v:"formation_salaries",l:"Formation des salaries",d:"Formation professionnelle pour votre equipe"},
+    {v:"structuration",l:"Structuration / Developpement economique",d:"Developpement de la structure, investissements"}
   ],
   manager:[
-    {value:"no_affil_manager",label:"Pas d affiliation specifique requise",desc:"Les managers accedent aux aides CNM directement"}
+    {v:"dev_artiste",l:"Developpement d un artiste",d:"Accompagnement d un artiste vers la professionnalisation"},
+    {v:"export",l:"Export / International",d:"Developpement international de vos artistes"},
+    {v:"structuration",l:"Structuration de votre structure",d:"Developpement de votre societe de management"}
   ],
   tourneur:[
-    {value:"licence_spe",label:"Titulaire d une licence de spectacle",desc:"Licence entrepreneur de spectacles valide"},
-    {value:"no_licence",label:"Pas encore de licence de spectacle",desc:"En cours d obtention ou non requise"}
+    {v:"tournee",l:"Production / Organisation d une tournee",d:"Production de spectacles, tournee nationale"},
+    {v:"creation_spectacle",l:"Coproduction creation spectacle",d:"Vous coproduisez la creation d un spectacle"},
+    {v:"export",l:"Developpement international",d:"Tournees hors France, showcases internationaux"},
+    {v:"dev_artiste_reg",l:"Developpement artiste regional / emergent",d:"Soutien a des artistes du territoire ou emergents"}
   ],
   diffuseur:[
-    {value:"salle_labellisee",label:"Salle labellisee ou conventionnee",desc:"Label CNM, SMAC, Pole regional, etc."},
-    {value:"salle_standard",label:"Salle non labellisee",desc:"Salle independante sans label specifique"},
-    {value:"festival",label:"Festival",desc:"Organisation de festival de musique"}
+    {v:"programmation",l:"Programmation musicale saison",d:"Concerts et spectacles sur la saison"},
+    {v:"creation_coproduction",l:"Coproduction creation / residences",d:"Accompagnement d artistes en residence et creation"},
+    {v:"jeune_public",l:"Actions jeune public / education artistique",d:"Ateliers, actions de mediation, scolaires"},
+    {v:"artistes_locaux",l:"Mise en valeur artistes locaux / emergents",d:"Programmation prioritaire des artistes du territoire"},
+    {v:"export_prog",l:"Programmation internationale",d:"Artistes etrangers ou en tournee internationale"}
   ]
 };
 
+// ============================================================
+// SITUATIONS PAR PROFIL (Etape 5)
+// ============================================================
 var situationsParProfil = {
-  artiste:[
-    {value:"pro_active",label:"Activite professionnelle active",desc:"Sous contrat ou au moins 1 sortie ces 3 derniers ans"},
-    {value:"emergent",label:"Artiste emergent",desc:"Moins de 3 ans de carriere professionnelle"},
-    {value:"disque_sorti",label:"Au moins un enregistrement sorti",desc:"Single, EP ou album distribue"},
-    {value:"scene_active",label:"Activite scene reguliere",desc:"Au moins 10 dates par an"}
-  ],
-  auteur:[
-    {value:"oeuvres_deposees",label:"Oeuvres deposees a la SACEM",desc:"Repertoire declare et enregistre"},
-    {value:"editeur",label:"Contrat avec un editeur musical",desc:"Sous contrat d edition musicale"},
-    {value:"emergent_auteur",label:"Auteur emergent",desc:"Moins de 3 ans de carriere, debut de repertoire"}
-  ],
-  label:[
-    {value:"kbis",label:"Structure juridique existante (KBIS)",desc:"Societe immatriculee (SARL, SAS, EURL...)"},
-    {value:"auto_entrepreneur",label:"Micro-entreprise ou Auto-entrepreneur",desc:"Statut simplifie"},
-    {value:"sorties_recentes",label:"Au moins 2 sorties ces 24 derniers mois",desc:"Releases documentees et distribuees"},
-    {value:"artiste_signe",label:"Au moins un artiste signe en exclusivite",desc:"Artiste sous contrat d exclusivite"}
-  ],
-  manager:[
-    {value:"artiste_gere",label:"Gestion d au moins un artiste actif",desc:"Artiste avec activite professionnelle avancee"},
-    {value:"structure_manager",label:"Structure juridique (societe ou auto-ent.)",desc:"Activite professionnalisee"}
-  ],
-  tourneur:[
-    {value:"tournees_regulieres",label:"Organisation de tournees regulieres",desc:"Au moins 20 dates par an organise"},
-    {value:"artiste_regional",label:"Developpement artiste regional",desc:"Focus sur artistes de la region"},
-    {value:"export_tournee",label:"Tournees a dimension internationale",desc:"Dates hors de France organisees ou visees"}
-  ],
-  diffuseur:[
-    {value:"prog_musicale",label:"Programmation musicale reguliere",desc:"Concerts tout au long de la saison"},
-    {value:"capacite_250",label:"Capacite inferieure a 300 places",desc:"Petite jauge - acces aides specifiques PMO"},
-    {value:"jeune_public",label:"Actions jeune public ou education artistique",desc:"Programmation ou ateliers destines aux jeunes"},
-    {value:"artistes_locaux",label:"Promotion artistes locaux ou regionaux",desc:"Programmation valorisant les artistes du territoire"}
-  ]
+  artiste:{
+    sub:"Votre situation artistique actuelle",
+    opts:[
+      {v:"2albums_distrib",l:"Au moins 2 albums distribues commercialement",d:"Distribution professionnelle (pas uniquement Tunecore/Distrokid)"},
+      {v:"1album_sorti",l:"Au moins 1 enregistrement sorti (single, EP ou album)",d:"Distribue et accessible sur les plateformes"},
+      {v:"emergent_premiere_sortie",l:"Premiere sortie en preparation",d:"Premier projet discographique"},
+      {v:"5concerts_600places",l:"Au moins 5 concerts en salle de 600+ places (3 ans)",d:"Critere ADAMI 365 - festivals et premieres parties exclus"},
+      {v:"contrat_distrib",l:"Contrat de distribution professionnelle",d:"Label, distributeur (pas agregateur pur)"},
+      {v:"contrat_licence",l:"Contrat de licence avec un label",d:"Vous avez cede les droits a un label"},
+      {v:"droits_adami_5000",l:"5 000 euros de droits ADAMI percus (5 ans)",d:"Critere ADAMI 365 - Musiques actuelles / Jazz / Monde"},
+      {v:"contrat_cession",l:"Contrat de cession de spectacle signe",d:"Vous avez au moins 1 date contractualisee"}
+    ]
+  },
+  auteur:{
+    sub:"Votre situation en tant qu auteur-compositeur",
+    opts:[
+      {v:"sacem_depot",l:"Oeuvres deposees et declarees a la SACEM",d:"Repertoire actif genererant des droits"},
+      {v:"sacem_editeur_contrat",l:"Contrat d edition musicale en cours",d:"Sous contrat avec un editeur SACEM"},
+      {v:"autoproducteur_kbis",l:"Structure juridique pour l autoproduction",d:"SARL, SAS ou association pour produire vos oeuvres"},
+      {v:"catalogue_exploite",l:"Catalogue en exploitation active",d:"Vos oeuvres sont utilisees (sync, radio, streaming...)"},
+      {v:"premier_projet",l:"Premier projet de creation",d:"Vous demarrez la constitution de votre repertoire"}
+    ]
+  },
+  label:{
+    sub:"Situation de votre label",
+    opts:[
+      {v:"2sorties_24mois",l:"Au moins 2 sorties documentees ces 24 mois",d:"Releases avec ISRC, distribuees et accessibles"},
+      {v:"artiste_signe_exclus",l:"Au moins 1 artiste signe en exclusivite",d:"Contrat d artiste exclusif"},
+      {v:"catalogue_actif",l:"Catalogue actif (plus de 5 references)",d:"Label avec un catalogue etabli"},
+      {v:"premiere_sortie",l:"En preparation de la premiere sortie",d:"Premier projet phonographique du label"},
+      {v:"proprietaire_master",l:"Proprietaire des masters (51% minimum)",d:"Vous possedez les droits du master de vos productions"}
+    ]
+  },
+  manager:{
+    sub:"Votre activite de management",
+    opts:[
+      {v:"artiste_gere_pro",l:"Artiste gere en activite professionnelle reguliere",d:"Sous contrat, dates, sorties actives"},
+      {v:"artiste_emergent_gere",l:"Artiste emergent en developpement",d:"Debut de carriere, premiere structuration"},
+      {v:"structure_pro",l:"Structure professionnelle etablie",d:"Societe ou association avec activite commerciale reelle"}
+    ]
+  },
+  tourneur:{
+    sub:"Votre activite de tournee",
+    opts:[
+      {v:"tournees_actives",l:"Tournees en cours ou signees",d:"Dates contractualisees sur la saison a venir"},
+      {v:"artiste_emergent_soutien",l:"Soutien a un artiste emergent (moins de 2 albums)",d:"Accompagnement d un artiste en debut de carriere"},
+      {v:"artiste_regional",l:"Developpement d un artiste regional",d:"Artiste base et identifie sur votre territoire"},
+      {v:"projet_international",l:"Projet de developpement a l international",d:"Dates hors France prevues ou visees"}
+    ]
+  },
+  diffuseur:{
+    sub:"Votre activite de diffusion",
+    opts:[
+      {v:"prog_saison_complete",l:"Programmation sur toute la saison",d:"Activite continue tout au long de l annee"},
+      {v:"moins_300places",l:"Salle de moins de 300 places",d:"Petite jauge - acces PMO et aides specifiques"},
+      {v:"jeune_public_actions",l:"Actions regulieres jeune public ou mediation",d:"Au moins 1 action par saison"},
+      {v:"artiste_local_prog",l:"Artistes locaux en tete de programmation",d:"Priorite aux artistes du territoire"},
+      {v:"residences_coprod",l:"Accueil en residence ou coproductions",d:"Vous accompagnez des artistes en creation"}
+    ]
+  }
 };
 
+// ============================================================
+// CRITERES AVANCES PAR PROFIL (Etape 6)
+// ============================================================
+var criteresAvancesParProfil = {
+  artiste:{
+    sub:"Criteres specifiques pour affiner les aides selectivess",
+    opts:[
+      {v:"adami_associe_confirm",l:"Artiste tres identifie sur la scene (critere ADAMI 365)",d:"Artiste confirme avec historique concerts et droits ADAMI significatifs"},
+      {v:"pas_encore_365",l:"Pas encore beneficiaire d une aide ADAMI 365",d:"L aide 365 ne peut etre accordee qu une seule fois"},
+      {v:"structure_siren",l:"Structure avec SIRET et plus de 6 mois d existence",d:"Label en propre ou structure de production"},
+      {v:"guso_non",l:"Emploi direct des artistes (pas via GUSO)",d:"Contrats intermittents directs - critere ADAMI"},
+      {v:"sppf_affil",l:"Titres declares a la SPPF",d:"Permet le bonus SPPF +10% sur aides ADAMI"},
+      {v:"jazz_classique",l:"Esthetique Jazz ou Classique / Musique savante",d:"Criteres specifiques pour ces esthetiques"},
+      {v:"musiques_actuelles",l:"Musiques actuelles / Urban / Electronique / Monde",d:"Pop, rock, rap, R&B, electro, reggae, musiques du monde"}
+    ]
+  },
+  auteur:{
+    sub:"Criteres pour affiner les aides disponibles",
+    opts:[
+      {v:"sacem_inscrit",l:"Inscrit a la SACEM depuis plus d 1 an",d:"Historique de depot et de perception de droits"},
+      {v:"catalogue_10titres",l:"Catalogue de plus de 10 oeuvres deposees",d:"Repertoire etabli"},
+      {v:"projet_spectacle",l:"Projet de creation de spectacle musical",d:"Conception et production d un spectacle original"},
+      {v:"sync_cinemato",l:"Activite de synchronisation (cinema, series, pub)",d:"Placement de vos oeuvres dans l audiovisuel"},
+      {v:"editeur_partenaire",l:"Editeur partenaire implique dans le projet",d:"Votre editeur cofinance ou accompagne le projet"}
+    ]
+  },
+  label:{
+    sub:"Criteres specifiques pour les aides les plus exigeantes",
+    opts:[
+      {v:"kbis_6mois_ok",l:"SIRET de plus de 6 mois",d:"Critere minimum pour la majorite des aides"},
+      {v:"urssaf_jour",l:"URSSAF et obligations sociales a jour",d:"Aucun impaye - critere bloquant pour toutes les aides"},
+      {v:"distribution_pro",l:"Contrat de distribution professionnelle (pas agregateur pur)",d:"Label distribue par un distributeur pro avec distribution physique"},
+      {v:"droits_voisins_geres",l:"Droits voisins geres (SCPP ou SPPF)",d:"Repartition des droits voisins via un organisme"},
+      {v:"artiste_local_territoir",l:"Label ancre sur un territoire specifique",d:"Label regional ou local - peut qualifier certaines aides CNM"},
+      {v:"premiere_aide",l:"Premiere demande d aide (jamais beneficiaire)",d:"Nouveaux entrants - certains dispositifs sont reserves aux primo-beneficiaires"}
+    ]
+  },
+  manager:{
+    sub:"Precisions sur votre activite de management",
+    opts:[
+      {v:"contrat_management",l:"Contrat de management formalise",d:"Contrat ecrit signé avec l artiste gere"},
+      {v:"artiste_horizon_export",l:"Artiste avec potentiel export identifie",d:"Votre artiste vise un developpement international"},
+      {v:"structure_ancree",l:"Structure ancree sur un territoire",d:"Management regional - peut qualifier des aides CNM territorialisees"}
+    ]
+  },
+  tourneur:{
+    sub:"Precisions sur votre activite",
+    opts:[
+      {v:"licence_valide",l:"Licence entrepreneur de spectacles valide",d:"Licence a jour - obligatoire pour les aides CNM tourneurs"},
+      {v:"artiste_emergent_focus",l:"Focus sur artistes emergents",d:"Priorite au developpement d artistes en debut de carriere"},
+      {v:"export_confirme",l:"Tournee internationale deja realisee",d:"Experience avereee dans le developpement international"},
+      {v:"cout_plateau_eleve",l:"Cout de plateau eleve (artiste avec orchestre ou grande formation)",d:"Formation de plus de 5 musiciens"}
+    ]
+  },
+  diffuseur:{
+    sub:"Precisions sur votre structure et programmation",
+    opts:[
+      {v:"label_ministeriel",l:"Label ministeriel (SMAC, Scene Nationale, Pole...)",d:"Labellisation officielle du Ministere de la Culture"},
+      {v:"premiere_demande_cnm",l:"Premiere demande au CNM",d:"Vous n avez jamais depose de dossier au CNM"},
+      {v:"publics_eloignes",l:"Actions vers des publics eloignes de la culture",d:"Quartiers prioritaires, zones rurales, publics specifiques"},
+      {v:"pluridisciplinaire",l:"Structure pluridisciplinaire",d:"Vous programmez aussi des disciplines hors musique"}
+    ]
+  }
+};
+</script>
+<script>
+// ============================================================
+// BASE COMPLETE DES AIDES AVEC LIENS FICHES
+// Chaque aide contient:
+// - profils: profils cibles
+// - require_statuts: statuts requis (OU logique)
+// - require_affil: affiliations requises (OU logique)
+// - require_projets: types de projets (OU logique)
+// - require_situ: situations requises (OU logique)
+// - require_criteres: criteres avances requis (OU logique)
+// - exclude_criteres: criteres qui excluent l aide
+// - lienFiche: URL vers la fiche dans aides.html
+// - lienSource: URL officielle
+// ============================================================
 var basesAides = [
-  {id:"adami_enreg",orga:"ADAMI",nom:"ADAMI - Aide a l enregistrement",desc:"Financement partiel des couts d enregistrement pour artistes interpretes membres ADAMI.",montant:"Jusqu a 15 000 EUR",profils:["artiste"],require_affil:["adami"],require_projets:["album"],require_situ:[],lien:"https://www.adami.fr/aides"},
-  {id:"adami_scene",orga:"ADAMI",nom:"ADAMI - Aide a la production de spectacle",desc:"Soutien financier pour la production de spectacle vivant des artistes interpretes membres ADAMI.",montant:"Jusqu a 10 000 EUR",profils:["artiste"],require_affil:["adami"],require_projets:["concert"],require_situ:[],lien:"https://www.adami.fr/aides"},
-  {id:"adami_clip",orga:"ADAMI",nom:"ADAMI - Aide audiovisuelle",desc:"Participation aux couts de production de clips et contenus audiovisuels.",montant:"Jusqu a 8 000 EUR",profils:["artiste"],require_affil:["adami"],require_projets:["clip"],require_situ:[],lien:"https://www.adami.fr/aides"},
-  {id:"adami_form",orga:"ADAMI",nom:"ADAMI - Prise en charge formation",desc:"Financement de formations professionnelles pour artistes interpretes membres ADAMI.",montant:"Jusqu a 3 000 EUR",profils:["artiste"],require_affil:["adami"],require_projets:["formation"],require_situ:[],lien:"https://www.adami.fr/aides"},
-  {id:"spedidam_enreg",orga:"SPEDIDAM",nom:"SPEDIDAM - Aide a l enregistrement",desc:"Financement des sessions d enregistrement pour musiciens membres SPEDIDAM.",montant:"Jusqu a 6 000 EUR",profils:["artiste"],require_affil:["spedidam"],require_projets:["album"],require_situ:[],lien:"https://www.spedidam.fr/les-aides"},
-  {id:"spedidam_scene",orga:"SPEDIDAM",nom:"SPEDIDAM - Soutien spectacle vivant",desc:"Aide a la production de concerts pour musiciens interpretes membres SPEDIDAM.",montant:"Jusqu a 5 000 EUR",profils:["artiste"],require_affil:["spedidam"],require_projets:["concert"],require_situ:[],lien:"https://www.spedidam.fr/les-aides"},
-  {id:"spedidam_num",orga:"SPEDIDAM",nom:"SPEDIDAM - Aide numerique",desc:"Soutien aux projets numeriques et de diffusion en ligne des artistes interpretes.",montant:"Jusqu a 4 000 EUR",profils:["artiste"],require_affil:["spedidam"],require_projets:["numerique"],require_situ:[],lien:"https://www.spedidam.fr/les-aides"},
-  {id:"sacem_bourse",orga:"SACEM",nom:"SACEM - Bourse a la creation",desc:"Soutien financier aux auteurs-compositeurs pour le developpement de leur repertoire.",montant:"2 000 a 10 000 EUR",profils:["auteur"],require_affil:["sacem"],require_projets:["album"],require_situ:[],lien:"https://www.sacem.fr/aides-et-ressources"},
-  {id:"sacem_enreg",orga:"SACEM",nom:"SACEM - Aide a l enregistrement",desc:"Participation aux frais de production du premier ou second album.",montant:"Jusqu a 8 000 EUR",profils:["auteur"],require_affil:["sacem"],require_projets:["album"],require_situ:["oeuvres_deposees"],lien:"https://www.sacem.fr/aides-et-ressources"},
-  {id:"sacem_scene",orga:"SACEM",nom:"SACEM - Aide au spectacle vivant",desc:"Soutien a la tournee et aux concerts pour auteurs-compositeurs membres SACEM.",montant:"Jusqu a 6 000 EUR",profils:["auteur"],require_affil:["sacem"],require_projets:["concert"],require_situ:[],lien:"https://www.sacem.fr/aides-et-ressources"},
-  {id:"scpp_form",orga:"SCPP",nom:"SCPP - Prise en charge formation",desc:"Financement de formations professionnelles pour les producteurs phonographiques membres SCPP. Via 5 organismes conventionnes.",montant:"1 600 a 2 000 EUR par formation (max 2 par an)",profils:["label"],require_affil:["scpp"],require_projets:["formation"],require_situ:[],lien:"https://www.scpp.fr"},
-  {id:"scpp_prod",orga:"SCPP",nom:"SCPP - Aide a la production phonographique",desc:"Soutien aux producteurs membres SCPP pour la production de nouveaux enregistrements.",montant:"Variable selon projet",profils:["label"],require_affil:["scpp"],require_projets:["album"],require_situ:["kbis"],lien:"https://www.scpp.fr"},
-  {id:"scpp_num",orga:"SCPP",nom:"SCPP - Aide numerique et streaming",desc:"Accompagnement des producteurs dans le developpement de leur strategie numerique.",montant:"Jusqu a 5 000 EUR",profils:["label"],require_affil:["scpp"],require_projets:["numerique"],require_situ:[],lien:"https://www.scpp.fr"},
-  {id:"sppf_form",orga:"SPPF",nom:"SPPF - Formation professionnelle",desc:"Prise en charge de formations pour les salaries des labels membres SPPF.",montant:"Jusqu a 1 500 EUR",profils:["label"],require_affil:["sppf"],require_projets:["formation"],require_situ:["kbis"],lien:"https://www.sppf.com"},
-  {id:"sppf_prod",orga:"SPPF",nom:"SPPF - Aide a la production",desc:"Soutien financier aux membres SPPF pour la realisation de nouveaux projets discographiques.",montant:"Variable selon projet",profils:["label"],require_affil:["sppf"],require_projets:["album"],require_situ:[],lien:"https://www.sppf.com"},
-  {id:"sppf_export",orga:"SPPF",nom:"SPPF - Aide export",desc:"Accompagnement des producteurs membres SPPF dans leur developpement a l international.",montant:"Jusqu a 8 000 EUR",profils:["label"],require_affil:["sppf"],require_projets:["export"],require_situ:[],lien:"https://www.sppf.com"},
-  {id:"cnm_maquette",orga:"CNM",nom:"CNM - Aide a la maquette et demo",desc:"Financement des enregistrements demo pour artistes en developpement.",montant:"Jusqu a 5 000 EUR",profils:["artiste"],require_affil:[],require_projets:["album"],require_situ:["emergent"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_art_album",orga:"CNM",nom:"CNM - Aide a la production phonographique artiste",desc:"Soutien a la production de l album pour artistes etablis.",montant:"5 000 a 50 000 EUR",profils:["artiste"],require_affil:[],require_projets:["album"],require_situ:["pro_active","disque_sorti"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_art_export",orga:"CNM",nom:"CNM - Aide export artiste",desc:"Soutien aux artistes pour leur developpement a l international.",montant:"Jusqu a 20 000 EUR",profils:["artiste"],require_affil:[],require_projets:["export"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_auteur_res",orga:"CNM",nom:"CNM - Residence de creation",desc:"Soutien aux residences artistiques pour le developpement du repertoire.",montant:"Jusqu a 12 000 EUR",profils:["auteur"],require_affil:[],require_projets:["album"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_label_prod",orga:"CNM",nom:"CNM - Aide production label",desc:"Soutien a la production phonographique pour les labels independants.",montant:"10 000 a 80 000 EUR",profils:["label"],require_affil:[],require_projets:["album"],require_situ:["kbis","sorties_recentes"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_label_exp",orga:"CNM",nom:"CNM - Aide export label",desc:"Accompagnement des labels independants dans leur strategie de developpement international.",montant:"Jusqu a 30 000 EUR",profils:["label"],require_affil:[],require_projets:["export"],require_situ:["kbis"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_label_struct",orga:"CNM",nom:"CNM - Aide a la structuration",desc:"Soutien a la creation et au developpement de structures independantes.",montant:"5 000 a 25 000 EUR",profils:["label"],require_affil:[],require_projets:["structure"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_label_num",orga:"CNM",nom:"CNM - Aide numerique label",desc:"Accompagnement des labels dans leur strategie de presence sur les plateformes.",montant:"Jusqu a 15 000 EUR",profils:["label"],require_affil:[],require_projets:["numerique"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_mng_dev",orga:"CNM",nom:"CNM - Aide au management artistique",desc:"Soutien au developpement de structures de management professionnel.",montant:"Jusqu a 20 000 EUR",profils:["manager"],require_affil:[],require_projets:[],require_situ:["artiste_gere"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_mng_exp",orga:"CNM",nom:"CNM - Aide export manager",desc:"Accompagnement des managers pour le developpement international de leurs artistes.",montant:"Jusqu a 15 000 EUR",profils:["manager"],require_affil:[],require_projets:["export"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_tour_t",orga:"CNM",nom:"CNM - Aide a la tournee",desc:"Soutien financier pour l organisation et la production de tournees en France.",montant:"5 000 a 60 000 EUR",profils:["tourneur"],require_affil:[],require_projets:["concert"],require_situ:["tournees_regulieres"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_tour_exp",orga:"CNM",nom:"CNM - Aide export tournee",desc:"Soutien aux tourneurs pour le developpement de leurs artistes hors de France.",montant:"Jusqu a 25 000 EUR",profils:["tourneur"],require_affil:[],require_projets:["export"],require_situ:[],lien:"https://cnm.fr/aides"},
-  {id:"cnm_tour_reg",orga:"CNM",nom:"CNM - Aide developpement regional",desc:"Aide aux structures promouvant les artistes de leur territoire.",montant:"Jusqu a 15 000 EUR",profils:["tourneur"],require_affil:[],require_projets:["concert"],require_situ:["artiste_regional"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_diff_prog",orga:"CNM",nom:"CNM - Aide a la programmation",desc:"Soutien aux salles et festivals pour leur programmation musicale.",montant:"5 000 a 40 000 EUR",profils:["diffuseur"],require_affil:[],require_projets:["concert"],require_situ:["prog_musicale"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_diff_pmo",orga:"CNM",nom:"CNM - Aide petites et moyennes salles (PMO)",desc:"Dispositif specifique pour les salles de moins de 300 places.",montant:"3 000 a 15 000 EUR",profils:["diffuseur"],require_affil:[],require_projets:["concert"],require_situ:["capacite_250"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_diff_jeun",orga:"CNM",nom:"CNM - Aide education artistique",desc:"Soutien aux actions de mediation et d education artistique musicale.",montant:"Jusqu a 10 000 EUR",profils:["diffuseur"],require_affil:[],require_projets:["concert"],require_situ:["jeune_public"],lien:"https://cnm.fr/aides"},
-  {id:"cnm_diff_local",orga:"CNM",nom:"CNM - Aide promotion artistes locaux",desc:"Soutien aux diffuseurs qui valorisent les artistes de leur territoire.",montant:"Jusqu a 12 000 EUR",profils:["diffuseur"],require_affil:[],require_projets:["concert"],require_situ:["artistes_locaux"],lien:"https://cnm.fr/aides"}
+
+  // ========== ADAMI ==========
+  {id:"adami_bourse_parcours",orga:"ADAMI",
+   nom:"ADAMI - Bourse Parcours Artiste",
+   desc:"Finance le developpement de carriere de l artiste-interprete : reseau professionnel, formation, compagnonnage, inspiration ou contenus numeriques. Pas lie a un projet artistique.",
+   montant:"Jusqu a 4 000 EUR (min 1 500 EUR)",
+   profils:["artiste"],
+   require_statuts:["25cachets_adami","associe_adami"],
+   require_affil:["adami"],
+   require_projets:["formation_dev","contenus_num"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.adami.fr/que-fait-ladami-pour-moi/cherche-financement-projet-artistique/bourse-parcours-artiste"},
+
+  {id:"adami_2d3d_enreg",orga:"ADAMI",
+   nom:"ADAMI - Aide a la production d enregistrement (2D/3D)",
+   desc:"Soutien aux artistes-interpretes associes ADAMI pour la production d un album ou EP. Max 1/3 des depenses HT. Exige une structure productrice avec SIRET, emploi direct des artistes (pas GUSO).",
+   montant:"Variable - max 1/3 des depenses HT",
+   profils:["artiste"],
+   require_statuts:["associe_adami","intermittent","pro_active"],
+   require_affil:["adami"],
+   require_projets:["enregistrement"],
+   require_situ:["contrat_distrib","1album_sorti","2albums_distrib"],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.adami.fr/aides"},
+
+  {id:"adami_365",orga:"ADAMI",
+   nom:"ADAMI - Aide Projet Musical Global 365",
+   desc:"L aide la plus ambitieuse de l ADAMI. Accompagnement global sur 12 mois : enregistrement (obligatoire) + 2 volets parmi image, promotion, spectacle. Uniquement pour artistes tres confirmes. 1 seule fois par artiste. Contact ADAMI obligatoire avant depot.",
+   montant:"25 000 a 40 000 EUR",
+   profils:["artiste"],
+   require_statuts:["associe_adami"],
+   require_affil:["adami"],
+   require_projets:["enregistrement"],
+   require_situ:["2albums_distrib","5concerts_600places","droits_adami_5000"],
+   require_criteres:["adami_associe_confirm","pas_encore_365","structure_siren","guso_non"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.adami.fr/aides"},
+
+  {id:"adami_premiere_partie",orga:"ADAMI",
+   nom:"ADAMI - Aide Premiere Partie / Spectacle Vivant",
+   desc:"Soutien a la production de spectacle vivant pour artistes interpretes membres ADAMI. Couvre les couts de creation et/ou de diffusion.",
+   montant:"Variable selon projet",
+   profils:["artiste"],
+   require_statuts:["associe_adami","intermittent"],
+   require_affil:["adami"],
+   require_projets:["spectacle","tournee"],
+   require_situ:["contrat_cession"],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.adami.fr/aides"},
+
+  // ========== SPEDIDAM ==========
+  {id:"spedidam_spectacle",orga:"SPEDIDAM",
+   nom:"SPEDIDAM - Aide au spectacle musical",
+   desc:"Soutien financier pour la production et la diffusion de spectacles musicaux. Reservee aux musiciens-interpretes membres SPEDIDAM.",
+   montant:"Jusqu a 5 000 EUR",
+   profils:["artiste"],
+   require_statuts:["intermittent","pro_active"],
+   require_affil:["spedidam"],
+   require_projets:["spectacle","tournee"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.spedidam.fr/les-aides"},
+
+  {id:"spedidam_deplacement_int",orga:"SPEDIDAM",
+   nom:"SPEDIDAM - Aide au deplacement international",
+   desc:"Financement des frais de deplacement pour des artistes interpretes membres SPEDIDAM dans le cadre de projets musicaux internationaux.",
+   montant:"Variable",
+   profils:["artiste"],
+   require_statuts:["intermittent","pro_active"],
+   require_affil:["spedidam"],
+   require_projets:["export","tournee"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.spedidam.fr/les-aides"},
+
+  {id:"spedidam_promotion_image",orga:"SPEDIDAM",
+   nom:"SPEDIDAM - Aide promotion et image",
+   desc:"Aide a la promotion et au developpement de l image pour les artistes interpretes membres SPEDIDAM.",
+   montant:"Variable",
+   profils:["artiste"],
+   require_statuts:["intermittent","pro_active"],
+   require_affil:["spedidam"],
+   require_projets:["promotion","clip_audiovisuel"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.spedidam.fr/les-aides"},
+
+  // ========== SACEM ==========
+  {id:"sacem_autoproduction",orga:"SACEM",
+   nom:"SACEM - Aide a l autoproduction",
+   desc:"Soutien aux auteurs-compositeurs qui produisent eux-memes leurs oeuvres. Necessite d etre membre SACEM avec une structure de production.",
+   montant:"Jusqu a 15 000 EUR",
+   profils:["auteur"],
+   require_statuts:["sacem_membre","autoproducteur"],
+   require_affil:["sacem"],
+   require_projets:["enregistrement","bourse_creation"],
+   require_situ:["sacem_depot","autoproducteur_kbis"],
+   require_criteres:["sacem_inscrit"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sacem.fr/aides-et-ressources"},
+
+  {id:"sacem_spectacle_musical",orga:"SACEM",
+   nom:"SACEM - Aide a la creation de spectacle musical",
+   desc:"Soutien aux auteurs-compositeurs pour la creation d un spectacle musical original. Membre SACEM requis.",
+   montant:"5 000 a 20 000 EUR",
+   profils:["auteur"],
+   require_statuts:["sacem_membre"],
+   require_affil:["sacem"],
+   require_projets:["spectacle"],
+   require_situ:["sacem_depot"],
+   require_criteres:["projet_spectacle"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sacem.fr/aides-et-ressources"},
+
+  {id:"sacem_dev_editorial",orga:"SACEM",
+   nom:"SACEM - Developpement editorial et valorisation patrimoniale",
+   desc:"Aide au developpement editorial pour les editeurs SACEM. Soutien a la valorisation et l exploitation d un catalogue.",
+   montant:"Variable selon projet",
+   profils:["auteur"],
+   require_statuts:["sacem_membre"],
+   require_affil:["sacem","sacem_editeur"],
+   require_projets:["edition"],
+   require_situ:["sacem_editeur_contrat","catalogue_exploite"],
+   require_criteres:["editeur_partenaire"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sacem.fr/aides-et-ressources"},
+
+  // ========== SCPP ==========
+  {id:"scpp_formation_artiste",orga:"SCPP",
+   nom:"SCPP - Prise en charge formation (SCPP)",
+   desc:"Financement de formations professionnelles pour les membres SCPP via 5 organismes conventionnes (Afdas, CPNEF-AV...). 1 600 a 2 000 EUR par formation, max 2 par an.",
+   montant:"1 600 a 2 000 EUR (max 2 par an)",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["scpp","scpp_sppf"],
+   require_projets:["formation_salaries"],
+   require_situ:[],
+   require_criteres:["kbis_6mois_ok","urssaf_jour"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.scpp.fr"},
+
+  {id:"scpp_creation_phonogramme",orga:"SCPP",
+   nom:"SCPP - Aide a la creation de phonogramme",
+   desc:"Soutien aux producteurs membres SCPP pour la production de nouveaux enregistrements. Structure avec KBIS et propriete des masters requise.",
+   montant:"Variable selon projet",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["scpp","scpp_sppf"],
+   require_projets:["enregistrement"],
+   require_situ:["proprietaire_master"],
+   require_criteres:["kbis_6mois_ok","urssaf_jour","distribution_pro"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.scpp.fr"},
+
+  {id:"scpp_videomusique",orga:"SCPP",
+   nom:"SCPP - Aide a la videomusique",
+   desc:"Soutien a la production de clips video pour les membres SCPP.",
+   montant:"Variable",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["scpp","scpp_sppf"],
+   require_projets:["clip_audiovisuel"],
+   require_situ:[],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.scpp.fr"},
+
+  {id:"scpp_showcase",orga:"SCPP",
+   nom:"SCPP - Aide showcase",
+   desc:"Financement de showcases pour les membres SCPP afin de developper la visibilite de leurs artistes.",
+   montant:"Variable",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["scpp","scpp_sppf"],
+   require_projets:["promotion_mktg"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.scpp.fr"},
+
+  {id:"scpp_marketing",orga:"SCPP",
+   nom:"SCPP - Aide marketing",
+   desc:"Soutien aux actions marketing et promotion pour les membres SCPP.",
+   montant:"Variable",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["scpp","scpp_sppf"],
+   require_projets:["promotion_mktg","numerique"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.scpp.fr"},
+
+  // ========== SPPF ==========
+  {id:"sppf_enregistrement_album",orga:"SPPF",
+   nom:"SPPF - Aide a l enregistrement d album",
+   desc:"Soutien substantiel a la production phonographique pour les membres SPPF. Un des dispositifs les plus importants pour les labels independants membres SPPF.",
+   montant:"Variable - jusqu a 15 000 EUR",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["sppf","scpp_sppf"],
+   require_projets:["enregistrement"],
+   require_situ:["proprietaire_master","artiste_signe_exclus"],
+   require_criteres:["kbis_6mois_ok","urssaf_jour","distribution_pro"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sppf.com"},
+
+  {id:"sppf_videomusique",orga:"SPPF",
+   nom:"SPPF - Aide videomusique",
+   desc:"Aide a la production de clips video pour les membres SPPF.",
+   montant:"Variable",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["sppf","scpp_sppf"],
+   require_projets:["clip_audiovisuel"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sppf.com"},
+
+  {id:"sppf_showcase",orga:"SPPF",
+   nom:"SPPF - Aide showcase",
+   desc:"Soutien aux showcases et evenements de promotion pour les membres SPPF.",
+   montant:"Variable",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["sppf","scpp_sppf"],
+   require_projets:["promotion_mktg"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sppf.com"},
+
+  {id:"sppf_grm",orga:"SPPF",
+   nom:"SPPF - Garantie de Remuneration Minimale (GRM)",
+   desc:"Garantie de remuneration minimale pour les artistes sous contrat avec des membres SPPF. Specifique aux relations label-artiste.",
+   montant:"Garantie de remuneration",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:["sppf","scpp_sppf"],
+   require_projets:["enregistrement"],
+   require_situ:["artiste_signe_exclus"],
+   require_criteres:["droits_voisins_geres"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sppf.com"},
+
+  {id:"sppf_adami_bonification",orga:"SPPF",
+   nom:"SPPF / ADAMI - Bonification croisee (+10%)",
+   desc:"Bonus de 10% sur les aides ADAMI si les titres sont declares a la SPPF. Necessaire de s affilier SPPF avant le depot ADAMI. Non retroactif.",
+   montant:"+10% sur aide ADAMI (ex: 4 000 EUR sur 365 accordee a 40K)",
+   profils:["artiste"],
+   require_statuts:["associe_adami"],
+   require_affil:["adami","spedidam"],
+   require_projets:["enregistrement"],
+   require_situ:[],
+   require_criteres:["sppf_affil"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://www.sppf.com"},
+
+  // ========== CNM - Artiste ==========
+  {id:"cnm_production_phono",orga:"CNM",
+   nom:"CNM - Aide a la production phonographique (artiste)",
+   desc:"Soutien a la production d un album pour les artistes en structure de production. Necessite une structure juridique avec SIRET. Aide selective ou automatique selon criteres.",
+   montant:"5 000 a 75 000 EUR",
+   profils:["artiste"],
+   require_statuts:["pro_active","intermittent"],
+   require_affil:[],
+   require_projets:["enregistrement"],
+   require_situ:["2albums_distrib","1album_sorti","contrat_distrib","structure_siren"],
+   require_criteres:["structure_siren"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_bourse_auteurs",orga:"CNM",
+   nom:"CNM - Bourse Parcours Auteurs-Compositeurs",
+   desc:"Soutien au developpement de carriere des auteurs-compositeurs. Finance des residences, temps de creation, formation. Ouvert aux auteurs avec activite prouvee.",
+   montant:"Jusqu a 10 000 EUR",
+   profils:["auteur"],
+   require_statuts:["sacem_membre"],
+   require_affil:["sacem"],
+   require_projets:["bourse_creation","formation"],
+   require_situ:["sacem_depot"],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_ecriture_composition",orga:"CNM",
+   nom:"CNM - Aide a l ecriture et la composition",
+   desc:"Financement de temps d ecriture et de composition pour les auteurs-compositeurs. Residences de creation, temps de travail creativement dedie.",
+   montant:"Variable",
+   profils:["auteur"],
+   require_statuts:["sacem_membre"],
+   require_affil:["sacem"],
+   require_projets:["bourse_creation","enregistrement"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_production_phono_label",orga:"CNM",
+   nom:"CNM - Aide a la production phonographique (label)",
+   desc:"Soutien substantiel aux labels independants pour la production de nouveaux enregistrements. Aide automatique (basee sur historique) ou selective. Necessite KBIS + 2 sorties documentees.",
+   montant:"10 000 a 80 000 EUR",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["enregistrement"],
+   require_situ:["proprietaire_master","2sorties_24mois","artiste_signe_exclus"],
+   require_criteres:["kbis_6mois_ok","urssaf_jour","distribution_pro"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_aide_auto_phono",orga:"CNM",
+   nom:"CNM - Aide automatique a la production phonographique",
+   desc:"Aide calculee automatiquement sur la base des ventes et streams precedents. Pour labels ayant deja des sorties. Versement automatique sans commission.",
+   montant:"Variable selon historique commercial",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["enregistrement"],
+   require_situ:["2sorties_24mois","catalogue_actif"],
+   require_criteres:["kbis_6mois_ok","distribution_pro","droits_voisins_geres"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_export_a",orga:"CNM",
+   nom:"CNM - Export A : Strategie de developpement international",
+   desc:"Soutien a l elaboration et la mise en oeuvre d une strategie export. Pour labels, tourneurs, artistes en structure. Couvre les frais de prospection, deplacement, participation a des marches.",
+   montant:"Jusqu a 30 000 EUR",
+   profils:["label","tourneur","artiste"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["export"],
+   require_situ:["2sorties_24mois","artiste_signe_exclus","tournees_actives"],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_export_b",orga:"CNM",
+   nom:"CNM - Export B : Diffusion internationale et tournees",
+   desc:"Financement des couts de tournees et de diffusion a l international. Pour structures ayant deja une experience export ou un projet concret a l etranger.",
+   montant:"Jusqu a 50 000 EUR",
+   profils:["label","tourneur","artiste"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["export","tournee"],
+   require_situ:["tournees_actives","projet_international"],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_export_c",orga:"CNM",
+   nom:"CNM - Export C : Marketing et promotion internationale",
+   desc:"Aide aux actions de marketing et de promotion sur les marches internationaux. Presse etrangere, campagnes digitales internationales, participation a des showcases et festivals etrangers.",
+   montant:"Jusqu a 25 000 EUR",
+   profils:["label","artiste"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["export","promotion","promotion_mktg"],
+   require_situ:["contrat_distrib","2sorties_24mois"],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_production_diffusion_sv",orga:"CNM",
+   nom:"CNM - Aide production et diffusion spectacle vivant",
+   desc:"Soutien substantiel a la production et la diffusion de spectacles musicaux. Pour tourneurs, producteurs, artistes en structure. Critere : cout plateau, nombre de dates, artiste.",
+   montant:"5 000 a 60 000 EUR",
+   profils:["tourneur","artiste","label"],
+   require_statuts:["kbis","licence_spectacle"],
+   require_affil:[],
+   require_projets:["tournee","spectacle","creation_spectacle"],
+   require_situ:["20dates_an","tournees_actives","contrat_cession"],
+   require_criteres:["licence_valide"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_creation_spectacle_musical",orga:"CNM",
+   nom:"CNM - Aide a la creation de spectacle musical",
+   desc:"Soutien a la phase de creation artistique d un spectacle. Pour producteurs, tourneurs ou salles coprodusant la creation. Residences, couts de mise en scene, couts artistiques.",
+   montant:"Jusqu a 30 000 EUR",
+   profils:["tourneur","diffuseur","label"],
+   require_statuts:["kbis","licence_spectacle"],
+   require_affil:[],
+   require_projets:["creation_spectacle","creation_coproduction"],
+   require_situ:["tournees_actives","residences_coprod"],
+   require_criteres:["licence_valide"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_promoteurs_diffuseurs",orga:"CNM",
+   nom:"CNM - Aide aux promoteurs et diffuseurs",
+   desc:"Soutien specifique aux salles et festivals pour la programmation musicale. PMO pour les salles de moins de 300 places. Criteres de programmation reguliere et de structuration.",
+   montant:"3 000 a 40 000 EUR",
+   profils:["diffuseur"],
+   require_statuts:["kbis","licence_spectacle"],
+   require_affil:[],
+   require_projets:["programmation","jeune_public","artistes_locaux"],
+   require_situ:["prog_saison_complete","moins_300places","jeune_public_actions","artiste_local_prog"],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_dev_economique",orga:"CNM",
+   nom:"CNM - Aide au developpement economique",
+   desc:"Soutien a la structuration et au developpement economique des entreprises de la filiere musicale. Investissements, outils numeriques, developpement commercial.",
+   montant:"5 000 a 25 000 EUR",
+   profils:["label","manager","tourneur","diffuseur"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["structuration","dev_artiste"],
+   require_situ:["2sorties_24mois","catalogue_actif","tournees_actives","prog_saison_complete"],
+   require_criteres:["kbis_6mois_ok","urssaf_jour"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_mobilite_individuelle",orga:"CNM",
+   nom:"CNM - Aide a la mobilite individuelle internationale",
+   desc:"Soutien individuel pour les professionnels de la musique (artistes, managers, tourneurs) dans le cadre de missions a l international : marches, salons, rencontres professionnelles.",
+   montant:"Jusqu a 5 000 EUR",
+   profils:["artiste","label","manager","tourneur"],
+   require_statuts:["pro_active","kbis","intermittent"],
+   require_affil:[],
+   require_projets:["export"],
+   require_situ:[],
+   require_criteres:[],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_musiques_actuelles_di",orga:"CNM",
+   nom:"CNM - Aide projets DI Musiques Actuelles",
+   desc:"Soutien aux projets de developpement international specifiques aux musiques actuelles (pop, rock, electro, urban, jazz contemp.). Residences internationales, collaborations, tournees a l etranger.",
+   montant:"Jusqu a 20 000 EUR",
+   profils:["artiste","label","tourneur"],
+   require_statuts:["pro_active","kbis"],
+   require_affil:[],
+   require_projets:["export","tournee"],
+   require_situ:["1album_sorti","2sorties_24mois"],
+   require_criteres:["musiques_actuelles"],
+   exclude_criteres:["jazz_classique"],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_jazz_di",orga:"CNM",
+   nom:"CNM - Aide au developpement international Jazz",
+   desc:"Dispositif specifique jazz pour le developpement international. Tournees, residences, collaborations a l etranger. Criteres esthetiques specifiques.",
+   montant:"Jusqu a 20 000 EUR",
+   profils:["artiste","label","tourneur"],
+   require_statuts:["pro_active","kbis"],
+   require_affil:[],
+   require_projets:["export","tournee"],
+   require_situ:["1album_sorti"],
+   require_criteres:["jazz_classique"],
+   exclude_criteres:["musiques_actuelles"],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_restructuration",orga:"CNM",
+   nom:"CNM - Aide a la restructuration economique",
+   desc:"Accompagnement des structures en difficulte economique ou en transformation. Pour les entreprises de la filiere musicale cherchant a se restructurer ou rebondir apres une crise.",
+   montant:"Variable selon diagnostic",
+   profils:["label","tourneur","diffuseur"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["structuration"],
+   require_situ:[],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_droit_tirage",orga:"CNM",
+   nom:"CNM - Droit de Tirage",
+   desc:"Systeme de droit de tirage base sur les performances commerciales du label (ventes, streams). Aide automatique calculee annuellement. Necessite un historique commercial documentable.",
+   montant:"Variable - base sur historique",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["enregistrement"],
+   require_situ:["catalogue_actif","2sorties_24mois"],
+   require_criteres:["kbis_6mois_ok","distribution_pro","droits_voisins_geres"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_editeur",orga:"CNM",
+   nom:"CNM - Aide editeur developpement editorial",
+   desc:"Soutien au developpement editorial des editeurs musicaux. Acquisition de repertoire, developpement de synchronisation, actions editoriales innovantes.",
+   montant:"Jusqu a 30 000 EUR",
+   profils:["auteur"],
+   require_statuts:["sacem_membre"],
+   require_affil:["sacem","sacem_editeur"],
+   require_projets:["edition"],
+   require_situ:["sacem_editeur_contrat","catalogue_exploite"],
+   require_criteres:["catalogue_10titres","editeur_partenaire"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_production_musique_images",orga:"CNM",
+   nom:"CNM - Aide a la production de musique en images",
+   desc:"Soutien a la production de clips video, captations et contenus audiovisuels musicaux. Pour labels et artistes en structure.",
+   montant:"Jusqu a 15 000 EUR",
+   profils:["label","artiste"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["clip_audiovisuel"],
+   require_situ:["1album_sorti","2sorties_24mois"],
+   require_criteres:["kbis_6mois_ok"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_cipp",orga:"CNM",
+   nom:"CNM / CIPP - Credit d Impot Production Phonographique",
+   desc:"Credit d impot calcule sur les depenses de production phonographique eligibles. Pour les societes soumises a l IS produisant des phonogrammes. Taux 20% (30% pour petits labels). Necessite un agrément CNM.",
+   montant:"20% a 30% des depenses eligibles",
+   profils:["label"],
+   require_statuts:["kbis"],
+   require_affil:[],
+   require_projets:["enregistrement"],
+   require_situ:["2sorties_24mois","proprietaire_master"],
+   require_criteres:["kbis_6mois_ok","urssaf_jour","distribution_pro"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_ciem",orga:"CNM",
+   nom:"CNM / CIEM - Credit d Impot Entreprises de Spectacle",
+   desc:"Credit d impot pour les entreprises de spectacles musicaux de varietes et de jazz. Taux 15% (30% pour petites entreprises). Pour producteurs et tourneurs de spectacles.",
+   montant:"15% a 30% des depenses eligibles",
+   profils:["tourneur","diffuseur","label"],
+   require_statuts:["kbis","licence_spectacle"],
+   require_affil:[],
+   require_projets:["tournee","spectacle","creation_spectacle"],
+   require_situ:["tournees_actives"],
+   require_criteres:["kbis_6mois_ok","licence_valide"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"},
+
+  {id:"cnm_cisv",orga:"CNM",
+   nom:"CNM / CISV - Credit d Impot Spectacle Vivant",
+   desc:"Credit d impot specifique pour la creation et la diffusion de spectacles vivants musicaux. Pour structures produisant des spectacles en France.",
+   montant:"Variable selon structure",
+   profils:["tourneur","diffuseur"],
+   require_statuts:["kbis","licence_spectacle"],
+   require_affil:[],
+   require_projets:["creation_spectacle","programmation"],
+   require_situ:["prog_saison_complete","residences_coprod"],
+   require_criteres:["kbis_6mois_ok","licence_valide"],
+   exclude_criteres:[],
+   lienFiche:"aides.html",
+   lienSource:"https://cnm.fr/aides"}
 ];
 </script>
 <script>
-var currentEtape = 1;
+// ============================================================
+// COULEURS DES ORGANISMES
+// ============================================================
+var orgaColors = {ADAMI:"#2d6a4f",SPEDIDAM:"#457b9d",SACEM:"#6d3b8e",SCPP:"#c1121f",SPPF:"#d4770a",CNM:"#1d3557"};
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function updateProgress(n) {
+  document.getElementById("progFill").style.width = (n/TOTAL_ETAPES*100) + "%";
+  for (var i=1; i<=TOTAL_ETAPES; i++) {
+    var el = document.getElementById("sl"+i);
+    if (!el) continue;
+    el.className = "step-lbl" + (i < n ? " done" : i === n ? " active" : "");
+  }
+}
 
 function goEtape(n) {
   if (n === 2 && !etat.profil) { document.getElementById("err1").style.display = "block"; return; }
-  if (n === 3 && etat.projets.length === 0) { document.getElementById("err2").style.display = "block"; return; }
-  if (n === 4) {
-    var affils = document.querySelectorAll("#affiliationList input:checked");
-    if (affils.length === 0) { document.getElementById("err3").style.display = "block"; return; }
-    etat.affiliations = [];
-    affils.forEach(function(cb) { etat.affiliations.push(cb.value); });
+  if (n === 3) {
+    var s2 = document.querySelectorAll("#statutList input:checked");
+    if (s2.length === 0) { document.getElementById("err2").style.display = "block"; return; }
+    etat.statuts = []; s2.forEach(function(cb) { etat.statuts.push(cb.value); });
   }
-  if (n === 3) renderAffiliation();
-  if (n === 4) renderSituation();
+  if (n === 4) {
+    var s3 = document.querySelectorAll("#affiliationList input:checked");
+    if (s3.length === 0) { document.getElementById("err3").style.display = "block"; return; }
+    etat.affiliations = []; s3.forEach(function(cb) { etat.affiliations.push(cb.value); });
+  }
+  if (n === 5) {
+    var s4 = document.querySelectorAll("#projetList input:checked");
+    if (s4.length === 0) { document.getElementById("err4").style.display = "block"; return; }
+    etat.projets = []; s4.forEach(function(cb) { etat.projets.push(cb.value); });
+  }
+  if (n === 6) {
+    var s5 = document.querySelectorAll("#situationList input:checked");
+    if (s5.length === 0) { document.getElementById("err5").style.display = "block"; return; }
+    etat.situations = []; s5.forEach(function(cb) { etat.situations.push(cb.value); });
+  }
+  if (n === 2) renderStatuts();
+  if (n === 3) renderAffiliations();
+  if (n === 4) renderProjets();
+  if (n === 5) renderSituations();
+  if (n === 6) renderCriteresAv();
   document.getElementById("etape" + currentEtape).classList.remove("active");
   currentEtape = n;
   document.getElementById("etape" + n).classList.add("active");
@@ -281,14 +1166,9 @@ function goEtape(n) {
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
-function updateProgress(n) {
-  document.getElementById("progFill").style.width = (n/5*100) + "%";
-  for (var i=1; i<=5; i++) {
-    var el = document.getElementById("sl"+i);
-    el.className = "step-lbl" + (i < n ? " done" : i === n ? " active" : "");
-  }
-}
-
+// ============================================================
+// SELECTION PROFIL
+// ============================================================
 function selectProfil(p) {
   etat.profil = p;
   document.querySelectorAll(".option-card").forEach(function(c) { c.classList.remove("selected"); });
@@ -296,28 +1176,27 @@ function selectProfil(p) {
   document.getElementById("err1").style.display = "none";
 }
 
-function toggleProjet(v) {
-  var idx = etat.projets.indexOf(v);
-  if (idx > -1) etat.projets.splice(idx, 1); else etat.projets.push(v);
-  document.getElementById("err2").style.display = "none";
-}
-
+// ============================================================
+// RENDU DYNAMIQUE DES ETAPES
+// ============================================================
 function makeCheckItem(opt, errId) {
   var lbl = document.createElement("label");
   lbl.className = "checkbox-item";
   var cb = document.createElement("input");
   cb.type = "checkbox";
-  cb.value = opt.value;
+  cb.value = opt.v;
   cb.addEventListener("change", function() {
-    document.getElementById(errId).style.display = "none";
+    var err = document.getElementById(errId);
+    if (err) err.style.display = "none";
   });
   var div = document.createElement("div");
-  var sp1 = document.createElement("span");
-  sp1.className = "option-label";
-  sp1.textContent = opt.label;
-  var sp2 = document.createElement("span");
+  div.style.flex = "1";
+  var sp1 = document.createElement("div");
+  sp1.className = "cb-label";
+  sp1.textContent = opt.l;
+  var sp2 = document.createElement("div");
   sp2.className = "cb-desc";
-  sp2.textContent = opt.desc;
+  sp2.textContent = opt.d;
   div.appendChild(sp1);
   div.appendChild(sp2);
   lbl.appendChild(cb);
@@ -325,42 +1204,82 @@ function makeCheckItem(opt, errId) {
   return lbl;
 }
 
-function renderAffiliation() {
-  var list = document.getElementById("affiliationList");
-  var sub = document.getElementById("affil-sub");
+function renderStatuts() {
+  var data = statutsParProfil[etat.profil];
+  document.getElementById("etape2-sub").textContent = data.sub;
+  var list = document.getElementById("statutList");
   list.innerHTML = "";
-  etat.affiliations = [];
-  var labels = {artiste:"Etes-vous affilie a ADAMI et/ou SPEDIDAM ?",auteur:"Etes-vous membre de la SACEM ?",label:"Votre label est-il membre de la SCPP et/ou la SPPF ?",manager:"Affiliation organismes",tourneur:"Situation administrative",diffuseur:"Type de structure"};
-  sub.textContent = labels[etat.profil] || "Indiquez vos affiliations";
-  (affiliationsParProfil[etat.profil] || []).forEach(function(opt) {
-    list.appendChild(makeCheckItem(opt, "err3"));
-  });
+  data.opts.forEach(function(opt) { list.appendChild(makeCheckItem(opt, "err2")); });
 }
 
-function renderSituation() {
+function renderAffiliations() {
+  var data = affiliationsParProfil[etat.profil];
+  document.getElementById("etape3-sub").textContent = data.sub;
+  var list = document.getElementById("affiliationList");
+  list.innerHTML = "";
+  data.opts.forEach(function(opt) { list.appendChild(makeCheckItem(opt, "err3")); });
+}
+
+function renderProjets() {
+  var opts = projetsParProfil[etat.profil] || [];
+  var list = document.getElementById("projetList");
+  list.innerHTML = "";
+  opts.forEach(function(opt) { list.appendChild(makeCheckItem(opt, "err4")); });
+}
+
+function renderSituations() {
+  var data = situationsParProfil[etat.profil];
+  document.getElementById("etape5-sub").textContent = data.sub;
   var list = document.getElementById("situationList");
   list.innerHTML = "";
-  etat.situations = [];
-  (situationsParProfil[etat.profil] || []).forEach(function(opt) {
-    list.appendChild(makeCheckItem(opt, "err4"));
-  });
+  data.opts.forEach(function(opt) { list.appendChild(makeCheckItem(opt, "err5")); });
 }
 
+function renderCriteresAv() {
+  var data = criteresAvancesParProfil[etat.profil];
+  document.getElementById("etape6-sub").textContent = data.sub;
+  var list = document.getElementById("criteresAvList");
+  list.innerHTML = "";
+  data.opts.forEach(function(opt) { list.appendChild(makeCheckItem(opt, "err6")); });
+}
+
+// ============================================================
+// CALCUL ET AFFICHAGE DES RESULTATS
+// ============================================================
 function calculerEtAfficher() {
-  etat.situations = [];
-  document.querySelectorAll("#situationList input:checked").forEach(function(cb) { etat.situations.push(cb.value); });
+  var s6 = document.querySelectorAll("#criteresAvList input:checked");
+  if (s6.length === 0) { document.getElementById("err6").style.display = "block"; return; }
+  etat.criteresAv = []; s6.forEach(function(cb) { etat.criteresAv.push(cb.value); });
+
   var res = basesAides.filter(function(aide) {
     if (aide.profils.length > 0 && aide.profils.indexOf(etat.profil) === -1) return false;
-    if (aide.require_affil.length > 0 && !aide.require_affil.some(function(a) { return etat.affiliations.indexOf(a) > -1; })) return false;
-    if (aide.require_projets.length > 0 && !aide.require_projets.some(function(p) { return etat.projets.indexOf(p) > -1; })) return false;
-    if (aide.require_situ.length > 0 && !aide.require_situ.some(function(s) { return etat.situations.indexOf(s) > -1; })) return false;
+
+    var hasStatut = aide.require_statuts.length === 0 || aide.require_statuts.some(function(s) { return etat.statuts.indexOf(s) > -1; });
+    if (!hasStatut) return false;
+
+    var hasAffil = aide.require_affil.length === 0 || aide.require_affil.some(function(a) { return etat.affiliations.indexOf(a) > -1; });
+    if (!hasAffil) return false;
+
+    var hasProjet = aide.require_projets.length === 0 || aide.require_projets.some(function(p) { return etat.projets.indexOf(p) > -1; });
+    if (!hasProjet) return false;
+
+    var hasSitu = aide.require_situ.length === 0 || aide.require_situ.some(function(s) { return etat.situations.indexOf(s) > -1; });
+    if (!hasSitu) return false;
+
+    var hasCrit = aide.require_criteres.length === 0 || aide.require_criteres.some(function(c) { return etat.criteresAv.indexOf(c) > -1; });
+    if (!hasCrit) return false;
+
+    var excluded = aide.exclude_criteres.some(function(c) { return etat.criteresAv.indexOf(c) > -1; });
+    if (excluded) return false;
+
     return true;
   });
+
   afficherResultats(res);
   document.getElementById("etape" + currentEtape).classList.remove("active");
-  currentEtape = 5;
-  document.getElementById("etape5").classList.add("active");
-  updateProgress(5);
+  currentEtape = 7;
+  document.getElementById("etape7").classList.add("active");
+  updateProgress(7);
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
@@ -369,55 +1288,85 @@ function afficherResultats(res) {
   wrap.innerHTML = "";
   document.getElementById("resultCount").textContent = res.length;
   document.getElementById("resultSub").textContent = res.length !== 1 ? "aides identifiees pour votre profil" : "aide identifiee pour votre profil";
+
+  var profilLabels = {artiste:"Artiste-Interprete",auteur:"Auteur-Compositeur",label:"Label / Producteur",manager:"Manager / Agent",tourneur:"Tourneur / Promoteur",diffuseur:"Diffuseur / Salle"};
+  document.getElementById("resultProfilBadge").textContent = "Profil : " + (profilLabels[etat.profil] || etat.profil);
+
   if (res.length === 0) {
     var noRes = document.createElement("div");
     noRes.className = "no-result";
-    noRes.innerHTML = "<div class='no-result-icon'>&#128269;</div><div class='no-result-title'>Aucune aide trouvee</div><p class='no-result-sub'>Aucun dispositif ne correspond a vos criteres. Essayez d elargir vos criteres ou contactez un conseiller.</p>";
+    noRes.innerHTML = "<div class='no-result-icon'>&#128269;</div><div class='no-result-title'>Aucune aide identifiee</div><p class='no-result-sub'>Aucun dispositif ne correspond exactement a vos criteres. Essayez d elargir vos reponses ou consultez directement le catalogue des aides.</p><br><a href='aides.html' style='color:var(--rouge);font-weight:600;'>Voir toutes les aides &rarr;</a>";
     wrap.appendChild(noRes);
     return;
   }
-  var colors = {ADAMI:"#2d6a4f",SPEDIDAM:"#457b9d",SACEM:"#6d3b8e",SCPP:"#e63946",SPPF:"#f4a261",CNM:"#1d3557"};
+
   res.forEach(function(aide) {
     var card = document.createElement("div");
     card.className = "result-card";
+
     var top = document.createElement("div");
     top.className = "result-card-top";
+
     var info = document.createElement("div");
-    info.style.flex = "1";
+    info.className = "result-info";
+
     var nom = document.createElement("div");
     nom.className = "result-name";
     nom.textContent = aide.nom;
+
     var desc = document.createElement("div");
     desc.className = "result-desc";
     desc.textContent = aide.desc;
+
     info.appendChild(nom);
     info.appendChild(desc);
+
     var orga = document.createElement("span");
     orga.className = "result-orga";
-    orga.style.background = colors[aide.orga] || "#666";
+    orga.style.background = orgaColors[aide.orga] || "#666";
     orga.textContent = aide.orga;
+
     top.appendChild(info);
     top.appendChild(orga);
+
     var foot = document.createElement("div");
     foot.className = "result-footer";
+
     var montant = document.createElement("span");
-    montant.className = "res-montant";
+    montant.className = "result-montant";
     montant.textContent = aide.montant;
-    var lien = document.createElement("a");
-    lien.className = "result-link";
-    lien.href = aide.lien;
-    lien.target = "_blank";
-    lien.textContent = "En savoir plus";
+
+    var links = document.createElement("div");
+    links.className = "result-links";
+
+    var lienFiche = document.createElement("a");
+    lienFiche.className = "result-link fiche";
+    lienFiche.href = aide.lienFiche;
+    lienFiche.textContent = "Voir la fiche";
+
+    var lienSrc = document.createElement("a");
+    lienSrc.className = "result-link";
+    lienSrc.href = aide.lienSource;
+    lienSrc.target = "_blank";
+    lienSrc.textContent = "Site officiel";
+
+    links.appendChild(lienFiche);
+    links.appendChild(lienSrc);
+
     foot.appendChild(montant);
-    foot.appendChild(lien);
+    foot.appendChild(links);
+
     card.appendChild(top);
     card.appendChild(foot);
     wrap.appendChild(card);
   });
 }
 
+// ============================================================
+// RESTART
+// ============================================================
 function restart() {
-  etat = {profil:null, projets:[], affiliations:[], situations:[]};
+  etat = {profil:null, statuts:[], affiliations:[], projets:[], situations:[], criteresAv:[]};
   document.querySelectorAll(".option-card").forEach(function(c) { c.classList.remove("selected"); });
   document.querySelectorAll("input[type=checkbox]").forEach(function(c) { c.checked = false; });
   document.getElementById("etape" + currentEtape).classList.remove("active");
