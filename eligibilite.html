@@ -578,25 +578,22 @@ function validateStep(n){
   }
 }
 
+
 function calculateResults() {
   const profiles = getProfiles();
   const answers = window._answers || {};
   let aids = [];
 
-  // Helper: card HTML
   function card(name, org, amount, url, fiche, tags, note) {
-    const tagHtml = (tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('');
-    const noteHtml = note ? '<p class="aid-note">⚠️ '+note+'</p>' : '';
-    return '<div class="aid-card"><div class="aid-header"><div class="aid-org">'+org+'</div><div class="aid-amount">'+amount+'</div></div><div class="aid-name">'+name+'</div>'+tagHtml+noteHtml+'<div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">📄 Voir la fiche</a><a href="'+url+'" target="_blank" class="btn-site">🌐 Site officiel</a></div></div>';
+    const tagHtml = (tags||[]).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+    const noteHtml = note ? '<p class="aid-note">&#9888;&#65039; '+note+'</p>' : '';
+    return '<div class="aid-card"><div class="aid-header"><div class="aid-org">'+org+'</div><div class="aid-amount">'+amount+'</div></div><div class="aid-name">'+name+'</div>'+tagHtml+noteHtml+'<div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">&#128196; Voir la fiche</a><a href="'+url+'" target="_blank" class="btn-site">&#127760; Site officiel</a></div></div>';
   }
 
   const genre = answers.genre || answers.genre_artiste || '';
   const genre_sv = answers.genre_sv || genre || '';
   const genre_edit = answers.genre_edit || genre || '';
 
-  // ============================================================
-  // ARTISTE-INTERPRÈTE
-  // ============================================================
   if (profiles.includes('artiste')) {
     const membre_adami = answers.membre_adami === 'oui';
     const membre_spedidam = answers.membre_spedidam === 'oui';
@@ -610,174 +607,157 @@ function calculateResults() {
     const env_pro = answers.env_pro === 'oui';
     const agessa = answers.agessa === 'oui';
 
-    // ADAMI section
     if (membre_adami) {
-      // ADAMI Bourse Parcours Artiste
       aids.push(card(
-        'Bourse Parcours Artiste',
-        'ADAMI',
-        'Jusqu'à 4 000 €',
-        'https://www.adami.fr/aides-creations/bourse-parcours-artiste/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Artiste-interprète','ADAMI'],
-        '25 cachets minimum + 2 attestations de cours/stage de spécialisation requis'
+        "Bourse Parcours Artiste",
+        "ADAMI",
+        "Jusqu’à 4 000 €",
+        "https://www.adami.fr/aides-creations/bourse-parcours-artiste/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Artiste-interprète","ADAMI"],
+        "25 cachets minimum + 2 attestations de cours/stage de spécialisation requis"
       ));
 
-      // ADAMI Production Enregistrement 2D (licence label)
       const genres_adami = ['ma','jazz','monde','cj','ma_cj'];
-      const genre_ok_adami = genres_adami.some(g => genre.includes(g)) || genre === '';
+      const genre_ok_adami = genres_adami.some(function(g){return genre.includes(g);}) || genre === '';
       if (adami_contrat === 'licence' && genre_ok_adami && (droits_adami === 'plus300' || droits_adami === 'plus5k')) {
         aids.push(card(
-          'Aide Production Enregistrement 2D (Licence)',
-          'ADAMI',
-          'Jusqu'à 15 000 € (20 000 € si +20 artistes)',
-          'https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Artiste-interprète','ADAMI','Enregistrement','MA/Jazz/Monde'],
-          'Propriétaire du master. ≥10 titres ou 40 min distribués. Bonus +10% si membre SPPF.'
+          "Aide Production Enregistrement 2D (Licence)",
+          "ADAMI",
+          "Jusqu’à 15 000 € (20 000 € si +20 artistes)",
+          "https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Artiste-interprète","ADAMI","Enregistrement","MA/Jazz/Monde"],
+          "Propriétaire du master. ≥10 titres ou 40 min distribués. Bonus +10% si membre SPPF."
         ));
       }
 
-      // ADAMI Production Enregistrement 3D (distribution directe)
       if (adami_contrat === 'distrib_directe' && genre_ok_adami && (droits_adami === 'plus300' || droits_adami === 'plus5k')) {
         aids.push(card(
-          'Aide Production Enregistrement 3D (Distribution Directe)',
-          'ADAMI',
-          'Jusqu'à 20 000 € (25 000 € si +20 artistes)',
-          'https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Artiste-interprète','ADAMI','Enregistrement','MA/Jazz/Monde'],
-          'Distribution directe professionnelle obligatoire (pas agrégateur pur). Bonus +10% si membre SPPF.'
+          "Aide Production Enregistrement 3D (Distribution Directe)",
+          "ADAMI",
+          "Jusqu’à 20 000 € (25 000 € si +20 artistes)",
+          "https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Artiste-interprète","ADAMI","Enregistrement","MA/Jazz/Monde"],
+          "Distribution directe professionnelle obligatoire (pas agrégateur pur). Bonus +10% si membre SPPF."
         ));
       }
 
-      // ADAMI Projet Musical Global 365
-      const genre_ma_monde = ['ma','monde','ma_cj'].some(g => genre.includes(g));
-      const genre_jazz_classique = ['jazz','classique','cj'].some(g => genre.includes(g));
+      const genre_ma_monde = ['ma','monde','ma_cj'].some(function(g){return genre.includes(g);});
+      const genre_jazz_cl = ['jazz','classique','cj'].some(function(g){return genre.includes(g);});
       const cond_365_ma = genre_ma_monde && adami_albums === 'oui' && adami_concerts === 'grd' && droits_adami === 'plus5k';
-      const cond_365_jazz = genre_jazz_classique && adami_concerts === 'grd' && (droits_adami === 'plus300' || droits_adami === 'plus5k');
+      const cond_365_jazz = genre_jazz_cl && adami_concerts === 'grd' && (droits_adami === 'plus300' || droits_adami === 'plus5k');
       if (cond_365_ma || cond_365_jazz) {
         aids.push(card(
-          'Aide Projet Musical Global 365',
-          'ADAMI',
-          '25 000 € – 40 000 €',
-          'https://www.adami.fr/aides-creations/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Artiste-interprète','ADAMI','Confirmé','MA/Jazz/Monde/Classique'],
-          '⚠️ CONTACT ADAMI OBLIGATOIRE avant tout dépôt. 1 seule aide par artiste, jamais renouvelable. 3 volets minimum dont enregistrement obligatoire.'
+          "Aide Projet Musical Global 365",
+          "ADAMI",
+          "25 000 € – 40 000 €",
+          "https://www.adami.fr/aides-creations/",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Artiste-interprète","ADAMI","Confirmé","MA/Jazz/Monde/Classique"],
+          "CONTACT ADAMI OBLIGATOIRE avant tout dépôt. 1 seule aide par artiste, jamais renouvelable. 3 volets minimum dont enregistrement obligatoire."
         ));
       }
     }
 
-    // SPEDIDAM section
     if (membre_spedidam) {
       const proj_artiste = answers.proj_artiste || '';
       if (proj_artiste === 'promo_image' || proj_artiste.includes('promo')) {
         aids.push(card(
-          'Aide à la Promotion par l'Image (EPK/Vidéo promo)',
-          'SPEDIDAM',
-          '80% des frais, max 2 500 €',
-          'https://www.spedidam.fr/aides/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Artiste-interprète','SPEDIDAM','Image/Vidéo'],
-          'Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%).'
+          "Aide à la Promotion par l’Image (EPK/Vidéo promo)",
+          "SPEDIDAM",
+          "80% des frais, max 2 500 €",
+          "https://www.spedidam.fr/aides/",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Artiste-interprète","SPEDIDAM","Image/Vidéo"],
+          "Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%)."
         ));
       }
       if (export_artiste) {
         aids.push(card(
-          'Aide aux Déplacements Internationaux',
-          'SPEDIDAM',
-          '750 € (EEE) / 1 500 € (hors EEE)',
-          'https://www.spedidam.fr/aides/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Artiste-interprète','SPEDIDAM','International'],
-          '65% des billets pris en charge'
+          "Aide aux Déplacements Internationaux",
+          "SPEDIDAM",
+          "750 € (EEE) / 1 500 € (hors EEE)",
+          "https://www.spedidam.fr/aides/",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Artiste-interprète","SPEDIDAM","International"],
+          "65% des billets pris en charge"
         ));
       }
     }
 
-    // SACEM section (adhérent)
     if (membre_sacem) {
       if ((autoprod === 'oui_1er' || autoprod === 'oui_2e' || autoprod === 'oui_3e') && env_pro) {
         aids.push(card(
-          'Aide à l'Autoproduction de Projet Musical',
-          'SACEM',
-          '5 000 € (forfait fixe)',
-          'https://aide-aux-projets.sacem.fr',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Auteur-compositeur','SACEM','Autoproduction'],
-          'Artiste individuel (personne physique), adhérent SACEM (pas associé professionnel/définitif). ≥5 titres. Dossier déposé APRÈS sortie intégrale (dans les 6 mois). Environnement professionnel formalisé obligatoire.'
+          "Aide à l’Autoproduction de Projet Musical",
+          "SACEM",
+          "5 000 € (forfait fixe)",
+          "https://aide-aux-projets.sacem.fr",
+          "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+          ["Auteur-compositeur","SACEM","Autoproduction"],
+          "Artiste individuel (personne physique), adhérent SACEM (pas associé professionnel/définitif). ≥5 titres. Dossier déposé APRÈS sortie intégrale (dans les 6 mois). Environnement professionnel formalisé obligatoire."
         ));
       }
     }
 
-    // CNM section (artiste = A/C)
     if (agessa) {
       aids.push(card(
-        'Aide à l'Écriture et à la Composition',
-        'CNM',
-        '2 000 € – 10 000 €',
-        'https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Artiste-interprète','CNM','Composition'],
-        'Personne physique. Affilié AGESSA/MDA. Membre SACEM.'
+        "Aide à l’Écriture et à la Composition",
+        "CNM",
+        "2 000 € – 10 000 €",
+        "https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Artiste-interprète","CNM","Composition"],
+        "Personne physique. Affilié AGESSA/MDA. Membre SACEM."
       ));
       aids.push(card(
-        'Bourse Parcours Auteur-Compositeur',
-        'CNM',
-        '20 000 €',
-        'https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Artiste-interprète','CNM','Composition'],
-        'Personne physique. Carrière émergente confirmée.'
+        "Bourse Parcours Auteur-Compositeur",
+        "CNM",
+        "20 000 €",
+        "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Artiste-interprète","CNM","Composition"],
+        "Personne physique. Carrière émergente confirmée."
       ));
     }
   }
 
-  // ============================================================
-  // AUTEUR-COMPOSITEUR (standalone profile)
-  // ============================================================
   if (profiles.includes('auteur')) {
-    const agessa_ac = answers.agessa === 'oui';
     const membre_sacem_ac = answers.membre_sacem_adherent === 'oui';
     const autoprod_ac = answers.autoprod || '';
     const env_pro_ac = answers.env_pro === 'oui';
-
     aids.push(card(
-      'Aide à l'Écriture et à la Composition',
-      'CNM',
-      '2 000 € – 10 000 €',
-      'https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/',
-      'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-      ['Auteur-compositeur','CNM','Composition'],
-      'Personne physique. Affilié AGESSA/MDA. Membre SACEM.'
+      "Aide à l’Écriture et à la Composition",
+      "CNM",
+      "2 000 € – 10 000 €",
+      "https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/",
+      "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+      ["Auteur-compositeur","CNM","Composition"],
+      "Personne physique. Affilié AGESSA/MDA. Membre SACEM."
     ));
     aids.push(card(
-      'Bourse Parcours Auteur-Compositeur',
-      'CNM',
-      '20 000 €',
-      'https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/',
-      'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-      ['Auteur-compositeur','CNM','Composition'],
-      'Personne physique. Carrière émergente confirmée.'
+      "Bourse Parcours Auteur-Compositeur",
+      "CNM",
+      "20 000 €",
+      "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
+      "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+      ["Auteur-compositeur","CNM","Composition"],
+      "Personne physique. Carrière émergente confirmée."
     ));
-
     if (membre_sacem_ac && (autoprod_ac === 'oui_1er' || autoprod_ac === 'oui_2e' || autoprod_ac === 'oui_3e') && env_pro_ac) {
       aids.push(card(
-        'Aide à l'Autoproduction de Projet Musical',
-        'SACEM',
-        '5 000 € (forfait fixe)',
-        'https://aide-aux-projets.sacem.fr',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Auteur-compositeur','SACEM','Autoproduction'],
-        'Adhérent SACEM (pas associé pro/définitif). ≥5 titres. Dossier APRÈS sortie intégrale (dans les 6 mois). Environnement pro formalisé obligatoire.'
+        "Aide à l’Autoproduction de Projet Musical",
+        "SACEM",
+        "5 000 € (forfait fixe)",
+        "https://aide-aux-projets.sacem.fr",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Auteur-compositeur","SACEM","Autoproduction"],
+        "Adhérent SACEM (pas associé pro/définitif). ≥5 titres. Dossier APRÈS sortie intégrale (dans les 6 mois). Environnement pro formalisé obligatoire."
       ));
     }
   }
 
-  // ============================================================
-  // PRODUCTEUR PHONOGRAPHIQUE (LABEL)
-  // ============================================================
   if (profiles.includes('producteur')) {
     const membre_scpp = answers.membre_scpp === 'oui';
     const membre_sppf = answers.membre_sppf === 'oui';
@@ -790,293 +770,56 @@ function calculateResults() {
     const cdi_prod = answers.cdi_prod === 'oui';
     const videomusique = answers.videomusique === 'oui';
     const marketing = answers.marketing === 'oui';
-
-    // Must have structure AND (SCPP or SPPF) — hard requirement
-    if (!struct_prod) {
-      // No structure = no producteur aids
-    } else {
-      // CNM Phonogramme Production
-      const genres_phono = ['ma','jazz','classique','cj','ma_cj'];
+    if (struct_prod) {
       if (invest_phono && (ca_prod === 'plus30k' || ca_prod === 'plus100k' || ca_prod === 'plus500k')) {
-        aids.push(card(
-          'Aide à la Production Phonographique',
-          'CNM',
-          '15 000 € (MA/Jazz) / 20 000 € (Classique)',
-          'https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','Phonogramme'],
-          'CA phonographique ≥30 000 €. Membre SCPP ou SPPF.'
-        ));
+        aids.push(card("Aide à la Production Phonographique","CNM","15 000 € (MA/Jazz) / 20 000 € (Classique)","https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥30 000 €. Membre SCPP ou SPPF."));
       }
-
-      // CNM Auto-production Phonographique
       if (invest_phono && (ca_prod === 'plus50k' || ca_prod === 'plus100k' || ca_prod === 'plus500k')) {
-        aids.push(card(
-          'Aide à l'Auto-production Phonographique',
-          'CNM',
-          'Jusqu'à 350 000 €',
-          'https://cnm.fr/aides-financieres/aide-a-lauto-production-phonographique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','Phonogramme'],
-          'CA phonographique ≥50 000 €. Investissement phono (case 412). SCPP ou SPPF.'
-        ));
+        aids.push(card("Aide à l’Auto-production Phonographique","CNM","Jusqu’à 350 000 €","https://cnm.fr/aides-financieres/aide-a-lauto-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥50 000 €. Investissement phono (case 412). SCPP ou SPPF."));
       }
-
-      // CNM Développement International MA1
       if (export_prod && (genre_p.includes('ma') || genre_p === '')) {
-        aids.push(card(
-          'Aide au Développement International Musiques Actuelles (tranche 1)',
-          'CNM',
-          '400 € – 25 000 €',
-          'https://cnm.fr/aides-financieres/aide-au-developpement-international/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International','MA'],
-          'Première tranche. Membre SCPP ou SPPF.'
-        ));
+        aids.push(card("Développement International MA – Tranche 1","CNM","400 € – 25 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"Membre SCPP ou SPPF."));
+        aids.push(card("Développement International MA – Tranche 2","CNM","Jusqu’à 80 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"≥500 000 streams. Membre SCPP ou SPPF."));
       }
-
-      // CNM Développement International MA2
-      if (export_prod && (genre_p.includes('ma') || genre_p === '')) {
-        aids.push(card(
-          'Aide au Développement International Musiques Actuelles (tranche 2)',
-          'CNM',
-          'Jusqu'à 80 000 €',
-          'https://cnm.fr/aides-financieres/aide-au-developpement-international/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International','MA'],
-          'Deuxième tranche. ≥500 000 streams. Membre SCPP ou SPPF.'
-        ));
-      }
-
-      // CNM Développement International Jazz 1
       if (export_prod && (genre_p.includes('jazz') || genre_p.includes('cj'))) {
-        aids.push(card(
-          'Aide au Développement International Jazz (tranche 1)',
-          'CNM',
-          '400 € – 10 000 €',
-          'https://cnm.fr/aides-financieres/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International','Jazz'],
-          '≥1 000 followers. Membre SCPP ou SPPF.'
-        ));
+        aids.push(card("Développement International Jazz – Tranche 1","CNM","400 € – 10 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"≥1 000 followers. Membre SCPP ou SPPF."));
+        aids.push(card("Développement International Jazz – Tranche 2","CNM","10 000 € – 50 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"≥200 000 streams. Membre SCPP ou SPPF."));
       }
-
-      // CNM Développement International Jazz 2
-      if (export_prod && (genre_p.includes('jazz') || genre_p.includes('cj'))) {
-        aids.push(card(
-          'Aide au Développement International Jazz (tranche 2)',
-          'CNM',
-          '10 000 € – 50 000 €',
-          'https://cnm.fr/aides-financieres/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International','Jazz'],
-          '≥200 000 streams. Membre SCPP ou SPPF.'
-        ));
-      }
-
-      // CNM Développement International Classique 1&2
       if (export_prod && genre_p.includes('classique')) {
-        aids.push(card(
-          'Aide au Développement International Musique Classique',
-          'CNM',
-          'DI1: 5 000–20 000 € / DI2: 10 000–50 000 €',
-          'https://cnm.fr/aides-financieres/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International','Classique'],
-          'Membre SCPP ou SPPF.'
-        ));
+        aids.push(card("Développement International Classique","CNM","DI1: 5 000–20 000 € / DI2: 10 000–50 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Classique"],"Membre SCPP ou SPPF."));
       }
-
-      // CNM Mobilité Individuelle Internationale
       if (export_prod) {
-        aids.push(card(
-          'Aide à la Mobilité Individuelle Internationale',
-          'CNM',
-          '800 € (EEE) / 1 400 € (hors EEE)',
-          'https://cnm.fr/aides-financieres/aide-a-la-mobilite-internationale/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','International'],
-          'Toutes esthétiques.'
-        ));
+        aids.push(card("Aide à la Mobilité Individuelle Internationale","CNM","800 € (EEE) / 1 400 € (hors EEE)","https://cnm.fr/aides-financieres/aide-a-la-mobilite-internationale/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International"],"Toutes esthétiques."));
       }
-
-      // CNM Musique en Images (clip vidéo)
       if (videomusique) {
-        aids.push(card(
-          'Aide à la Musique en Images (clip vidéo)',
-          'CNM',
-          '30% des coûts, max 15 000 €/clip',
-          'https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','Clip Vidéo'],
-          'Label ou éditeur. Membre SCPP ou SPPF.'
-        ));
+        aids.push(card("Aide à la Musique en Images (clip vidéo)","CNM","30% des coûts, max 15 000 €/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Clip Vidéo"],"Label ou éditeur. Membre SCPP ou SPPF."));
       }
-
-      // CNM Développement Économique Art.84
       if (cdi_prod && (ca_prod === 'plus100k' || ca_prod === 'plus500k')) {
-        aids.push(card(
-          'Aide au Développement Économique des Entreprises Musicales (Art. 84)',
-          'CNM',
-          '25% des charges, max 200 000 €',
-          'https://cnm.fr/aides-financieres/aide-au-developpement-economique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','PME Musicale'],
-          'PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.'
-        ));
+        aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale."));
       }
-
-      // CNM Restructuration Économique
       if (fragilite) {
-        aids.push(card(
-          'Aide à la Restructuration Économique',
-          'CNM',
-          '25% des charges, max 200 000 €',
-          'https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','CNM','PME Musicale','Restructuration'],
-          'PME fragilité avérée (hors cessation de paiement/procédure collective). ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.'
-        ));
+        aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale","Restructuration"],"PME fragilité avérée (hors cessation de paiement/procédure collective). ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice."));
       }
-
-      // SCPP-specific aids
       if (membre_scpp) {
-        // SCPP Création Phonogramme
-        aids.push(card(
-          'Aide à la Création Phonographique',
-          'SCPP',
-          'Variable selon dossier',
-          'https://www.scpp.fr/SCPP/Portail/Aides-et-actions/Soutien-a-la-creation/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','SCPP','Phonogramme'],
-          'Membre SCPP uniquement.'
-        ));
-
-        if (videomusique) {
-          aids.push(card(
-            'Aide à la Vidéomusique',
-            'SCPP',
-            'Variable selon dossier',
-            'https://www.scpp.fr/SCPP/Portail/Aides-et-actions/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','SCPP','Clip Vidéo'],
-            'Membre SCPP uniquement.'
-          ));
-        }
-
-        if (marketing) {
-          aids.push(card(
-            'Aide Marketing / Promotion',
-            'SCPP',
-            'Variable selon dossier',
-            'https://www.scpp.fr/SCPP/Portail/Aides-et-actions/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','SCPP','Marketing'],
-            'Membre SCPP uniquement.'
-          ));
-        }
-
-        aids.push(card(
-          'Aide au Showcase',
-          'SCPP',
-          'Variable selon dossier',
-          'https://www.scpp.fr/SCPP/Portail/Aides-et-actions/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','SCPP','Showcase'],
-          'Membre SCPP uniquement.'
-        ));
-
-        if (export_prod) {
-          aids.push(card(
-            'Aide à la Formation Artiste / Scène Internationale',
-            'SCPP',
-            'Variable selon dossier',
-            'https://www.scpp.fr/SCPP/Portail/Aides-et-actions/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','SCPP','International'],
-            'Membre SCPP uniquement.'
-          ));
-        }
+        aids.push(card("Aide à la Création Phonographique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/Soutien-a-la-creation/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Phonogramme"],"Membre SCPP uniquement."));
+        if (videomusique) { aids.push(card("Aide à la Vidéomusique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Clip Vidéo"],"Membre SCPP uniquement.")); }
+        if (marketing) { aids.push(card("Aide Marketing / Promotion","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Marketing"],"Membre SCPP uniquement.")); }
+        aids.push(card("Aide au Showcase","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Showcase"],"Membre SCPP uniquement."));
+        if (export_prod) { aids.push(card("Aide à la Formation Artiste / Scène Internationale","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","International"],"Membre SCPP uniquement.")); }
       }
-
-      // SPPF-specific aids
       if (membre_sppf) {
-        aids.push(card(
-          'Aide à l'Enregistrement d'Album',
-          'SPPF',
-          'Variable selon dossier',
-          'https://www.sppf.com/aides-sppf/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','SPPF','Enregistrement'],
-          'Membre SPPF uniquement.'
-        ));
-
-        if (videomusique) {
-          aids.push(card(
-            'Aide à la Vidéomusique',
-            'SPPF',
-            'Variable selon dossier',
-            'https://www.sppf.com/aides-sppf/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','SPPF','Clip Vidéo'],
-            'Membre SPPF uniquement.'
-          ));
-        }
-
-        aids.push(card(
-          'Aide aux Showcases',
-          'SPPF',
-          'Variable selon dossier',
-          'https://www.sppf.com/aides-sppf/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','SPPF','Showcase'],
-          'Membre SPPF uniquement.'
-        ));
-
-        if (export_prod) {
-          aids.push(card(
-            'Aide Genre et Répertoire Musical (GRM) / International',
-            'SPPF',
-            'Variable selon dossier',
-            'https://www.sppf.com/aides-sppf/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','SPPF','International'],
-            'Membre SPPF uniquement.'
-          ));
-        }
-
-        // ADAMI/SPPF Bonification Croisée
-        if (invest_phono) {
-          aids.push(card(
-            'Bonification Croisée ADAMI/SPPF',
-            'ADAMI + SPPF',
-            'Bonification de +10% sur aide ADAMI production',
-            'https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/',
-            'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-            ['Producteur','ADAMI','SPPF'],
-            'Applicable sur les aides ADAMI 2D/3D si label membre SPPF.'
-          ));
-        }
+        aids.push(card("Aide à l’Enregistrement d’Album","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Enregistrement"],"Membre SPPF uniquement."));
+        if (videomusique) { aids.push(card("Aide à la Vidéomusique","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Clip Vidéo"],"Membre SPPF uniquement.")); }
+        aids.push(card("Aide aux Showcases","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Showcase"],"Membre SPPF uniquement."));
+        if (export_prod) { aids.push(card("Aide Genre et Répertoire Musical (GRM) / International","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","International"],"Membre SPPF uniquement.")); }
+        if (invest_phono) { aids.push(card("Bonification Croisée ADAMI/SPPF","ADAMI + SPPF","Bonification de +10% sur aide ADAMI production","https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","ADAMI","SPPF"],"Applicable sur les aides ADAMI 2D/3D si label membre SPPF.")); }
       }
-
-      // SPEDIDAM Promotion Image (label)
       if (answers.promo_image_prod === 'oui') {
-        aids.push(card(
-          'Aide à la Promotion par l'Image (EPK/Vidéo promo)',
-          'SPEDIDAM',
-          '80% des frais, max 2 500 €',
-          'https://www.spedidam.fr/aides/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Producteur','SPEDIDAM','Image/Vidéo'],
-          'Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).'
-        ));
+        aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical)."));
       }
     }
   }
 
-  // ============================================================
-  // ÉDITEUR MUSICAL
-  // ============================================================
   if (profiles.includes('editeur')) {
     const struct_edit = answers.struct_edit === 'oui';
     const droits_sacem = answers.droits_sacem || '';
@@ -1087,133 +830,33 @@ function calculateResults() {
     const valorisation = answers.valorisation_patrimoine === 'oui';
     const clip_edit = answers.clip_edit === 'oui';
     const ca_edit = answers.ca_edit || '';
-
-    if (!struct_edit) {
-      // No structure = no éditeur aids
-    } else {
-      // CNM Développement Éditorial
-      const genres_edit_cnm = ['ma','jazz','classique','cj','ma_cj','monde'];
-      aids.push(card(
-        'Aide au Développement Éditorial',
-        'CNM',
-        '45% des dépenses, max 25 000 €/projet',
-        'https://cnm.fr/aides-financieres/aide-au-developpement-editorial/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Éditeur','CNM','Développement Éditorial'],
-        'Éditeur original. Personne morale. CA éditorial >50%.'
-      ));
-
-      // CNM Éditeur - Jazz CJ (genre restriction)
+    if (struct_edit) {
+      aids.push(card("Aide au Développement Éditorial","CNM","45% des dépenses, max 25 000 €/projet","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Développement Éditorial"],"Éditeur original. Personne morale. CA éditorial >50%."));
       if (genre_edit.includes('jazz') || genre_edit.includes('cj') || genre_edit.includes('classique')) {
-        aids.push(card(
-          'Aide au Développement Éditorial Contemporain & Jazz',
-          'CNM',
-          '45% des dépenses',
-          'https://cnm.fr/aides-financieres/aide-au-developpement-editorial/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','CNM','Jazz','Contemporain','Classique'],
-          'Volet spécifique Jazz / Musique Contemporaine / Classique.'
-        ));
+        aids.push(card("Développement Éditorial Contemporain & Jazz","CNM","45% des dépenses","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Jazz","Contemporain","Classique"],"Volet spécifique Jazz / Musique Contemporaine / Classique."));
       }
-
-      // CNM Musique en Images (clip)
       if (clip_edit || videomusique_edit) {
-        aids.push(card(
-          'Aide à la Musique en Images (clip vidéo)',
-          'CNM',
-          '30% des coûts, max 15 000 €/clip',
-          'https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','CNM','Clip Vidéo'],
-          'Label ou éditeur.'
-        ));
+        aids.push(card("Aide à la Musique en Images (clip vidéo)","CNM","30% des coûts, max 15 000 €/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Clip Vidéo"],"Label ou éditeur."));
       }
-
-      // CNM Développement Économique Art.84
       if (ca_edit === 'plus100k' || ca_edit === 'plus500k') {
-        aids.push(card(
-          'Aide au Développement Économique des Entreprises Musicales (Art. 84)',
-          'CNM',
-          '25% des charges, max 200 000 €',
-          'https://cnm.fr/aides-financieres/aide-au-developpement-economique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','CNM','PME Musicale'],
-          'PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.'
-        ));
+        aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale."));
       }
-
-      // CNM Restructuration Économique
       if (fragilite_edit) {
-        aids.push(card(
-          'Aide à la Restructuration Économique',
-          'CNM',
-          '25% des charges, max 200 000 €',
-          'https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','CNM','PME Musicale','Restructuration'],
-          'PME fragilité avérée (hors cessation de paiement/procédure collective). ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.'
-        ));
+        aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","PME Musicale","Restructuration"],"PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice."));
       }
-
-      // SACEM Développement Éditorial MA V1
-      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') &&
-          (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') &&
-          contrat_pref) {
-        aids.push(card(
-          'Aide au Développement Éditorial MA – V1 (Développement A/C)',
-          'SACEM',
-          'Max 10 000 € (50% des dépenses)',
-          'https://aide-aux-projets.sacem.fr',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','SACEM','MA','Développement Éditorial'],
-          'Éditeur MA. ≥5 000 € droits SACEM en moyenne sur 2 ans. Plusieurs A/C au catalogue. Contrat de préférence signé.'
-        ));
+      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') && contrat_pref) {
+        aids.push(card("Développement Éditorial MA – V1 (Développement A/C)","SACEM","Max 10 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Développement Éditorial"],"Éditeur MA. ≥5 000 € droits SACEM en moyenne sur 2 ans. Plusieurs A/C au catalogue. Contrat de préférence signé."));
       }
-
-      // SACEM Développement Éditorial MA V2 (valorisation patrimoine)
-      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') &&
-          (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') &&
-          valorisation) {
-        aids.push(card(
-          'Aide au Développement Éditorial MA – V2 (Valorisation Patrimoniale)',
-          'SACEM',
-          'Max 15 000 € (50% des dépenses)',
-          'https://aide-aux-projets.sacem.fr',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','SACEM','MA','Patrimoine'],
-          'Catalogue ≥10 ans. Projet anniversaire, anthologie, compilations. ≥5 000 € droits SACEM en moyenne sur 2 ans.'
-        ));
+      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') && valorisation) {
+        aids.push(card("Développement Éditorial MA – V2 (Valorisation Patrimoniale)","SACEM","Max 15 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Patrimoine"],"Catalogue ≥10 ans. Projet anniversaire, anthologie, compilations. ≥5 000 € droits SACEM en moyenne sur 2 ans."));
       }
-
-      // CIEM (Crédit d'Impôt Éditeur Musical)
-      aids.push(card(
-        'Crédit d'Impôt pour les Éditeurs de Musique (CIEM)',
-        'État (Impôts)',
-        '15% – 30% des dépenses éligibles',
-        'https://cnm.fr/aides-financieres/credit-dimpot-pour-les-editeurs-de-musique/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Éditeur','Fiscal','CIEM'],
-        'Éditeur original. Personne morale imposable en France. Se déclare lors de la liasse fiscale.'
-      ));
-
-      // Export éditeur
+      aids.push(card("Crédit d’Impôt pour les Éditeurs de Musique (CIEM)","État (Impôts)","15% – 30% des dépenses éligibles","https://cnm.fr/aides-financieres/credit-dimpot-pour-les-editeurs-de-musique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","Fiscal","CIEM"],"Éditeur original. Personne morale imposable en France. Se déclare lors de la liasse fiscale."));
       if (export_edit) {
-        aids.push(card(
-          'Aides à l'Export / Développement International',
-          'CNM',
-          'Variable (voir aides DI)',
-          'https://cnm.fr/aides-financieres/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Éditeur','CNM','International'],
-          'Consulter les fiches DI selon l'esthétique.'
-        ));
+        aids.push(card("Aides à l’Export / Développement International","CNM","Variable (voir aides DI)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","International"],"Consulter les fiches DI selon l’esthétique."));
       }
     }
   }
 
-  // ============================================================
-  // STRUCTURE DE SPECTACLE VIVANT
-  // ============================================================
   if (profiles.includes('spectacle')) {
     const licence_sv = answers.licence_sv || '';
     const genre_s = genre_sv;
@@ -1225,162 +868,43 @@ function calculateResults() {
     const spectacle_creation = proj_sv === 'creation' || answers.spectacle_creation === 'oui';
     const premiere_partie = proj_sv === 'premiere_partie' || answers.premiere_partie === 'oui';
     const nb_reprs = answers.nb_reprs || '';
-    const duree_pp = answers.duree_pp || '';
-    const ca_sv = answers.ca_sv || '';
-
-    // Licence 2 = producteur de spectacles
     if (licence_sv === 'licence2' || licence_sv === 'les_deux') {
-      // CNM Aide à la Création de Spectacle
-      aids.push(card(
-        'Aide à la Création de Spectacle Vivant Musical',
-        'CNM',
-        'Jusqu'à 75 000 €',
-        'https://cnm.fr/aides-financieres/aide-a-la-creation-de-spectacle-vivant/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Création'],
-        'Licence entrepreneur de spectacles cat.2. Minimum 8 représentations.'
-      ));
-
-      // CNM Production et Diffusion SV
-      aids.push(card(
-        'Aide à la Production et Diffusion de Spectacle Vivant',
-        'CNM',
-        'Jusqu'à 75 000 €',
-        'https://cnm.fr/aides-financieres/aide-a-la-production-et-diffusion/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Diffusion'],
-        'Licence entrepreneur de spectacles cat.2.'
-      ));
-
-      // CNM CISV
-      aids.push(card(
-        'Crédit d'Impôt Spectacle Vivant (CISV)',
-        'État / CNM',
-        '30% des dépenses (PME/TPE), max 500 000 €/spectacle',
-        'https://cnm.fr/aides-financieres/credit-dimpot-pour-le-spectacle-vivant/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','Fiscal','CISV'],
-        'Licence cat.2. TPE/PME imposables en France.'
-      ));
-
-      // CNM Droit de Tirage
-      aids.push(card(
-        'Droit de Tirage (aide automatique)',
-        'CNM',
-        '60% de la taxe sur les spectacles reversée',
-        'https://cnm.fr/aides-financieres/droit-de-tirage/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Automatique'],
-        'Aide automatique basée sur la taxe versée. Licence cat.2.'
-      ));
-
-      // SACEM Création Spectacle Musical
+      aids.push(card("Aide à la Création de Spectacle Vivant Musical","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-a-la-creation-de-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Création"],"Licence entrepreneur de spectacles cat.2. Minimum 8 représentations."));
+      aids.push(card("Aide à la Production et Diffusion de Spectacle Vivant","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-a-la-production-et-diffusion/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.2."));
+      aids.push(card("Crédit d’Impôt Spectacle Vivant (CISV)","État / CNM","30% des dépenses (PME/TPE), max 500 000 €/spectacle","https://cnm.fr/aides-financieres/credit-dimpot-pour-le-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","Fiscal","CISV"],"Licence cat.2. TPE/PME imposables en France."));
+      aids.push(card("Droit de Tirage (aide automatique)","CNM","60% de la taxe sur les spectacles reversée","https://cnm.fr/aides-financieres/droit-de-tirage/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Automatique"],"Aide automatique basée sur la taxe versée. Licence cat.2."));
       if (spectacle_creation && answers.membre_sacem_adherent === 'oui') {
-        aids.push(card(
-          'Aide à la Création de Spectacle Musical',
-          'SACEM',
-          'Max 15 000 € (double fléchage A/C + Producteur)',
-          'https://aide-aux-projets.sacem.fr',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Spectacle Vivant','SACEM','Création'],
-          'Spectacle ≥60 min avec narration et mise en scène (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT première représentation publique.'
-        ));
+        aids.push(card("Aide à la Création de Spectacle Musical","SACEM","Max 15 000 € (double fléchage A/C + Producteur)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SACEM","Création"],"Spectacle ≥60 min avec narration et mise en scène (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT première représentation publique."));
       }
-
-      // ADAMI Première Partie
       if (premiere_partie) {
-        aids.push(card(
-          'Aide Première Partie Musique',
-          'ADAMI',
-          '70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €',
-          'https://www.adami.fr/aides-creations/',
-          'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-          ['Spectacle Vivant','ADAMI','Première Partie'],
-          '3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.'
-        ));
+        aids.push(card("Aide Première Partie Musique","ADAMI","70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates."));
       }
     }
-
-    // Licence 3 = diffuseur
     if (licence_sv === 'licence3' || licence_sv === 'les_deux') {
-      aids.push(card(
-        'Aide aux Promoteurs et Diffuseurs de Spectacles',
-        'CNM',
-        'Jusqu'à 75 000 €',
-        'https://cnm.fr/aides-financieres/aide-aux-promoteurs-et-diffuseurs/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Diffusion'],
-        'Licence entrepreneur de spectacles cat.3.'
-      ));
+      aids.push(card("Aide aux Promoteurs et Diffuseurs de Spectacles","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-aux-promoteurs-et-diffuseurs/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.3."));
     }
-
-    // SPEDIDAM Spectacle Musical (toutes licences, structure privée)
     const nb_ok = nb_reprs === 'plus6' || nb_reprs === 'plus8';
     if (nb_ok) {
-      const taux_spedidam = artistes_sv === 'plus8_toutes' ? '50%' : '40%';
-      aids.push(card(
-        'Aide au Spectacle Musical',
-        'SPEDIDAM',
-        taux_spedidam + ' du coût employeur (seuil min 6 000 €)',
-        'https://www.spedidam.fr/aides/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','SPEDIDAM','Spectacle'],
-        '6 représentations minimum sur 5 jours (4 jours si ≥8 artistes). 50% si ≥8 artistes sur TOUTES les dates. Logo SPEDIDAM requis (sinon -20%). Max 10 répétitions. Période ≤6 mois.'
-      ));
+      const taux_spedidam = artistes_sv === 'plus8_toutes' ? "50%" : "40%";
+      aids.push(card("Aide au Spectacle Musical","SPEDIDAM",taux_spedidam + " du coût employeur (seuil min 6 000 €)","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Spectacle"],"6 représentations minimum sur 5 jours (4 jours si ≥8 artistes). 50% si ≥8 artistes sur TOUTES les dates. Logo SPEDIDAM requis (sinon -20%). Max 10 répétitions. Période ≤6 mois."));
     }
-
-    // SPEDIDAM Promotion Image (SV)
     if (promo_image_sv) {
-      aids.push(card(
-        'Aide à la Promotion par l'Image (EPK/Vidéo promo)',
-        'SPEDIDAM',
-        '80% des frais, max 2 500 €',
-        'https://www.spedidam.fr/aides/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','SPEDIDAM','Image/Vidéo'],
-        'Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).'
-      ));
+      aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical)."));
     }
-
-    // CNM Restructuration Économique (SV)
     if (fragilite_sv) {
-      aids.push(card(
-        'Aide à la Restructuration Économique',
-        'CNM',
-        '25% des charges, max 200 000 €',
-        'https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Restructuration'],
-        'PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.'
-      ));
+      aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Restructuration"],"PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice."));
     }
-
-    // Mobilité Jazz SV
     if (export_sv && (genre_s.includes('jazz') || genre_s.includes('cj'))) {
-      aids.push(card(
-        'Aide à la Mobilité Jazz Internationale',
-        'CNM',
-        '800 € (EEE) / 1 400 € (hors EEE)',
-        'https://cnm.fr/aides-financieres/',
-        'https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu',
-        ['Spectacle Vivant','CNM','Jazz','International'],
-        'Esthétique Jazz.'
-      ));
+      aids.push(card("Aide à la Mobilité Jazz Internationale","CNM","800 € (EEE) / 1 400 € (hors EEE)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Jazz","International"],"Esthétique Jazz."));
     }
   }
 
-  // ============================================================
-  // RENDER RESULTS
-  // ============================================================
   const container = document.getElementById('results-container');
   if (!container) return;
-
   if (aids.length === 0) {
-    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiée</h3><p>Selon vos réponses, aucune aide ne correspond exactement à votre profil actuel. Cela peut changer si votre situation évolue.</p><p>Consultez directement les organismes : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
+    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiée</h3><p>Selon vos réponses, aucune aide ne correspond exactement à votre profil actuel.</p><p>Consultez directement : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
     return;
   }
-
-  // Group by organism
   const orgs = {};
   aids.forEach(function(html) {
     const orgMatch = html.match(/class="aid-org">([^<]+)</);
@@ -1388,9 +912,7 @@ function calculateResults() {
     if (!orgs[org]) orgs[org] = [];
     orgs[org].push(html);
   });
-
   let html = '<div class="results-summary"><span class="results-count">'+aids.length+' aide'+(aids.length>1?'s':'')+' identifiée'+(aids.length>1?'s':'')+' pour votre profil</span></div>';
-
   const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','État (Impôts)','État / CNM','Autres'];
   orgOrder.forEach(function(org) {
     if (orgs[org] && orgs[org].length > 0) {
@@ -1398,13 +920,10 @@ function calculateResults() {
       delete orgs[org];
     }
   });
-  // Remaining orgs
   Object.keys(orgs).forEach(function(org) {
     html += '<div class="org-section"><h3 class="org-title">'+org+'</h3><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
   });
-
   html += '<div class="results-footer"><p>⚠️ Ce test est indicatif. Vérifiez les critères complets sur les sites officiels avant de déposer un dossier.</p><button onclick="location.reload()" class="btn-restart">🔄 Recommencer le test</button></div>';
-
   container.innerHTML = html;
 }
 </script>
