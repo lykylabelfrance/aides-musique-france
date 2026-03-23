@@ -4,80 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Test Eligibilite – Aides Musique France</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{--rouge:#e8001d;--noir:#0a0a0a;--blanc:#ffffff;--gris-clair:#f2f2f2;--gris-medium:#e0e0e0;--gris-texte:#555}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#0f0f1a;color:#e8e8f0;min-height:100vh}
-header{background:#1a1a2e;border-bottom:1px solid #2a2a4a;padding:16px 24px;display:flex;align-items:center;gap:16px}
-header a{color:#7c7cff;text-decoration:none;font-size:.9rem}
-header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
-header span{color:#555}
+body{font-family:'DM Sans',sans-serif;background:var(--noir);color:var(--blanc);min-height:100vh}
+header{background:var(--noir);border-bottom:2px solid var(--rouge);padding:14px 24px;display:flex;align-items:center;gap:16px}
+header a{color:var(--rouge);text-decoration:none;font-family:'DM Mono',monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
+header h1{font-family:'DM Mono',monospace;font-size:.85rem;font-weight:400;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px}
+header span{color:var(--gris-texte)}
 .container{max-width:820px;margin:0 auto;padding:32px 16px}
 .intro{text-align:center;margin-bottom:40px}
-.intro h2{font-size:1.8rem;font-weight:700;margin-bottom:12px;background:linear-gradient(135deg,#7c7cff,#ff7cda);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.intro p{color:#a0a0c0;font-size:1rem}
-.progress{display:flex;gap:8px;margin-bottom:32px;align-items:center;font-size:.8rem;color:#555}
-.progress-bar{flex:1;height:4px;background:#2a2a4a;border-radius:2px}
-.progress-fill{height:100%;border-radius:2px;background:linear-gradient(135deg,#7c7cff,#ff7cda);transition:width .3s}
-.step{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:16px;padding:32px;margin-bottom:24px;display:none}
+.intro h2{font-family:'Bebas Neue',sans-serif;font-size:3rem;font-weight:700;margin-bottom:12px;color:var(--blanc);letter-spacing:2px}
+.intro h2 span{color:var(--rouge)}
+.intro p{color:rgba(255,255,255,0.6);font-size:1rem}
+.progress{display:flex;gap:8px;margin-bottom:32px;align-items:center;font-size:.75rem;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+.progress-bar{flex:1;height:3px;background:rgba(255,255,255,0.1)}
+.progress-fill{height:100%;background:var(--rouge);transition:width .4s ease}
+.step{display:none}
 .step.active{display:block}
-.step-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.step-num{background:linear-gradient(135deg,#7c7cff,#ff7cda);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
-.step-title{font-size:1.2rem;font-weight:600}
-.question{margin-bottom:24px}
-.question h3{font-size:1rem;font-weight:600;margin-bottom:12px;color:#e0e0f0}
-.question p{font-size:.85rem;color:#888;margin-bottom:10px}
-.options{display:grid;gap:10px}
-.option-btn{background:#12122a;border:2px solid #2a2a4a;border-radius:10px;padding:14px 18px;cursor:pointer;text-align:left;color:#e0e0f0;font-size:.9rem;transition:all .2s;width:100%}
-.option-btn:hover{border-color:#7c7cff;background:#1a1a3a}
-.option-btn.selected{border-color:#7c7cff;background:#1a1a3a;color:#7c7cff}
-.checkbox-group{display:grid;gap:10px}
-.check-option{background:#12122a;border:2px solid #2a2a4a;border-radius:10px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#e0e0f0;font-size:.9rem;transition:all .2s}
-.check-option:hover{border-color:#7c7cff;background:#1a1a3a}
-.check-option.selected{border-color:#7c7cff;background:#1a1a3a;color:#7c7cff}
-.check-option .checkmark{width:20px;height:20px;border:2px solid #444;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.check-option.selected .checkmark{background:#7c7cff;border-color:#7c7cff}
-.check-option.selected .checkmark::after{content:'✓';color:#fff;font-size:.75rem;font-weight:700}
-.check-label{display:flex;flex-direction:column;gap:3px;flex:1}.check-label strong{font-size:.92rem;font-weight:600;display:block}.check-label span{font-size:.78rem;color:#a0a0c0;line-height:1.3;display:block}.check-option.selected .check-label span{color:#9090e0}.check-option{align-items:flex-start!important}
-.btn{background:linear-gradient(135deg,#7c7cff,#ff7cda);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:1rem;font-weight:600;cursor:pointer;transition:opacity .2s;width:100%;margin-top:16px}
-.btn:hover{opacity:.9}
-.btn-secondary{background:#1a1a3a;color:#7c7cff;border:2px solid #7c7cff;border-radius:10px;padding:12px 24px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:12px;width:100%}
-.btn-secondary:hover{background:#2a2a5a}
-.alert{background:#2a1a1a;border:1px solid #ff4444;border-radius:10px;padding:16px;margin-bottom:16px;color:#ff9999;font-size:.9rem}
-.alert.warning{background:#2a2a1a;border-color:#ffaa00;color:#ffcc44}
-.result-section{margin-bottom:24px}
-.result-section h3{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:#7c7cff;border-bottom:1px solid #2a2a4a;padding-bottom:8px}
-.result-card{background:#12122a;border:1px solid #2a2a4a;border-radius:12px;padding:20px;margin-bottom:12px}
-.result-card.eligible{border-color:#00aa44;background:#0a1a0a}
-.result-card.ineligible{border-color:#aa2222;background:#1a0a0a;opacity:.7}
-.result-card.maybe{border-color:#ff9900;background:#1a1200}
-.result-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
-.result-card.eligible h4{color:#44ff88}
-.result-card.ineligible h4{color:#ff6666}
-.result-card.maybe h4{color:#ffcc44}
-.result-card p{font-size:.85rem;color:#999;line-height:1.5;margin-bottom:12px}
-.result-card .amount{font-size:.9rem;font-weight:600;color:#e0e0f0;margin-bottom:12px}
-.result-card .reason{font-size:.8rem;color:#aa4444;background:#2a0a0a;border-radius:6px;padding:8px 12px;margin-bottom:12px}
-.result-card .reason.warn{color:#cc8800;background:#1a1200}
-.result-links{display:flex;gap:8px;flex-wrap:wrap}
-.result-links a{background:#1a1a3a;color:#7c7cff;text-decoration:none;border:1px solid #7c7cff;border-radius:6px;padding:6px 14px;font-size:.8rem;font-weight:600;transition:all .2s}
-.result-links a:hover{background:#7c7cff;color:#fff}
-.no-results{text-align:center;padding:32px;color:#666}
-.tag{display:inline-block;background:#1a1a3a;color:#7c7cff;border:1px solid #3a3a6a;border-radius:4px;padding:2px 8px;font-size:.75rem;font-weight:600;margin-right:4px;margin-bottom:4px}
-.tag.green{background:#0a2a0a;color:#44ff88;border-color:#2a6a2a}
-.tag.orange{background:#2a1800;color:#ffaa00;border-color:#6a4400}
+.card{background:#141414;border:1px solid rgba(255,255,255,0.08);padding:28px;margin-bottom:0}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--blanc);letter-spacing:1px}
+.card-title .step-num{background:var(--rouge);color:var(--blanc);width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;flex-shrink:0}
+.question{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--blanc)}
+.question-hint{font-size:.85rem;color:rgba(255,255,255,0.4);margin-bottom:16px;font-family:'DM Sans',sans-serif}
+.options{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.option-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);padding:14px 18px;font-size:.95rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;text-align:left}
+.option-btn:hover{border-color:var(--rouge);color:var(--blanc);background:rgba(232,0,29,0.08)}
+.option-btn.selected{background:var(--rouge);border-color:var(--rouge);color:var(--blanc)}
+.check-options{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.check-option{background:transparent;border:1px solid rgba(255,255,255,0.15);padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:14px;color:rgba(255,255,255,0.8)}
+.check-option:hover{border-color:var(--rouge);color:var(--blanc);background:rgba(232,0,29,0.08)}
+.check-option.selected{background:rgba(232,0,29,0.12);border-color:var(--rouge);color:var(--blanc)}
+.checkmark{width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;margin-top:2px}
+.check-option.selected .checkmark{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.checkmark::after{content:'\u2713';display:none}
+.check-option.selected .checkmark::after{display:block}
+.check-label{display:flex;flex-direction:column;gap:3px}
+.check-label strong{font-size:.95rem;font-weight:600;color:inherit}
+.check-label span{font-size:.8rem;color:rgba(255,255,255,0.5);line-height:1.4}
+.check-option.selected .check-label span{color:rgba(255,255,255,0.75)}
+.btn{background:var(--rouge);color:var(--blanc);border:none;padding:15px 28px;font-size:.85rem;font-family:'DM Mono',monospace;font-weight:500;cursor:pointer;transition:opacity .2s;width:100%;margin-top:16px;text-transform:uppercase;letter-spacing:1.5px}
+.btn:hover{opacity:.85}
+.btn-secondary{background:transparent;color:var(--blanc);border:1px solid rgba(255,255,255,0.3);padding:13px 24px;font-size:.8rem;font-family:'DM Mono',monospace;font-weight:400;cursor:pointer;transition:all .2s;margin-top:10px;width:100%;text-transform:uppercase;letter-spacing:1px}
+.btn-secondary:hover{border-color:var(--blanc);background:rgba(255,255,255,0.05)}
+.alert{background:rgba(232,0,29,0.1);border:1px solid rgba(232,0,29,0.4);padding:14px 18px;margin-bottom:14px;color:rgba(255,100,100,0.9);font-size:.875rem}
+.alert.warning{background:rgba(255,170,0,0.1);border-color:rgba(255,170,0,0.4);color:rgba(255,200,50,0.9)}
+.result-section{margin-bottom:28px}
+.result-section h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:14px;color:var(--rouge);border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:10px;letter-spacing:1px}
+.result-card{background:#141414;border:1px solid rgba(255,255,255,0.08);padding:18px;margin-bottom:10px}
+.result-card h4{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--blanc)}
+.result-card p{font-size:.85rem;color:rgba(255,255,255,0.55);margin-bottom:10px;line-height:1.5}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap}
+.result-actions a{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:7px 14px;text-decoration:none;text-transform:uppercase;letter-spacing:.8px;transition:all .2s}
+.result-actions a.btn-fiche{background:var(--rouge);color:#fff}
+.result-actions a.btn-fiche:hover{opacity:.85}
+.result-actions a.btn-site{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.25)}
+.result-actions a.btn-site:hover{border-color:var(--blanc);color:var(--blanc)}
+.result-summary{background:rgba(232,0,29,0.08);border:1px solid rgba(232,0,29,0.25);padding:18px;margin-bottom:24px;font-size:.9rem;color:rgba(255,255,255,0.8)}
+.result-summary strong{color:var(--rouge)}
+.no-results{text-align:center;padding:40px;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+.tag{display:inline-block;background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);padding:2px 8px;font-size:.7rem;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;margin-bottom:4px}
+.tag.green{background:rgba(0,168,84,0.1);color:#00a854;border-color:rgba(0,168,84,0.35)}
+.tag.orange{background:rgba(255,170,0,0.1);color:#ffaa00;border-color:rgba(255,170,0,0.35)}
 </style>
 </head>
 <body>
 <header>
-<a href="aides.html">← Aides</a>
-<span>/</span>
-<h1>Test d'éligibilité aux subventions</h1>
+<a href="index.html" style="font-family:'DM Mono',monospace;font-size:.9rem;text-transform:uppercase;letter-spacing:1px;color:var(--blanc);text-decoration:none;"><span style="color:var(--rouge)">LYKY</span> LABEL</a>
+<span style="color:rgba(255,255,255,0.2);margin:0 4px">/</span>
+<a href="aides.html" style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.45);text-decoration:none;text-transform:uppercase;letter-spacing:1px">← Aides</a>
+<span style="flex:1"></span>
+<span style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px">Test d’éligibilité</span>
 </header>
 <div class="container">
 <div class="intro">
-<h2>Trouvez vos aides musique</h2>
+<h2>Trouvez vos <span>aides musique</span></h2>
 <p>Répondez à quelques questions pour découvrir les aides auxquelles vous êtes éligible.</p>
 </div>
 <div class="progress">
@@ -139,7 +143,7 @@ header span{color:#555}
 <div class="step-header"><div class="step-num">6</div><div class="step-title">Vos aides éligibles</div></div>
 <div id="results-container"></div>
 <button class="btn-secondary" onclick="goBack(6)">← Modifier mes réponses</button>
-<button class="btn" onclick="restartTest()" style="background:#1a1a3a;color:#7c7cff;border:2px solid #7c7cff;margin-top:8px">Recommencer</button>
+<button class="btn" onclick="restartTest()" style="background:rgba(232,0,29,0.1);color:#e8001d;border:1px solid rgba(232,0,29,0.4);margin-top:8px">Recommencer</button>
 </div>
 </div>
 <script>
