@@ -32,6 +32,13 @@ header span{color:var(--gris-texte)}
 .question h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--blanc)}
 .question p{font-size:.85rem;color:rgba(255,255,255,0.4);margin-bottom:14px}
 .checkbox-group{display:flex;flex-direction:column;gap:8px}
+.step-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.step-num{background:var(--rouge);color:var(--blanc);width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;flex-shrink:0}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;color:var(--blanc);letter-spacing:1px}
+.question{background:#141414;border:1px solid rgba(255,255,255,0.08);padding:24px;margin-bottom:16px}
+.question h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--blanc)}
+.question p{font-size:.85rem;color:rgba(255,255,255,0.4);margin-bottom:14px}
+.checkbox-group{display:flex;flex-direction:column;gap:8px}
 .card{background:#141414;border:1px solid rgba(255,255,255,0.08);padding:28px;margin-bottom:0}
 .card-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--blanc);letter-spacing:1px}
 .card-title .step-num{background:var(--rouge);color:var(--blanc);width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;flex-shrink:0}
@@ -47,7 +54,7 @@ header span{color:var(--gris-texte)}
 .check-option.selected{background:rgba(232,0,29,0.12);border-color:var(--rouge);color:var(--blanc)}
 .checkmark{width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;margin-top:2px}
 .check-option.selected .checkmark{background:var(--rouge);border-color:var(--rouge);color:#fff}
-.checkmark::after{content:'\u2713';display:none}
+.checkmark::after{content:'✓';display:none}
 .check-option.selected .checkmark::after{display:block}
 .check-label{display:flex;flex-direction:column;gap:3px}
 .check-label strong{font-size:.95rem;font-weight:600;color:inherit}
