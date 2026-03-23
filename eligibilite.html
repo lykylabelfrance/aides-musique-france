@@ -957,7 +957,7 @@ function calculateResults() {
   const orgs = {};
   const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','État (Impôts)','État / CNM','Autres'];
   aids.forEach(function(html) {
-    const orgMatch = html.match(/class="aid-org">([^<]+)</span>/);
+    const orgMatch = html.match(/class="aid-org">([^<]+)<\/span>/);
     const org = orgMatch ? orgMatch[1] : 'Autres';
     if (!orgs[org]) orgs[org] = [];
     orgs[org].push(html);
@@ -987,6 +987,7 @@ function calculateResults() {
 
   container.innerHTML = html;
 
+}
 </script>
 </body>
 </html>
