@@ -36,7 +36,7 @@ header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
 .btn-secondary{background:#1a1a2e;border:1px solid #2a2a4a;color:#a0a0c0}
 .btn-secondary:hover{border-color:#7c7cff;color:#7c7cff}
 .progress{display:flex;gap:8px;margin-bottom:32px;align-items:center;font-size:.8rem;color:#555}
-.progress-bar{flex:1;height:4px;background:#2a2a4a;border-radius:2px;position:relative}
+.progress-bar{flex:1;height:4px;background:#2a2a4a;border-radius:2px}
 .progress-fill{height:100%;border-radius:2px;background:linear-gradient(135deg,#7c7cff,#ff7cda);transition:width .3s}
 .results-header{text-align:center;margin-bottom:32px}
 .results-header h2{font-size:2rem;font-weight:700;margin-bottom:12px}
@@ -64,18 +64,14 @@ header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
 .btn-fiche{background:#0f0f1a;border:1px solid #7c7cff;color:#7c7cff;padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
 .btn-fiche:hover{background:rgba(124,124,255,.1)}
 .btn-officiel{background:rgba(124,124,255,.15);border:1px solid #7c7cff;color:#a0a0ff;padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
-.warning-block{background:rgba(224,92,92,.1);border:1px solid #e05c5c;border-radius:10px;padding:16px;margin-bottom:16px;color:#e05c5c;font-size:.9rem}
-.warning-block strong{display:block;margin-bottom:4px}
 .reset-btn{background:#0f0f1a;border:1px solid #555;color:#a0a0c0;padding:10px 20px;border-radius:8px;font-size:.85rem;cursor:pointer;margin-top:16px}
 .reset-btn:hover{border-color:#7c7cff;color:#7c7cff}
 </style>
 </head>
 <body>
 <header>
-  <a href="index.html">← Accueil</a>
-  <span>/</span>
-  <a href="aides.html">Aides Musique</a>
-  <span>/</span>
+  <a href="index.html">← Accueil</a><span>/</span>
+  <a href="aides.html">Aides Musique</a><span>/</span>
   <h1>Test d’Éligibilité</h1>
 </header>
 <div class="container">
@@ -83,11 +79,9 @@ header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
     <h2>Test d’Éligibilité aux <span>Aides</span></h2>
     <p>Répondez aux questions pour découvrir les aides auxquelles vous êtes éligible.</p>
   </div>
-  <div class="progress">
-    <span>Profil</span>
+  <div class="progress"><span>Profil</span>
     <div class="progress-bar"><div class="progress-fill" id="prog" style="width:14%"></div></div>
-    <span>Résultats</span>
-  </div>
+    <span>Résultats</span></div>
   <div class="step active" id="step1">
     <div class="step-header"><div class="step-num">1</div><div class="step-title">Votre profil principal</div></div>
     <div class="question">
@@ -101,9 +95,7 @@ header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
         <button class="option-btn" data-q="q1" data-val="structure">🎭 Structure spectacle vivant</button>
       </div>
     </div>
-    <div class="nav-btns">
-      <button class="btn btn-primary" onclick="goStep(2)">Suivant →</button>
-    </div>
+    <div class="nav-btns"><button class="btn btn-primary" onclick="goStep(2)">Suivant →</button></div>
   </div>
   <div class="step" id="step2">
     <div class="step-header"><div class="step-num">2</div><div class="step-title">Fondamentaux</div></div>
@@ -143,758 +135,652 @@ header h1{font-size:1.1rem;font-weight:600;color:#e8e8f0}
   </div>
 </div>
 <script>
-const state={
-  profil:null,hasStructure:null,structureType:null,affiliationOrg:null,
-  associeADAMI:null,structureEmployeuse:null,membreSACEM:null,statutSACEM:null,
-  nbAlbumsDistrib:null,distributionPhysique:null,typeContratSCPP:null,
-  albumRepertoireSCPP:null,taille:null,aideAlbumSPPFObtenue:null,
-  contratArtiste20220701:null,typeProjet:null,albumOuEP:null,droitsAudiovisuels:null,
-  sallePart:null,nbCachets25:null,nbTitresDistrib10:null,nbAlbumsArtiste2:null,
-  droits5000:null,concerts5:null,droits300:null,siretPropriMaster:null,
-  nbRepresentations6:null,budget6000:null,nbDates3:null,lettresInvitation:null,
-  realisateurSiret:null,sortieFaite:null,licenceESV:null,salles250:null,
-  affilieCNM:null,ca30k:null,invest30k:null,artiste50kVentes:null,
-  autoproditNbAlbums:null,environnementPro:null,
-  membreMACSAEM:null,droitsSACEM5k:null,droitsCNM4k:null,
-  ca50pEdito:null,contratPreference:null,signataireCodes:null,
-  assujettieIS:null,voletSACEM:null,catalogue10ans:null
+const state = {
+  profil: null,
+  structure: null,
+  affiliation: null,
+  genreMusical: null,
+  droitsSacem: null,
+  droitsCnm: null,
+  contratPref: null,
+  catalogueAncien: null,
+  sousEditeur: null,
+  assujettieIS: null,
+  codeUsages: null,
+  interpPublique: null,
+  membreCnm: null,
+  nbArtistes: null,
+  budgetTotal: null,
+  activiteSpectacle: null,
+  currentStep: 1
 };
-let currentStep=1;
+
+function goStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('step'+n);
+  if(el){el.classList.add('active');state.currentStep=n;}
+}
+
+function resetTest(){
+  Object.keys(state).forEach(k=>state[k]=null);
+  state.currentStep=1;
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step1').classList.add('active');
+  document.getElementById('results').innerHTML='';
+  document.getElementById('results').style.display='none';
+}
+
+function buildOptionBtns(qId, options){
+  return options.map(o=>`<button class="opt-btn" data-q="${qId}" data-val="${o.val}">${o.label}</button>`).join('');
+}
+
+function buildStep2(){
+  const p=state.profil;
+  const s=document.getElementById('step2');
+  if(!s)return;
+  let html='<h2>Informations sur votre profil</h2>';
+  if(p==='producteur'){
+    html+=`<div class="question"><p class="q-label">Votre structure juridique :</p>
+<div class="opts">${buildOptionBtns('structure',[
+  {val:'oui',label:'Oui — SAS / SASU / SARL / EURL / Association'},
+  {val:'non',label:'Non — aucune structure'}
+])}</div></div>`;
+  } else if(p==='editeur'){
+    html+=`<div class="question"><p class="q-label">Votre structure dispose-t-elle d’une personnalité morale ? (SAS, SASU, SARL, EURL, Association...)</p>
+<div class="opts">${buildOptionBtns('structure',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>
+<div class="question" id="q-genre" style="display:none"><p class="q-label">Genre principal de votre catalogue :</p>
+<p class="q-hint">SACEM Dev Éditorial et CNM Art.38 → Musiques Actuelles uniquement &bull; CNM Art.37 → Contemporain / Jazz de création uniquement &bull; CIEM → tous genres</p>
+<div class="opts">${buildOptionBtns('genreMusical',[
+  {val:'MA',label:'Musiques Actuelles'},
+  {val:'CJ',label:'Contemporain / Jazz de création'},
+  {val:'les-deux',label:'Les deux (catalogue mixte)'}
+])}</div></div>
+<div class="question" id="q-affiliation-editeur" style="display:none"><p class="q-label">Affiliation CNM (les demandes CNM nécessitent 20 jours ouvrés d’affiliation avant dépôt) :</p>
+<div class="opts">${buildOptionBtns('membreCnm',[
+  {val:'oui',label:'Oui — affilié CNM'},
+  {val:'non',label:'Non — pas encore affilié'}
+])}</div></div>
+<div class="question" id="q-sous-editeur" style="display:none"><p class="q-label">Êtes-vous éditeur original (pas sous-éditeur) ?</p>
+<p class="q-hint">Le statut de sous-éditeur exclut les aides CNM éditorial</p>
+<div class="opts">${buildOptionBtns('sousEditeur',[
+  {val:'non',label:'Oui — éditeur original'},
+  {val:'oui',label:'Non — sous-éditeur'}
+])}</div></div>`;
+  } else if(p==='artiste'){
+    html+=`<div class="question"><p class="q-label">Vous êtes :</p>
+<div class="opts">${buildOptionBtns('structure',[
+  {val:'soliste',label:'Artiste soliste'},
+  {val:'groupe',label:'Membre d’un groupe / ensemble'},
+  {val:'les-deux',label:'Les deux'}
+])}</div></div>`;
+  } else if(p==='auteur'){
+    html+=`<div class="question"><p class="q-label">Vous êtes affilié(e) à la SACEM ?</p>
+<div class="opts">${buildOptionBtns('structure',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
+  } else if(p==='spectacle'){
+    html+=`<div class="question"><p class="q-label">Votre structure est :</p>
+<div class="opts">${buildOptionBtns('structure',[
+  {val:'asso',label:'Association'},
+  {val:'societe',label:'Société (SAS, SARL...)'},
+  {val:'entrepreneur',label:'Entrepreneur individuel / auto-entrepreneur'}
+])}</div></div>`;
+  }
+  html+='<div class="nav-btns"><button class="btn-nav btn-back" onclick="goStep(1)">&#8592; Retour</button><button class="btn-nav btn-next" id="next2" onclick="validateStep(2)" disabled>Suivant &#8594;</button></div>';
+  s.innerHTML=html;
+  // Listeners dynamiques pour éditeur
+  if(p==='editeur'){
+    s.addEventListener('click',function(e){
+      const btn=e.target.closest('.opt-btn');
+      if(!btn)return;
+      const q=btn.dataset.q, val=btn.dataset.val;
+      if(q==='structure'){
+        state.structure=val;
+        btn.closest('.opts').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        if(val==='oui'){
+          document.getElementById('q-genre').style.display='block';
+        } else {
+          document.getElementById('q-genre').style.display='none';
+          document.getElementById('q-affiliation-editeur').style.display='none';
+          document.getElementById('q-sous-editeur').style.display='none';
+          state.genreMusical=null; state.membreCnm=null; state.sousEditeur=null;
+        }
+        checkStep2Ready();
+      } else if(q==='genreMusical'){
+        state.genreMusical=val;
+        btn.closest('.opts').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('q-affiliation-editeur').style.display='block';
+        checkStep2Ready();
+      } else if(q==='membreCnm'){
+        state.membreCnm=val;
+        btn.closest('.opts').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('q-sous-editeur').style.display='block';
+        checkStep2Ready();
+      } else if(q==='sousEditeur'){
+        state.sousEditeur=val;
+        btn.closest('.opts').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        checkStep2Ready();
+      }
+    });
+  }
+}
+
+function checkStep2Ready(){
+  const p=state.profil;
+  let ready=false;
+  if(p==='editeur'){
+    if(state.structure==='oui' && state.genreMusical && state.membreCnm && state.sousEditeur) ready=true;
+    if(state.structure==='non') ready=true;
+  } else {
+    ready=!!state.structure;
+  }
+  const btn=document.getElementById('next2');
+  if(btn) btn.disabled=!ready;
+}
+
+function buildStep3(){
+  const p=state.profil;
+  const s=document.getElementById('step3');
+  if(!s)return;
+  let html='<h2>Droits et revenus</h2>';
+  if(p==='artiste'){
+    html+=`<div class="question"><p class="q-label">Montant annuel de vos droits voisins perçus (ADAMI + SPEDIDAM) :</p>
+<div class="opts">${buildOptionBtns('droitsSacem',[
+  {val:'moins2k',label:'Moins de 2 000 €'},
+  {val:'2k-5k',label:'2 000 – 5 000 €'},
+  {val:'plus5k',label:'Plus de 5 000 €'}
+])}</div></div>`;
+  } else if(p==='auteur'){
+    html+=`<div class="question"><p class="q-label">Vos droits SACEM perçus sur les 12 derniers mois :</p>
+<div class="opts">${buildOptionBtns('droitsSacem',[
+  {val:'moins1k',label:'Moins de 1 500 €'},
+  {val:'1k-5k',label:'1 500 – 5 000 €'},
+  {val:'plus5k',label:'Plus de 5 000 €'}
+])}</div></div>`;
+  } else if(p==='producteur'){
+    html+=`<div class="question"><p class="q-label">Chiffre d’affaires annuel de votre structure :</p>
+<div class="opts">${buildOptionBtns('droitsSacem',[
+  {val:'moins50k',label:'Moins de 50 000 €'},
+  {val:'50k-200k',label:'50 000 – 200 000 €'},
+  {val:'plus200k',label:'Plus de 200 000 €'}
+])}</div></div>`;
+  } else if(p==='editeur'){
+    const genre=state.genreMusical;
+    if(genre==='MA'||genre==='les-deux'){
+      html+=`<div class="question"><p class="q-label">Droits perçus en tant qu’éditeur sur les 12 derniers mois (seuil SACEM : 5 000 €) :</p>
+<div class="opts">${buildOptionBtns('droitsSacem',[
+  {val:'moins5k',label:'Moins de 5 000 €'},
+  {val:'plus5k',label:'5 000 € ou plus'}
+])}</div></div>`;
+    }
+    if(genre==='CJ'||genre==='les-deux'){
+      html+=`<div class="question"><p class="q-label">Droits perçus en tant qu’éditeur original sur les 12 derniers mois (seuil CNM Art.37 : 4 000 €) :</p>
+<p class="q-hint">Ou cumul ≥ 10 000 € sur 3 exercices</p>
+<div class="opts">${buildOptionBtns('droitsCnm',[
+  {val:'moins4k',label:'Moins de 4 000 €'},
+  {val:'plus4k',label:'4 000 € ou plus (ou 10 000 € sur 3 ans)'}
+])}</div></div>`;
+    }
+    if(genre==='MA'&&!genre.includes('CJ')){
+      html+=`<div class="question"><p class="q-label">Droits perçus en tant qu’éditeur original sur les 12 derniers mois (seuil CNM Art.38 : 4 000 €) :</p>
+<p class="q-hint">Ou cumul ≥ 10 000 € sur 3 exercices</p>
+<div class="opts">${buildOptionBtns('droitsCnm',[
+  {val:'moins4k',label:'Moins de 4 000 €'},
+  {val:'plus4k',label:'4 000 € ou plus (ou 10 000 € sur 3 ans)'}
+])}</div></div>`;
+    }
+  } else if(p==='spectacle'){
+    html+=`<div class="question"><p class="q-label">Votre structure organise-t-elle des spectacles vivants musicaux ?</p>
+<div class="opts">${buildOptionBtns('activiteSpectacle',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
+  }
+  html+='<div class="nav-btns"><button class="btn-nav btn-back" onclick="goStep(2)">&#8592; Retour</button><button class="btn-nav btn-next" id="next3" onclick="validateStep(3)" disabled>Suivant &#8594;</button></div>';
+  s.innerHTML=html;
+}
+
+document.addEventListener('click',function(e){
+  const btn=e.target.closest('.opt-btn');
+  if(!btn)return;
+  const q=btn.dataset.q, val=btn.dataset.val;
+  if(!q||!val)return;
+  // Ne pas traiter les listeners déjà gérés par buildStep2 éditeur
+  const step2=document.getElementById('step2');
+  if(step2 && step2.contains(btn) && state.profil==='editeur') return;
+  btn.closest('.opts').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(q==='q1'){ state.profil=val; }
+  else if(q==='structure'){ state.structure=val; }
+  else if(q==='affiliation'){ state.affiliation=val; }
+  else if(q==='droitsSacem'){ state.droitsSacem=val; }
+  else if(q==='droitsCnm'){ state.droitsCnm=val; }
+  else if(q==='contratPref'){ state.contratPref=val; }
+  else if(q==='catalogueAncien'){ state.catalogueAncien=val; }
+  else if(q==='assujettieIS'){ state.assujettieIS=val; }
+  else if(q==='codeUsages'){ state.codeUsages=val; }
+  else if(q==='interpPublique'){ state.interpPublique=val; }
+  else if(q==='membreCnm'){ state.membreCnm=val; }
+  else if(q==='nbArtistes'){ state.nbArtistes=val; }
+  else if(q==='budgetTotal'){ state.budgetTotal=val; }
+  else if(q==='activiteSpectacle'){ state.activiteSpectacle=val; }
+  // Update next button
+  const nextBtns={'1':'next1','2':'next2','3':'next3','4':'next4','5':'next5'};
+  const stepN=state.currentStep;
+  const nextBtn=document.getElementById('next'+stepN);
+  if(nextBtn) nextBtn.disabled=false;
+  if(stepN===2) checkStep2Ready();
+});
 
 function validateStep(n){
-  if(n===1&&!state.profil){alert('Veuillez choisir votre profil.');return false;}
-  return true;
-}
-function resetTest(){
-  Object.keys(state).forEach(function(k){state[k]=null;});
-  currentStep=1;
-  document.querySelectorAll('.option-btn').forEach(function(b){b.classList.remove('selected');});
-  goStep(1);
-}
-function goStep(n){
-  if(n>1&&!validateStep(currentStep))return;
-  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active');});
-  if(n===6){calculateResults();return;}
-  document.getElementById('step'+n).classList.add('active');
-  currentStep=n;
-  document.getElementById('prog').style.width=Math.round((n/6)*100)+'%';
-  if(n===2)buildStep2(state.profil);
-  else if(n===3)buildStep3(state.profil);
-  else if(n===4)buildStep4(state.profil);
-  else if(n===5)buildStep5(state.profil);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.addEventListener('click',function(e){
-  if(e.target.classList.contains('option-btn')){
-    var btn=e.target,q=btn.dataset.q,val=btn.dataset.val;
-    document.querySelectorAll('.option-btn[data-q="'+q+'"]').forEach(function(b){b.classList.remove('selected');});
-    btn.classList.add('selected');
-    state[q]=val;
-    if(q==='q1')state.profil=val;
+  if(n===1){
+    if(!state.profil)return;
+    buildStep2(); goStep(2);
+  } else if(n===2){
+    buildStep3(); goStep(3);
+  } else if(n===3){
+    buildStep4(); goStep(4);
+  } else if(n===4){
+    buildStep5(); goStep(5);
+  } else if(n===5){
+    calculateResults();
   }
-});
-function restoreSelections(container){
-  container.querySelectorAll('.option-btn').forEach(function(btn){
-    var q=btn.dataset.q,v=btn.dataset.val;
-    if(state[q]!==null&&String(state[q])===String(v))btn.classList.add('selected');
-  });
-}
-
-function buildStep2(p){
-  var el=document.getElementById('step2-content'),h='';
-  if(p==='producteur'){
-    h+=`<div class="question"><label>Vous avez une structure juridique ?</label>
-      <p class="hint">SAS, SASU, SARL, EURL ou Association — obligatoire pour accéder à toutes les aides producteur/label.</p>
-      <div class="options">
-        <button class="option-btn" data-q="hasStructure" data-val="true">Oui, j’ai une structure</button>
-        <button class="option-btn" data-q="hasStructure" data-val="false">Non, je suis en nom propre</button>
-      </div></div>
-      <div class="question"><label>Type de structure</label>
-      <div class="options">
-        <button class="option-btn" data-q="structureType" data-val="SAS">SAS</button>
-        <button class="option-btn" data-q="structureType" data-val="SASU">SASU</button>
-        <button class="option-btn" data-q="structureType" data-val="SARL">SARL</button>
-        <button class="option-btn" data-q="structureType" data-val="EURL">EURL</button>
-        <button class="option-btn" data-q="structureType" data-val="ASSO">Association</button>
-      </div></div>
-      <div class="question"><label>Affiliation phonographique</label>
-      <p class="hint">SCPP et SPPF sont les deux sociétés de perception des producteurs. Vous ne pouvez pas cumuler les deux sur un même projet. Sans affiliation, les aides SCPP et SPPF sont inaccessibles.</p>
-      <div class="options">
-        <button class="option-btn" data-q="affiliationOrg" data-val="SCPP">Je suis membre SCPP</button>
-        <button class="option-btn" data-q="affiliationOrg" data-val="SPPF">Je suis membre SPPF</button>
-        <button class="option-btn" data-q="affiliationOrg" data-val="aucune">Aucune affiliation</button>
-      </div></div>
-      <div class="question"><label>Affilié au CNM (Centre National de la Musique) ?</label>
-      <p class="hint">Requis pour l’aide Phonogramme CNM. L’affiliation doit être effective 20 jours ouvrables avant la commission.</p>
-      <div class="options">
-        <button class="option-btn" data-q="affilieCNM" data-val="true">Oui</button>
-        <button class="option-btn" data-q="affilieCNM" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Votre structure est assujettie à l’impôt sur les sociétés (IS) ?</label>
-      <p class="hint">Requis pour le CIPP (Crédit d’Impôt Phonographique). Les associations et auto-entrepreneurs ne sont pas concernés.</p>
-      <div class="options">
-        <button class="option-btn" data-q="assujettieIS" data-val="true">Oui (SAS, SASU, SARL, EURL)</button>
-        <button class="option-btn" data-q="assujettieIS" data-val="false">Non (association, autre)</button>
-      </div></div>`;
-  } else if(p==='artiste'){
-    h+=`<div class="question"><label>Vous êtes associé(e) ADAMI ?</label>
-      <p class="hint">L’ADAMI représente les artistes-interprètes. L’association est gratuite et ouverte à tout artiste ayant perçu des droits.</p>
-      <div class="options">
-        <button class="option-btn" data-q="associeADAMI" data-val="true">Oui</button>
-        <button class="option-btn" data-q="associeADAMI" data-val="false">Non / Pas encore</button>
-      </div></div>
-      <div class="question"><label>Vous possédez un SIRET en tant que propriétaire du master de vos enregistrements ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="siretPropriMaster" data-val="true">Oui</button>
-        <button class="option-btn" data-q="siretPropriMaster" data-val="false">Non</button>
-      </div></div>`;
-  } else if(p==='auteur'){
-    h+=`<div class="question"><label>Vous êtes adhérent(e) SACEM ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="membreSACEM" data-val="true">Oui</button>
-        <button class="option-btn" data-q="membreSACEM" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Votre statut SACEM</label>
-      <div class="options">
-        <button class="option-btn" data-q="statutSACEM" data-val="normal">Adhérent de base</button>
-        <button class="option-btn" data-q="statutSACEM" data-val="professionnel">Auteur professionnel</button>
-        <button class="option-btn" data-q="statutSACEM" data-val="definitif">Sociétaire définitif</button>
-      </div></div>`;
-  } else if(p==='editeur'){
-    h+=`<div class="question"><label>Votre catalogue est enregistré dans la branche « Musiques Actuelles » de la SACEM ?</label>
-      <p class="hint">La SACEM classe ses membres par genre musical. Les aides éditoriales SACEM sont réservées aux éditeurs de la catégorie « Musiques Actuelles (MA) » — cela exclut le classique, le jazz pur, etc.</p>
-      <div class="options">
-        <button class="option-btn" data-q="membreMACSAEM" data-val="true">Oui, mes artistes font des musiques actuelles</button>
-        <button class="option-btn" data-q="membreMACSAEM" data-val="false">Non, autre genre (classique, jazz…)</button>
-      </div></div>
-      <div class="question"><label>Affilié au CNM (Centre National de la Musique) ?</label>
-      <p class="hint">Obligatoire pour le CNM Développement Éditorial. L’affiliation doit être effective 20 jours ouvrables avant la commission de dépôt.</p>
-      <div class="options">
-        <button class="option-btn" data-q="affilieCNM" data-val="true">Oui</button>
-        <button class="option-btn" data-q="affilieCNM" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Votre structure est assujettie à l’IS (Impôt sur les Sociétés) ?</label>
-      <p class="hint">Obligatoire pour le CIEM (Crédit d’Impôt Éditeurs Musicaux). Les associations n’y sont généralement pas soumises.</p>
-      <div class="options">
-        <button class="option-btn" data-q="assujettieIS" data-val="true">Oui (SAS, SASU, SARL, EURL…)</button>
-        <button class="option-btn" data-q="assujettieIS" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>L’édition musicale représente plus de 50% de votre chiffre d’affaires total ?</label>
-      <p class="hint">Requis pour le CNM Développement Éditorial. Si vous êtes aussi distributeur, producteur ou autre, vérifiez que la part éditoriale est bien majoritaire dans vos comptes.</p>
-      <div class="options">
-        <button class="option-btn" data-q="ca50pEdito" data-val="true">Oui, l’édition est mon activité principale (> 50% CA)</button>
-        <button class="option-btn" data-q="ca50pEdito" data-val="false">Non, l’édition est secondaire</button>
-      </div></div>`;
-  } else if(p==='structure'){
-    h+=`<div class="question"><label>Votre structure emploie des artistes (contrats de travail) ?</label>
-      <p class="hint">Les aides SPEDIDAM nécessitent une structure employeuse avec déclarations de cotisations.</p>
-      <div class="options">
-        <button class="option-btn" data-q="structureEmployeuse" data-val="true">Oui</button>
-        <button class="option-btn" data-q="structureEmployeuse" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Vous détenez une licence d’entrepreneur du spectacle vivant ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="licenceESV" data-val="true">Oui</button>
-        <button class="option-btn" data-q="licenceESV" data-val="false">Non</button>
-      </div></div>`;
-  }
-  el.innerHTML=h;restoreSelections(el);
-}
-
-function buildStep3(p){
-  var el=document.getElementById('step3-content'),h='';
-  if(p==='producteur'){
-    var org=state.affiliationOrg;
-    if(org==='SCPP'){
-      h+=`<div class="question"><label>Votre rôle vis-à-vis du catalogue</label>
-        <div class="options">
-          <button class="option-btn" data-q="typeContratSCPP" data-val="producteur">Producteur (je détiens les droits masters)</button>
-          <button class="option-btn" data-q="typeContratSCPP" data-val="licencie">Licencié exclusif</button>
-        </div></div>
-        <div class="question"><label>L’album est inscrit au répertoire SCPP ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="albumRepertoireSCPP" data-val="true">Oui</button>
-          <button class="option-btn" data-q="albumRepertoireSCPP" data-val="false">Non</button>
-        </div></div>
-        <div class="question"><label>Distribution physique en place (ou prévue) ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="distributionPhysique" data-val="true">Oui</button>
-          <button class="option-btn" data-q="distributionPhysique" data-val="false">Non</button>
-        </div></div>`;
-    } else if(org==='SPPF'){
-      h+=`<div class="question"><label>Vous avez au moins 1 album distribué à votre catalogue ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="nbAlbumsDistrib" data-val="1">Oui, 1 ou plus</button>
-          <button class="option-btn" data-q="nbAlbumsDistrib" data-val="0">Non, aucun</button>
-        </div></div>
-        <div class="question"><label>Distribution physique en place ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="distributionPhysique" data-val="true">Oui</button>
-          <button class="option-btn" data-q="distributionPhysique" data-val="false">Non</button>
-        </div></div>
-        <div class="question"><label>Taille de votre structure</label>
-        <div class="options">
-          <button class="option-btn" data-q="taille" data-val="TPE">TPE (moins de 10 salariés, CA < 2M€)</button>
-          <button class="option-btn" data-q="taille" data-val="autre">Plus grande</button>
-        </div></div>
-        <div class="question"><label>Vous avez déjà obtenu une aide album SPPF pour cet artiste ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="aideAlbumSPPFObtenue" data-val="true">Oui</button>
-          <button class="option-btn" data-q="aideAlbumSPPFObtenue" data-val="false">Non</button>
-        </div></div>
-        <div class="question"><label>Le contrat avec l’artiste a été signé après le 01/07/2022 ?</label>
-        <div class="options">
-          <button class="option-btn" data-q="contratArtiste20220701" data-val="true">Oui</button>
-          <button class="option-btn" data-q="contratArtiste20220701" data-val="false">Non, avant</button>
-        </div></div>`;
-    }
-    h+=`<div class="question"><label>CA ≥ 30 000€ ET investissement production ≥ 30 000€ ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="ca30k" data-val="true">Oui</button>
-        <button class="option-btn" data-q="ca30k" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>L’artiste a moins de 50 000 ventes cumulatives (tous supports) ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="artiste50kVentes" data-val="true">Oui (< 50 000)</button>
-        <button class="option-btn" data-q="artiste50kVentes" data-val="false">Non (≥50 000)</button>
-      </div></div>`;
-  } else if(p==='artiste'){
-    h+=`<div class="question"><label>Vous avez 25 cachets d’interprète ou plus sur les 5 dernières années ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="nbCachets25" data-val="true">Oui, 25 ou plus</button>
-        <button class="option-btn" data-q="nbCachets25" data-val="false">Non, moins</button>
-      </div></div>
-      <div class="question"><label>Vous avez 10 titres distribués ou plus ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="nbTitresDistrib10" data-val="true">Oui, 10 ou plus</button>
-        <button class="option-btn" data-q="nbTitresDistrib10" data-val="false">Non, moins</button>
-      </div></div>
-      <div class="question"><label>Vous avez 2 albums + droits ADAMI ≥ 5 000€ sur 5 ans ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="nbAlbumsArtiste2" data-val="true">Oui</button>
-        <button class="option-btn" data-q="nbAlbumsArtiste2" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Droits ADAMI ≥ 300€/an ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="droits300" data-val="true">Oui</button>
-        <button class="option-btn" data-q="droits300" data-val="false">Non</button>
-      </div></div>`;
-  } else if(p==='auteur'){
-    h+=`<div class="question"><label>Vos droits SACEM sont ≥ 5 000€/an en moyenne sur 2 ans ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="droits5000" data-val="true">Oui</button>
-        <button class="option-btn" data-q="droits5000" data-val="false">Non</button>
-      </div></div>`;
-  } else if(p==='editeur'){
-    h+=`<div class="question"><label>Vos droits SACEM perçus atteignent ≥ 5 000€/an en moyenne sur 2 ans ?</label>
-      <p class="hint">Seuil requis pour la SACEM Développement Éditorial.</p>
-      <div class="options">
-        <button class="option-btn" data-q="droitsSACEM5k" data-val="true">Oui (≥ 5 000€/an moy. 2 ans)</button>
-        <button class="option-btn" data-q="droitsSACEM5k" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Vos droits SACEM perçus atteignent ≥ 4 000€ sur les 12 derniers mois, OU ≥ 10 000€ sur 3 exercices ?</label>
-      <p class="hint">Seuil requis pour le CNM Développement Éditorial (en tant qu’éditeur original, pas sous-éditeur).</p>
-      <div class="options">
-        <button class="option-btn" data-q="droitsCNM4k" data-val="true">Oui</button>
-        <button class="option-btn" data-q="droitsCNM4k" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Vous avez un contrat de préférence éditorial actif avec un auteur-compositeur ?</label>
-      <p class="hint">Un contrat de préférence éditorial engage l’auteur-compositeur à vous présenter ses oeuvres en priorité. Ce n’est PAS un contrat de sous-édition. Il doit être en cours de validité au moment du dépôt.</p>
-      <div class="options">
-        <button class="option-btn" data-q="contratPreference" data-val="true">Oui, contrat de préférence actif</button>
-        <button class="option-btn" data-q="contratPreference" data-val="false">Non (ou seulement sous-édition)</button>
-      </div></div>
-      <div class="question"><label>Vous êtes signataire du Code des usages de l’édition musicale ?</label>
-      <p class="hint">Document professionnel officialisant les pratiques du secteur. La plupart des éditeurs sérieux le sont. Renseignez-vous auprès de votre syndicat.</p>
-      <div class="options">
-        <button class="option-btn" data-q="signataireCodes" data-val="true">Oui</button>
-        <button class="option-btn" data-q="signataireCodes" data-val="false">Non / Je ne sais pas</button>
-      </div></div>`;
-  } else if(p==='structure'){
-    h+=`<div class="question"><label>Le spectacle prévoit 6 représentations ou plus ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="nbRepresentations6" data-val="true">Oui, 6 ou plus</button>
-        <button class="option-btn" data-q="nbRepresentations6" data-val="false">Non, moins de 6</button>
-      </div></div>
-      <div class="question"><label>Le coût total employeur dépasse 6 000€ ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="budget6000" data-val="true">Oui</button>
-        <button class="option-btn" data-q="budget6000" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Vous programmez un artiste en 1ère partie de scène nationale ou SMA ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="sallePart" data-val="true">Oui</button>
-        <button class="option-btn" data-q="sallePart" data-val="false">Non</button>
-      </div></div>`;
-  }
-  el.innerHTML=h;restoreSelections(el);
 }
 </script>
 <script>
-function buildStep4(p){
-  var el=document.getElementById('step4-content'),h='';
+function buildStep4(){
+  const p=state.profil;
+  const s=document.getElementById('step4');
+  if(!s)return;
+  let html='<h2>Conditions spécifiques</h2>';
   if(p==='producteur'){
-    h+=`<div class="question"><label>Type de projet</label>
-      <div class="options">
-        <button class="option-btn" data-q="typeProjet" data-val="album">Album / EP</button>
-        <button class="option-btn" data-q="typeProjet" data-val="single">Single</button>
-        <button class="option-btn" data-q="typeProjet" data-val="video">Vidéoclip</button>
-        <button class="option-btn" data-q="typeProjet" data-val="showcase">Showcase</button>
-        <button class="option-btn" data-q="typeProjet" data-val="tournee">Tournée / Déplacement</button>
-      </div></div>
-      <div class="question"><label>Format de l’enregistrement</label>
-      <div class="options">
-        <button class="option-btn" data-q="albumOuEP" data-val="album">Album</button>
-        <button class="option-btn" data-q="albumOuEP" data-val="ep">EP (4 titres ou plus)</button>
-        <button class="option-btn" data-q="albumOuEP" data-val="single">Single</button>
-      </div></div>`;
-  } else if(p==='artiste'){
-    h+=`<div class="question"><label>Type de projet</label>
-      <div class="options">
-        <button class="option-btn" data-q="typeProjet" data-val="album">Album / EP</button>
-        <button class="option-btn" data-q="typeProjet" data-val="video">Vidéo 2D/3D</button>
-        <button class="option-btn" data-q="typeProjet" data-val="tournee">Tournée / Dates</button>
-        <button class="option-btn" data-q="typeProjet" data-val="spectacle">Spectacle</button>
-      </div></div>
-      <div class="question"><label>5 concerts dans des salles ≥ 600 places au cours des 5 dernières années ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="concerts5" data-val="true">Oui</button>
-        <button class="option-btn" data-q="concerts5" data-val="false">Non</button>
-      </div></div>`;
-  } else if(p==='auteur'){
-    h+=`<div class="question"><label>Type de projet</label>
-      <div class="options">
-        <button class="option-btn" data-q="typeProjet" data-val="autoproduction">Autoproduction</button>
-        <button class="option-btn" data-q="typeProjet" data-val="spectacle">Spectacle musical</button>
-      </div></div>
-      <div class="question"><label>Il s’agit de votre combienème album autoproduit ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="autoproditNbAlbums" data-val="1er">1er album</button>
-        <button class="option-btn" data-q="autoproditNbAlbums" data-val="2e">2e album</button>
-        <button class="option-btn" data-q="autoproditNbAlbums" data-val="3e">3e album</button>
-        <button class="option-btn" data-q="autoproditNbAlbums" data-val="plus">4e ou plus</button>
-      </div></div>`;
+    html+=`<div class="question"><p class="q-label">Affiliation à une société de gestion collective phonographique :</p>
+<div class="opts">${buildOptionBtns('affiliation',[
+  {val:'SCPP',label:'SCPP (Société Civile des Producteurs Phonographiques)'},
+  {val:'SPPF',label:'SPPF (Société Civile des Producteurs de Phonogrammes en France)'},
+  {val:'aucune',label:'Aucune affiliation'}
+])}</div></div>`;
   } else if(p==='editeur'){
-    h+=`<div class="question"><label>Type de projet éditorial</label>
-      <div class="options">
-        <button class="option-btn" data-q="typeProjet" data-val="production">Production / Développement d’oeuvres nouvelles</button>
-        <button class="option-btn" data-q="typeProjet" data-val="catalogue">Valorisation de catalogue existant</button>
-        <button class="option-btn" data-q="typeProjet" data-val="numerisation">Numérisation / exploitation numérique</button>
-      </div></div>
-      <div class="question"><label>Votre catalogue comprend des oeuvres de plus de 10 ans ?</label>
-      <p class="hint">Le Volet 2 SACEM Développement Éditorial concerne la valorisation de catalogues anciens (> 10 ans).</p>
-      <div class="options">
-        <button class="option-btn" data-q="catalogue10ans" data-val="true">Oui</button>
-        <button class="option-btn" data-q="catalogue10ans" data-val="false">Non, catalogue récent</button>
-      </div></div>`;
-  } else if(p==='structure'){
-    h+=`<div class="question"><label>Type de projet</label>
-      <div class="options">
-        <button class="option-btn" data-q="typeProjet" data-val="spectacle">Spectacle</button>
-        <button class="option-btn" data-q="typeProjet" data-val="tournee">Tournée / Déplacement</button>
-        <button class="option-btn" data-q="typeProjet" data-val="premierepartie">1ère partie</button>
-      </div></div>
-      <div class="question"><label>Le projet inclut 3 représentations ou plus dans des salles ≥ 250 places ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="salles250" data-val="true">Oui</button>
-        <button class="option-btn" data-q="salles250" data-val="false">Non</button>
-      </div></div>`;
+    const genre=state.genreMusical;
+    if(genre==='MA'||genre==='les-deux'){
+      html+=`<div class="question"><p class="q-label">Votre activité principale relevè-t-elle du répertoire Musiques Actuelles (MA) au sens SACEM ?</p>
+<p class="q-hint">Musiques Actuelles = pop, rock, hip-hop, électro, chanson, r&b... (hors contemporain et jazz de création)</p>
+<div class="opts">${buildOptionBtns('affiliation',[
+  {val:'oui',label:'Oui — Musiques Actuelles au sens SACEM'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
+    } else if(genre==='CJ'){
+      html+=`<div class="question"><p class="q-label">Votre catalogue est principalement :</p>
+<div class="opts">${buildOptionBtns('affiliation',[
+  {val:'contemporain',label:'Musique contemporaine de création'},
+  {val:'jazz',label:'Jazz de création'},
+  {val:'les-deux',label:'Les deux'}
+])}</div></div>`;
+    } else {
+      // les-deux genre — pas besoin de reposer la question MA/CJ
+      state.affiliation='oui';
+      html+='<p class="q-hint info-box">Catalogue mixte MA + Contemporain/Jazz confirmé. Vous êtes éligible aux aides des deux branches.</p>';
+    }
+    html+=`<div class="question"><p class="q-label">Votre chiffre d’affaires éditorial représente-t-il plus de 50 % de votre CA total ?</p>
+<p class="q-hint">Critère commun aux aides CNM et SACEM : l’édition musicale doit être l’activité principale de la structure.</p>
+<div class="opts">${buildOptionBtns('codeUsages',[
+  {val:'oui',label:'Oui — l’édition musicale est l’activité principale'},
+  {val:'non',label:'Non — moins de 50 %'}
+])}</div></div>`;
+  } else if(p==='artiste'){
+    html+=`<div class="question"><p class="q-label">Nombre d’artistes-interprètes dans votre projet (groupe / solo) :</p>
+<div class="opts">${buildOptionBtns('nbArtistes',[
+  {val:'1',label:'1 (solo)'},
+  {val:'2-5',label:'2 à 5'},
+  {val:'6plus',label:'6 ou plus'}
+])}</div></div>`;
+  } else if(p==='auteur'){
+    html+=`<div class="question"><p class="q-label">Avez-vous un ou plusieurs projets de création en cours ?</p>
+<div class="opts">${buildOptionBtns('nbArtistes',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
+  } else if(p==='spectacle'){
+    html+=`<div class="question"><p class="q-label">Votre structure programme-t-elle des artistes de 1ère partie ?</p>
+<div class="opts">${buildOptionBtns('nbArtistes',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
   }
-  el.innerHTML=h;restoreSelections(el);
+  html+='<div class="nav-btns"><button class="btn-nav btn-back" onclick="goStep(3)">&#8592; Retour</button><button class="btn-nav btn-next" id="next4" onclick="validateStep(4)" disabled>Suivant &#8594;</button></div>';
+  s.innerHTML=html;
+  // Auto-advance si genre les-deux (affiliation déjà set)
+  if(p==='editeur'&&state.genreMusical==='les-deux'){
+    const btn=document.getElementById('next4');
+    if(btn) btn.disabled=true; // attend encore codeUsages
+  }
 }
 
-function buildStep5(p){
-  var el=document.getElementById('step5-content'),h='';
-  if(p==='producteur'){
-    h+=`<div class="question"><label>Les droits audiovisuels de l’artiste ont été négociés dans le contrat ?</label>
-      <p class="hint">Requis pour les aides vidéomusique SPPF.</p>
-      <div class="options">
-        <button class="option-btn" data-q="droitsAudiovisuels" data-val="true">Oui</button>
-        <button class="option-btn" data-q="droitsAudiovisuels" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Le réalisateur du clip possède un SIRET ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="realisateurSiret" data-val="true">Oui</button>
-        <button class="option-btn" data-q="realisateurSiret" data-val="false">Non</button>
-      </div></div>`;
+function buildStep5(){
+  const p=state.profil;
+  const s=document.getElementById('step5');
+  if(!s)return;
+  let html='<h2>Dernières vérifications</h2>';
+  if(p==='editeur'){
+    const genre=state.genreMusical;
+    if(genre==='MA'||genre==='les-deux'){
+      html+=`<div class="question"><p class="q-label">Contrat de préférence éditorial en cours de validité (hors sous-édition) :</p>
+<p class="q-hint">La SACEM et le CNM Art.38 exigent un contrat de préférence éditorial valide (non sous-édition) — obligatoire pour SACEM Développement Éditorial Volet 1 et CNM Art.38</p>
+<div class="opts">${buildOptionBtns('contratPref',[
+  {val:'oui',label:'Oui — contrat de préférence valide'},
+  {val:'non',label:'Non — pas de contrat de préférence actif'}
+])}</div></div>
+<div class="question"><p class="q-label">Catalogue à gérer avec un historique de 10 ans ou plus ?</p>
+<p class="q-hint">Volet 2 SACEM Développement Éditorial : catalogue constitué depuis ≥ 10 ans, avec des auteurs actifs</p>
+<div class="opts">${buildOptionBtns('catalogueAncien',[
+  {val:'oui',label:'Oui — catalogue ≥ 10 ans'},
+  {val:'non',label:'Non — catalogue récent (< 10 ans)'}
+])}</div></div>`;
+    }
+    if(genre==='CJ'||genre==='les-deux'){
+      html+=`<div class="question"><p class="q-label">Votre catalogue implique plusieurs auteurs et garantit une interprétation publique de la musique éditée ?</p>
+<p class="q-hint">CNM Art.37 : catalogue structuré avec vision long terme, plusieurs auteurs, et interprétation publique confirmée ou production confirmée</p>
+<div class="opts">${buildOptionBtns('interpPublique',[
+  {val:'oui',label:'Oui — catalogue structuré, interprétation publique garantie'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
+    }
+    html+=`<div class="question"><p class="q-label">Votre structure est-elle assujettie à l’impôt sur les sociétés (IS) ?</p>
+<p class="q-hint">Condition requise pour le CIEM (tous genres)</p>
+<div class="opts">${buildOptionBtns('assujettieIS',[
+  {val:'oui',label:'Oui — assujettie IS'},
+  {val:'non',label:'Non — non assujettie IS (exonérée ou micro)'}
+])}</div></div>`;
+  } else if(p==='producteur'){
+    html+=`<div class="question"><p class="q-label">Nombre de projets phonographiques en cours ou prévus cette année :</p>
+<div class="opts">${buildOptionBtns('budgetTotal',[
+  {val:'1',label:'1 projet'},
+  {val:'2-5',label:'2 à 5 projets'},
+  {val:'6plus',label:'6 projets ou plus'}
+])}</div></div>`;
   } else if(p==='artiste'){
-    h+=`<div class="question"><label>L’enregistrement est réalisé dans un studio professionnel ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="environnementPro" data-val="true">Oui</button>
-        <button class="option-btn" data-q="environnementPro" data-val="false">Non (home studio)</button>
-      </div></div>
-      <div class="question"><label>L’album est déjà sorti (dans les 6 derniers mois) ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="sortieFaite" data-val="true">Oui, sorti récemment</button>
-        <button class="option-btn" data-q="sortieFaite" data-val="false">Non, pas encore sorti</button>
-      </div></div>`;
+    html+=`<div class="question"><p class="q-label">Avez-vous réalisé des déplacements professionnels liés à votre activité d’artiste-interprète cette année ?</p>
+<div class="opts">${buildOptionBtns('budgetTotal',[
+  {val:'oui',label:'Oui'},
+  {val:'non',label:'Non'}
+])}</div></div>`;
   } else if(p==='auteur'){
-    h+=`<div class="question"><label>L’album est déjà sorti (dans les 6 derniers mois) ?</label>
-      <p class="hint">L’aide SACEM Autoproduction est déposée APRÈS la sortie, dans un délai maximum de 6 mois.</p>
-      <div class="options">
-        <button class="option-btn" data-q="sortieFaite" data-val="true">Oui (dans les 6 derniers mois)</button>
-        <button class="option-btn" data-q="sortieFaite" data-val="false">Non, pas encore sorti</button>
-      </div></div>`;
-  } else if(p==='editeur'){
-    h+=`<div class="question"><label>Vous êtes éditeur « original » (vous signez directement les auteurs-compositeurs) ?</label>
-      <p class="hint">Un éditeur original signe les auteurs en contrat de préférence. Un sous-éditeur représente un catalogue étranger sur un territoire. Le CNM et la SACEM ne financent QUE les éditeurs originaux, pas les sous-éditeurs.</p>
-      <div class="options">
-        <button class="option-btn" data-q="editeurOriginal" data-val="true">Oui, je signe directement les auteurs</button>
-        <button class="option-btn" data-q="editeurOriginal" data-val="false">Non, je suis sous-éditeur uniquement</button>
-      </div></div>`;
-  } else if(p==='structure'){
-    h+=`<div class="question"><label>Vous avez des lettres d’invitation de programmateurs ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="lettresInvitation" data-val="true">Oui</button>
-        <button class="option-btn" data-q="lettresInvitation" data-val="false">Non</button>
-      </div></div>
-      <div class="question"><label>Le projet comprend 3 dates ou plus ?</label>
-      <div class="options">
-        <button class="option-btn" data-q="nbDates3" data-val="true">Oui, 3 ou plus</button>
-        <button class="option-btn" data-q="nbDates3" data-val="false">Non, moins de 3</button>
-      </div></div>`;
+    html+=`<div class="question"><p class="q-label">Votre projet implique-t-il un spectacle musical avec scène / concert ?</p>
+<div class="opts">${buildOptionBtns('budgetTotal',[
+  {val:'oui',label:'Oui — projet de spectacle musical'},
+  {val:'non',label:'Non — uniquement enregistrement / composition'}
+])}</div></div>`;
+  } else if(p==='spectacle'){
+    html+=`<div class="question"><p class="q-label">Votre structure a-t-elle bénéficié d’une aide SACEM ces 3 dernières années ?</p>
+<div class="opts">${buildOptionBtns('budgetTotal',[
+  {val:'non',label:'Non'},
+  {val:'oui',label:'Oui — déjà bénéficiaire'}
+])}</div></div>`;
   }
-  el.innerHTML=h;restoreSelections(el);
+  html+='<div class="nav-btns"><button class="btn-nav btn-back" onclick="goStep(4)">&#8592; Retour</button><button class="btn-nav btn-next" id="next5" onclick="validateStep(5)">Voir mes éligibilités &#8594;</button></div>';
+  s.innerHTML=html;
 }
 </script>
 <script>
 function calculateResults(){
-  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('step6').classList.add('active');
-  document.getElementById('prog').style.width='100%';
-  var p=state.profil;
-  var aides=[];
+  const p = state.profil;
+  const genre = state.genreMusical;
+  let aides = [];
+  let blocages = [];
 
-  // ===== PRODUCTEUR =====
-  if(p==='producteur'){
-    var hasStr=state.hasStructure==='true'||state.hasStructure===true;
-    var org=state.affiliationOrg;
-    var affiliCNM=state.affilieCNM==='true'||state.affilieCNM===true;
-    var isIS=state.assujettieIS==='true'||state.assujettieIS===true;
-    var distPhys=state.distributionPhysique==='true'||state.distributionPhysique===true;
-    var albScpp=state.albumRepertoireSCPP==='true'||state.albumRepertoireSCPP===true;
-    var nbAlb=state.nbAlbumsDistrib;
-    var taille=state.taille;
-    var aideAlbSPPF=state.aideAlbumSPPFObtenue==='true'||state.aideAlbumSPPFObtenue===true;
-    var contrat2022=state.contratArtiste20220701==='true'||state.contratArtiste20220701===true;
-    var ca30=state.ca30k==='true'||state.ca30k===true;
-    var art50k=state.artiste50kVentes==='true'||state.artiste50kVentes===true;
-    var albOuEP=state.albumOuEP;
-    var dAudio=state.droitsAudiovisuels==='true'||state.droitsAudiovisuels===true;
-
-    if(!hasStr){
-      aides.push({id:'warn_struct',org:'Avertissement',nom:'Structure juridique manquante',eligible:false,blocked:true,
-        desc:'Aucune aide producteur sans structure (SAS, SASU, SARL, EURL, Association). Créez votre structure d’abord.',
-        montant:'Bloquant',fiche:'aides.html',officiel:'https://www.cnm.fr',criteres:[],reasons:['Pas de structure juridique']});
-    }
-    if(org==='aucune'){
-      aides.push({id:'warn_affil',org:'Avertissement',nom:'Affiliation SCPP ou SPPF requise',eligible:false,blocked:true,
-        desc:'Sans affiliation SCPP ou SPPF, les aides phonographiques sont inaccessibles.',
-        montant:'Bloquant',fiche:'aides.html',officiel:'https://www.scpp.fr',criteres:[],reasons:['Aucune affiliation SCPP/SPPF']});
-    }
-
-    if(org==='SCPP'){
-      var r1=[];
-      if(!hasStr)r1.push('Structure juridique requise');
-      if(state.typeContratSCPP==='licencie')r1.push('Réservé au producteur détenteur de droits (pas au licencié)');
-      if(!distPhys)r1.push('Distribution physique requise');
-      aides.push({id:'scpp_phono',org:'SCPP',nom:'Aide Production Phonographique',eligible:r1.length===0,blocked:!hasStr,reasons:r1,
-        desc:'Subvention à la production d’albums pour producteurs détenteurs de droits SCPP.',montant:'Variable',
-        fiche:'aides.html#scpp-phono',officiel:'https://www.scpp.fr',criteres:['Membre SCPP','Producteur détenteur droits','Distribution physique']});
-
-      var r2=[];
-      if(!hasStr)r2.push('Structure juridique requise');
-      if(!albScpp)r2.push('Album inscrit au répertoire SCPP requis');
-      aides.push({id:'scpp_showcase',org:'SCPP',nom:'Aide Showcase',eligible:r2.length===0,blocked:!hasStr,reasons:r2,
-        desc:'Aide pour showcases dans des salles partenaires SCPP.',montant:'Variable',
-        fiche:'aides.html#scpp-showcase',officiel:'https://www.scpp.fr',criteres:['Membre SCPP','Album au répertoire SCPP','Salle partenaire']});
-
-      var r3=[];
-      if(!hasStr)r3.push('Structure juridique requise');
-      if(state.typeContratSCPP==='licencie')r3.push('Réservé au producteur détenteur de droits');
-      if(albOuEP!=='album'&&albOuEP!=='ep')r3.push('Album ou EP (≥4 titres) requis');
-      aides.push({id:'scpp_video',org:'SCPP',nom:'Aide Vidéomusique',eligible:r3.length===0,blocked:!hasStr,reasons:r3,
-        desc:'Aide à la production de clips pour albums ou EP (≥4 titres).',montant:'Variable',
-        fiche:'aides.html#scpp-video',officiel:'https://www.scpp.fr',criteres:['Membre SCPP','Producteur droits','Album/EP ≥4 titres']});
-
-      var r4=[];
-      if(!hasStr)r4.push('Structure juridique requise');
-      if(state.typeContratSCPP!=='licencie')r4.push('Réservé au licencié exclusif');
-      aides.push({id:'scpp_marketing',org:'SCPP',nom:'Aide Marketing',eligible:r4.length===0,blocked:!hasStr,reasons:r4,
-        desc:'Aide marketing réservée aux licenciés exclusifs SCPP. Budget min 15 000€.',montant:'Variable',
-        fiche:'aides.html#scpp-marketing',officiel:'https://www.scpp.fr',criteres:['Licencié exclusif SCPP','Budget ≥15k€']});
-
-      var r5=[];
-      if(!hasStr)r5.push('Structure juridique requise');
-      aides.push({id:'scpp_formation',org:'SCPP',nom:'Aide Formation',eligible:r5.length===0,blocked:!hasStr,reasons:r5,
-        desc:'Aide à la formation professionnelle pour membres SCPP.',montant:'Variable',
-        fiche:'aides.html#scpp-formation',officiel:'https://www.scpp.fr',criteres:['Membre SCPP','Structure juridique']});
-
-    } else if(org==='SPPF'){
-      var s1=[];
-      if(!hasStr)s1.push('Structure juridique requise');
-      if(nbAlb==='0'||nbAlb===0)s1.push('Au moins 1 album distribué requis');
-      if(!distPhys)s1.push('Distribution physique requise');
-      aides.push({id:'sppf_album',org:'SPPF',nom:'Aide Enregistrement Album',eligible:s1.length===0,blocked:!hasStr,reasons:s1,
-        desc:'Aide principale SPPF pour la production d’albums. Catalogue préalable requis.',montant:'Variable',
-        fiche:'aides.html#sppf-album',officiel:'https://www.sppf.com',criteres:['Membre SPPF','1 album distribué','Distribution physique']});
-
-      var s2=[];
-      if(!hasStr)s2.push('Structure juridique requise');
-      if(albOuEP!=='album')s2.push('Extrait d’album uniquement (pas de single)');
-      if(!dAudio)s2.push('Droits audiovisuels négociés requis');
-      aides.push({id:'sppf_video',org:'SPPF',nom:'Aide Vidéomusique',eligible:s2.length===0,blocked:!hasStr,reasons:s2,
-        desc:'Aide clips vidéo. Extrait d’album uniquement. Droits audiovisuels négociés.',montant:'Variable',
-        fiche:'aides.html#sppf-video',officiel:'https://www.sppf.com',criteres:['Membre SPPF','Extrait album','Droits audiovisuels']});
-
-      var s3=[];
-      if(!hasStr)s3.push('Structure juridique requise');
-      if(nbAlb==='0'||nbAlb===0)s3.push('Au moins 1 album distribué requis');
-      aides.push({id:'sppf_showcase',org:'SPPF',nom:'Aide Showcase',eligible:s3.length===0,blocked:!hasStr,reasons:s3,
-        desc:'Aide showcases dans salles partenaires SPPF.',montant:'Variable',
-        fiche:'aides.html#sppf-showcase',officiel:'https://www.sppf.com',criteres:['Membre SPPF','1 album distribué']});
-
-      var s4=[];
-      if(!hasStr)s4.push('Structure juridique requise');
-      if(taille!=='TPE')s4.push('Réservé aux TPE (< 10 salariés, CA < 2M€)');
-      if(!aideAlbSPPF)s4.push('Aide album SPPF préalable requise');
-      if(!contrat2022)s4.push('Contrat artiste signé après le 01/07/2022 requis');
-      aides.push({id:'sppf_grm',org:'SPPF',nom:'Aide GRM – Garantie de Revenus Minimaux',eligible:s4.length===0,blocked:!hasStr,reasons:s4,
-        desc:'Garantie de revenus pour TPE ayant obtenu une aide album SPPF. Contrat post 01/07/2022.',montant:'Variable',
-        fiche:'aides.html#sppf-grm',officiel:'https://www.sppf.com',criteres:['Membre SPPF','TPE','Aide album préalable','Contrat post 2022']});
-
-      var s5=[];
-      if(!hasStr)s5.push('Structure juridique requise');
-      aides.push({id:'bonif_adami_sppf',org:'SPPF/ADAMI',nom:'Bonification ADAMI × SPPF',eligible:s5.length===0,blocked:!hasStr,reasons:s5,
-        desc:'Bonification croisée pour projets réunissant ADAMI et SPPF.',montant:'Bonification',
-        fiche:'aides.html#bonif-adami-sppf',officiel:'https://www.adami.fr',criteres:['Membre SPPF','Artiste associé ADAMI']});
-    }
-
-    var c=[];
-    if(!affiliCNM)c.push('Affilié CNM requis (20j ouvrables avant commission)');
-    if(!ca30)c.push('CA ≥30 000€ et investissement ≥30 000€ requis');
-    if(!art50k)c.push('Artiste avec moins de 50 000 ventes requis');
-    aides.push({id:'cnm_phono',org:'CNM',nom:'Aide Phonogramme CNM',eligible:c.length===0,blocked:false,reasons:c,
-      desc:'Soutien CNM pour production phonographique d’artistes en développement.',montant:'Variable',
-      fiche:'aides.html#cnm-phono',officiel:'https://www.cnm.fr',criteres:['Affilié CNM','CA≥30k + invest≥30k','Artiste <50k ventes']});
-
-    var ci=[];
-    if(!hasStr)ci.push('Structure juridique requise');
-    if(!isIS)ci.push('Structure assujettie à l’IS requise');
-    aides.push({id:'cipp',org:'État/DGFiP',nom:'CIPP — Crédit d’Impôt Phonographique',eligible:ci.length===0,blocked:!hasStr,reasons:ci,
-      desc:'Crédit d’impôt pour dépenses de production phonographique. Déclaré en liasse fiscale.',montant:'15-30% des dépenses',
-      fiche:'aides.html#cipp',officiel:'https://www.impots.gouv.fr',criteres:['Structure IS','Dépenses éligibles']});
-  }
-
-  // ===== ARTISTE =====
-  if(p==='artiste'){
-    var assADAMI=state.associeADAMI==='true'||state.associeADAMI===true;
-    var nbCach=state.nbCachets25==='true'||state.nbCachets25===true;
-    var nb10=state.nbTitresDistrib10==='true'||state.nbTitresDistrib10===true;
-    var alb2=state.nbAlbumsArtiste2==='true'||state.nbAlbumsArtiste2===true;
-    var dr300=state.droits300==='true'||state.droits300===true;
-    var conc5=state.concerts5==='true'||state.concerts5===true;
-    var siret=state.siretPropriMaster==='true'||state.siretPropriMaster===true;
-    var nbRep6=state.nbRepresentations6==='true'||state.nbRepresentations6===true;
-    var bud6k=state.budget6000==='true'||state.budget6000===true;
-
-    var adami=[];
-    if(!assADAMI)adami.push('Associé(e) ADAMI requis');
-    if(!nbCach)adami.push('25 cachets + 2 attestations CS sur 5 ans requis');
-    aides.push({id:'adami_bpa',org:'ADAMI',nom:'BPA – Bourse de Production Artistique',eligible:adami.length===0,blocked:!assADAMI,reasons:adami,
-      desc:'Bourse de production pour artistes associés ADAMI. Finance enregistrements, clips, tournage.',montant:'Variable',
-      fiche:'aides.html#adami-bpa',officiel:'https://www.adami.fr',criteres:['Associé ADAMI','25 cachets/5ans']});
-
-    var a1=[];
-    if(!assADAMI)a1.push('Associé(e) ADAMI requis');
-    if(!nb10)a1.push('10 titres distribués requis');
-    if(!siret)a1.push('SIRET propriétaire master requis');
-    aides.push({id:'adami_2d3d',org:'ADAMI',nom:'Aide Vidéo 2D/3D',eligible:a1.length===0,blocked:!assADAMI,reasons:a1,
-      desc:'Aide clips 2D ou 3D. Artiste propriétaire du master.',montant:'Variable',
-      fiche:'aides.html#adami-2d3d',officiel:'https://www.adami.fr',criteres:['Associé ADAMI','10 titres','SIRET master']});
-
-    var a2=[];
-    if(!assADAMI)a2.push('Associé(e) ADAMI requis');
-    if(!alb2)a2.push('2 albums + droits ≥5 000€/5 ans requis');
-    if(!conc5)a2.push('5 concerts salles ≥600 places requis');
-    aides.push({id:'adami_365',org:'ADAMI',nom:'ADAMI 365 – Tournée',eligible:a2.length===0,blocked:!assADAMI,reasons:a2,
-      desc:'Développement scènique : 2 albums, droits ≥5k€/5 ans, 5 concerts ≥600 places.',montant:'Variable',
-      fiche:'aides.html#adami-365',officiel:'https://www.adami.fr',criteres:['Associé ADAMI','2 albums','Droits ≥5k/5ans','5 concerts ≥600pl']});
-
-    var a3=[];
-    if(!assADAMI)a3.push('Associé(e) ADAMI requis');
-    aides.push({id:'adami_premiere',org:'ADAMI',nom:'ADAMI 1ère Partie',eligible:a3.length===0,blocked:!assADAMI,reasons:a3,
-      desc:'Aide pour artistes programmables en 1ère partie sur scène nationale ou SMA.',montant:'Variable',
-      fiche:'aides.html#adami-1ere',officiel:'https://www.adami.fr',criteres:['Associé ADAMI']});
-
-    var nm=[];
-    if(!nbRep6)nm.push('6 représentations minimum requises');
-    if(!bud6k)nm.push('Coût employeur > 6 000€ requis');
-    aides.push({id:'spedidam_spectacle',org:'SPEDIDAM',nom:'Aide Spectacle',eligible:nm.length===0,blocked:false,reasons:nm,
-      desc:'Aide spectacles vivants. Min 6 représentations, coût >6 000€.',montant:'Variable',
-      fiche:'aides.html#spedidam-spectacle',officiel:'https://www.spedidam.fr',criteres:['6 représentations','Coût >6k€']});
-
-    aides.push({id:'spedidam_deplacement',org:'SPEDIDAM',nom:'Aide Déplacement',eligible:true,blocked:false,reasons:[],
-      desc:'Aide pour frais de déplacement liés aux spectacles.',montant:'Variable',
-      fiche:'aides.html#spedidam-deplacement',officiel:'https://www.spedidam.fr',criteres:['Artiste interprète']});
-
-    aides.push({id:'spedidam_image',org:'SPEDIDAM',nom:'Aide Image',eligible:true,blocked:false,reasons:[],
-      desc:'Aide production d’images (clips, web-doc).',montant:'Variable',
-      fiche:'aides.html#spedidam-image',officiel:'https://www.spedidam.fr',criteres:['Artiste interprète']});
-  }
-
-  // ===== AUTEUR =====
-  if(p==='auteur'){
-    var memSac=state.membreSACEM==='true'||state.membreSACEM===true;
-    var statut=state.statutSACEM;
-    var nbAlbAuto=state.autoproditNbAlbums;
-    var sorti=state.sortieFaite==='true'||state.sortieFaite===true;
-
-    var au1=[];
-    if(!memSac)au1.push('Adhérent SACEM requis');
-    if(statut==='professionnel'||statut==='definitif')au1.push('Réservé aux adhérents de base (pas auteur professionnel ni sociétaire définitif)');
-    if(!nbAlbAuto||nbAlbAuto==='plus')au1.push('1er, 2e ou 3e album autoproduit uniquement');
-    if(!sorti)au1.push('Déposer APRÈS la sortie, dans un délai max de 6 mois');
-    aides.push({id:'sacem_auto',org:'SACEM',nom:'Aide à l’Autoproduction',eligible:au1.length===0,blocked:!memSac,reasons:au1,
-      desc:'Aide post-sortie pour les 3 premiers albums autoproduits. Adhérent SACEM non professionnel.',montant:'Variable',
-      fiche:'aides.html#sacem-autoproduction',officiel:'https://www.sacem.fr',criteres:['Adhérent SACEM','1er/2e/3e album','Post-sortie (max 6 mois)']});
-
-    var au2=[];
-    if(!memSac)au2.push('Adhérent SACEM requis');
-    aides.push({id:'sacem_spectacle',org:'SACEM',nom:'Création Spectacle Musical',eligible:au2.length===0,blocked:!memSac,reasons:au2,
-      desc:'Spectacle musical ambitieux avec narration scénique. Licence ESV cat.2. Plafond 15k€.',montant:'Jusqu’à 15 000€',
-      fiche:'aides.html#sacem-spectacle-musical',officiel:'https://www.sacem.fr',criteres:['Adhérent SACEM','Licence ESV cat.2']});
-  }
-
-  // ===== EDITEUR =====
-  if(p==='editeur'){
-    var memMA=state.membreMACSAEM==='true'||state.membreMACSAEM===true;
-    var affCNM=state.affilieCNM==='true'||state.affilieCNM===true;
-    var isISed=state.assujettieIS==='true'||state.assujettieIS===true;
-    var dr5k=state.droitsSACEM5k==='true'||state.droitsSACEM5k===true;
-    var dr4k=state.droitsCNM4k==='true'||state.droitsCNM4k===true;
-    var ca50=state.ca50pEdito==='true'||state.ca50pEdito===true;
-    var contPref=state.contratPreference==='true'||state.contratPreference===true;
-    var sigCodes=state.signataireCodes==='true'||state.signataireCodes===true;
-    var cat10=state.catalogue10ans==='true'||state.catalogue10ans===true;
-    var editOrig=state.editeurOriginal==='true'||state.editeurOriginal===true;
-    var volet=state.voletSACEM;
-
-    // Volet SACEM : Volet 1 = contrat pref | Volet 2 = catalogue 10ans
-    var voletOk = contPref || cat10;
-
-    // SACEM Dev Editorial
-    var ed1=[];
-    if(!memMA)ed1.push('Catalogue en branche Musiques Actuelles (MA) SACEM requis');
-    if(!dr5k)ed1.push('Droits SACEM ≥ 5 000€/an en moyenne sur 2 ans requis');
-    if(!voletOk)ed1.push('Volet 1 (contrat de préférence) OU Volet 2 (catalogue > 10 ans) requis');
-    aides.push({id:'sacem_dev_editorial',org:'SACEM',nom:'Développement Éditorial',eligible:ed1.length===0,blocked:!memMA,reasons:ed1,
-      desc:'Volet 1 : soutien au développement d’auteurs-compositeurs avec contrats de préférence. Volet 2 : valorisation de catalogue > 10 ans. Cumulables.',montant:'Variable (2 volets)',
-      fiche:'aides.html#sacem-dev-editorial',officiel:'https://www.sacem.fr',criteres:['Branche MA SACEM','≥5k€ droits/an','Contrat préf. ou catalogue 10 ans']});
-
-    // CNM Dev Editorial
-    var ed2=[];
-    if(!affCNM)ed2.push('Affilié CNM requis (20j ouvrables avant commission)');
-    if(!ca50)ed2.push('Edition musicale > 50% du CA total requis');
-    if(!contPref)ed2.push('Contrat de préférence éditorial EN COURS DE VALIDITÉ requis (pas sous-édition)');
-    if(!dr4k)ed2.push('Droits ≥ 4 000€/12 mois OU ≥ 10 000€/3 exercices requis');
-    if(editOrig===false)ed2.push('Réservé aux éditeurs originaux (pas aux sous-éditeurs)');
-    aides.push({id:'cnm_dev_editorial',org:'CNM',nom:'Développement Éditorial',eligible:ed2.length===0,blocked:false,reasons:ed2,
-      desc:'Aide à la création et développement d’oeuvres. Contrat de préférence obligatoire. Musiques actuelles. Pas de sous-édition. 70% acompte + 30% solde.',montant:'45% des dépenses, plafond 25 000€',
-      fiche:'aides.html#cnm-dev-editorial',officiel:'https://www.cnm.fr',criteres:['Affilié CNM','Edition > 50% CA','Contrat préf.','Droits ≥4k/12mois']});
-
-    // CIEM
-    var ed3=[];
-    if(!isISed)ed3.push('Structure assujettie à l’IS requise');
-    aides.push({id:'ciem',org:'État/DGFiP',nom:'CIEM — Crédit d’Impôt Éditeurs Musicaux',eligible:ed3.length===0,blocked:false,reasons:ed3,
-      desc:'Crédit d’impôt pour dépenses de production, développement et numérisation d’oeuvres. Déclaré en liasse fiscale.',montant:'25-40% des dépenses',
-      fiche:'aides.html#ciem',officiel:'https://www.impots.gouv.fr',criteres:['Entreprise française','Assujettie IS','Dépenses éligibles']});
-  }
-
-  // ===== STRUCTURE =====
-  if(p==='structure'){
-    var strEmp=state.structureEmployeuse==='true'||state.structureEmployeuse===true;
-    var licESV=state.licenceESV==='true'||state.licenceESV===true;
-    var nbRep2=state.nbRepresentations6==='true'||state.nbRepresentations6===true;
-    var bud2=state.budget6000==='true'||state.budget6000===true;
-
-    var st1=[];
-    if(!strEmp)st1.push('Structure employeuse d’artistes requise');
-    aides.push({id:'adami_1ere_struct',org:'ADAMI',nom:'ADAMI 1ère Partie',eligible:st1.length===0,blocked:!strEmp,reasons:st1,
-      desc:'Aide pour structure programmatrice d’artistes en 1ère partie sur scène nationale ou SMA.',montant:'Variable',
-      fiche:'aides.html#adami-1ere',officiel:'https://www.adami.fr',criteres:['Structure employeuse']});
-
-    var st2=[];
-    if(!strEmp)st2.push('Structure employeuse requise');
-    if(!nbRep2)st2.push('6 représentations minimum requises');
-    if(!bud2)st2.push('Coût employeur > 6 000€ requis');
-    aides.push({id:'spedidam_struct',org:'SPEDIDAM',nom:'Aide Spectacle',eligible:st2.length===0,blocked:!strEmp,reasons:st2,
-      desc:'Aide spectacles vivants pour structure employeuse. 6 représentations, coût >6k€.',montant:'Variable',
-      fiche:'aides.html#spedidam-spectacle',officiel:'https://www.spedidam.fr',criteres:['Structure employeuse','6 représ.','Coût >6k€']});
-
-    var st3=[];
-    if(!strEmp)st3.push('Structure employeuse requise');
-    aides.push({id:'spedidam_depl_struct',org:'SPEDIDAM',nom:'Aide Déplacement',eligible:st3.length===0,blocked:!strEmp,reasons:st3,
-      desc:'Aide frais de déplacement pour tournées et spectacles.',montant:'Variable',
-      fiche:'aides.html#spedidam-deplacement',officiel:'https://www.spedidam.fr',criteres:['Structure employeuse']});
-
-    var st4=[];
-    if(!licESV)st4.push('Licence ESV cat.2 requise');
-    aides.push({id:'sacem_spectacle_struct',org:'SACEM',nom:'Création Spectacle Musical',eligible:st4.length===0,blocked:!licESV,reasons:st4,
-      desc:'Spectacle musical ambitieux avec narration scénique. Plafond 15k€.',montant:'Jusqu’à 15 000€',
-      fiche:'aides.html#sacem-spectacle-musical',officiel:'https://www.sacem.fr',criteres:['Licence ESV cat.2']});
-  }
-
-  renderResults(aides);
-}
-
-function renderResults(aides){
-  var eligible=aides.filter(function(a){return a.eligible;});
-  var nok=aides.filter(function(a){return !a.eligible;});
-  var html='<div class="results-header"><h2>Vos Résultats d’Éligibilité</h2>';
-  html+='<div class="score">'+eligible.length+' aide(s) potentiellement accessible(s)</div>';
-  html+='<div class="score-label">sur '+aides.length+' analysées</div></div>';
-  if(eligible.length>0){
-    html+='<div class="section-title eligible">✅ AIDES POTENTIELLEMENT ACCESSIBLES</div>';
-    eligible.forEach(function(a){html+=renderAideCard(a,true);});
-  }
-  if(nok.length>0){
-    html+='<div class="section-title blocked">❌ AIDES NON ACCESSIBLES</div>';
-    nok.forEach(function(a){html+=renderAideCard(a,false);});
-  }
-  document.getElementById('results-container').innerHTML=html;
-}
-
-function renderAideCard(a,isElig){
-  var cls=isElig?'ok':'nok';
-  var statusCls=isElig?'eligible':'non-eligible';
-  var statusTxt=isElig?'ÉLIGIBLE':'NON ÉLIGIBLE';
-  var h='<div class="aide-card '+cls+'">';
-  h+='<div class="aide-card-header"><div>';
-  h+='<div class="org">'+a.org+'</div><h3>'+a.nom+'</h3></div>';
-  h+='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">';
-  if(a.montant)h+='<span class="aide-montant">'+a.montant+'</span>';
-  h+='<span class="aide-status '+statusCls+'">'+statusTxt+'</span>';
-  h+='</div></div>';
-  h+='<p class="aide-desc">'+a.desc+'</p>';
-  if(a.criteres&&a.criteres.length){
-    h+='<div class="criteres-list">';
-    a.criteres.forEach(function(c){h+='<span class="critere-tag">'+c+'</span>';});
-    h+='</div>';
-  }
-  if(a.reasons&&a.reasons.length){
-    h+='<div class="check-list">';
-    a.reasons.forEach(function(r){
-      h+='<div class="check-item"><span style="color:#e05c5c;margin-right:4px">❌</span><span>'+r+'</span></div>';
+  if(p === 'artiste'){
+    // ADAMI BPA
+    aides.push({
+      nom: 'ADAMI — Bourse de Production Artistique (BPA)',
+      org: 'ADAMI',
+      statut: 'eligible',
+      montant: 'Jusqu’à 30 000 €',
+      desc: 'Soutien à la production d’un enregistrement pour artistes-interprètes.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.adami.fr/aides'
     });
-    h+='</div>';
+    aides.push({
+      nom: 'ADAMI — Aide 2D/3D (Clip vidéo)',
+      org: 'ADAMI',
+      statut: 'eligible',
+      montant: 'Variable selon budget',
+      desc: 'Soutien à la production de clips vidéo pour artistes-interprètes.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.adami.fr/aides'
+    });
+    aides.push({
+      nom: 'ADAMI — Aide 365 (Aide au développement artistique)',
+      org: 'ADAMI',
+      statut: 'eligible',
+      montant: 'Variable',
+      desc: 'Soutien au développement de la carrière artistique tout au long de l’année.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.adami.fr/aides'
+    });
+    aides.push({
+      nom: 'ADAMI — Aide 1ère Partie',
+      org: 'ADAMI',
+      statut: 'eligible',
+      montant: 'Variable',
+      desc: 'Soutien pour artistes en 1ère partie d’artistes confirmés.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.adami.fr/aides'
+    });
+    aides.push({
+      nom: 'SPEDIDAM — Aide au Spectacle',
+      org: 'SPEDIDAM',
+      statut: 'eligible',
+      montant: 'Variable',
+      desc: 'Soutien à la production de spectacles vivants pour artistes-interprètes.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.spedidam.fr/aides'
+    });
+    aides.push({
+      nom: 'SPEDIDAM — Aide au Déplacement',
+      org: 'SPEDIDAM',
+      statut: state.budgetTotal==='oui' ? 'eligible' : 'ineligible',
+      raison: state.budgetTotal!=='oui' ? 'Aucun déplacement professionnel déclaré cette année' : '',
+      montant: 'Variable',
+      desc: 'Soutien aux déplacements professionnels liés à l’activité artistique.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.spedidam.fr/aides'
+    });
+    aides.push({
+      nom: 'SPEDIDAM — Aide à l’Image',
+      org: 'SPEDIDAM',
+      statut: 'eligible',
+      montant: 'Variable',
+      desc: 'Soutien à la production d’images (clips, documentaires) pour artistes-interprètes.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.spedidam.fr/aides'
+    });
+
+  } else if(p === 'auteur'){
+    aides.push({
+      nom: 'SACEM — Aide à l’Autoproduction',
+      org: 'SACEM',
+      statut: state.structure==='oui' ? 'eligible' : 'ineligible',
+      raison: state.structure!=='oui' ? 'Affiliation SACEM requise' : '',
+      montant: 'Jusqu’à 10 000 €',
+      desc: 'Soutien à la production phonographique pour auteurs-compositeurs affiliés SACEM.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.sacem.fr/aides'
+    });
+    aides.push({
+      nom: 'SACEM — Création Spectacle Musical',
+      org: 'SACEM',
+      statut: state.budgetTotal==='oui' ? 'eligible' : 'ineligible',
+      raison: state.budgetTotal!=='oui' ? 'Projet de spectacle musical requis' : '',
+      montant: 'Variable',
+      desc: 'Aide à la création de spectacles musicaux pour auteurs-compositeurs.',
+      fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+      site: 'https://www.sacem.fr/aides'
+    });
+
+  } else if(p === 'producteur'){
+    if(state.structure !== 'oui'){
+      blocages.push('Structure juridique requise (SAS, SASU, SARL, EURL, Association). Sans structure, aucune aide n’est accessible.');
+    }
+    if(state.affiliation === 'aucune'){
+      blocages.push('Affiliation SCPP ou SPPF requise pour accéder aux aides phonographiques. Sans affiliation, toutes les aides producteur sont bloquées.');
+    }
+    if(state.structure === 'oui' && state.affiliation === 'SCPP'){
+      aides.push({nom:'SCPP — Aide Phonographique',org:'SCPP',statut:'eligible',montant:'Variable',desc:'Soutien à la production d’albums pour membres SCPP.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.scpp.fr'});
+      aides.push({nom:'SCPP — Aide Showcase',org:'SCPP',statut:'eligible',montant:'Variable',desc:'Soutien à l’organisation de showcases pour membres SCPP.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.scpp.fr'});
+      aides.push({nom:'SCPP — Aide Vidéoclip',org:'SCPP',statut:'eligible',montant:'Variable',desc:'Soutien à la production de vidéoclips pour membres SCPP.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.scpp.fr'});
+      aides.push({nom:'SCPP — Aide Marketing',org:'SCPP',statut:'eligible',montant:'Variable',desc:'Soutien aux actions marketing et promo pour membres SCPP.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.scpp.fr'});
+      aides.push({nom:'SCPP — Aide Formation',org:'SCPP',statut:'eligible',montant:'Variable',desc:'Soutien à la formation professionnelle pour membres SCPP.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.scpp.fr'});
+      aides.push({nom:'CNM — Aide Phonographique',org:'CNM',statut:'eligible',montant:'Variable',desc:'Soutien à la production phonographique via le CNM.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://cnm.fr/aides'});
+      aides.push({nom:'CIPP — Crédit d’Impôt Phonographique',org:'CIPP',statut:'eligible',montant:'Jusqu’à 350 000 €',desc:'Crédit d’impôt pour la production phonographique (sous conditions fiscales).',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.impots.gouv.fr'});
+    }
+    if(state.structure === 'oui' && state.affiliation === 'SPPF'){
+      aides.push({nom:'SPPF — Aide Album',org:'SPPF',statut:'eligible',montant:'Variable',desc:'Soutien à la production d’albums pour membres SPPF.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://sppf.com'});
+      aides.push({nom:'SPPF — Aide Vidéoclip',org:'SPPF',statut:'eligible',montant:'Variable',desc:'Soutien à la production de vidéoclips pour membres SPPF.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://sppf.com'});
+      aides.push({nom:'SPPF — Aide Showcase',org:'SPPF',statut:'eligible',montant:'Variable',desc:'Soutien à l’organisation de showcases pour membres SPPF.',fiche:'https://sppf.com',site:'https://sppf.com'});
+      aides.push({nom:'SPPF — Garantie de Remboursement Minimum (GRM)',org:'SPPF',statut:'eligible',montant:'Variable',desc:'Garantie financière pour les projets phonographiques SPPF.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://sppf.com'});
+      aides.push({nom:'SPPF — Bonification ADAMI×SPPF',org:'SPPF',statut:'eligible',montant:'Variable',desc:'Bonus lié à l’utilisation conjointe ADAMI et SPPF.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://sppf.com'});
+      aides.push({nom:'CNM — Aide Phonographique',org:'CNM',statut:'eligible',montant:'Variable',desc:'Soutien à la production phonographique via le CNM.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://cnm.fr/aides'});
+      aides.push({nom:'CIPP — Crédit d’Impôt Phonographique',org:'CIPP',statut:'eligible',montant:'Jusqu’à 350 000 €',desc:'Crédit d’impôt pour la production phonographique (sous conditions fiscales).',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.impots.gouv.fr'});
+    }
+
+  } else if(p === 'editeur'){
+    // Blocages globaux
+    if(state.structure !== 'oui'){
+      blocages.push('Personnalité morale requise pour toutes les aides éditeur (SAS, SASU, SARL, EURL, Association).');
+    }
+    if(state.sousEditeur === 'oui'){
+      blocages.push('Statut de sous-éditeur : les aides CNM Éditoriales (Art.37 et Art.38) et la SACEM Développement Éditorial sont réservées aux éditeurs originaux.');
+    }
+    if(state.codeUsages !== 'oui'){
+      blocages.push('Activité principale éditoriale (CA éditorial > 50 %) requise pour les aides CNM et SACEM.');
+    }
+
+    if(state.structure === 'oui' && state.sousEditeur !== 'oui' && state.codeUsages === 'oui'){
+      // SACEM Développement Éditorial — MA seulement
+      if(genre === 'MA' || genre === 'les-deux'){
+        const sacemStatut = (state.droitsSacem === 'plus5k') ? 'eligible' :
+                            (state.droitsSacem === 'moins5k' && (state.contratPref === 'oui' || state.catalogueAncien === 'oui')) ? 'partiel' : 'ineligible';
+        aides.push({
+          nom: 'SACEM — Développement Éditorial',
+          org: 'SACEM',
+          statut: sacemStatut,
+          raison: sacemStatut === 'ineligible' ? 'Droits < 5 000 €/an ET ni contrat de préférence ni catalogue ≥ 10 ans' : sacemStatut === 'partiel' ? 'Droits < 5 000 € mais condition alternative possible (Volet 2 ou contrat de préférence)' : '',
+          montant: 'Variable selon volet',
+          desc: 'Soutien à l’activité éditoriale pour membres MA SACEM. Volet 1 : contrat de préférence. Volet 2 : catalogue ≥ 10 ans.',
+          fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+          site: 'https://www.sacem.fr/aides'
+        });
+        // CNM Art.38 — MA seulement
+        const cnm38Statut = (state.membreCnm === 'oui' && state.droitsCnm === 'plus4k' && state.contratPref === 'oui') ? 'eligible' :
+                            state.membreCnm !== 'oui' ? 'ineligible' :
+                            state.droitsCnm !== 'plus4k' ? 'ineligible' : 'ineligible';
+        aides.push({
+          nom: 'CNM — Développement Éditorial Musiques Actuelles (Art. 38)',
+          org: 'CNM',
+          statut: cnm38Statut,
+          raison: state.membreCnm !== 'oui' ? 'Affiliation CNM requise (20 jours ouvrés avant dépôt)' :
+                  state.droitsCnm !== 'plus4k' ? 'Droits < 4 000 €/an (ou < 10 000 € sur 3 exercices)' :
+                  state.contratPref !== 'oui' ? 'Contrat de préférence éditorial en cours de validité requis' : '',
+          montant: '45 % des dépenses, plafond 25 000 €/projet, max 125 000 €/an',
+          desc: 'Soutien CNM au développement éditorial des Musiques Actuelles. Section 2, Art. 38.',
+          fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+          site: 'https://cnm.fr/aides'
+        });
+      }
+      // CNM Art.37 — Contemporain & Jazz seulement
+      if(genre === 'CJ' || genre === 'les-deux'){
+        const cnm37Statut = (state.membreCnm === 'oui' && state.droitsCnm === 'plus4k' && state.interpPublique === 'oui') ? 'eligible' :
+                            state.membreCnm !== 'oui' ? 'ineligible' :
+                            state.droitsCnm !== 'plus4k' ? 'ineligible' : 'ineligible';
+        aides.push({
+          nom: 'CNM — Édition Contemporaine & Jazz (Art. 37)',
+          org: 'CNM',
+          statut: cnm37Statut,
+          raison: state.membreCnm !== 'oui' ? 'Affiliation CNM requise (20 jours ouvrés avant dépôt)' :
+                  state.droitsCnm !== 'plus4k' ? 'Droits < 4 000 €/an (ou < 10 000 € sur 3 exercices) en tant qu’éditeur original' :
+                  state.interpPublique !== 'oui' ? 'Catalogue structuré et interprétation publique garantie requis' : '',
+          montant: '10 000 à 40 000 € (variable selon commission), frais structure max 15 %',
+          desc: 'Soutien CNM à l’édition musicale contemporaine et jazz de création. Art. 37, Section 2. Sessions 2026 : 5 dates de dépôt.',
+          fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+          site: 'https://cnm.fr/aides'
+        });
+      }
+      // CIEM — toujours si IS
+      const ciemStatut = state.assujettieIS === 'oui' ? 'eligible' : 'ineligible';
+      aides.push({
+        nom: 'CIEM — Crédit d’Impôt Édition Musicale',
+        org: 'CIEM',
+        statut: ciemStatut,
+        raison: state.assujettieIS !== 'oui' ? 'Structure assujettie IS requise pour le CIEM' : '',
+        montant: '25 % des dépenses éligibles, plafond variable',
+        desc: 'Crédit d’impôt pour les éditeurs musicaux assujettis à l’IS. Tous genres musicaux.',
+        fiche: 'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',
+        site: 'https://www.impots.gouv.fr'
+      });
+    }
+
+  } else if(p === 'spectacle'){
+    aides.push({nom:'ADAMI — Aide 1ère Partie',org:'ADAMI',statut: state.nbArtistes==='oui' ? 'eligible':'ineligible',raison: state.nbArtistes!=='oui'?'Programmation de 1ère partie requise':'',montant:'Variable',desc:'Soutien aux structures programmant des artistes en 1ère partie.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.adami.fr/aides'});
+    aides.push({nom:'SPEDIDAM — Aide au Spectacle',org:'SPEDIDAM',statut: state.activiteSpectacle==='oui' ? 'eligible':'ineligible',raison: state.activiteSpectacle!=='oui'?'Organisation de spectacles vivants musicaux requise':'',montant:'Variable',desc:'Soutien aux structures organisant des spectacles pour artistes-interprètes.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.spedidam.fr/aides'});
+    aides.push({nom:'SPEDIDAM — Aide au Déplacement',org:'SPEDIDAM',statut: state.activiteSpectacle==='oui' ? 'eligible':'ineligible',raison: state.activiteSpectacle!=='oui'?'Organisation de spectacles vivants musicaux requise':'',montant:'Variable',desc:'Soutien aux déplacements liés à l’organisation de spectacles.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.spedidam.fr/aides'});
+    aides.push({nom:'SACEM — Création Spectacle Musical',org:'SACEM',statut:'eligible',montant:'Variable',desc:'Aide à la création de spectacles musicaux.',fiche:'https://drive.google.com/drive/folders/1q3yHZjN_lI8K7A0QyHuFPi1GgjO3xEd9',site:'https://www.sacem.fr/aides'});
   }
-  h+='<div class="aide-actions">';
-  h+='<a class="btn-fiche" href="'+a.fiche+'">📄 Voir la fiche</a>';
-  h+='<a class="btn-officiel" href="'+a.officiel+'" target="_blank">🔗 Site officiel</a>';
-  h+='</div></div>';
-  return h;
+
+  renderResults(aides, blocages);
+}
+
+function renderAideCard(a){
+  const badge = a.statut==='eligible' ? '<span class="badge badge-ok">✅ Éligible</span>' :
+                a.statut==='partiel' ? '<span class="badge badge-partiel">⚠️ Éligibilité partielle</span>' :
+                '<span class="badge badge-ko">❌ Non éligible</span>';
+  const raison = a.raison ? `<p class="raison">⚠️ ${a.raison}</p>` : '';
+  return `<div class="aide-card aide-${a.statut}">
+  <div class="aide-header"><span class="aide-org tag-${a.org.toLowerCase().replace(/[^a-z]/g,'')}">${a.org}</span>${badge}</div>
+  <h3>${a.nom}</h3>
+  <p class="montant"><strong>Montant :</strong> ${a.montant}</p>
+  <p class="desc">${a.desc}</p>
+  ${raison}
+  <div class="aide-btns">
+    <a href="${a.fiche}" target="_blank" class="btn-fiche">&#128196; Voir la fiche</a>
+    <a href="${a.site}" target="_blank" class="btn-site">&#127760; Site officiel</a>
+  </div>
+</div>`;
+}
+
+function renderResults(aides, blocages){
+  const el=document.getElementById('results');
+  if(!el)return;
+  const eligibles=aides.filter(a=>a.statut==='eligible');
+  const partiels=aides.filter(a=>a.statut==='partiel');
+  const ineligibles=aides.filter(a=>a.statut==='ineligible');
+  let html='<div class="results-header"><h2>Résultats de votre test d’éligibilité</h2>';
+  html+=`<p class="results-summary">${eligibles.length} aide(s) éligible(s)${partiels.length ? ' · '+partiels.length+' partielle(s)' : ''} · ${ineligibles.length} non éligible(s)</p></div>`;
+  if(blocages.length){
+    html+='<div class="blocages-box"><h3>&#9888; Points bloquants</h3><ul>';
+    blocages.forEach(b=>{html+=`<li>${b}</li>`;});
+    html+='</ul></div>';
+  }
+  if(eligibles.length||partiels.length){
+    html+='<h3 class="section-title">✅ Aides auxquelles vous pouvez prétendre</h3>';
+    eligibles.concat(partiels).forEach(a=>{html+=renderAideCard(a);});
+  }
+  if(ineligibles.length){
+    html+='<details class="ineligibles-details"><summary>Voir les aides non éligibles ('+ineligibles.length+')</summary>';
+    ineligibles.forEach(a=>{html+=renderAideCard(a);});
+    html+='</details>';
+  }
+  html+='<div class="restart-box"><button class="btn-restart" onclick="resetTest()">&#8634; Refaire le test</button></div>';
+  el.innerHTML=html;
+  el.style.display='block';
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  el.scrollIntoView({behavior:'smooth'});
 }
 </script>
-</body>
-</html>
