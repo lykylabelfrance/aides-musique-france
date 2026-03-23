@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monter mon dossier – Aides Musique France</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rouge: #e8001d;
+      --noir: #0a0a0a;
+      --gris: #f4f4f4;
+      --gris2: #e0e0e0;
+      --vert: #1aaa55;
+      --orange: #f59e0b;
+      --blanc: #ffffff;
+      --texte: #1a1a1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--noir);
+      color: var(--blanc);
+      min-height: 100vh;
+    }
+    /* HEADER */
+    header {
+      background: var(--noir);
+      border-bottom: 2px solid var(--rouge);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.6rem;
+      color: var(--blanc);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+    .header-logo span { color: var(--rouge); }
+    .header-back {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--rouge);
+      text-decoration: none;
+      border: 1px solid var(--rouge);
+      padding: 6px 14px;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .header-back:hover { background: var(--rouge); color: var(--blanc); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0005 100%);
+      padding: 50px 40px 40px;
+      border-bottom: 1px solid #222;
+    }
+    .hero-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--rouge);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 3px;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: var(--rouge); }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: #aaa;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* AID SELECTOR */
+    .aid-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .aid-tab {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1px solid #333;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .aid-tab:hover { border-color: var(--rouge); color: var(--blanc); }
+    .aid-tab.active { background: var(--rouge); color: var(--blanc); border-color: var(--rouge); }
+
+    /* DOSSIER CARD */
+    .dossier-section { display: none; }
+    .dossier-section.active { display: block; }
+
+    /* SECTION BLOCKS */
+    .section-block {
+      background: #111;
+      border: 1px solid #222;
+      border-top: 3px solid var(--rouge);
+      margin-bottom: 30px;
+      padding: 30px;
+    }
+    .section-block h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+    .section-block .section-sub {
+      font-size: 0.82rem;
+      color: #666;
+      font-family: 'DM Mono', monospace;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ELIGIBILITY RECAP */
+    .recap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .recap-item {
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .recap-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--vert);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 11px;
+    }
+    .recap-check.warn { background: var(--orange); }
+    .recap-label {
+      font-size: 0.82rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+    .recap-label strong {
+      display: block;
+      color: var(--blanc);
+      margin-bottom: 2px;
+      font-size: 0.85rem;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(232, 0, 29, 0.06);
+      border: 1px solid rgba(232, 0, 29, 0.25);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      font-size: 0.83rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+    .info-box strong { color: var(--rouge); }
+    .info-box.green {
+      background: rgba(26, 170, 85, 0.06);
+      border-color: rgba(26, 170, 85, 0.25);
+    }
+    .info-box.green strong { color: var(--vert); }
+    .info-box.orange {
+      background: rgba(245, 158, 11, 0.06);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .info-box.orange strong { color: var(--orange); }
+
+    /* SESSION DATES */
+    .sessions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .session-badge {
+      background: var(--rouge);
+      color: var(--blanc);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      letter-spacing: 1px;
+    }
+    .session-badge.past { background: #333; color: #666; }
+
+    /* CHECKLIST */
+    .checklist { display: flex; flex-direction: column; gap: 14px; }
+    .check-item {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      padding: 16px 18px;
+      transition: border-color 0.2s;
+    }
+    .check-item.done { border-color: var(--vert); }
+    .check-item.done .check-item-header { opacity: 0.7; }
+    .check-item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+    }
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #444;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      transition: all 0.2s;
+    }
+    .check-box.checked { background: var(--vert); border-color: var(--vert); }
+    .check-box .check-icon { display: none; font-size: 13px; }
+    .check-box.checked .check-icon { display: block; }
+    .check-text { flex: 1; }
+    .check-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--blanc);
+      margin-bottom: 3px;
+    }
+    .check-desc {
+      font-size: 0.78rem;
+      color: #777;
+      line-height: 1.5;
+    }
+    .check-desc.autofill { color: #4a9960; font-style: italic; }
+    .check-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .check-badge.required { background: rgba(232,0,29,0.15); color: var(--rouge); border: 1px solid rgba(232,0,29,0.3); }
+    .check-badge.optional { background: rgba(255,255,255,0.05); color: #666; border: 1px solid #333; }
+    .check-badge.auto { background: rgba(26,170,85,0.12); color: var(--vert); border: 1px solid rgba(26,170,85,0.3); }
+
+    /* FILE UPLOAD */
+    .file-zone {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px dashed #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .file-zone.has-file { border-color: var(--vert); background: rgba(26,170,85,0.04); }
+    .file-input-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      padding: 8px 16px;
+      border: 1px solid var(--rouge);
+      color: var(--rouge);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .file-input-label:hover { background: var(--rouge); color: var(--blanc); }
+    .file-input { display: none; }
+    .file-name {
+      font-size: 0.8rem;
+      color: #666;
+      font-family: 'DM Mono', monospace;
+    }
+    .file-name.loaded { color: var(--vert); }
+
+    /* PROGRESS */
+    .progress-wrap {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .progress-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #222;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--rouge);
+      transition: width 0.4s ease;
+    }
+    .progress-bar-fill.complete { background: var(--vert); }
+    .progress-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: #888;
+      white-space: nowrap;
+    }
+    .progress-label span { color: var(--blanc); font-weight: 600; }
+
+    /* FORMS */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: #777;
+      text-transform: uppercase;
+    }
+    .form-label span { color: var(--rouge); }
+    .form-input, .form-select, .form-textarea {
+      background: #0a0a0a;
+      border: 1px solid #2a2a2a;
+      color: var(--blanc);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--rouge);
+    }
+    .form-input.autofilled { border-color: rgba(26,170,85,0.4); background: rgba(26,170,85,0.03); }
+    .form-textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+    .form-hint {
+      font-size: 0.75rem;
+      color: #555;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .autofill-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--vert);
+      letter-spacing: 0.5px;
+    }
+
+    /* BUDGET TABLE */
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+    .budget-table th {
+      background: #161616;
+      color: #888;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .budget-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #1a1a1a;
+      color: #ccc;
+    }
+    .budget-table tr:hover td { background: #0d0d0d; }
+    .budget-table .total-row td {
+      border-top: 2px solid var(--rouge);
+      color: var(--blanc);
+      font-weight: 600;
+    }
+    .budget-table input[type=number] {
+      background: #0a0a0a;
+      border: 1px solid #2a2a2a;
+      color: var(--blanc);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      width: 130px;
+      text-align: right;
+      outline: none;
+    }
+    .budget-table input[type=number]:focus { border-color: var(--rouge); }
+    .budget-result {
+      margin-top: 16px;
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .budget-result-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+    .budget-result-amount {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.8rem;
+      color: var(--rouge);
+      letter-spacing: 2px;
+    }
+    .budget-result-amount.max { color: var(--orange); }
+
+    /* ACTIONS */
+    .actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+    .btn-primary {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      padding: 14px 32px;
+      background: var(--rouge);
+      color: var(--blanc);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: #c00018; }
+    .btn-secondary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--blanc);
+      border: 1px solid #444;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--blanc); }
+
+    /* PRINT / PDF */
+    @media print {
+      header, .aid-tabs, .actions-row, .file-input-label, .header-back { display: none !important; }
+      body { background: white; color: black; }
+      .section-block { border-color: #ccc; background: white; }
+      .check-item { background: white; border-color: #ccc; }
+      .form-input, .form-select, .form-textarea { background: white; color: black; border-color: #ccc; }
+      .budget-table th { background: #eee; color: #333; }
+      .budget-table td { color: #333; }
+      .info-box { background: #f9f9f9; border-color: #ccc; color: #333; }
+      main { padding: 0; max-width: 100%; }
+      .dossier-section { display: block !important; }
+      .section-block { break-inside: avoid; margin-bottom: 20px; padding: 20px; }
+    }
+
+    /* PORTAL LINK */
+    .portal-card {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .portal-info .portal-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+    .portal-info .portal-url {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: #666;
+    }
+    .portal-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      background: var(--rouge);
+      color: var(--blanc);
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .portal-link:hover { background: #c00018; }
+
+    /* NON-CUMUL BANNER */
+    .non-cumul-banner {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.3);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .non-cumul-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .non-cumul-text { font-size: 0.82rem; color: #ddd; line-height: 1.6; }
+    .non-cumul-text strong { color: var(--orange); }
+
+    /* TOOLTIP */
+    .tooltip-wrap { position: relative; display: inline-block; cursor: help; }
+    .tooltip-wrap .tooltip {
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      border: 1px solid #444;
+      color: #ccc;
+      font-size: 0.75rem;
+      padding: 8px 12px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+    .tooltip-wrap:hover .tooltip { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-logo">AIDES <span>MUSIQUE</span> FRANCE</a>
+    <a href="eligibilite.html" class="header-back">← Retour aux résultats</a>
+  </header>
+
+  <div class="hero">
+    <div class="hero-badge">Outil de constitution de dossier</div>
+    <h1>MONTER MON <span>DOSSIER</span></h1>
+    <p class="hero-sub">Checklist interactive, téléchargement des pièces justificatives et génération automatique de votre dossier de demande d'aide.</p>
+  </div>
+
+  <main>
+    <!-- AID SELECTOR TABS -->
+    <div class="aid-tabs" id="aidTabs"></div>
+
+    <!-- === CNM DÉVELOPPEMENT ÉDITORIAL === -->
+    <div class="dossier-section" id="section-cnm-dev-editorial">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Aide au Développement Éditorial · Taux 45% · Max 25 000€/projet · Max 125 000€/an</p>
+        <div class="recap-grid" id="recap-cnm-dev-editorial"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dépôt obligatoire AVANT la date limite. Affiliation CNM requise 20 jours ouvrés avant.</p>
+        <div class="sessions-row">
+          <div class="session-badge">8 AVRIL 2026</div>
+          <div class="session-badge">10 SEPTEMBRE 2026</div>
+          <div class="session-badge">13 OCTOBRE 2026</div>
+        </div>
+        <div class="info-box orange" style="margin-top:16px">
+          <strong>⚠ Rétroactivité 24 mois :</strong> Les dépenses engagées dans les 24 mois précédant le dépôt du dossier sont éligibles — conservez toutes vos factures.
+        </div>
+        <div class="non-cumul-banner">
+          <div class="non-cumul-icon">⚡</div>
+          <div class="non-cumul-text"><strong>Non-cumulabilité :</strong> Cette aide CNM ne peut pas être cumulée avec d'autres aides publiques ou de gestion collective (SACEM, SCPA) sur les <em>mêmes dépenses</em>. Vous pouvez toutefois combiner CNM + SACEM sur des dépenses distinctes.</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <p class="section-sub">Cochez et déposez chaque document requis pour votre dossier CNM.</p>
+        <div class="progress-wrap" id="progress-cnm-dev-editorial">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-dev-editorial" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-cnm-dev-editorial">0</span> / <span id="progresstotal-cnm-dev-editorial">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-cnm-dev-editorial">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — DESCRIPTIF DU PROJET</h2>
+        <p class="section-sub">Rédigez ou affinez le descriptif de votre projet éditorial — pré-rempli à partir de vos réponses.</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nom de la structure <span>*</span></label>
+            <input type="text" class="form-input autofilled" id="cnm_nom_structure" placeholder="Raison sociale">
+            <span class="autofill-tag">✓ Pré-rempli depuis vos réponses</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SIRET</label>
+            <input type="text" class="form-input" id="cnm_siret" placeholder="XXX XXX XXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Intitulé du projet <span>*</span></label>
+            <input type="text" class="form-input" id="cnm_projet_titre" placeholder="Ex : Développement répertoire de [Artiste]">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Artiste(s) concerné(s) <span>*</span></label>
+            <input type="text" class="form-input autofilled" id="cnm_artistes" placeholder="Nom(s) de l'artiste ou des artistes">
+            <span class="autofill-tag">✓ Pré-rempli depuis vos réponses</span>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Descriptif de l'activité éditoriale <span>*</span></label>
+            <textarea class="form-textarea autofilled" id="cnm_descriptif" placeholder="Décrivez votre activité d'édition musicale, les œuvres concernées et votre positionnement artistique..."></textarea>
+            <span class="autofill-tag">✓ Généré automatiquement — à personnaliser</span>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Objectifs du projet <span>*</span></label>
+            <textarea class="form-textarea" id="cnm_objectifs" placeholder="Quels sont les objectifs concrets de ce projet (sorties, développement de carrière, nombre d'œuvres...) ?"></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Dépenses envisagées</label>
+            <textarea class="form-textarea" id="cnm_depenses_desc" placeholder="Décrivez les dépenses prévues : rémunération auteurs/compositeurs, résidences, travail d'écriture, direction artistique, captations..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>E — BUDGET PRÉVISIONNEL</h2>
+        <p class="section-sub">Renseignez vos dépenses éligibles. L'aide CNM est calculée à 45% (max 25 000€ par projet).</p>
+        <div class="info-box">
+          <strong>Dépenses éligibles :</strong> Rémunération auteurs/compositeurs, travail d'écriture/composition, résidences de création, réécriture, direction artistique liée à la création, suivi de catalogue, captations de résidences, tracking SACEM (plafonné à 30% du total éligible).
+        </div>
+        <div class="info-box" style="margin-top:-10px;margin-bottom:20px">
+          <strong>Non éligibles :</strong> Promotion/marketing, clips, production phonographique définitive.
+        </div>
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th>Poste de dépense</th>
+              <th>Type</th>
+              <th>Montant HT (€)</th>
+            </tr>
+          </thead>
+          <tbody id="budget-cnm-rows">
+            <tr>
+              <td>Rémunération auteurs / compositeurs</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="remun_ac" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Travail d'écriture / composition (studios)</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="ecriture" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Résidences de création</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="residences" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Direction artistique (liée à la création)</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="da" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Suivi de catalogue</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="catalogue" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Captations de résidences</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="captations" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr>
+              <td>Tracking SACEM <span class="tooltip-wrap">ℹ<span class="tooltip">Plafonné à 30% du total éligible</span></span></td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">Éligible (30% max)</span></td>
+              <td><input type="number" min="0" step="100" value="0" data-poste="tracking" onchange="calcBudgetCNM()"></td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2"><strong>TOTAL DÉPENSES ÉLIGIBLES</strong></td>
+              <td><span id="cnm-total-eligible" style="font-family:'DM Mono',monospace">0 €</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="budget-result">
+          <div>
+            <div class="budget-result-label">AIDE CNM ESTIMÉE (45%)</div>
+            <div style="font-size:0.75rem;color:#555;font-family:'DM Mono',monospace;margin-top:2px">Sous réserve d'instruction par le CNM</div>
+          </div>
+          <div class="budget-result-amount" id="cnm-aide-estimee">0 €</div>
+        </div>
+        <div class="budget-result" style="margin-top:8px">
+          <div>
+            <div class="budget-result-label">VERSEMENT ACOMPTE (70%)</div>
+          </div>
+          <div id="cnm-acompte" style="font-family:'DM Mono',monospace;font-size:1rem;color:#aaa">0 €</div>
+        </div>
+        <div class="budget-result" style="margin-top:8px">
+          <div>
+            <div class="budget-result-label">VERSEMENT SOLDE (30%)</div>
+          </div>
+          <div id="cnm-solde" style="font-family:'DM Mono',monospace;font-size:1rem;color:#aaa">0 €</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>F — PORTAIL & SOUMISSION</h2>
+        <p class="section-sub">Dépôt du dossier exclusivement via le portail CNM.</p>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">CNM — Centre National de la Musique</div>
+            <div class="portal-url">portail.cnm.fr</div>
+          </div>
+          <a href="https://portail.cnm.fr" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('cnm-dev-editorial')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder ma progression</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- === SACEM DÉVELOPPEMENT ÉDITORIAL V1 === -->
+    <div class="dossier-section" id="section-sacem-dev-v1">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SACEM · Développement Éditorial V1 – Développement d'A/C · Max 10 000€ · 50% de l'investissement</p>
+        <div class="recap-grid" id="recap-sacem-dev-v1"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES & CONDITIONS</h2>
+        <div class="info-box green">
+          <strong>✓ Dépôt continu :</strong> La SACEM accepte les dossiers tout au long de l'année — pas de session limitée. Maximum 1 dossier par an et par artiste concerné.
+        </div>
+        <div class="non-cumul-banner">
+          <div class="non-cumul-icon">✅</div>
+          <div class="non-cumul-text"><strong>Cumulable avec CNM :</strong> Ce volet SACEM est cumulable avec l'aide CNM Développement Éditorial à condition que les dépenses soient <em>distinctes</em> (pas de double financement sur le même poste).</div>
+        </div>
+        <div class="info-box orange">
+          <strong>Coefficient ×2,5 :</strong> Pour certaines catégories (maquette phonographique, contenus de promotion, développement scénique), le plafond est calculé avec un coefficient de 2,5 : <em>plafond = 30% du budget × 2,5</em>.
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <p class="section-sub">Documents requis pour votre dossier SACEM V1.</p>
+        <div class="progress-wrap" id="progress-sacem-dev-v1">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sacem-dev-v1" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sacem-dev-v1">0</span> / <span id="progresstotal-sacem-dev-v1">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sacem-dev-v1"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET PRÉVISIONNEL V1</h2>
+        <p class="section-sub">Renseignez vos dépenses éligibles. SACEM finance à 50% (max 10 000€).</p>
+        <div class="info-box">
+          <strong>Dépenses éligibles V1 :</strong> Maquette phonographique, matériel de studio, actions de promotion (clip, médias), contenus audiovisuels, développement scénique (maquettes de scène, costumes).
+        </div>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste</th><th>Coefficient</th><th>Montant HT (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Maquette phonographique</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#4a9960">×2,5</span></td>
+              <td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM1()"></td>
+            </tr>
+            <tr>
+              <td>Matériel de studio / instruments</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#888">×1</span></td>
+              <td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM1()"></td>
+            </tr>
+            <tr>
+              <td>Promotion & contenus audiovisuels</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#4a9960">×2,5</span></td>
+              <td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM1()"></td>
+            </tr>
+            <tr>
+              <td>Développement scénique</td>
+              <td><span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:#4a9960">×2,5</span></td>
+              <td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM1()"></td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2"><strong>TOTAL INVESTISSEMENT</strong></td>
+              <td><span id="sacem1-total" style="font-family:'DM Mono',monospace">0 €</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="budget-result">
+          <div>
+            <div class="budget-result-label">AIDE SACEM ESTIMÉE (50%)</div>
+            <div style="font-size:0.75rem;color:#555;font-family:'DM Mono',monospace;margin-top:2px">Plafonnée à 10 000€</div>
+          </div>
+          <div class="budget-result-amount" id="sacem1-aide-estimee">0 €</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SACEM — Portail Aides & Subventions</div>
+            <div class="portal-url">aide.sacem.fr</div>
+          </div>
+          <a href="https://aide.sacem.fr" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sacem-dev-v1')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- === SACEM VALORISATION PATRIMONIALE V2 === -->
+    <div class="dossier-section" id="section-sacem-dev-v2">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SACEM · Développement Éditorial V2 – Valorisation Patrimoniale · Max 15 000€ · Œuvres > 10 ans</p>
+        <div class="recap-grid" id="recap-sacem-dev-v2"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES & CONDITIONS</h2>
+        <div class="info-box">
+          <strong>Condition clé :</strong> Les œuvres concernées doivent avoir été éditées il y a plus de 10 ans. Ce volet vise la valorisation et la diffusion du répertoire ancien.
+        </div>
+        <div class="info-box green">
+          <strong>✓ Cumulable avec CNM :</strong> Sur dépenses distinctes uniquement.
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sacem-dev-v2">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sacem-dev-v2" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sacem-dev-v2">0</span> / <span id="progresstotal-sacem-dev-v2">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sacem-dev-v2"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET PRÉVISIONNEL V2</h2>
+        <p class="section-sub">SACEM finance à 50% — max 15 000€.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste</th><th>Montant HT (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Réenregistrement / arrangements</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM2()"></td></tr>
+            <tr><td>Promotion du catalogue patrimonial</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM2()"></td></tr>
+            <tr><td>Numérisation / restauration d'archives</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM2()"></td></tr>
+            <tr><td>Contenus audiovisuels (documentaire, clips)</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM2()"></td></tr>
+            <tr><td>Autres dépenses de valorisation</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetSACEM2()"></td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><span id="sacem2-total" style="font-family:'DM Mono',monospace">0 €</span></td></tr>
+          </tbody>
+        </table>
+        <div class="budget-result">
+          <div>
+            <div class="budget-result-label">AIDE SACEM V2 ESTIMÉE (50%)</div>
+            <div style="font-size:0.75rem;color:#555;font-family:'DM Mono',monospace;margin-top:2px">Plafonnée à 15 000€</div>
+          </div>
+          <div class="budget-result-amount" id="sacem2-aide-estimee">0 €</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SACEM — Portail Aides & Subventions</div>
+            <div class="portal-url">aide.sacem.fr</div>
+          </div>
+          <a href="https://aide.sacem.fr" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sacem-dev-v2')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- === CIEM === -->
+    <div class="dossier-section" id="section-ciem">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CIEM · Crédit d'Impôt Éditeurs de Musique · 15% à 30% des dépenses éligibles · Déclaration fiscale annuelle</p>
+        <div class="recap-grid" id="recap-ciem"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — PRINCIPE & CALENDRIER</h2>
+        <div class="info-box green">
+          <strong>✓ Cumulable :</strong> Le CIEM est un avantage fiscal — il est cumulable avec les subventions CNM et SACEM (aide différente par nature).
+        </div>
+        <div class="info-box">
+          <strong>Taux :</strong> 15% des dépenses éligibles pour les grandes entreprises, <strong>30%</strong> pour les petites entreprises (CA &lt; 250 M€ et bilan &lt; 43 M€ — généralement votre cas). Déclaration via la liasse fiscale annuelle (formulaire 2069-RCI).
+        </div>
+        <div class="info-box orange">
+          <strong>Condition :</strong> Être éditeur dit "original" (avoir signé un contrat d'édition directement avec les auteurs/compositeurs) et être soumis à l'IS en France.
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-ciem">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-ciem" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-ciem">0</span> / <span id="progresstotal-ciem">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-ciem"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — SIMULATION CIEM</h2>
+        <p class="section-sub">Estimez votre crédit d'impôt — à valider impérativement avec votre expert-comptable.</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Taille de l'entreprise</label>
+            <select class="form-select" id="ciem-taille" onchange="calcCIEM()">
+              <option value="30">Petite (taux 30%)</option>
+              <option value="15">Grande (taux 15%)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Total dépenses éligibles CIEM (€)</label>
+            <input type="number" class="form-input" id="ciem-depenses" min="0" step="1000" value="0" onchange="calcCIEM()">
+          </div>
+        </div>
+        <div class="budget-result" style="margin-top:16px">
+          <div>
+            <div class="budget-result-label">CRÉDIT D'IMPÔT ESTIMÉ</div>
+            <div style="font-size:0.75rem;color:#555;font-family:'DM Mono',monospace;margin-top:2px">À déclarer via formulaire 2069-RCI</div>
+          </div>
+          <div class="budget-result-amount" id="ciem-aide-estimee">0 €</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>E — DÉMARCHE FISCALE</h2>
+        <div class="info-box">
+          <strong>Comment procéder :</strong> Le CIEM se déclare lors de votre déclaration fiscale annuelle. Transmettez ces informations à votre expert-comptable avec les justificatifs de dépenses éligibles. Aucun portail en ligne spécifique — c'est une déclaration via votre liasse fiscale (formulaire 2069-RCI à joindre).
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('ciem')">📄 Exporter la note de synthèse</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- === CNM MUSIQUE EN IMAGES === -->
+    <div class="dossier-section" id="section-cnm-mei">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Aide à la Musique en Images (Clip éditeur) · 30% des dépenses · Max 15 000€ par clip</p>
+        <div class="recap-grid" id="recap-cnm-mei"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <div class="sessions-row">
+          <div class="session-badge">8 AVRIL 2026</div>
+          <div class="session-badge">10 SEPTEMBRE 2026</div>
+          <div class="session-badge">13 OCTOBRE 2026</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-mei">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-mei" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-cnm-mei">0</span> / <span id="progresstotal-cnm-mei">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-cnm-mei"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET CLIP</h2>
+        <p class="section-sub">CNM finance 30% du budget du clip — plafonné à 15 000€ par clip.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste</th><th>Montant HT (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Réalisation / tournage</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetMEI()"></td></tr>
+            <tr><td>Post-production / montage</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetMEI()"></td></tr>
+            <tr><td>Décors / costumes</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetMEI()"></td></tr>
+            <tr><td>Équipe technique</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetMEI()"></td></tr>
+            <tr><td>Autres frais de production</td><td><input type="number" min="0" step="100" value="0" onchange="calcBudgetMEI()"></td></tr>
+            <tr class="total-row"><td><strong>TOTAL BUDGET CLIP</strong></td><td><span id="mei-total" style="font-family:'DM Mono',monospace">0 €</span></td></tr>
+          </tbody>
+        </table>
+        <div class="budget-result">
+          <div>
+            <div class="budget-result-label">AIDE CNM ESTIMÉE (30%)</div>
+            <div style="font-size:0.75rem;color:#555;font-family:'DM Mono',monospace;margin-top:2px">Plafonnée à 15 000€ par clip</div>
+          </div>
+          <div class="budget-result-amount" id="mei-aide-estimee">0 €</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">CNM — Centre National de la Musique</div>
+            <div class="portal-url">portail.cnm.fr</div>
+          </div>
+          <a href="https://portail.cnm.fr" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('cnm-mei')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+  // ============================================================
+  // DATA: Checklists par aide
+  // ============================================================
+  const CHECKLISTS = {
+    'cnm-dev-editorial': [
+      { id:'kbis', title:"Extrait Kbis ou statuts de la société", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire de l'entité déposante", required:true, upload:true, autofill:false },
+      { id:'sacem_releves', title:"Relevés de droits d'auteur SACEM", desc:"Sur 12 mois consécutifs (min 4 000€) ou 3 exercices (min 10 000€) — à adapter selon votre situation", required:true, upload:true, autofill:false },
+      { id:'contrat_pref', title:"Contrat de préférence éditorial signé", desc:"Contrat liant l'éditeur à chaque auteur/compositeur concerné — obligatoire", required:true, upload:true, autofill:false },
+      { id:'devis_factures', title:"Devis ou factures des dépenses prévues", desc:"Pour chaque poste budgétaire déclaré — rétroactivité 24 mois acceptée", required:true, upload:true, autofill:false },
+      { id:'descriptif_projet', title:"Descriptif du projet éditorial", desc:"Votre note de présentation du projet (section D de ce dossier)", required:true, upload:false, autofill:true, autofillLabel:"Généré automatiquement en section D" },
+      { id:'budget_prev', title:"Budget prévisionnel", desc:"Tableau des dépenses éligibles (section E de ce dossier)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section E" },
+      { id:'affil_cnm', title:"Preuve d'affiliation CNM", desc:"L'affiliation doit être effective 20 jours ouvrés avant la session", required:true, upload:true, autofill:false },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale complète", desc:"Bilan + compte de résultat du dernier exercice clos", required:true, upload:true, autofill:false },
+      { id:'declaration_ca', title:"Déclaration du CA éditorial (>50%)", desc:"Justificatif que l'activité principale est l'édition musicale MA", required:true, upload:true, autofill:false },
+      { id:'autres_aides', title:"Déclaration des autres aides publiques reçues", desc:"Liste exhaustive des aides publiques en cours sur les mêmes dépenses (non-cumulabilité)", required:true, upload:false, autofill:false },
+      { id:'note_intention', title:"Note d'intention artistique", desc:"Contexte, ambitions, impact prévu du projet", required:false, upload:true, autofill:false }
+    ],
+    'sacem-dev-v1': [
+      { id:'kbis', title:"Extrait Kbis ou statuts", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire", required:true, upload:true, autofill:false },
+      { id:'contrat_pref', title:"Contrat de préférence éditorial signé", desc:"Obligatoire pour le volet V1 — entre éditeur et A/C", required:true, upload:true, autofill:false },
+      { id:'devis_factures', title:"Devis ou factures des dépenses prévues", desc:"Pour chaque poste budgétaire (maquette, promo, scénique...)", required:true, upload:true, autofill:false },
+      { id:'fiche_artiste', title:"Fiche artiste complète", desc:"Biographie, répertoire existant, liens streaming", required:true, upload:true, autofill:false },
+      { id:'plan_dev', title:"Plan de développement artistique", desc:"Stratégie sur 12 à 24 mois pour cet artiste", required:true, upload:true, autofill:false },
+      { id:'budget_prev', title:"Budget prévisionnel du projet", desc:"Tableau de financement avec sources (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false },
+      { id:'declaration_autres', title:"Déclaration des autres financements sur ce projet", desc:"Pour vérifier la non-duplication des financements", required:false, upload:true, autofill:false }
+    ],
+    'sacem-dev-v2': [
+      { id:'kbis', title:"Extrait Kbis ou statuts", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire", required:true, upload:true, autofill:false },
+      { id:'preuves_anciennete', title:"Preuves d'ancienneté des œuvres (>10 ans)", desc:"Dates de dépôt SACEM, contrats d'édition datés, ou attestations", required:true, upload:true, autofill:false },
+      { id:'contrats_edition', title:"Contrats d'édition des œuvres concernées", desc:"Documents contractuels liant l'éditeur aux auteurs/compositeurs", required:true, upload:true, autofill:false },
+      { id:'devis_factures', title:"Devis ou factures des dépenses de valorisation", desc:"Réenregistrements, arrangements, numérisation, promotion...", required:true, upload:true, autofill:false },
+      { id:'catalogue', title:"Catalogue des œuvres éligibles", desc:"Liste des titres concernés avec dates et références SACEM", required:true, upload:true, autofill:false },
+      { id:'plan_valorisation', title:"Plan de valorisation du patrimoine", desc:"Comment ces œuvres vont être rediffusées, réenregistrées ou promues", required:true, upload:true, autofill:false },
+      { id:'budget_prev', title:"Budget prévisionnel", desc:"Tableau de financement (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ],
+    'ciem': [
+      { id:'liasse_fiscale', title:"Liasse fiscale annuelle complète", desc:"À transmettre à votre expert-comptable pour déclaration via formulaire 2069-RCI", required:true, upload:false, autofill:false },
+      { id:'contrats_edition_orig', title:"Contrats d'édition originaux", desc:"Preuves que vous êtes éditeur 'original' (signataire direct avec A/C)", required:true, upload:true, autofill:false },
+      { id:'factures_depenses', title:"Factures des dépenses éligibles CIEM", desc:"Toutes les dépenses engagées pour la mise en valeur du répertoire", required:true, upload:true, autofill:false },
+      { id:'registre_oeuvres', title:"Registre des œuvres du catalogue", desc:"Liste des titres avec références SACEM et dates d'acquisition des droits", required:true, upload:true, autofill:false },
+      { id:'preuve_is', title:"Preuve de l'assujettissement à l'IS en France", desc:"Avis d'imposition ou attestation de votre expert-comptable", required:true, upload:true, autofill:false },
+      { id:'2069rci', title:"Formulaire 2069-RCI complété", desc:"Document fiscal à joindre à votre déclaration annuelle — à préparer avec votre expert-comptable", required:true, upload:false, autofill:false }
+    ],
+    'cnm-mei': [
+      { id:'kbis', title:"Extrait Kbis ou statuts", desc:"Document officiel (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire", required:true, upload:true, autofill:false },
+      { id:'affil_cnm', title:"Preuve d'affiliation CNM", desc:"20 jours ouvrés avant la session", required:true, upload:true, autofill:false },
+      { id:'contrat_pref', title:"Contrat de préférence éditorial", desc:"Liant l'éditeur à l'artiste/A/C concerné", required:true, upload:true, autofill:false },
+      { id:'synopsis_clip', title:"Synopsis ou note de réalisation du clip", desc:"Description artistique du clip envisagé", required:true, upload:true, autofill:false },
+      { id:'devis_production', title:"Devis de production du clip", desc:"Chiffrage détaillé par poste (tournage, post-prod, équipe...)", required:true, upload:true, autofill:false },
+      { id:'plan_diffusion', title:"Plan de diffusion prévu", desc:"Plateformes, médias, calendrier de sortie", required:true, upload:true, autofill:false },
+      { id:'budget_prev', title:"Budget prévisionnel clip", desc:"Tableau de financement (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ]
+  };
+
+  // ============================================================
+  // DATA: Récapitulatifs éligibilité par aide
+  // ============================================================
+  const RECAPS = {
+    'cnm-dev-editorial': [
+      { key:'struct_edit', label:'Structure', desc:'Structure d\'édition musicale active' },
+      { key:'ca_edit', label:'CA éditorial', desc:'> 50% du CA en édition musicale MA' },
+      { key:'sacem_edit', label:'Affiliation SACEM', desc:'Adhérent SACEM éditeur' },
+      { key:'droits_sacem', label:'Droits SACEM', desc:'≥ 4 000€/12 mois ou 10 000€/3 exercices' },
+      { key:'affil_cnm', label:'Affiliation CNM', desc:'Affilié CNM (ou à affilier 20 j avant session)' },
+    ],
+    'sacem-dev-v1': [
+      { key:'struct_edit', label:'Structure éditeur', desc:'Structure d\'édition musicale' },
+      { key:'sacem_edit', label:'Adhésion SACEM', desc:'Adhérent SACEM éditeur' },
+      { key:'artiste_sacem', label:'Artiste SACEM', desc:'Artiste lié est adhérent SACEM' },
+    ],
+    'sacem-dev-v2': [
+      { key:'struct_edit', label:'Structure éditeur', desc:'Structure d\'édition musicale' },
+      { key:'sacem_edit', label:'Adhésion SACEM', desc:'Adhérent SACEM éditeur' },
+      { key:'patrimoine', label:'Répertoire ancien', desc:'Œuvres éditées depuis > 10 ans' },
+    ],
+    'ciem': [
+      { key:'struct_edit', label:'Structure éditeur', desc:'Éditeur original (contrat direct A/C)' },
+      { key:'is_france', label:'Assujetti IS France', desc:'Personne morale soumise à l\'IS en France' },
+      { key:'ca_edit', label:'Activité principale édition', desc:'Édition musicale = activité principale' },
+    ],
+    'cnm-mei': [
+      { key:'struct_edit', label:'Structure éditeur', desc:'Structure d\'édition musicale' },
+      { key:'clip_edit', label:'Projet clip', desc:'Projet de clip vidéo prévu' },
+      { key:'affil_cnm', label:'Affiliation CNM', desc:'Affilié CNM' },
+    ]
+  };
+
+  // ============================================================
+  // DATA: Libellés des tabs
+  // ============================================================
+  const AIDS = [
+    { id:'cnm-dev-editorial', label:'CNM Dév. Éditorial', short:'CNM DEV' },
+    { id:'sacem-dev-v1', label:'SACEM V1 – A/C', short:'SACEM V1' },
+    { id:'sacem-dev-v2', label:'SACEM V2 – Patrimoine', short:'SACEM V2' },
+    { id:'ciem', label:'CIEM – Crédit d\'Impôt', short:'CIEM' },
+    { id:'cnm-mei', label:'CNM – Musique en Images', short:'CNM MEI' }
+  ];
+
+  // ============================================================
+  // INIT
+  // ============================================================
+  let answers = {};
+  let uploadedFiles = {};
+
+  function init() {
+    // Load answers from localStorage
+    try {
+      const stored = localStorage.getItem('eligibiliteAnswers');
+      if (stored) answers = JSON.parse(stored);
+    } catch(e) { answers = {}; }
+
+    // Build tabs
+    const tabsEl = document.getElementById('aidTabs');
+    AIDS.forEach(aid => {
+      const btn = document.createElement('button');
+      btn.className = 'aid-tab';
+      btn.textContent = aid.label;
+      btn.dataset.id = aid.id;
+      btn.onclick = () => switchAid(aid.id);
+      tabsEl.appendChild(btn);
+    });
+
+    // Build checklists
+    AIDS.forEach(aid => buildChecklist(aid.id));
+    // Build recaps
+    AIDS.forEach(aid => buildRecap(aid.id));
+    // Autofill forms
+    autofillForms();
+
+    // URL param: ?aide=cnm-dev-editorial
+    const params = new URLSearchParams(window.location.search);
+    const aideParam = params.get('aide') || 'cnm-dev-editorial';
+    switchAid(aideParam);
+  }
+
+  function switchAid(id) {
+    document.querySelectorAll('.dossier-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.aid-tab').forEach(t => t.classList.remove('active'));
+    const section = document.getElementById('section-' + id);
+    if (section) section.classList.add('active');
+    const tab = document.querySelector('.aid-tab[data-id="' + id + '"]');
+    if (tab) tab.classList.add('active');
+  }
+
+  // ============================================================
+  // BUILD CHECKLISTS
+  // ============================================================
+  function buildChecklist(aidId) {
+    const items = CHECKLISTS[aidId];
+    if (!items) return;
+    const container = document.getElementById('checklist-' + aidId);
+    if (!container) return;
+    const totalEl = document.getElementById('progresstotal-' + aidId);
+    if (totalEl) totalEl.textContent = items.filter(i => i.required).length;
+    container.innerHTML = '';
+
+    items.forEach((item, idx) => {
+      const fileKey = aidId + '_' + item.id;
+      const div = document.createElement('div');
+      div.className = 'check-item';
+      div.id = 'checkitem-' + fileKey;
+
+      const badgeHtml = item.autofill
+        ? '<span class="check-badge auto">AUTO</span>'
+        : item.required
+          ? '<span class="check-badge required">REQUIS</span>'
+          : '<span class="check-badge optional">OPTIONNEL</span>';
+
+      const uploadHtml = item.upload ? `
+        <div class="file-zone" id="filezone-${fileKey}">
+          <label class="file-input-label" for="file-${fileKey}">+ Déposer un fichier</label>
+          <input type="file" class="file-input" id="file-${fileKey}" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="handleFile(this, '${fileKey}', '${aidId}')">
+          <span class="file-name" id="filename-${fileKey}">Aucun fichier sélectionné</span>
+        </div>` : '';
+
+      const autofillHtml = item.autofill ? `<p class="check-desc autofill">✓ ${item.autofillLabel}</p>` : '';
+
+      div.innerHTML = `
+        <div class="check-item-header" onclick="toggleCheck('${fileKey}', '${aidId}')">
+          <div class="check-box" id="checkbox-${fileKey}"><span class="check-icon">✓</span></div>
+          <div class="check-text">
+            <div class="check-title">${item.title}</div>
+            <p class="check-desc">${item.desc}</p>
+            ${autofillHtml}
+          </div>
+          ${badgeHtml}
+        </div>
+        ${uploadHtml}
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function toggleCheck(fileKey, aidId) {
+    const box = document.getElementById('checkbox-' + fileKey);
+    const item = document.getElementById('checkitem-' + fileKey);
+    if (!box) return;
+    box.classList.toggle('checked');
+    item.classList.toggle('done', box.classList.contains('checked'));
+    updateProgress(aidId);
+  }
+
+  function handleFile(input, fileKey, aidId) {
+    const file = input.files[0];
+    if (!file) return;
+    uploadedFiles[fileKey] = file;
+    const nameEl = document.getElementById('filename-' + fileKey);
+    const zoneEl = document.getElementById('filezone-' + fileKey);
+    const box = document.getElementById('checkbox-' + fileKey);
+    const item = document.getElementById('checkitem-' + fileKey);
+    if (nameEl) { nameEl.textContent = file.name; nameEl.classList.add('loaded'); }
+    if (zoneEl) zoneEl.classList.add('has-file');
+    if (box) { box.classList.add('checked'); }
+    if (item) item.classList.add('done');
+    updateProgress(aidId);
+  }
+
+  function updateProgress(aidId) {
+    const items = CHECKLISTS[aidId];
+    if (!items) return;
+    const required = items.filter(i => i.required);
+    let done = 0;
+    required.forEach(item => {
+      const box = document.getElementById('checkbox-' + aidId + '_' + item.id);
+      if (box && box.classList.contains('checked')) done++;
+    });
+    const pct = required.length > 0 ? Math.round(done / required.length * 100) : 0;
+    const bar = document.getElementById('progressbar-' + aidId);
+    const count = document.getElementById('progresscount-' + aidId);
+    if (bar) { bar.style.width = pct + '%'; if (pct === 100) bar.classList.add('complete'); else bar.classList.remove('complete'); }
+    if (count) count.textContent = done;
+  }
+
+  // ============================================================
+  // BUILD RECAP
+  // ============================================================
+  function buildRecap(aidId) {
+    const items = RECAPS[aidId];
+    const container = document.getElementById('recap-' + aidId);
+    if (!items || !container) return;
+    container.innerHTML = '';
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'recap-item';
+      div.innerHTML = `
+        <div class="recap-check">✓</div>
+        <div class="recap-label">
+          <strong>${item.label}</strong>
+          ${item.desc}
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // ============================================================
+  // AUTOFILL FORMS
+  // ============================================================
+  function autofillForms() {
+    // Nom de structure
+    if (answers.nom_structure) {
+      const el = document.getElementById('cnm_nom_structure');
+      if (el) el.value = answers.nom_structure;
+    }
+    // Artiste
+    if (answers.nom_artiste || answers.artiste) {
+      const el = document.getElementById('cnm_artistes');
+      if (el) el.value = answers.nom_artiste || answers.artiste || '';
+    }
+    // Descriptif auto-généré
+    const nomStruct = answers.nom_structure || '[Nom de la structure]';
+    const nomArtiste = answers.nom_artiste || answers.artiste || '[Nom de l\'artiste]';
+    const descEl = document.getElementById('cnm_descriptif');
+    if (descEl) {
+      descEl.value = `${nomStruct} est une structure d'édition musicale dont l'activité principale est la signature et le développement d'auteurs-compositeurs. Dans le cadre du développement artistique de ${nomArtiste}, nous sollicitons une aide au développement éditorial auprès du CNM afin de financer les dépenses liées à l'écriture, la composition et l'accompagnement artistique de ce projet.`;
+    }
+  }
+
+  // ============================================================
+  // BUDGET CALCULATORS
+  // ============================================================
+  function fmt(n) { return new Intl.NumberFormat('fr-FR', {style:'currency', currency:'EUR', maximumFractionDigits:0}).format(n); }
+
+  function calcBudgetCNM() {
+    const inputs = document.querySelectorAll('#budget-cnm-rows input[type=number]');
+    let total = 0;
+    inputs.forEach(inp => { total += parseFloat(inp.value) || 0; });
+    // Tracking plafonné à 30%
+    const trackingInput = document.querySelector('#budget-cnm-rows input[data-poste="tracking"]');
+    const trackingVal = parseFloat(trackingInput ? trackingInput.value : 0) || 0;
+    const maxTracking = total * 0.3;
+    const trackingEligible = Math.min(trackingVal, maxTracking);
+    const baseTotal = total - trackingVal;
+    const totalEligible = baseTotal + trackingEligible;
+    let aide = totalEligible * 0.45;
+    const aideCapped = Math.min(aide, 25000);
+    document.getElementById('cnm-total-eligible').textContent = fmt(totalEligible);
+    const aideEl = document.getElementById('cnm-aide-estimee');
+    aideEl.textContent = fmt(aideCapped);
+    if (aideCapped < aide) aideEl.classList.add('max');
+    document.getElementById('cnm-acompte').textContent = fmt(aideCapped * 0.7);
+    document.getElementById('cnm-solde').textContent = fmt(aideCapped * 0.3);
+  }
+
+  function calcBudgetSACEM1() {
+    const inputs = document.querySelectorAll('#section-sacem-dev-v1 .budget-table input[type=number]');
+    let total = 0;
+    inputs.forEach(inp => { total += parseFloat(inp.value) || 0; });
+    document.getElementById('sacem1-total').textContent = fmt(total);
+    const aide = Math.min(total * 0.5, 10000);
+    document.getElementById('sacem1-aide-estimee').textContent = fmt(aide);
+  }
+
+  function calcBudgetSACEM2() {
+    const inputs = document.querySelectorAll('#section-sacem-dev-v2 .budget-table input[type=number]');
+    let total = 0;
+    inputs.forEach(inp => { total += parseFloat(inp.value) || 0; });
+    document.getElementById('sacem2-total').textContent = fmt(total);
+    const aide = Math.min(total * 0.5, 15000);
+    document.getElementById('sacem2-aide-estimee').textContent = fmt(aide);
+  }
+
+  function calcCIEM() {
+    const taux = parseInt(document.getElementById('ciem-taille').value) || 30;
+    const depenses = parseFloat(document.getElementById('ciem-depenses').value) || 0;
+    const credit = depenses * (taux / 100);
+    document.getElementById('ciem-aide-estimee').textContent = fmt(credit);
+  }
+
+  function calcBudgetMEI() {
+    const inputs = document.querySelectorAll('#section-cnm-mei .budget-table input[type=number]');
+    let total = 0;
+    inputs.forEach(inp => { total += parseFloat(inp.value) || 0; });
+    document.getElementById('mei-total').textContent = fmt(total);
+    const aide = Math.min(total * 0.3, 15000);
+    document.getElementById('mei-aide-estimee').textContent = fmt(aide);
+  }
+
+  // ============================================================
+  // EXPORT PDF
+  // ============================================================
+  function exportPDF(aidId) {
+    // Activate the section
+    switchAid(aidId);
+    setTimeout(() => { window.print(); }, 200);
+  }
+
+  // ============================================================
+  // SAVE PROGRESS
+  // ============================================================
+  function saveProgress() {
+    const progress = {};
+    AIDS.forEach(aid => {
+      const items = CHECKLISTS[aid.id];
+      if (!items) return;
+      progress[aid.id] = {};
+      items.forEach(item => {
+        const box = document.getElementById('checkbox-' + aid.id + '_' + item.id);
+        progress[aid.id][item.id] = box ? box.classList.contains('checked') : false;
+      });
+    });
+    localStorage.setItem('dossierProgress', JSON.stringify(progress));
+    // Visual feedback
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✓ Sauvegardé !';
+    btn.style.color = 'var(--vert)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 2000);
+  }
+
+  // ============================================================
+  // LOAD SAVED PROGRESS
+  // ============================================================
+  function loadProgress() {
+    try {
+      const stored = localStorage.getItem('dossierProgress');
+      if (!stored) return;
+      const progress = JSON.parse(stored);
+      AIDS.forEach(aid => {
+        const items = CHECKLISTS[aid.id];
+        if (!items || !progress[aid.id]) return;
+        items.forEach(item => {
+          const fileKey = aid.id + '_' + item.id;
+          if (progress[aid.id][item.id]) {
+            const box = document.getElementById('checkbox-' + fileKey);
+            const itemEl = document.getElementById('checkitem-' + fileKey);
+            if (box) box.classList.add('checked');
+            if (itemEl) itemEl.classList.add('done');
+          }
+        });
+        updateProgress(aid.id);
+      });
+    } catch(e) {}
+  }
+
+  // Run on load
+  window.addEventListener('DOMContentLoaded', () => {
+    init();
+    loadProgress();
+  });
+  </script>
+</body>
+</html>
