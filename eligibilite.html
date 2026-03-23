@@ -91,11 +91,11 @@ header span{color:#555}
 <h3>Quel(s) rôle(s) exercez-vous dans la musique ?</h3>
 <p>Cochez tous les rôles qui vous correspondent.</p>
 <div class="checkbox-group" id="profil-group">
-<div class="check-option" data-value="artiste" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div>Artiste-interprète</div>
-<div class="check-option" data-value="auteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div>Auteur-compositeur</div>
-<div class="check-option" data-value="producteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div>Producteur phonographique (Label)</div>
-<div class="check-option" data-value="editeur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div>Éditeur musical</div>
-<div class="check-option" data-value="spectacle" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div>Structure de spectacle vivant</div>
+<div class="check-option" data-value="artiste" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎶 Artiste-interprète</strong><span>Musicien·ne, chanteur·euse, performer — vous vous produisez sur scène ou en studio</span></div></div>
+<div class="check-option" data-value="auteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>✍️ Auteur-compositeur</strong><span>Vous créez des œuvres musicales (paroles, musiques) — affilié SACEM / SACD / SCAM</span></div></div>
+<div class="check-option" data-value="producteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎬 Producteur phonographique (Label)</strong><span>Vous possédez une structure juridique et produisez des enregistrements — membre SCPP ou SPPF</span></div></div>
+<div class="check-option" data-value="editeur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>📚 Éditeur musical</strong><span>Vous gérez les droits d’auteurs et développez un catalogue éditorial — affilié SACEM</span></div></div>
+<div class="check-option" data-value="spectacle" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎤 Structure de spectacle vivant</strong><span>Vous produisez ou diffusez des concerts/spectacles — licence entrepreneur de spectacles</span></div></div>
 </div>
 </div>
 <button class="btn" onclick="validateStep(1)">Continuer →</button>
@@ -369,12 +369,12 @@ function buildStep4(){
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Type de projet éditorial</h3>
-    <div class="options" id="projet-edit-group">
-    <button class="option-btn" data-value="dev_editorial" onclick="selectOption(this,'projet-edit-group')">Développement éditorial (A/C, création, catalogue)</button>
-    <button class="option-btn" data-value="valorisation_patrimoine" onclick="selectOption(this,'projet-edit-group')">Valorisation d'un catalogue >10 ans (anniversaire, anthologie)</button>
-    <button class="option-btn" data-value="clip_edit" onclick="selectOption(this,'projet-edit-group')">Clip officiel d'un artiste du catalogue</button>
-    <button class="option-btn" data-value="international_edit" onclick="selectOption(this,'projet-edit-group')">Export / développement international</button>
+    html+=`<div class="question"><h3>Types de projets éditoriaux <small>(plusieurs choix possibles)</small></h3>
+    <div class="checkbox-group" id="projet-edit-group">
+    <div class="check-option" data-value="dev_editorial" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement éditorial</strong><span>A/C, création, catalogue</span></div></div>
+    <div class="check-option" data-value="valorisation_patrimoine" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Valorisation patrimoniale</strong><span>Catalogue >10 ans, anniversaire, anthologie</span></div></div>
+    <div class="check-option" data-value="clip_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Clip officiel d’un artiste du catalogue</strong><span>CNM Musique en Images</span></div></div>
+    <div class="check-option" data-value="international_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Export / développement international</strong><span>Tournées à l’étranger</span></div></div>
     </div></div>`;
   }
 
@@ -541,7 +541,7 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')) answers.projartiste=getSelectedOption('projet-artiste-group');
     if(profiles.includes('producteur')) answers.proj_prod=getSelectedOption('projet-prod-group');
-    if(profiles.includes('editeur')) answers.proj_edit=getSelectedOption('projet-edit-group');
+    if(profiles.includes('editeur')){const _editProj=getCheckedValues('projet-edit-group');answers.dev_editorial=_editProj.includes('dev_editorial')?'oui':'non';answers.valorisation_patrimoine=_editProj.includes('valorisation_patrimoine')?'oui':'non';answers.clip_edit=_editProj.includes('clip_edit')?'oui':'non';answers.export_edit=_editProj.includes('international_edit')?'oui':'non';}
     if(profiles.includes('spectacle')) answers.proj_sv=getSelectedOption('projet-sv-group');
     buildStep5();
     showStep(5);
@@ -581,7 +581,6 @@ function validateStep(n){
 
 function calculateResults() {
   const profiles = getProfiles();
-  const answers = window._answers || {};
   let aids = [];
 
   function card(name, org, amount, url, fiche, tags, note) {
@@ -844,10 +843,10 @@ function calculateResults() {
       if (fragilite_edit) {
         aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","PME Musicale","Restructuration"],"PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice."));
       }
-      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') && contrat_pref) {
+      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k_moy') && contrat_pref) {
         aids.push(card("Développement Éditorial MA – V1 (Développement A/C)","SACEM","Max 10 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Développement Éditorial"],"Éditeur MA. ≥5 000 € droits SACEM en moyenne sur 2 ans. Plusieurs A/C au catalogue. Contrat de préférence signé."));
       }
-      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k' || droits_sacem === 'entre4k5k') && valorisation) {
+      if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k_moy') && valorisation) {
         aids.push(card("Développement Éditorial MA – V2 (Valorisation Patrimoniale)","SACEM","Max 15 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Patrimoine"],"Catalogue ≥10 ans. Projet anniversaire, anthologie, compilations. ≥5 000 € droits SACEM en moyenne sur 2 ans."));
       }
       aids.push(card("Crédit d’Impôt pour les Éditeurs de Musique (CIEM)","État (Impôts)","15% – 30% des dépenses éligibles","https://cnm.fr/aides-financieres/credit-dimpot-pour-les-editeurs-de-musique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","Fiscal","CIEM"],"Éditeur original. Personne morale imposable en France. Se déclare lors de la liasse fiscale."));
