@@ -66,23 +66,46 @@ header span{color:var(--gris-texte)}
 .btn-secondary:hover{border-color:var(--blanc);background:rgba(255,255,255,0.05)}
 .alert{background:rgba(232,0,29,0.1);border:1px solid rgba(232,0,29,0.4);padding:14px 18px;margin-bottom:14px;color:rgba(255,100,100,0.9);font-size:.875rem}
 .alert.warning{background:rgba(255,170,0,0.1);border-color:rgba(255,170,0,0.4);color:rgba(255,200,50,0.9)}
-.result-section{margin-bottom:28px}
-.result-section h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:14px;color:var(--rouge);border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:10px;letter-spacing:1px}
-.result-card{background:#141414;border:1px solid rgba(255,255,255,0.08);padding:18px;margin-bottom:10px}
-.result-card h4{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--blanc)}
-.result-card p{font-size:.85rem;color:rgba(255,255,255,0.55);margin-bottom:10px;line-height:1.5}
-.result-actions{display:flex;gap:8px;flex-wrap:wrap}
-.result-actions a{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:7px 14px;text-decoration:none;text-transform:uppercase;letter-spacing:.8px;transition:all .2s}
-.result-actions a.btn-fiche{background:var(--rouge);color:#fff}
-.result-actions a.btn-fiche:hover{opacity:.85}
-.result-actions a.btn-site{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.25)}.btn-dossier{background:rgba(232,0,29,0.12);color:#e8001d;border:1px solid rgba(232,0,29,0.4);padding:8px 14px;font-size:.82rem;font-family:"DM Mono",monospace;text-decoration:none;letter-spacing:1px;transition:all .2s;display:inline-block;white-space:nowrap}.btn-dossier:hover{background:#e8001d;color:#fff}
-.result-actions a.btn-site:hover{border-color:var(--blanc);color:var(--blanc)}
-.result-summary{background:rgba(232,0,29,0.08);border:1px solid rgba(232,0,29,0.25);padding:18px;margin-bottom:24px;font-size:.9rem;color:rgba(255,255,255,0.8)}
-.result-summary strong{color:var(--rouge)}
-.no-results{text-align:center;padding:40px;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px}
-.tag{display:inline-block;background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);padding:2px 8px;font-size:.7rem;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;margin-bottom:4px}
+.results-summary{display:flex;align-items:center;gap:16px;padding:20px 24px;background:linear-gradient(135deg,rgba(232,0,29,0.08),rgba(232,0,29,0.02));border:1px solid rgba(232,0,29,0.2);margin-bottom:32px}
+.results-summary-icon{width:48px;height:48px;background:var(--rouge);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.results-summary-text strong{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--blanc);display:block;line-height:1.1}
+.results-summary-text span{font-size:.8rem;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;letter-spacing:.5px}
+.results-count{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--rouge);line-height:1;letter-spacing:2px}
+.org-section{margin-bottom:36px}
+.org-section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid rgba(255,255,255,0.06)}
+.org-badge{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)}
+.org-count{font-family:'DM Mono',monospace;font-size:.72rem;color:rgba(255,255,255,0.3)}
+.aids-grid{display:flex;flex-direction:column;gap:12px}
+.aid-card{background:#111;border:1px solid rgba(255,255,255,0.07);border-left:3px solid var(--rouge);padding:0;overflow:hidden;transition:border-color .2s,transform .15s}
+.aid-card:hover{border-color:rgba(232,0,29,0.5);border-left-color:var(--rouge);transform:translateX(2px)}
+.aid-card-inner{padding:20px 22px}
+.aid-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.aid-org{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--rouge);background:rgba(232,0,29,0.08);border:1px solid rgba(232,0,29,0.2);padding:3px 10px;align-self:flex-start;white-space:nowrap}
+.aid-amount{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--blanc);letter-spacing:1px;text-align:right;line-height:1.1}
+.aid-name{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--blanc);letter-spacing:1.5px;margin-bottom:8px;line-height:1.1}
+.aid-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.aid-note{font-size:.78rem;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:8px 12px;line-height:1.5;margin-bottom:0}
+.aid-actions{display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.06);margin-top:14px}
+.aid-actions a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:11px 16px;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px;border-right:1px solid rgba(255,255,255,0.06)}
+.aid-actions a:last-child{border-right:none}
+.btn-fiche{color:rgba(255,255,255,0.6);background:transparent}
+.btn-fiche:hover{color:var(--blanc);background:rgba(255,255,255,0.05)}
+.btn-site{color:rgba(255,255,255,0.45);background:transparent}
+.btn-site:hover{color:var(--blanc);background:rgba(255,255,255,0.05)}
+.btn-dossier{color:var(--rouge)!important;background:rgba(232,0,29,0.06)!important;margin-left:auto;border-left:1px solid rgba(232,0,29,0.2)!important;font-weight:600}
+.btn-dossier:hover{background:var(--rouge)!important;color:#fff!important}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1)}
 .tag.green{background:rgba(0,168,84,0.1);color:#00a854;border-color:rgba(0,168,84,0.35)}
 .tag.orange{background:rgba(255,170,0,0.1);color:#ffaa00;border-color:rgba(255,170,0,0.35)}
+.no-results{text-align:center;padding:48px 24px;color:rgba(255,255,255,0.35)}
+.no-results h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:12px;color:rgba(255,255,255,0.5)}
+.no-results p{font-size:.85rem;line-height:1.7}
+.no-results a{color:var(--rouge);text-decoration:none}
+.no-results a:hover{text-decoration:underline}
+.results-footer{margin-top:24px;padding:16px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px}
+.results-footer p{font-size:.78rem;color:rgba(255,255,255,0.35);line-height:1.5;flex:1}
+.btn-restart{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-restart:hover{border-color:var(--rouge);color:var(--blanc)}
 </style>
 </head>
 <body>
@@ -154,10 +177,14 @@ header span{color:var(--gris-texte)}
 
 <!-- STEP 6: Results -->
 <div class="step" id="step6">
-<div class="step-header"><div class="step-num">6</div><div class="step-title">Vos aides éligibles</div></div>
-<div id="results-container"></div>
-<button class="btn-secondary" onclick="goBack(6)">← Modifier mes réponses</button>
-<button class="btn" onclick="restartTest()" style="background:rgba(232,0,29,0.1);color:#e8001d;border:1px solid rgba(232,0,29,0.4);margin-top:8px">Recommencer</button>
+  <div class="step-header"><div class="step-num">6</div><div class="step-title">Vos aides éligibles</div></div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div id="results-container"></div>
+    <div style="padding:20px 24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:10px;flex-wrap:wrap">
+      <button onclick="showStep(currentStep-1)" class="btn-secondary" style="flex:1;min-width:180px">← Modifier mes réponses</button>
+      <button onclick="location.reload()" class="btn" style="flex:1;min-width:180px">↺ Recommencer le test</button>
+    </div>
+  </div>
 </div>
 </div>
 <script>
@@ -604,9 +631,9 @@ function calculateResults() {
 
   function card(name, org, amount, url, fiche, tags, note, dossierId) {
     const tagHtml = (tags||[]).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
-    const noteHtml = note ? '<p class="aid-note">\u26a0\ufe0f '+note+'</p>' : '';
-    const dossierBtn = dossierId ? '<a href="dossier.html?aide='+dossierId+'" class="btn-dossier">\ud83d\udccb Monter mon dossier \u2192</a>' : '';
-    return '<div class="aid-card"><div class="aid-header"><div class="aid-org">'+org+'</div><div class="aid-amount">'+amount+'</div></div><div class="aid-name">'+name+'</div>'+tagHtml+noteHtml+'<div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">\ud83d\udcc4 Voir la fiche</a><a href="'+url+'" target="_blank" class="btn-site">\ud83c\udf10 Site officiel</a>'+dossierBtn+'</div></div>';
+    const noteHtml = note ? '<p class="aid-note">'+note+'</p>' : '';
+    const dossierBtn = dossierId ? '<a href="dossier.html?aide='+dossierId+'" class="btn-dossier">&#x1F4CB;&nbsp;Monter mon dossier &#x2192;</a>' : '';
+    return '<div class="aid-card"><div class="aid-card-inner"><div class="aid-header"><span class="aid-org">'+org+'</span><span class="aid-amount">'+amount+'</span></div><div class="aid-name">'+name+'</div><div class="aid-tags">'+tagHtml+'</div>'+noteHtml+'</div><div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">&#x1F4C4;&nbsp;Voir la fiche</a><a href="'+url+'" target="_blank" class="btn-site">&#x1F310;&nbsp;Site officiel</a>'+dossierBtn+'</div></div>';
   }
 
   const genre = answers.genre || answers.genre_artiste || '';
@@ -920,32 +947,46 @@ function calculateResults() {
 
   const container = document.getElementById('results-container');
   if (!container) return;
+
   if (aids.length === 0) {
-    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiée</h3><p>Selon vos réponses, aucune aide ne correspond exactement à votre profil actuel.</p><p>Consultez directement : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
+    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiée</h3><p>Selon vos réponses, aucune aide ne correspond exactement à votre profil actuel.<br>Consultez directement : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
     return;
   }
+
+  // Group by org
   const orgs = {};
+  const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','État (Impôts)','État / CNM','Autres'];
   aids.forEach(function(html) {
-    const orgMatch = html.match(/class="aid-org">([^<]+)</);
+    const orgMatch = html.match(/class="aid-org">([^<]+)</span>/);
     const org = orgMatch ? orgMatch[1] : 'Autres';
     if (!orgs[org]) orgs[org] = [];
     orgs[org].push(html);
   });
-  let html = '<div class="results-summary"><span class="results-count">'+aids.length+' aide'+(aids.length>1?'s':'')+' identifiée'+(aids.length>1?'s':'')+' pour votre profil</span></div>';
-  const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','État (Impôts)','État / CNM','Autres'];
+
+  // Summary banner
+  let html = '<div class="results-summary"><div class="results-summary-icon">✓</div><div class="results-summary-text"><strong>Aides identifiées pour votre profil</strong><span>Cliquez sur chaque carte pour accéder aux détails et monter votre dossier</span></div><div class="results-count">'+aids.length+'</div></div>';
+
+  // Sections by org
   orgOrder.forEach(function(org) {
     if (orgs[org] && orgs[org].length > 0) {
-      html += '<div class="org-section"><h3 class="org-title">'+org+'</h3><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
+      const plural = orgs[org].length > 1 ? ' aides' : ' aide';
+      html += '<div class="org-section"><div class="org-section-header"><span class="org-badge">'+org+'</span><span class="org-count">'+orgs[org].length+plural+'</span></div><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
       delete orgs[org];
     }
   });
+  // Remaining orgs
   Object.keys(orgs).forEach(function(org) {
-    html += '<div class="org-section"><h3 class="org-title">'+org+'</h3><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
+    if (orgs[org] && orgs[org].length > 0) {
+      const plural = orgs[org].length > 1 ? ' aides' : ' aide';
+      html += '<div class="org-section"><div class="org-section-header"><span class="org-badge">'+org+'</span><span class="org-count">'+orgs[org].length+plural+'</span></div><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
+    }
   });
-  html += '<div class="results-footer"><p>⚠️ Ce test est indicatif. Vérifiez les critères complets sur les sites officiels avant de déposer un dossier.</p><button onclick="location.reload()" class="btn-restart">🔄 Recommencer le test</button></div>';
-    try { localStorage.setItem('eligibiliteAnswers', JSON.stringify(answers)); } catch(e) {}
+
+  // Footer
+  html += '<div class="results-footer"><p>⚠️ Ce test est indicatif. Vérifiez les critères complets sur les sites officiels avant de déposer un dossier.</p><button onclick="location.reload()" class="btn-restart">↺ Recommencer le test</button></div>';
+
   container.innerHTML = html;
-}
+
 </script>
 </body>
 </html>
