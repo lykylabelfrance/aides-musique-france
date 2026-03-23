@@ -1063,6 +1063,255 @@
           <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
         </div>
       </div>
+
+    <div class="dossier-section" id="section-sppf-enregistrement">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPPF · Aide à l'Enregistrement d'Album · Variable selon dossier · Membre SPPF uniquement</p>
+        <div class="recap-grid" id="recap-sppf-enregistrement"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Les dossiers SPPF sont instruits en continu. Renseignez-vous auprès de la SPPF pour les dates de dépôt.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sppf-enregistrement">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sppf-enregistrement" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sppf-enregistrement">0</span> / <span id="progresstotal-sppf-enregistrement">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sppf-enregistrement"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET ENREGISTREMENT</h2>
+        <p class="section-sub">Renseignez les coûts de production de l'album. La SPPF finance une partie selon son barème interne.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste de dépense</th><th>Montant prévu (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Studio d'enregistrement</td><td><input type="number" class="budget-input" id="sppf_enr_studio" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+            <tr><td>Direction artistique / Producteur</td><td><input type="number" class="budget-input" id="sppf_enr_da" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+            <tr><td>Musiciens / Sessions</td><td><input type="number" class="budget-input" id="sppf_enr_musiciens" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+            <tr><td>Mixage</td><td><input type="number" class="budget-input" id="sppf_enr_mixage" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+            <tr><td>Mastering</td><td><input type="number" class="budget-input" id="sppf_enr_mastering" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+            <tr><td>Autres coûts de production</td><td><input type="number" class="budget-input" id="sppf_enr_autres" placeholder="0" oninput="calcBudgetSppfEnr()"></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>Total budget album</strong></td><td><strong id="sppf_enr_total">0 €</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SPPF — Société Civile des Producteurs Phonographiques Français</div>
+            <div class="portal-url">sppf.com/aides-sppf</div>
+          </div>
+          <a href="https://www.sppf.com/aides-sppf/" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sppf-enregistrement')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-sppf-videomusicale">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPPF · Aide à la Vidéomusique · Variable selon dossier · Membre SPPF uniquement</p>
+        <div class="recap-grid" id="recap-sppf-videomusicale"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Les dossiers SPPF sont instruits en continu. Renseignez-vous auprès de la SPPF pour les dates de dépôt.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sppf-videomusicale">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sppf-videomusicale" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sppf-videomusicale">0</span> / <span id="progresstotal-sppf-videomusicale">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sppf-videomusicale"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET CLIP VIDÉO</h2>
+        <p class="section-sub">Renseignez les coûts de production du clip. La SPPF finance une partie selon son barème interne.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste de dépense</th><th>Montant prévu (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Réalisation / Réalisateur</td><td><input type="number" class="budget-input" id="sppf_vid_real" placeholder="0" oninput="calcBudgetSppfVid()"></td></tr>
+            <tr><td>Tournage (équipe, matériel)</td><td><input type="number" class="budget-input" id="sppf_vid_tournage" placeholder="0" oninput="calcBudgetSppfVid()"></td></tr>
+            <tr><td>Post-production (montage, étalonnage)</td><td><input type="number" class="budget-input" id="sppf_vid_postprod" placeholder="0" oninput="calcBudgetSppfVid()"></td></tr>
+            <tr><td>VFX / Animation</td><td><input type="number" class="budget-input" id="sppf_vid_vfx" placeholder="0" oninput="calcBudgetSppfVid()"></td></tr>
+            <tr><td>Autres coûts de production</td><td><input type="number" class="budget-input" id="sppf_vid_autres" placeholder="0" oninput="calcBudgetSppfVid()"></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>Total budget clip</strong></td><td><strong id="sppf_vid_total">0 €</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SPPF — Société Civile des Producteurs Phonographiques Français</div>
+            <div class="portal-url">sppf.com/aides-sppf</div>
+          </div>
+          <a href="https://www.sppf.com/aides-sppf/" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sppf-videomusicale')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-sppf-showcase">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPPF · Aide aux Showcases · Variable selon dossier · Membre SPPF uniquement</p>
+        <div class="recap-grid" id="recap-sppf-showcase"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Les dossiers SPPF sont instruits en continu. Renseignez-vous auprès de la SPPF pour les dates de dépôt.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sppf-showcase">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sppf-showcase" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sppf-showcase">0</span> / <span id="progresstotal-sppf-showcase">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sppf-showcase"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET SHOWCASE</h2>
+        <p class="section-sub">Renseignez les coûts liés au(x) showcase(s). La SPPF finance une partie selon son barème interne.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste de dépense</th><th>Montant prévu (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Transport / Logistique</td><td><input type="number" class="budget-input" id="sppf_shw_transport" placeholder="0" oninput="calcBudgetSppfShw()"></td></tr>
+            <tr><td>Hébergement</td><td><input type="number" class="budget-input" id="sppf_shw_hebergement" placeholder="0" oninput="calcBudgetSppfShw()"></td></tr>
+            <tr><td>Location salle / technique</td><td><input type="number" class="budget-input" id="sppf_shw_salle" placeholder="0" oninput="calcBudgetSppfShw()"></td></tr>
+            <tr><td>Communication / Promotion</td><td><input type="number" class="budget-input" id="sppf_shw_comm" placeholder="0" oninput="calcBudgetSppfShw()"></td></tr>
+            <tr><td>Autres frais de showcase</td><td><input type="number" class="budget-input" id="sppf_shw_autres" placeholder="0" oninput="calcBudgetSppfShw()"></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>Total budget showcase</strong></td><td><strong id="sppf_shw_total">0 €</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SPPF — Société Civile des Producteurs Phonographiques Français</div>
+            <div class="portal-url">sppf.com/aides-sppf</div>
+          </div>
+          <a href="https://www.sppf.com/aides-sppf/" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sppf-showcase')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-sppf-grm">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPPF · Aide Genre et Répertoire Musical (GRM) / International · Variable selon dossier · Membre SPPF uniquement</p>
+        <div class="recap-grid" id="recap-sppf-grm"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Les dossiers SPPF sont instruits en continu. Renseignez-vous auprès de la SPPF pour les dates de dépôt.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sppf-grm">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sppf-grm" style="width:0%"></div></div>
+          <div class="progress-label"><span id="progresscount-sppf-grm">0</span> / <span id="progresstotal-sppf-grm">0</span> pièces</div>
+        </div>
+        <div class="checklist" id="checklist-sppf-grm"></div>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET DÉVELOPPEMENT INTERNATIONAL / GRM</h2>
+        <p class="section-sub">Renseignez les coûts liés au développement international ou au genre musical. La SPPF finance une partie selon son barème.</p>
+        <table class="budget-table">
+          <thead>
+            <tr><th>Poste de dépense</th><th>Montant prévu (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Frais de déplacement international</td><td><input type="number" class="budget-input" id="sppf_grm_deplacement" placeholder="0" oninput="calcBudgetSppfGrm()"></td></tr>
+            <tr><td>Promotion & marketing international</td><td><input type="number" class="budget-input" id="sppf_grm_promo" placeholder="0" oninput="calcBudgetSppfGrm()"></td></tr>
+            <tr><td>Tournée / Concerts à l'étranger</td><td><input type="number" class="budget-input" id="sppf_grm_tournee" placeholder="0" oninput="calcBudgetSppfGrm()"></td></tr>
+            <tr><td>Traductions / Adaptations</td><td><input type="number" class="budget-input" id="sppf_grm_traduction" placeholder="0" oninput="calcBudgetSppfGrm()"></td></tr>
+            <tr><td>Autres dépenses éligibles</td><td><input type="number" class="budget-input" id="sppf_grm_autres" placeholder="0" oninput="calcBudgetSppfGrm()"></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>Total budget GRM / International</strong></td><td><strong id="sppf_grm_total">0 €</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL & SOUMISSION</h2>
+        <div class="portal-card">
+          <div class="portal-info">
+            <div class="portal-name">SPPF — Société Civile des Producteurs Phonographiques Français</div>
+            <div class="portal-url">sppf.com/aides-sppf</div>
+          </div>
+          <a href="https://www.sppf.com/aides-sppf/" target="_blank" class="portal-link">Accéder au portail →</a>
+        </div>
+        <div class="actions-row">
+          <button class="btn-primary" onclick="exportPDF('sppf-grm')">📄 Exporter en PDF</button>
+          <button class="btn-secondary" onclick="saveProgress()">💾 Sauvegarder</button>
+        </div>
+      </div>
+    </div>
     </div>
   </main>
   <script>
@@ -1124,6 +1373,50 @@
       { id:'plan_diffusion', title:"Plan de diffusion prévu", desc:"Plateformes, médias, calendrier de sortie", required:true, upload:true, autofill:false },
       { id:'budget_prev', title:"Budget prévisionnel clip", desc:"Tableau de financement (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
       { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ],
+    'sppf-enregistrement': [
+      { id:'kbis', title:"Extrait Kbis ou statuts de la société", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire de l'entité déposante", required:true, upload:true, autofill:false },
+      { id:'adhesion_sppf', title:"Attestation d'adhésion SPPF", desc:"Justificatif de membre en règle de la SPPF", required:true, upload:true, autofill:false },
+      { id:'contrat_artiste', title:"Contrat d'enregistrement exclusif", desc:"Contrat liant le producteur à l'artiste pour l'album concerné", required:true, upload:true, autofill:false },
+      { id:'budget_album', title:"Budget prévisionnel de l'album", desc:"Tableau de financement détaillé par poste (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'devis_studio', title:"Devis ou factures studio / musiciens", desc:"Pour chaque prestation prévue ou réalisée", required:true, upload:true, autofill:false },
+      { id:'fiche_artiste', title:"Fiche artiste complète", desc:"Biographie, discographie, liens streaming / réseaux", required:true, upload:true, autofill:false },
+      { id:'plan_commercial', title:"Plan commercial de l'album", desc:"Stratégie de sortie : date, plateformes, presse, radio", required:true, upload:true, autofill:false },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ],
+    'sppf-videomusicale': [
+      { id:'kbis', title:"Extrait Kbis ou statuts de la société", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire de l'entité déposante", required:true, upload:true, autofill:false },
+      { id:'adhesion_sppf', title:"Attestation d'adhésion SPPF", desc:"Justificatif de membre en règle de la SPPF", required:true, upload:true, autofill:false },
+      { id:'contrat_artiste', title:"Contrat d'enregistrement / de licence artiste", desc:"Contrat liant le producteur à l'artiste concerné par le clip", required:true, upload:true, autofill:false },
+      { id:'synopsis_clip', title:"Synopsis ou note de réalisation du clip", desc:"Description artistique et technique du clip envisagé", required:true, upload:true, autofill:false },
+      { id:'devis_production', title:"Devis de production du clip", desc:"Chiffrage détaillé par poste (tournage, post-prod, équipe...)", required:true, upload:true, autofill:false },
+      { id:'budget_clip', title:"Budget prévisionnel clip", desc:"Tableau de financement (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'plan_diffusion', title:"Plan de diffusion prévu", desc:"Plateformes, médias, calendrier de sortie", required:true, upload:true, autofill:false },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ],
+    'sppf-showcase': [
+      { id:'kbis', title:"Extrait Kbis ou statuts de la société", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire de l'entité déposante", required:true, upload:true, autofill:false },
+      { id:'adhesion_sppf', title:"Attestation d'adhésion SPPF", desc:"Justificatif de membre en règle de la SPPF", required:true, upload:true, autofill:false },
+      { id:'programme_showcase', title:"Programme du ou des showcases", desc:"Lieu(x), date(s), capacité, contexte (salon, festival...)", required:true, upload:true, autofill:false },
+      { id:'contrat_artiste', title:"Contrat artiste ou booking", desc:"Document attestant la relation contractuelle avec l'artiste", required:true, upload:true, autofill:false },
+      { id:'budget_showcase', title:"Budget prévisionnel showcase", desc:"Tableau de financement (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'devis_frais', title:"Devis ou factures des frais engagés", desc:"Transport, hébergement, location salle, communication...", required:true, upload:true, autofill:false },
+      { id:'plan_promo', title:"Plan promotionnel de l'artiste", desc:"Contexte du showcase dans la stratégie de développement", required:false, upload:true, autofill:false },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
+    ],
+    'sppf-grm': [
+      { id:'kbis', title:"Extrait Kbis ou statuts de la société", desc:"Document officiel d'immatriculation (moins de 3 mois)", required:true, upload:true, autofill:false },
+      { id:'rib', title:"RIB au nom de la structure", desc:"Relevé d'identité bancaire de l'entité déposante", required:true, upload:true, autofill:false },
+      { id:'adhesion_sppf', title:"Attestation d'adhésion SPPF", desc:"Justificatif de membre en règle de la SPPF", required:true, upload:true, autofill:false },
+      { id:'contrat_artiste', title:"Contrat d'enregistrement ou de licence", desc:"Contrat liant le producteur à l'artiste pour le répertoire concerné", required:true, upload:true, autofill:false },
+      { id:'note_projet', title:"Note de présentation du projet", desc:"Description du projet GRM / international : genre, marchés visés, objectifs", required:true, upload:true, autofill:false },
+      { id:'budget_projet', title:"Budget prévisionnel du projet", desc:"Tableau de financement détaillé (section D)", required:true, upload:false, autofill:true, autofillLabel:"Calculé automatiquement en section D" },
+      { id:'devis_frais', title:"Devis ou factures des dépenses prévues", desc:"Transports, promo internationale, concerts, traductions...", required:true, upload:true, autofill:false },
+      { id:'historique_export', title:"Historique d'activités à l'international", desc:"Tournées, ventes, partenariats, présences en salons professionnels", required:false, upload:true, autofill:false },
+      { id:'liasse_fiscale', title:"Dernière liasse fiscale", desc:"Bilan + compte de résultat", required:true, upload:true, autofill:false }
     ]
   };
 
@@ -1157,6 +1450,26 @@
       { key:'struct_edit', label:'Structure éditeur', desc:'Structure d\'édition musicale' },
       { key:'clip_edit', label:'Projet clip', desc:'Projet de clip vidéo prévu' },
       { key:'affil_cnm', label:'Affiliation CNM', desc:'Affilié CNM' },
+    ],
+    'sppf-enregistrement': [
+      { key:'membre_sppf', label:'Membre SPPF', desc:'Label phonographique adhérent SPPF' },
+      { key:'contrat_exclu', label:'Contrat exclusif', desc:'Contrat d\'enregistrement exclusif avec l\'artiste' },
+      { key:'invest_phono', label:'Investissement phono', desc:'Investissement phonographique prévu' }
+    ],
+    'sppf-videomusicale': [
+      { key:'membre_sppf', label:'Membre SPPF', desc:'Label phonographique adhérent SPPF' },
+      { key:'contrat_exclu', label:'Contrat artiste', desc:'Contrat liant le producteur à l\'artiste' },
+      { key:'videomusique', label:'Projet clip', desc:'Projet de vidéomusique / clip identifié' }
+    ],
+    'sppf-showcase': [
+      { key:'membre_sppf', label:'Membre SPPF', desc:'Label phonographique adhérent SPPF' },
+      { key:'contrat_exclu', label:'Contrat artiste', desc:'Contrat liant le producteur à l\'artiste' },
+      { key:'showcase', label:'Showcase planifié', desc:'Showcase ou concert promotionnel prévu' }
+    ],
+    'sppf-grm': [
+      { key:'membre_sppf', label:'Membre SPPF', desc:'Label phonographique adhérent SPPF' },
+      { key:'contrat_exclu', label:'Contrat artiste', desc:'Contrat liant le producteur à l\'artiste' },
+      { key:'export_prod', label:'Développement international', desc:'Projet de développement international ou GRM identifié' }
     ]
   };
 
@@ -1168,7 +1481,11 @@
     { id:'sacem-dev-v1', label:'SACEM V1 – A/C', short:'SACEM V1' },
     { id:'sacem-dev-v2', label:'SACEM V2 – Patrimoine', short:'SACEM V2' },
     { id:'ciem', label:'CIEM – Crédit d\'Impôt', short:'CIEM' },
-    { id:'cnm-mei', label:'CNM – Musique en Images', short:'CNM MEI' }
+    { id:'cnm-mei', label:'CNM – Musique en Images', short:'CNM MEI' },
+    { id:'sppf-enregistrement', label:'SPPF – Enregistrement', short:'SPPF ENR' },
+    { id:'sppf-videomusicale', label:'SPPF – Vidéomusique', short:'SPPF VID' },
+    { id:'sppf-showcase', label:'SPPF – Showcase', short:'SPPF SHW' },
+    { id:'sppf-grm', label:'SPPF – GRM / International', short:'SPPF GRM' }
   ];
 
   // ============================================================
@@ -1473,6 +1790,31 @@
     init();
     loadProgress();
   });
+
+
+  function calcBudgetSppfEnr() {
+    const ids = ['sppf_enr_studio','sppf_enr_da','sppf_enr_musiciens','sppf_enr_mixage','sppf_enr_mastering','sppf_enr_autres'];
+    const total = ids.reduce((s,id) => s + (parseFloat(document.getElementById(id)?.value)||0), 0);
+    document.getElementById('sppf_enr_total').textContent = total.toLocaleString('fr-FR') + ' €';
+  }
+
+  function calcBudgetSppfVid() {
+    const ids = ['sppf_vid_real','sppf_vid_tournage','sppf_vid_postprod','sppf_vid_vfx','sppf_vid_autres'];
+    const total = ids.reduce((s,id) => s + (parseFloat(document.getElementById(id)?.value)||0), 0);
+    document.getElementById('sppf_vid_total').textContent = total.toLocaleString('fr-FR') + ' €';
+  }
+
+  function calcBudgetSppfShw() {
+    const ids = ['sppf_shw_transport','sppf_shw_hebergement','sppf_shw_salle','sppf_shw_comm','sppf_shw_autres'];
+    const total = ids.reduce((s,id) => s + (parseFloat(document.getElementById(id)?.value)||0), 0);
+    document.getElementById('sppf_shw_total').textContent = total.toLocaleString('fr-FR') + ' €';
+  }
+
+  function calcBudgetSppfGrm() {
+    const ids = ['sppf_grm_deplacement','sppf_grm_promo','sppf_grm_tournee','sppf_grm_traduction','sppf_grm_autres'];
+    const total = ids.reduce((s,id) => s + (parseFloat(document.getElementById(id)?.value)||0), 0);
+    document.getElementById('sppf_grm_total').textContent = total.toLocaleString('fr-FR') + ' €';
+  }
   </script>
 </body>
 </html>
