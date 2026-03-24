@@ -393,6 +393,25 @@ function buildStep3(){
     <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
     <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-group')">Autre</button>
     </div></div>`;
+    if((answers.membre||[]).includes('sacem_adherent')){
+      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu'auteur-compositeur ?</h3>
+      <div class="options" id="droits-sacem-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j'ai des droits SACEM déclarés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
+      </div></div>
+      <div class="question"><h3>Vos revenus artistiques bruts HT (hors aides CNM) sur 2022+2023+2024 sont-ils ≥ 15 000 € ?</h3>
+      <p>Total brut HT des années 2022, 2023 et 2024 cumulés — hors aides directes CNM</p>
+      <div class="options" id="revenus-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'revenus-ac-group')">Oui – total ≥ 15 000 € bruts HT</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'revenus-ac-group')">Non – total &lt; 15 000 €</button>
+      </div></div>
+      <div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
+      <div class="options" id="autoprod-group">
+      <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
+      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement ou plus (j'ai généré plus de 10 000 € de droits SACEM l'an dernier)</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'autoprod-group')">Non – pas encore sorti de projet</button>
+      </div></div>`;
+    }
   }
 
   if(profiles.includes('producteur')){
@@ -662,7 +681,7 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       answers.genre=getSelectedOption('genre-group');
-      if(profiles.includes('auteur') && !profiles.includes('artiste') && (answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.revenus_ac=getSelectedOption('revenus-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
+      if(profiles.includes('auteur') && (answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.revenus_ac=getSelectedOption('revenus-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
       answers.genre_prod=getSelectedOption('genre-prod-group');
@@ -727,7 +746,7 @@ function isMembreOf(org) {
   const mb = answers.membre || [];
   const op = answers.org_prod || '';
   if (org === 'ADAMI') return mb.includes('adami');
-  if (org === 'SPEDIDAM') return mb.includes('spedidam');
+  if (org === 'SPEDIDAM') return mb.includes('spedidam') || (profiles.includes('spectacle') && answers.licence_sv && answers.licence_sv !== 'non');
   if (org === 'SCPP') return op === 'scpp';
   if (org === 'SPPF') return op === 'sppf';
   if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro') || answers.sacem_edit === 'oui' || answers.sacem_sv === 'oui';
