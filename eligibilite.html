@@ -339,7 +339,7 @@ function buildStep3(){
   let html='';
 
   if(profiles.includes('artiste') && !profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Genre musical principal de votre catalogue</h3>
+    html+=`<div class="question"><h3>Genre musical de l'aide sollicitée</h3>
     <div class="options" id="genre-group">
     <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop…</button>
     <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
@@ -350,7 +350,7 @@ function buildStep3(){
   }
   if(profiles.includes('auteur') && !profiles.includes('artiste')){
     // Auteur seul step3 : genre + droits SACEM + autoprod
-    html+=`<div class="question"><h3>Genre musical principal de votre catalogue</h3>
+    html+=`<div class="question"><h3>Genre musical de l'aide sollicitée</h3>
     <div class="options" id="genre-group">
     <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop…</button>
     <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
@@ -367,7 +367,7 @@ function buildStep3(){
       <div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
       <div class="options" id="autoprod-group">
       <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
-      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement ou plus (>10K€ droits/an)</button>
+      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement ou plus (j'ai généré plus de 10 000 € de droits SACEM l'an dernier)</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'autoprod-group')">Non – pas encore sorti de projet</button>
       </div></div>`;
     }
@@ -659,7 +659,6 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       answers.genre=getSelectedOption('genre-group');
-      if(answers.membre==='adami'||answers.membre==='spedidam') answers.droits_adami=getSelectedOption('droits-adami-group');
       if(answers.membre==='sacem_adherent'){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
@@ -695,6 +694,7 @@ function validateStep(n){
       }
       if(answers.membre==='spedidam') answers.export_artiste=getSelectedOption('export-artiste-group');
       if(answers.membre==='sacem_adherent') answers.env_pro=getSelectedOption('env-pro-group');
+      if(answers.membre==='adami'||answers.membre==='spedidam') answers.droits_adami=getSelectedOption('droits-adami-group');
       answers.agessa=getSelectedOption('agessa-group');
     }
     if(profiles.includes('producteur')){
@@ -726,7 +726,7 @@ function calculateResults() {
     const tagHtml = (tags||[]).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
     const noteHtml = note ? '<p class="aid-note">'+note+'</p>' : '';
     const dossierBtn = dossierId ? '<a href="dossier.html?aide='+dossierId+'" class="btn-dossier">&#x1F4CB;&nbsp;Monter mon dossier &#x2192;</a>' : '';
-    return '<div class="aid-card"><div class="aid-card-inner"><div class="aid-header"><span class="aid-org">'+org+'</span><span class="aid-amount">'+amount+'</span></div><div class="aid-name">'+name+'</div><div class="aid-tags">'+tagHtml+'</div>'+noteHtml+'</div><div class="aid-actions"><a href="'+fiche+dossierBtn+'</div></div>';
+    return '<div class="aid-card"><div class="aid-card-inner"><div class="aid-header"><span class="aid-org">'+org+'</span><span class="aid-amount">'+amount+'</span></div><div class="aid-name">'+name+'</div><div class="aid-tags">'+tagHtml+'</div>'+noteHtml+'</div><div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">&#x1F4CB;&nbsp;Voir la fiche &#x2192;</a><a href="'+url+'" target="_blank" class="btn-site">&#x1F310;&nbsp;Site officiel</a>'+dossierBtn+'</div></div>';
   }
 
   const genre = answers.genre || answers.genre_artiste || '';
@@ -853,34 +853,9 @@ function calculateResults() {
       ));;
       }
     }
-
-    if (agessa) {
-      aids.push(card(
-        "Aide à l’Écriture et à la Composition",
-        "CNM",
-        "2 000 € – 10 000 €",
-        "https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/",
-        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-        ["Artiste-interprète","CNM","Composition"],
-        "Personne physique. Affilié AGESSA/MDA. Membre SACEM."
-      ,
-        "sacem-ecriture"
-      ));;
-      if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
-        "Bourse Parcours Auteur-Compositeur",
-        "CNM",
-        "20 000 €",
-        "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
-        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-        ["Artiste-interprète","CNM","Composition"],
-        "Personne physique. Carrière émergente confirmée."
-      ,
-        "sacem-bourse-ac"
-      ));; }
-    }
   }
 
-  if (profiles.includes('auteur')) {
+    if (profiles.includes('auteur')) {
     const membre_sacem_ac = answers.membre === 'sacem_adherent';
     const autoprod_ac = answers.autoprod || '';
     const env_pro_ac = answers.env_pro === 'oui';
