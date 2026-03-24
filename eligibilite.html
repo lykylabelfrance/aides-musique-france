@@ -557,23 +557,6 @@ function buildStep5(){
       <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
     }
-    if((answers.membre||[]).includes('spedidam')){
-      html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
-      <div class="options" id="export-artiste-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui – déplacements pour salons/concerts à l'étranger</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'export-artiste-group')">Non</button>
-      </div></div>`;
-    }
-    if((answers.membre||[]).includes('sacem_adherent')){
-      html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
-      <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
-      <div class="options" id="env-pro-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
-      </div></div>`;
-      
-      
-    }
   }
 
   if(profiles.includes('producteur')){
