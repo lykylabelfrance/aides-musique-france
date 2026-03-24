@@ -373,15 +373,15 @@ function buildStep3(){
     }
   }
   if(profiles.includes('artiste') && profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
-    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
-    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
-    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    html+=`<div class="question"><h3>Type(s) de projet artistique <small>(plusieurs choix possibles)</small></h3>
+    <p>Cochez tous les types de projets pour lesquels vous cherchez une aide.</p>
+    <div class="checkbox-group" id="projet-artiste-group">
+    <div class="check-option" data-value="enregistrement" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Enregistrement / production</strong><span>Album, EP</span></div></div>
+    <div class="check-option" data-value="spectacle_creation" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Création d'un spectacle musical ambitieux</strong><span></span></div></div>
+    <div class="check-option" data-value="premiere_partie" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Programme de premières parties</strong><span>3+ dates en salles >250 places</span></div></div>
+    <div class="check-option" data-value="international" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Salons, tournées export</span></div></div>
+    <div class="check-option" data-value="ecriture" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Écriture / composition</strong><span>Résidence, séminaire</span></div></div>
+    <div class="check-option" data-value="promo_image" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion par l'image</strong><span>EPK, vidéo promo</span></div></div>
     </div></div>`;
   }
 
@@ -439,52 +439,52 @@ function buildStep4(){
 
   if(profiles.includes('artiste') && !profiles.includes('auteur')){
     // Artiste seul : toutes les options d'interprète
-    html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
-    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
-    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
-    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    html+=`<div class="question"><h3>Type(s) de projet artistique <small>(plusieurs choix possibles)</small></h3>
+    <p>Cochez tous les types de projets pour lesquels vous cherchez une aide.</p>
+    <div class="checkbox-group" id="projet-artiste-group">
+    <div class="check-option" data-value="enregistrement" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Enregistrement / production</strong><span>Album, EP</span></div></div>
+    <div class="check-option" data-value="spectacle_creation" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Création d'un spectacle musical ambitieux</strong><span></span></div></div>
+    <div class="check-option" data-value="premiere_partie" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Programme de premières parties</strong><span>3+ dates en salles >250 places</span></div></div>
+    <div class="check-option" data-value="international" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Salons, tournées export</span></div></div>
+    <div class="check-option" data-value="ecriture" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Écriture / composition</strong><span>Résidence, séminaire</span></div></div>
+    <div class="check-option" data-value="promo_image" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion par l'image</strong><span>EPK, vidéo promo</span></div></div>
     </div></div>`;
   }
   if(profiles.includes('auteur') && !profiles.includes('artiste')){
     // Auteur seul : options d'auteur-compositeur uniquement
-    html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire d'écriture)</button>
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Production / enregistrement (maquette, album autoproduit)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, export de catalogue)</button>
+    html+=`<div class="question"><h3>Type(s) de projet artistique <small>(plusieurs choix possibles)</small></h3>
+    <p>Cochez tous les types de projets pour lesquels vous cherchez une aide.</p>
+    <div class="checkbox-group" id="projet-artiste-group">
+    <div class="check-option" data-value="ecriture" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Écriture / composition</strong><span>Résidence, séminaire d'écriture</span></div></div>
+    <div class="check-option" data-value="enregistrement" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Production / enregistrement</strong><span>Maquette, album autoproduit</span></div></div>
+    <div class="check-option" data-value="international" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Salons, export de catalogue</span></div></div>
     </div></div>`;
   }
   if(profiles.includes('artiste') && profiles.includes('auteur')){
     // Les deux : toutes les options artiste + écriture
-    html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
-    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
-    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
-    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    html+=`<div class="question"><h3>Type(s) de projet artistique <small>(plusieurs choix possibles)</small></h3>
+    <p>Cochez tous les types de projets pour lesquels vous cherchez une aide.</p>
+    <div class="checkbox-group" id="projet-artiste-group">
+    <div class="check-option" data-value="enregistrement" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Enregistrement / production</strong><span>Album, EP</span></div></div>
+    <div class="check-option" data-value="spectacle_creation" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Création d'un spectacle musical ambitieux</strong><span></span></div></div>
+    <div class="check-option" data-value="premiere_partie" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Programme de premières parties</strong><span>3+ dates en salles >250 places</span></div></div>
+    <div class="check-option" data-value="international" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Salons, tournées export</span></div></div>
+    <div class="check-option" data-value="ecriture" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Écriture / composition</strong><span>Résidence, séminaire</span></div></div>
+    <div class="check-option" data-value="promo_image" onclick="toggleCheck(this,'projet-artiste-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion par l'image</strong><span>EPK, vidéo promo</span></div></div>
     </div></div>`;
   }
 
   if(profiles.includes('producteur')){
-    html+=`<div class="question"><h3>Type de projet (Label)</h3>
-    <div class="options" id="projet-prod-group">
-    <button class="option-btn" data-value="album" onclick="selectOption(this,'projet-prod-group')">Production d'un album / EP</button>
-    <button class="option-btn" data-value="clip" onclick="selectOption(this,'projet-prod-group')">Production d'un clip officiel</button>
-    <button class="option-btn" data-value="showcase" onclick="selectOption(this,'projet-prod-group')">Showcase / concert promotionnel</button>
-    <button class="option-btn" data-value="videomusique" onclick="selectOption(this,'projet-prod-group')">Vidéo musicale / contenu audiovisuel</button>
-    <button class="option-btn" data-value="marketing" onclick="selectOption(this,'projet-prod-group')">Marketing / promotion / attaché de presse</button>
-    <button class="option-btn" data-value="international_prod" onclick="selectOption(this,'projet-prod-group')">Export / développement international</button>
-    <button class="option-btn" data-value="dev_eco" onclick="selectOption(this,'projet-prod-group')">Développement économique de la structure</button>
-        <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-prod-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    html+=`<div class="question"><h3>Type(s) de projet (Label) <small>(plusieurs choix possibles)</small></h3>
+    <div class="checkbox-group" id="projet-prod-group">
+    <div class="check-option" data-value="album" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Production d'un album / EP</strong><span>Enregistrement studio</span></div></div>
+    <div class="check-option" data-value="clip" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Production d'un clip officiel</strong><span>Vidéoclip promotionnel</span></div></div>
+    <div class="check-option" data-value="showcase" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Showcase / concert promotionnel</strong><span>Présentation live</span></div></div>
+    <div class="check-option" data-value="videomusique" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Vidéo musicale / contenu audiovisuel</strong><span>Contenu audiovisuel</span></div></div>
+    <div class="check-option" data-value="marketing" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Marketing / promotion / attaché de presse</strong><span>Communication & presse</span></div></div>
+    <div class="check-option" data-value="international_prod" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Export / développement international</strong><span>Marchés & tournées à l'export</span></div></div>
+    <div class="check-option" data-value="dev_eco" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement économique de la structure</strong><span>Structuration du label</span></div></div>
+        <div class="check-option" data-value="promo_image" onclick="toggleCheck(this,'projet-prod-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion par l'image (EPK, vidéo promo)</strong><span>Identité visuelle & EPK</span></div></div>
     </div></div>`;
   }
 
@@ -568,7 +568,7 @@ function buildStep5(){
       <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
       </div></div>`
     }
-    if(answers.projartiste==='ecriture'||answers.projartiste==='enregistrement'){
+    if((answers.projartiste||[]).includes('ecriture')||(answers.projartiste||[]).includes('enregistrement')){
       html+=`<div class="question"><h3>Êtes-vous affilié(e) à l'AGESSA ?</h3>
       <div class="options" id="agessa-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'agessa-group')">Oui</button>
@@ -676,8 +676,8 @@ function validateStep(n){
   }
   if(n===4){
     const profiles=getProfiles();
-    if(profiles.includes('artiste')||profiles.includes('auteur')) answers.projartiste=getSelectedOption('projet-artiste-group');
-    if(profiles.includes('producteur')) answers.proj_prod=getSelectedOption('projet-prod-group');
+    if(profiles.includes('artiste')||profiles.includes('auteur')) answers.projartiste=getCheckedValues('projet-artiste-group');
+    if(profiles.includes('producteur')) answers.proj_prod=getCheckedValues('projet-prod-group');
     if(profiles.includes('editeur')){const _editProj=getCheckedValues('projet-edit-group');answers.dev_editorial=_editProj.includes('dev_editorial')?'oui':'non';answers.valorisation_patrimoine=_editProj.includes('valorisation_patrimoine')?'oui':'non';answers.clip_edit=_editProj.includes('clip_edit')?'oui':'non';answers.export_edit=_editProj.includes('international_edit')?'oui':'non';}
     if(profiles.includes('spectacle')) answers.proj_sv=getSelectedOption('projet-sv-group');
     buildStep5();
@@ -809,8 +809,8 @@ function calculateResults() {
     }
 
     if (membre_spedidam) {
-      const proj_artiste = answers.projartiste || '';
-      if (proj_artiste === 'promo_image' || proj_artiste.includes('promo')) {
+      const proj_artiste = answers.projartiste || [];
+      if (proj_artiste.includes('promo_image') || proj_artiste.includes('promo')) {
         aids.push(card(
           "Aide à la Promotion par l’Image (EPK/Vidéo promo)",
           "SPEDIDAM",
@@ -906,8 +906,8 @@ function calculateResults() {
     const export_prod = answers.export_prod === 'oui';
     const fragilite = answers.fragilite === 'oui';
     const cdi_prod = answers.cdi_prod === 'oui';
-    const videomusique = answers.proj_prod === 'videomusique' || answers.proj_prod === 'clip';
-    const marketing = answers.proj_prod === 'marketing';
+    const videomusique = (answers.proj_prod||[]).includes('videomusique') || (answers.proj_prod||[]).includes('clip');
+    const marketing = (answers.proj_prod||[]).includes('marketing');
     if (struct_prod) {
       if (invest_phono && (ca_prod === 'plus100k' || ca_prod === '30k_100k') && (membre_scpp || membre_sppf)) {
         aids.push(card("Aide à la Production Phonographique","CNM","15 000 € (MA/Jazz) / 20 000 € (Classique)","https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥30 000 €. Membre SCPP ou SPPF.",
@@ -994,7 +994,7 @@ function calculateResults() {
         "adami-sppf-bonif"
       ));; }
       }
-      if (answers.proj_prod === 'promo_image') {
+      if ((answers.proj_prod||[]).includes('promo_image')) {
         aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).",
         "spedidam-image"
       ));;
