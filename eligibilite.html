@@ -362,10 +362,9 @@ function buildStep3(){
     </div></div>
     <div class="question"><h3>Droits SACEM perçus (12 derniers mois ou 3 derniers exercices)</h3>
     <div class="options" id="droits-sacem-group">
-    <button class="option-btn" data-value="plus5k_moy" onclick="selectOption(this,'droits-sacem-group')">≥ 5 000 € en moyenne sur 2 ans (SACEM éditorial)</button>
-    <button class="option-btn" data-value="plus4k" onclick="selectOption(this,'droits-sacem-group')">≥ 4 000 € sur 12 mois (CNM éditorial)</button>
-    <button class="option-btn" data-value="plus10k_3ex" onclick="selectOption(this,'droits-sacem-group')">≥ 10 000 € sur 3 exercices (CNM éditorial)</button>
-    <button class="option-btn" data-value="moins4k" onclick="selectOption(this,'droits-sacem-group')">Moins de 4 000 €</button>
+    <button class="option-btn" data-value="plus5k_moy" onclick="selectOption(this,'droits-sacem-group')">≥ 5 000 € / an en moyenne (SACEM + CNM éditorial)</button>
+    <button class="option-btn" data-value="plus4k" onclick="selectOption(this,'droits-sacem-group')">Entre 1 500 € et 5 000 € / an (ou ≥ 10 000 € sur 3 exercices)</button>
+    <button class="option-btn" data-value="moins4k" onclick="selectOption(this,'droits-sacem-group')">Moins de 1 500 € / an – structure très récente</button>
     </div></div>`;
   }
 
@@ -449,11 +448,11 @@ function buildStep5(){
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-albums-group')">Oui – 2 albums ou plus</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-albums-group')">Non – moins de 2 albums distribués</button>
       </div></div>
-      <div class="question"><h3>Concerts en salle (3 dernières années) – pour ADAMI 365</h3>
+      <div class="question"><h3>Avez-vous joué ≥ 5 dates en salle au cours des 3 dernières années ?</h3>
       <div class="options" id="adami-concerts-group">
-      <button class="option-btn" data-value="oui_600" onclick="selectOption(this,'adami-concerts-group')">≥ 5 concerts en salles ≥600 places (MA/Monde)</button>
-      <button class="option-btn" data-value="oui_300" onclick="selectOption(this,'adami-concerts-group')">≥ 5 concerts en salles ≥300 places (Jazz/Classique)</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-concerts-group')">Non – moins de 5 concerts en salle</button>
+      <button class="option-btn" data-value="oui_600" onclick="selectOption(this,'adami-concerts-group')">Oui – ≥ 5 dates en salles ≥ 600 places (MA / Musiques du monde)</button>
+      <button class="option-btn" data-value="oui_300" onclick="selectOption(this,'adami-concerts-group')">Oui – ≥ 5 dates en salles ≥ 300 places (Jazz / Classique)</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-concerts-group')">Non – moins de 5 dates en salle</button>
       </div></div>
       <div class="question"><h3>Type de contrat d'exploitation pour votre prochain enregistrement ?</h3>
       <div class="options" id="adami-contrat-group">
@@ -473,8 +472,8 @@ function buildStep5(){
       html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
       <p>Manager, éditeur, tourneur, salle ou dispositif d'accompagnement (FAiRE, etc.)</p>
       <div class="options" id="env-pro-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – contrat ou lettre d'engagement</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, éditeur, tourneur, salle partenaire ou dispositif (FAiRE, Tremplin…)</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
     }
     if(answers.projartiste==='ecriture'||answers.projartiste==='enregistrement'){
@@ -557,7 +556,7 @@ function validateStep(n){
     if(profiles.includes('producteur')){
       answers.struct_prod=getSelectedOption('struct-prod-group');
       answers.org_prod=getSelectedOption('org-prod-group');
-      answers.ca_prod=getSelectedOption('ca-prod-group');
+      answers.ca_prod=getSelectedOption('ca-prod-group'); answers.anciennete_prod=getSelectedOption('anciennete-prod-group');
     }
     if(profiles.includes('editeur')){
       answers.struct_edit=getSelectedOption('struct-edit-group');
@@ -889,7 +888,7 @@ function calculateResults() {
         "cnm-mei"
       ));;
       }
-      if (cdi_prod && (ca_prod === 'plus100k')) {
+      if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3ans') {
         aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.",
         "cnm-art84"
       ));;
@@ -951,7 +950,7 @@ function calculateResults() {
     const valorisation = answers.valorisation_patrimoine === 'oui';
     const clip_edit = answers.clip_edit === 'oui';
     const ca_edit = answers.ca_edit || '';
-    if (struct_edit) {
+    if (struct_edit && droits_sacem !== 'moins4k') {
       aids.push(card("Aide au Développement Éditorial","CNM","45% des dépenses, max 25 000 €/projet","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Développement Éditorial"],"Éditeur original. Personne morale. CA éditorial >50%.","cnm-dev-editorial",
         "cnm-dev-editorial"
       ));;
