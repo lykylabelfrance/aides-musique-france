@@ -746,7 +746,7 @@ function isMembreOf(org) {
   const mb = answers.membre || [];
   const op = answers.org_prod || '';
   if (org === 'ADAMI') return mb.includes('adami');
-  if (org === 'SPEDIDAM') return mb.includes('spedidam') || (profiles.includes('spectacle') && answers.licence_sv && answers.licence_sv !== 'non');
+  if (org === 'SPEDIDAM') return mb.includes('spedidam') || (getProfiles().includes('spectacle') && answers.licence_sv && answers.licence_sv !== 'non');
   if (org === 'SCPP') return op === 'scpp';
   if (org === 'SPPF') return op === 'sppf';
   if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro') || answers.sacem_edit === 'oui' || answers.sacem_sv === 'oui';
