@@ -327,6 +327,13 @@ function buildStep2(){
     <button class="option-btn" data-value="non" onclick="selectOption(this,'licence-sv-group')">Aucune / en cours</button>
     </div></div>`;
   }
+  if(profiles.includes('spectacle')){
+    html+=`<div class="question"><h3>Votre structure de spectacle produit-elle des œuvres musicales avec A/C SACEM ?</h3>
+    <div class="options" id="sacem-sv-group">
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-sv-group')">Oui – spectacle avec auteur/compositeur SACEM</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'sacem-sv-group')">Non</button>
+    </div></div>`;
+  }
 
   if(!html) html='<p style="color:#888">Aucun profil sélectionné.</p>';
   document.getElementById('step2-content').innerHTML=html;
@@ -500,6 +507,7 @@ function buildStep4(){
     <div class="checkbox-group" id="projet-sv-group">
     <div class="check-option" data-value="creation" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Création d'un nouveau spectacle</strong><span>Création originale</span></div></div>
     <div class="check-option" data-value="diffusion" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Production / diffusion (tournée, série de dates)</strong><span>Tournée & dates</span></div></div>
+    <div class="check-option" data-value="premiere_partie" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Programme de premières parties</strong><span>3+ dates en salles &gt;250 places</span></div></div>
     <div class="check-option" data-value="promo_sv" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion image / EPK pour la structure</strong><span>Communication & visibilité</span></div></div>
     <div class="check-option" data-value="international_sv" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Export & marchés étrangers</span></div></div>
     </div></div>`;
@@ -544,11 +552,15 @@ function buildStep5(){
       <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
       <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">Plus de 5 000 €</button>
       </div></div>`;
+        }
+    if((answers.membre||[]).includes('adami')||(answers.membre||[]).includes('spedidam')){
     html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
       <div class="options" id="export-artiste-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui – déplacements pour salons/concerts à l'étranger</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'export-artiste-group')">Non</button>
       </div></div>`;
+    }
+    if((answers.membre||[]).includes('sacem_adherent')||(answers.membre||[]).includes('sacem_pro')||(answers.membre||[]).includes('adami')){
     html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
       <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
       <div class="options" id="env-pro-group">
@@ -631,7 +643,7 @@ function validateStep(n){
       answers.sacem_edit=getSelectedOption('sacem-edit-group');
       answers.ca_edit=getSelectedOption('ca-edit-group');
     }
-    if(profiles.includes('spectacle')){answers.licence_sv=getSelectedOption('licence-sv-group');}
+    if(profiles.includes('spectacle')){answers.licence_sv=getSelectedOption('licence-sv-group');answers.sacem_sv=getSelectedOption('sacem-sv-group');}
     if((answers.membre||[]).includes('non_membre')){calculateResults();showStep(6);return;}
   if(answers.org_prod==='non' && (getProfiles().includes('producteur'))){calculateResults();showStep(6);return;}
   if(answers.sacem_edit==='non' && getProfiles().includes('editeur')){calculateResults();showStep(6);return;}
@@ -712,7 +724,7 @@ function isMembreOf(org) {
   if (org === 'SPEDIDAM') return mb.includes('spedidam');
   if (org === 'SCPP') return op === 'scpp';
   if (org === 'SPPF') return op === 'sppf';
-  if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro');
+  if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro') || answers.sacem_edit === 'oui';
   return true;
 }
 
@@ -853,7 +865,12 @@ function calculateResults() {
       ));;
       }
     }
-  }
+     if ((answers.projartiste||[]).includes('premiere_partie')) {
+      aids.push(card("Aide Première Partie Musique","ADAMI","70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
+        "cnm-premiere-partie"
+      ));;
+    }
+ }
 
     if (profiles.includes('auteur')) {
     const membre_sacem_ac = (answers.membre||[]).includes('sacem_adherent');
@@ -1081,7 +1098,7 @@ function calculateResults() {
       aids.push(card("Droit de Tirage (aide automatique)","CNM","60% de la taxe sur les spectacles reversée","https://cnm.fr/aides-financieres/droit-de-tirage/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Automatique"],"Aide automatique basée sur la taxe versée. Licence cat.2.",
         "cnm-droit-tirage"
       ));;
-      if (spectacle_creation && (answers.membre||[]).includes('sacem_adherent')) {
+      if (spectacle_creation && ((answers.membre||[]).includes('sacem_adherent') || answers.sacem_sv === 'oui')) {
         aids.push(card("Aide à la Création de Spectacle Musical","SACEM","Max 15 000 € (double fléchage A/C + Producteur)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SACEM","Création"],"Spectacle ≥60 min avec narration et mise en scène (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT première représentation publique.",
         "cnm-creation-spectacle-musical"
       ));;
