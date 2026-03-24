@@ -1,9 +1,9 @@
-Ã©<!DOCTYPE html>
+é<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Test Eligibilite â Aides Musique France</title>
+<title>Test Eligibilite – Aides Musique France</title>
 
 
 <style>
@@ -54,7 +54,7 @@ header span{color:var(--gris-texte)}
 .check-option.selected{background:rgba(232,0,29,0.12);border-color:var(--rouge);color:var(--blanc)}
 .checkmark{width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;margin-top:2px}
 .check-option.selected .checkmark{background:var(--rouge);border-color:var(--rouge);color:#fff}
-.checkmark::after{content:'â';display:none}
+.checkmark::after{content:'✓';display:none}
 .check-option.selected .checkmark::after{display:block}
 .check-label{display:flex;flex-direction:column;gap:3px}
 .check-label strong{font-size:.95rem;font-weight:600;color:inherit}
@@ -112,17 +112,17 @@ header span{color:var(--gris-texte)}
 <header>
 <a href="index.html" style="font-family:'DM Mono',monospace;font-size:.9rem;text-transform:uppercase;letter-spacing:1px;color:var(--blanc);text-decoration:none;"><span style="color:var(--rouge)">LYKY</span> LABEL</a>
 <span style="color:rgba(255,255,255,0.2);margin:0 4px">/</span>
-<a href="aides.html" style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.45);text-decoration:none;text-transform:uppercase;letter-spacing:1px">â Aides</a>
+<a href="aides.html" style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.45);text-decoration:none;text-transform:uppercase;letter-spacing:1px">← Aides</a>
 <span style="flex:1"></span>
-<span style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px">Test dâÃ©ligibilitÃ©</span>
+<span style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px">Test d’éligibilité</span>
 </header>
 <div class="container">
 <div class="intro">
 <h2>Trouvez vos <span>aides musique</span></h2>
-<p>RÃ©pondez Ã  quelques questions pour dÃ©couvrir les aides auxquelles vous Ãªtes Ã©ligible.</p>
+<p>Répondez à quelques questions pour découvrir les aides auxquelles vous êtes éligible.</p>
 </div>
 <div class="progress">
-<span id="progress-text">Ãtape 1 / 6</span>
+<span id="progress-text">Étape 1 / 6</span>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div><span id="progress-pct" style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--rouge);letter-spacing:1px;white-space:nowrap">0%</span>
 </div>
 
@@ -130,66 +130,66 @@ header span{color:var(--gris-texte)}
 <div class="step active" id="step1">
 <div class="step-header"><div class="step-num">1</div><div class="step-title">Votre profil principal</div></div>
 <div class="question">
-<h3>Quel(s) rÃ´le(s) exercez-vous dans la musique ?</h3>
-<p>Cochez tous les rÃ´les qui vous correspondent.</p>
+<h3>Quel(s) rôle(s) exercez-vous dans la musique ?</h3>
+<p>Cochez tous les rôles qui vous correspondent.</p>
 <div class="checkbox-group" id="profil-group">
-<div class="check-option" data-value="artiste" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>ð¶ Artiste-interprÃ¨te</strong><span>MusicienÂ·ne, chanteurÂ·euse, performer â vous vous produisez sur scÃ¨ne ou en studio</span></div></div>
-<div class="check-option" data-value="auteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>âï¸ Auteur-compositeur</strong><span>Vous crÃ©ez des Åuvres musicales (paroles, musiques) â affiliÃ© SACEM</span></div></div>
-<div class="check-option" data-value="producteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>ð¬ Producteur phonographique (Label)</strong><span>Vous possÃ©dez une structure juridique et produisez des enregistrements â membre SCPP ou SPPF</span></div></div>
-<div class="check-option" data-value="editeur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>ð Ãditeur musical</strong><span>Vous gÃ©rez les droits dâauteurs et dÃ©veloppez un catalogue Ã©ditorial â affiliÃ© SACEM</span></div></div>
-<div class="check-option" data-value="spectacle" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>ð¤ Structure de spectacle vivant</strong><span>Vous produisez ou diffusez des concerts/spectacles â licence entrepreneur de spectacles</span></div></div>
+<div class="check-option" data-value="artiste" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎶 Artiste-interprète</strong><span>Musicien·ne, chanteur·euse, performer — vous vous produisez sur scène ou en studio</span></div></div>
+<div class="check-option" data-value="auteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>✍️ Auteur-compositeur</strong><span>Vous créez des œuvres musicales (paroles, musiques) — affilié SACEM</span></div></div>
+<div class="check-option" data-value="producteur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎬 Producteur phonographique (Label)</strong><span>Vous possédez une structure juridique et produisez des enregistrements — membre SCPP ou SPPF</span></div></div>
+<div class="check-option" data-value="editeur" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>📚 Éditeur musical</strong><span>Vous gérez les droits d’auteurs et développez un catalogue éditorial — affilié SACEM</span></div></div>
+<div class="check-option" data-value="spectacle" onclick="toggleCheck(this,'profil-group')"><div class="checkmark"></div><div class="check-label"><strong>🎤 Structure de spectacle vivant</strong><span>Vous produisez ou diffusez des concerts/spectacles — licence entrepreneur de spectacles</span></div></div>
 </div>
 </div>
-<button class="btn" onclick="validateStep(1)">Continuer â</button>
+<button class="btn" onclick="validateStep(1)">Continuer →</button>
 </div>
 
 <!-- STEP 2 -->
 <div class="step" id="step2">
 <div class="step-header"><div class="step-num">2</div><div class="step-title">Votre structure</div></div>
 <div id="step2-content"></div>
-<button class="btn-secondary" onclick="goBack(2)">â Retour</button>
-<button class="btn" onclick="validateStep(2)">Continuer â</button>
+<button class="btn-secondary" onclick="goBack(2)">← Retour</button>
+<button class="btn" onclick="validateStep(2)">Continuer →</button>
 </div>
 
 <!-- STEP 3 -->
 <div class="step" id="step3">
-<div class="step-header"><div class="step-num">3</div><div class="step-title">Votre activitÃ©</div></div>
+<div class="step-header"><div class="step-num">3</div><div class="step-title">Votre activité</div></div>
 <div id="step3-content"></div>
-<button class="btn-secondary" onclick="goBack(3)">â Retour</button>
-<button class="btn" onclick="validateStep(3)">Continuer â</button>
+<button class="btn-secondary" onclick="goBack(3)">← Retour</button>
+<button class="btn" onclick="validateStep(3)">Continuer →</button>
 </div>
 
 <!-- STEP 4 -->
 <div class="step" id="step4">
 <div class="step-header"><div class="step-num">4</div><div class="step-title">Votre projet</div></div>
 <div id="step4-content"></div>
-<button class="btn-secondary" onclick="goBack(4)">â Retour</button>
-<button class="btn" onclick="validateStep(4)">Continuer â</button>
+<button class="btn-secondary" onclick="goBack(4)">← Retour</button>
+<button class="btn" onclick="validateStep(4)">Continuer →</button>
 </div>
 
 <!-- STEP 5 -->
 <div class="step" id="step5">
-<div class="step-header"><div class="step-num">5</div><div class="step-title">CritÃ¨res complÃ©mentaires</div></div>
+<div class="step-header"><div class="step-num">5</div><div class="step-title">Critères complémentaires</div></div>
 <div id="step5-content"></div>
-<button class="btn-secondary" onclick="goBack(5)">â Retour</button>
-<button class="btn" onclick="validateStep(5)">Continuer â</button>
+<button class="btn-secondary" onclick="goBack(5)">← Retour</button>
+<button class="btn" onclick="validateStep(5)">Continuer →</button>
 </div>
 
 <!-- STEP 6: Results -->
 <div class="step" id="step6">
-  <div class="step-header"><div class="step-num">6</div><div class="step-title">Vos aides Ã©ligibles</div></div>
+  <div class="step-header"><div class="step-num">6</div><div class="step-title">Vos aides éligibles</div></div>
   <div class="card" style="padding:0;overflow:hidden">
     <div id="results-container"></div>
     <div style="padding:20px 24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:10px;flex-wrap:wrap">
-      <button onclick="showStep(currentStep-1)" class="btn-secondary" style="flex:1;min-width:180px">â Modifier mes rÃ©ponses</button>
-      <button onclick="location.reload()" class="btn" style="flex:1;min-width:180px">âº Recommencer le test</button>
+      <button onclick="showStep(currentStep-1)" class="btn-secondary" style="flex:1;min-width:180px">← Modifier mes réponses</button>
+      <button onclick="location.reload()" class="btn" style="flex:1;min-width:180px">↺ Recommencer le test</button>
     </div>
   </div>
 </div>
 </div>
 <script>
 // =========================================================
-// v7.8 â TOUTES LES FICHES LUES + NOUVELLES AIDES INTEGREES
+// v7.8 – TOUTES LES FICHES LUES + NOUVELLES AIDES INTEGREES
 // =========================================================
 let answers = {};
 let currentStep = 1;
@@ -224,7 +224,7 @@ function goBack(step){
 function updateProgress(step){
   const pct=Math.round(((step-1)/6)*100);
   document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-text').innerText='Ãtape '+step+' / 6'; document.getElementById('progress-pct').innerText=pct+'%';
+  document.getElementById('progress-text').innerText='Étape '+step+' / 6'; document.getElementById('progress-pct').innerText=pct+'%';
 }
 
 function showStep(n){
@@ -240,23 +240,23 @@ function buildStep2(){
   let html='';
 
   if(profiles.includes('artiste')||profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Ãtes-vous membre d'une sociÃ©tÃ© de droits voisins / d'auteur ?</h3>
+    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits voisins / d'auteur ?</h3>
     <div class="options" id="membre-group">
-    <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (artiste-interprÃ¨te)</button>
-    <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (artiste-interprÃ¨te)</button>
-    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM â statut adhÃ©rent (A/C Ã©mergent)</button>
-    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM â statut professionnel/dÃ©finitif</button>
-    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre / en cours d'adhÃ©sion</button>
+    <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (artiste-interprète)</button>
+    <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (artiste-interprète)</button>
+    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM – statut adhérent (A/C émergent)</button>
+    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM – statut professionnel/définitif</button>
+    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre / en cours d'adhésion</button>
     </div></div>`;
   }
 
   if(profiles.includes('producteur')){
     html+=`<div class="question"><h3>Votre structure juridique (Label)</h3>
     <div class="options" id="struct-prod-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-prod-group')">Oui â SAS, SASU, SARL, EURL ou Association</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-prod-group')">Non â Pas encore de structure</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-prod-group')">Oui – SAS, SASU, SARL, EURL ou Association</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-prod-group')">Non – Pas encore de structure</button>
     </div></div>
-    <div class="question"><h3>Ãtes-vous membre SCPP ou SPPF ?</h3>
+    <div class="question"><h3>Êtes-vous membre SCPP ou SPPF ?</h3>
     <div class="options" id="org-prod-group">
     <button class="option-btn" data-value="scpp" onclick="selectOption(this,'org-prod-group')">SCPP</button>
     <button class="option-btn" data-value="sppf" onclick="selectOption(this,'org-prod-group')">SPPF</button>
@@ -264,26 +264,26 @@ function buildStep2(){
     </div></div>
     <div class="question"><h3>Chiffre d'affaires annuel de votre structure ?</h3>
     <div class="options" id="ca-prod-group">
-    <button class="option-btn" data-value="plus100k" onclick="selectOption(this,'ca-prod-group')">Plus de 100 000 â¬</button>
-    <button class="option-btn" data-value="30k_100k" onclick="selectOption(this,'ca-prod-group')">Entre 30 000 â¬ et 100 000 â¬</button>
-    <button class="option-btn" data-value="moins30k" onclick="selectOption(this,'ca-prod-group')">Moins de 30 000 â¬</button>
+    <button class="option-btn" data-value="plus100k" onclick="selectOption(this,'ca-prod-group')">Plus de 100 000 €</button>
+    <button class="option-btn" data-value="30k_100k" onclick="selectOption(this,'ca-prod-group')">Entre 30 000 € et 100 000 €</button>
+    <button class="option-btn" data-value="moins30k" onclick="selectOption(this,'ca-prod-group')">Moins de 30 000 €</button>
     </div></div>`;
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Votre structure d'Ã©dition</h3>
+    html+=`<div class="question"><h3>Votre structure d'édition</h3>
     <div class="options" id="struct-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-edit-group')">Oui â Personne morale (SARL, SAS, SASU...)</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-edit-group')">Non â Pas de structure juridique</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-edit-group')">Oui – Personne morale (SARL, SAS, SASU...)</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-edit-group')">Non – Pas de structure juridique</button>
     </div></div>
-    <div class="question"><h3>Ãtes-vous membre SACEM en tant qu'Ã©diteur ?</h3>
+    <div class="question"><h3>Êtes-vous membre SACEM en tant qu'éditeur ?</h3>
     <div class="options" id="sacem-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-edit-group')">Oui â Membre Ã©diteur SACEM actif</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-edit-group')">Oui – Membre éditeur SACEM actif</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'sacem-edit-group')">Non</button>
     </div></div>
-    <div class="question"><h3>Votre activitÃ© principale est-elle l'Ã©dition musicale (CA Ã©ditorial > 50%) ?</h3>
+    <div class="question"><h3>Votre activité principale est-elle l'édition musicale (CA éditorial > 50%) ?</h3>
     <div class="options" id="ca-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'ca-edit-group')">Oui â 50% de mon chiffre d'affaires provient de l'Ã©dition musicale</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'ca-edit-group')">Oui – 50% de mon chiffre d'affaires provient de l'édition musicale</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'ca-edit-group')">Non</button>
     </div></div>`;
   }
@@ -291,14 +291,14 @@ function buildStep2(){
   if(profiles.includes('spectacle')){
     html+=`<div class="question"><h3>Votre licence d'entrepreneur de spectacle</h3>
     <div class="options" id="licence-sv-group">
-    <button class="option-btn" data-value="licence2" onclick="selectOption(this,'licence-sv-group')">Licence 2 â Producteur / tourneur (employeur de plateau)</button>
-    <button class="option-btn" data-value="licence3" onclick="selectOption(this,'licence-sv-group')">Licence 3 â Diffuseur (exploitant de lieu)</button>
+    <button class="option-btn" data-value="licence2" onclick="selectOption(this,'licence-sv-group')">Licence 2 – Producteur / tourneur (employeur de plateau)</button>
+    <button class="option-btn" data-value="licence3" onclick="selectOption(this,'licence-sv-group')">Licence 3 – Diffuseur (exploitant de lieu)</button>
     <button class="option-btn" data-value="les_deux" onclick="selectOption(this,'licence-sv-group')">Les deux (2 + 3)</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'licence-sv-group')">Aucune / en cours</button>
     </div></div>`;
   }
 
-  if(!html) html='<p style="color:#888">Aucun profil sÃ©lectionnÃ©.</p>';
+  if(!html) html='<p style="color:#888">Aucun profil sélectionné.</p>';
   document.getElementById('step2-content').innerHTML=html;
 }
 
@@ -309,7 +309,7 @@ function buildStep3(){
   if(profiles.includes('artiste')||profiles.includes('auteur')){
     html+=`<div class="question"><h3>Genre musical principal de votre projet</h3>
     <div class="options" id="genre-group">
-    <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) â pop, rock, electro, hip-hop, R&Bâ¦</button>
+    <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop, R&B…</button>
     <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
     <button class="option-btn" data-value="classique" onclick="selectOption(this,'genre-group')">Musique classique / contemporaine</button>
     <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
@@ -317,19 +317,19 @@ function buildStep3(){
     </div></div>`;
 
     if(answers.membre==='adami'||answers.membre==='spedidam'){
-      html+=`<div class="question"><h3>Droits voisins perÃ§us (ADAMI/SPEDIDAM) sur les 5 derniÃ¨res annÃ©es</h3>
+      html+=`<div class="question"><h3>Droits voisins perçus (ADAMI/SPEDIDAM) sur les 5 dernières années</h3>
       <div class="options" id="droits-adami-group">
-      <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">5 000 â¬ ou plus (ADAMI 365)</button>
-      <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 â¬ et 5 000 â¬</button>
-      <button class="option-btn" data-value="moins300" onclick="selectOption(this,'droits-adami-group')">Moins de 300 â¬</button>
+      <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">5 000 € ou plus (ADAMI 365)</button>
+      <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
+      <button class="option-btn" data-value="moins300" onclick="selectOption(this,'droits-adami-group')">Moins de 300 €</button>
       </div></div>`;
     }
 
     if(answers.membre==='sacem_adherent'){
-      html+=`<div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album â¥5 titres) ?</h3>
+      html+=`<div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
       <div class="options" id="autoprod-group">
-      <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui â 1er ou 2e enregistrement autoproduit</button>
-      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui â 3e enregistrement (>10Kâ¬ droits/an)</button>
+      <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
+      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement (>10K€ droits/an)</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'autoprod-group')">Non</button>
       </div></div>`;
     }
@@ -344,27 +344,27 @@ function buildStep3(){
     <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-prod-group')">Musiques du monde</button>
     <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-prod-group')">Autre / mixte</button>
     </div></div>
-    <div class="question"><h3>Investissement moyen en production phonographique (2 derniÃ¨res annÃ©es) ?</h3>
+    <div class="question"><h3>Investissement moyen en production phonographique (2 dernières années) ?</h3>
     <div class="options" id="invest-phono-group">
-    <button class="option-btn" data-value="oui_50k" onclick="selectOption(this,'invest-phono-group')">50 000 â¬ ou plus en moyenne (case 412 liasse fiscale)</button>
-    <button class="option-btn" data-value="oui_moins" onclick="selectOption(this,'invest-phono-group')">Investissement en production mais moins de 50 000 â¬</button>
+    <button class="option-btn" data-value="oui_50k" onclick="selectOption(this,'invest-phono-group')">50 000 € ou plus en moyenne (case 412 liasse fiscale)</button>
+    <button class="option-btn" data-value="oui_moins" onclick="selectOption(this,'invest-phono-group')">Investissement en production mais moins de 50 000 €</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'invest-phono-group')">Pas encore d'investissements significatifs</button>
     </div></div>`;
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Genre musical de votre catalogue Ã©ditorial</h3>
+    html+=`<div class="question"><h3>Genre musical de votre catalogue éditorial</h3>
     <div class="options" id="genre-edit-group">
     <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-edit-group')">Musiques actuelles (MA)</button>
     <button class="option-btn" data-value="cj" onclick="selectOption(this,'genre-edit-group')">Contemporain / Jazz</button>
     <button class="option-btn" data-value="ma_cj" onclick="selectOption(this,'genre-edit-group')">Les deux (MA + Contemporain/Jazz)</button>
     <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-edit-group')">Autre</button>
     </div></div>
-    <div class="question"><h3>Droits SACEM perÃ§us (12 derniers mois ou 3 derniers exercices)</h3>
+    <div class="question"><h3>Droits SACEM perçus (12 derniers mois ou 3 derniers exercices)</h3>
     <div class="options" id="droits-sacem-group">
-    <button class="option-btn" data-value="plus5k_moy" onclick="selectOption(this,'droits-sacem-group')">â¥ 5 000 â¬ / an en moyenne (SACEM + CNM Ã©ditorial)</button>
-    <button class="option-btn" data-value="plus4k" onclick="selectOption(this,'droits-sacem-group')">Entre 1 500 â¬ et 5 000 â¬ / an (ou â¥ 10 000 â¬ sur 3 exercices)</button>
-    <button class="option-btn" data-value="moins4k" onclick="selectOption(this,'droits-sacem-group')">Moins de 1 500 â¬ / an â structure trÃ¨s rÃ©cente</button>
+    <button class="option-btn" data-value="plus5k_moy" onclick="selectOption(this,'droits-sacem-group')">≥ 5 000 € / an en moyenne (SACEM + CNM éditorial)</button>
+    <button class="option-btn" data-value="plus4k" onclick="selectOption(this,'droits-sacem-group')">Entre 1 500 € et 5 000 € / an (ou ≥ 10 000 € sur 3 exercices)</button>
+    <button class="option-btn" data-value="moins4k" onclick="selectOption(this,'droits-sacem-group')">Moins de 1 500 € / an – structure très récente</button>
     </div></div>`;
   }
 
@@ -379,7 +379,7 @@ function buildStep3(){
     </div></div>`;
   }
 
-  if(!html) html='<p style="color:#888">Aucun profil sÃ©lectionnÃ©.</p>';
+  if(!html) html='<p style="color:#888">Aucun profil sélectionné.</p>';
   document.getElementById('step3-content').innerHTML=html;
 }
 
@@ -389,14 +389,14 @@ function buildStep4(){
 
   if(profiles.includes('artiste')||profiles.includes('auteur')){
     html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>SÃ©lectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
     <div class="options" id="projet-artiste-group">
     <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
-    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">CrÃ©ation d'un spectacle musical ambitieux</button>
-    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premiÃ¨res parties (3+ dates en salles >250 places)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">DÃ©veloppement international (salons, tournÃ©es export)</button>
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Ãcriture / composition (rÃ©sidence, sÃ©minaire)</button>
-    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidÃ©o promo)</button>
+    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
+    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
+    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
     </div></div>`;
   }
 
@@ -406,35 +406,35 @@ function buildStep4(){
     <button class="option-btn" data-value="album" onclick="selectOption(this,'projet-prod-group')">Production d'un album / EP</button>
     <button class="option-btn" data-value="clip" onclick="selectOption(this,'projet-prod-group')">Production d'un clip officiel</button>
     <button class="option-btn" data-value="showcase" onclick="selectOption(this,'projet-prod-group')">Showcase / concert promotionnel</button>
-    <button class="option-btn" data-value="videomusique" onclick="selectOption(this,'projet-prod-group')">VidÃ©o musicale / contenu audiovisuel</button>
-    <button class="option-btn" data-value="marketing" onclick="selectOption(this,'projet-prod-group')">Marketing / promotion / attachÃ© de presse</button>
-    <button class="option-btn" data-value="international_prod" onclick="selectOption(this,'projet-prod-group')">Export / dÃ©veloppement international</button>
-    <button class="option-btn" data-value="dev_eco" onclick="selectOption(this,'projet-prod-group')">DÃ©veloppement Ã©conomique de la structure</button>
-        <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-prod-group')">Promotion par l'image (EPK, vidÃ©o promo)</button>
+    <button class="option-btn" data-value="videomusique" onclick="selectOption(this,'projet-prod-group')">Vidéo musicale / contenu audiovisuel</button>
+    <button class="option-btn" data-value="marketing" onclick="selectOption(this,'projet-prod-group')">Marketing / promotion / attaché de presse</button>
+    <button class="option-btn" data-value="international_prod" onclick="selectOption(this,'projet-prod-group')">Export / développement international</button>
+    <button class="option-btn" data-value="dev_eco" onclick="selectOption(this,'projet-prod-group')">Développement économique de la structure</button>
+        <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-prod-group')">Promotion par l'image (EPK, vidéo promo)</button>
     </div></div>`;
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Types de projets Ã©ditoriaux <small>(plusieurs choix possibles)</small></h3>
+    html+=`<div class="question"><h3>Types de projets éditoriaux <small>(plusieurs choix possibles)</small></h3>
     <div class="checkbox-group" id="projet-edit-group">
-    <div class="check-option" data-value="dev_editorial" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>DÃ©veloppement Ã©ditorial</strong><span>A/C, crÃ©ation, catalogue</span></div></div>
+    <div class="check-option" data-value="dev_editorial" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement éditorial</strong><span>A/C, création, catalogue</span></div></div>
     <div class="check-option" data-value="valorisation_patrimoine" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Valorisation patrimoniale</strong><span>Catalogue >10 ans, anniversaire, anthologie</span></div></div>
-    <div class="check-option" data-value="clip_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Clip officiel dâun artiste du catalogue</strong><span>CNM Musique en Images</span></div></div>
-    <div class="check-option" data-value="international_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Export / dÃ©veloppement international</strong><span>TournÃ©es Ã  lâÃ©tranger</span></div></div>
+    <div class="check-option" data-value="clip_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Clip officiel d’un artiste du catalogue</strong><span>CNM Musique en Images</span></div></div>
+    <div class="check-option" data-value="international_edit" onclick="toggleCheck(this,'projet-edit-group')"><div class="checkmark"></div><div class="check-label"><strong>Export / développement international</strong><span>Tournées à l’étranger</span></div></div>
     </div></div>`;
   }
 
   if(profiles.includes('spectacle')){
     html+=`<div class="question"><h3>Type de projet spectacle</h3>
     <div class="options" id="projet-sv-group">
-    <button class="option-btn" data-value="creation" onclick="selectOption(this,'projet-sv-group')">CrÃ©ation d'un nouveau spectacle</button>
-    <button class="option-btn" data-value="diffusion" onclick="selectOption(this,'projet-sv-group')">Production / diffusion (tournÃ©e, sÃ©rie de dates)</button>
+    <button class="option-btn" data-value="creation" onclick="selectOption(this,'projet-sv-group')">Création d'un nouveau spectacle</button>
+    <button class="option-btn" data-value="diffusion" onclick="selectOption(this,'projet-sv-group')">Production / diffusion (tournée, série de dates)</button>
     <button class="option-btn" data-value="promo_sv" onclick="selectOption(this,'projet-sv-group')">Promotion image / EPK pour la structure</button>
-    <button class="option-btn" data-value="international_sv" onclick="selectOption(this,'projet-sv-group')">DÃ©veloppement international</button>
+    <button class="option-btn" data-value="international_sv" onclick="selectOption(this,'projet-sv-group')">Développement international</button>
     </div></div>`;
   }
 
-  if(!html) html='<p style="color:#888">Aucun profil sÃ©lectionnÃ©.</p>';
+  if(!html) html='<p style="color:#888">Aucun profil sélectionné.</p>';
   document.getElementById('step4-content').innerHTML=html;
 }
 
@@ -444,47 +444,47 @@ function buildStep5(){
 
   if(profiles.includes('artiste')||profiles.includes('auteur')){
     if(answers.membre==='adami'){
-            html+=`<div class="question"><h3>Avez-vous au moins 25 cachets de spectacle vivant déclarés à l'ADAMI sur les 3 dernières années ?</h3>
+            html+=`<div class="question"><h3>Avez-vous au moins 25 cachets de spectacle vivant d�clar�s � l'ADAMI sur les 3 derni�res ann�es ?</h3>
       <p>Cachets justifiables par bulletins de salaire ou contrats de travail d'artiste (hors enregistrements studio)</p>
       <div class="options" id="adami-cachets-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-cachets-group')">Oui — 25 cachets ou plus, justifiés</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-cachets-group')">Non — moins de 25 cachets justifiables</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-cachets-group')">Oui  25 cachets ou plus, justifi�s</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-cachets-group')">Non  moins de 25 cachets justifiables</button>
       </div></div>`;
-      html+=`<div class="question"><h3>Avez-vous 2 albums distribuÃ©s professionnellement (pour ADAMI 365) ?</h3>
+      html+=`<div class="question"><h3>Avez-vous 2 albums distribués professionnellement (pour ADAMI 365) ?</h3>
       <div class="options" id="adami-albums-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-albums-group')">Oui â 2 albums ou plus</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-albums-group')">Non â moins de 2 albums distribuÃ©s</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-albums-group')">Oui – 2 albums ou plus</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-albums-group')">Non – moins de 2 albums distribués</button>
       </div></div>
-      <div class="question"><h3>Avez-vous jouÃ© â¥ 5 dates en salle au cours des 3 derniÃ¨res annÃ©es ?</h3>
+      <div class="question"><h3>Avez-vous joué ≥ 5 dates en salle au cours des 3 dernières années ?</h3>
       <div class="options" id="adami-concerts-group">
-      <button class="option-btn" data-value="oui_600" onclick="selectOption(this,'adami-concerts-group')">Oui â â¥ 5 dates en salles â¥ 600 places (MA / Musiques du monde)</button>
-      <button class="option-btn" data-value="oui_300" onclick="selectOption(this,'adami-concerts-group')">Oui â â¥ 5 dates en salles â¥ 300 places (Jazz / Classique)</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-concerts-group')">Non â moins de 5 dates en salle</button>
+      <button class="option-btn" data-value="oui_600" onclick="selectOption(this,'adami-concerts-group')">Oui – ≥ 5 dates en salles ≥ 600 places (MA / Musiques du monde)</button>
+      <button class="option-btn" data-value="oui_300" onclick="selectOption(this,'adami-concerts-group')">Oui – ≥ 5 dates en salles ≥ 300 places (Jazz / Classique)</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-concerts-group')">Non – moins de 5 dates en salle</button>
       </div></div>
       <div class="question"><h3>Type de contrat d'exploitation pour votre prochain enregistrement ?</h3>
       <div class="options" id="adami-contrat-group">
-      <button class="option-btn" data-value="licence" onclick="selectOption(this,'adami-contrat-group')">Contrat de licence avec un label (â ADAMI 2D)</button>
-      <button class="option-btn" data-value="distribution" onclick="selectOption(this,'adami-contrat-group')">Contrat de distribution directe pro (â ADAMI 3D, inclut promo)</button>
+      <button class="option-btn" data-value="licence" onclick="selectOption(this,'adami-contrat-group')">Contrat de licence avec un label (→ ADAMI 2D)</button>
+      <button class="option-btn" data-value="distribution" onclick="selectOption(this,'adami-contrat-group')">Contrat de distribution directe pro (→ ADAMI 3D, inclut promo)</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-contrat-group')">Pas encore de contrat</button>
       </div></div>`;
     }
     if(answers.membre==='spedidam'){
-      html+=`<div class="question"><h3>Avez-vous des dates de concert Ã  l'international ?</h3>
+      html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
       <div class="options" id="export-artiste-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui â dÃ©placements pour salons/concerts Ã  l'Ã©tranger</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui – déplacements pour salons/concerts à l'étranger</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'export-artiste-group')">Non</button>
       </div></div>`;
     }
     if(answers.membre==='sacem_adherent'){
-      html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisÃ© ?</h3>
-      <p>Manager, Ã©diteur, tourneur ou salle partenaire engagÃ© sur le projet</p>
+      html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
+      <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
       <div class="options" id="env-pro-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui â j'ai un manager, un Ã©diteur, un tourneur ou une salle partenaire</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non â je travaille en totale indÃ©pendance</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
     }
     if(answers.projartiste==='ecriture'||answers.projartiste==='enregistrement'){
-      html+=`<div class="question"><h3>Ãtes-vous affiliÃ©(e) Ã  l'AGESSA ?</h3>
+      html+=`<div class="question"><h3>Êtes-vous affilié(e) à l'AGESSA ?</h3>
       <div class="options" id="agessa-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'agessa-group')">Oui</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'agessa-group')">Non</button>
@@ -498,26 +498,26 @@ function buildStep5(){
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'cdi-prod-group')">Oui</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'cdi-prod-group')">Non</button>
     </div></div>
-    <div class="question"><h3>DÃ©veloppement Ã  l'international ?</h3>
+    <div class="question"><h3>Développement à l'international ?</h3>
     <div class="options" id="export-prod-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-prod-group')">Oui â salons pros, tournÃ©es export</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-prod-group')">Oui – salons pros, tournées export</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'export-prod-group')">Non</button>
     </div></div>
-    <div class="question"><h3>Votre structure est-elle en situation de fragilitÃ© Ã©conomique (avec potentiel de rebond) ?</h3>
-    <p>Exercises dÃ©ficitaires, fonds propres en baisse, trÃ©sorerie tendue â mais pas en cessation de paiement</p>
+    <div class="question"><h3>Votre structure est-elle en situation de fragilité économique (avec potentiel de rebond) ?</h3>
+    <p>Exercises déficitaires, fonds propres en baisse, trésorerie tendue – mais pas en cessation de paiement</p>
     <div class="options" id="fragilite-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'fragilite-group')">Oui â fragilitÃ© avÃ©rÃ©e, structure viable</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'fragilite-group')">Non â structure saine</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'fragilite-group')">Oui – fragilité avérée, structure viable</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'fragilite-group')">Non – structure saine</button>
     </div></div>`;
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Avez-vous un contrat de prÃ©fÃ©rence Ã©ditorial en cours avec vos A/C ?</h3>
+    html+=`<div class="question"><h3>Avez-vous un contrat de préférence éditorial en cours avec vos A/C ?</h3>
     <div class="options" id="contrat-pref-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'contrat-pref-group')">Oui</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'contrat-pref-group')">Non</button>
     </div></div>
-    <div class="question"><h3>DÃ©veloppement Ã  l'international ?</h3>
+    <div class="question"><h3>Développement à l'international ?</h3>
     <div class="options" id="export-edit-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-edit-group')">Oui</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'export-edit-group')">Non</button>
@@ -525,32 +525,32 @@ function buildStep5(){
   }
 
   if(profiles.includes('spectacle')){
-    html+=`<div class="question"><h3>Nombre de reprÃ©sentations prÃ©vues ?</h3>
+    html+=`<div class="question"><h3>Nombre de représentations prévues ?</h3>
     <div class="options" id="nb-reprs-group">
-      <button class="option-btn" data-value="plus8" onclick="selectOption(this,'nb-reprs-group')">8 reprÃ©sentations ou plus</button>
-      <button class="option-btn" data-value="plus6" onclick="selectOption(this,'nb-reprs-group')">6 Ã  7 reprÃ©sentations (5 jours min)</button>
-      <button class="option-btn" data-value="moins6" onclick="selectOption(this,'nb-reprs-group')">Moins de 6 reprÃ©sentations</button>
+      <button class="option-btn" data-value="plus8" onclick="selectOption(this,'nb-reprs-group')">8 représentations ou plus</button>
+      <button class="option-btn" data-value="plus6" onclick="selectOption(this,'nb-reprs-group')">6 à 7 représentations (5 jours min)</button>
+      <button class="option-btn" data-value="moins6" onclick="selectOption(this,'nb-reprs-group')">Moins de 6 représentations</button>
     </div></div>`;
-  html+=`<div class="question"><h3>Nombre d'artistes sur scÃ¨ne (pour toutes les dates) ?</h3>
+  html+=`<div class="question"><h3>Nombre d'artistes sur scène (pour toutes les dates) ?</h3>
     <div class="options" id="artistes-sv-group">
-    <button class="option-btn" data-value="8plus" onclick="selectOption(this,'artistes-sv-group')">8 artistes ou plus (taux SPEDIDAM majorÃ© 50%)</button>
+    <button class="option-btn" data-value="8plus" onclick="selectOption(this,'artistes-sv-group')">8 artistes ou plus (taux SPEDIDAM majoré 50%)</button>
     <button class="option-btn" data-value="moins8" onclick="selectOption(this,'artistes-sv-group')">Moins de 8 artistes (taux standard 40%)</button>
     </div></div>
-    <div class="question"><h3>DÃ©veloppement Ã  l'international ?</h3>
+    <div class="question"><h3>Développement à l'international ?</h3>
     <div class="options" id="export-sv-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-sv-group')">Oui â salons pros, tournÃ©es Ã  l'Ã©tranger</button>
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-sv-group')">Oui – salons pros, tournées à l'étranger</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'export-sv-group')">Non</button>
     </div></div>`;
   }
 
-  if(!html) html='<p style="color:#888">Aucun critÃ¨re Ã  vÃ©rifier.</p>';
+  if(!html) html='<p style="color:#888">Aucun critère à vérifier.</p>';
   document.getElementById('step5-content').innerHTML=html;
 }
 
 function validateStep(n){
   if(n===1){
     const vals=getCheckedValues('profil-group');
-    if(vals.length===0){alert('Veuillez sÃ©lectionner au moins un profil.');return;}
+    if(vals.length===0){alert('Veuillez sélectionner au moins un profil.');return;}
     answers.profil=vals;
     buildStep2();
     showStep(2);
@@ -670,11 +670,11 @@ function calculateResults() {
       aids.push(card(
         "Bourse Parcours Artiste",
         "ADAMI",
-        "JusquâÃ  4 000 â¬",
+        "Jusqu’à 4 000 €",
         "https://www.adami.fr/aides-creations/bourse-parcours-artiste/",
         "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-        ["Artiste-interprÃ¨te","ADAMI"],
-        "25 cachets minimum + 2 attestations de cours/stage de spÃ©cialisation requis"
+        ["Artiste-interprète","ADAMI"],
+        "25 cachets minimum + 2 attestations de cours/stage de spécialisation requis"
       ,
         "adami-bourse-artiste"
       ));;
@@ -685,11 +685,11 @@ function calculateResults() {
         aids.push(card(
           "Aide Production Enregistrement 2D (Licence)",
           "ADAMI",
-          "JusquâÃ  15 000 â¬ (20 000 â¬ si +20 artistes)",
+          "Jusqu’à 15 000 € (20 000 € si +20 artistes)",
           "https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-          ["Artiste-interprÃ¨te","ADAMI","Enregistrement","MA/Jazz/Monde"],
-          "PropriÃ©taire du master. â¥10 titres ou 40 min distribuÃ©s. Bonus +10% si membre SPPF."
+          ["Artiste-interprète","ADAMI","Enregistrement","MA/Jazz/Monde"],
+          "Propriétaire du master. ≥10 titres ou 40 min distribués. Bonus +10% si membre SPPF."
         ,
         "adami-enr-2d"
       ));;
@@ -699,11 +699,11 @@ function calculateResults() {
         aids.push(card(
           "Aide Production Enregistrement 3D (Distribution Directe)",
           "ADAMI",
-          "JusquâÃ  20 000 â¬ (25 000 â¬ si +20 artistes)",
+          "Jusqu’à 20 000 € (25 000 € si +20 artistes)",
           "https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-          ["Artiste-interprÃ¨te","ADAMI","Enregistrement","MA/Jazz/Monde"],
-          "Distribution directe professionnelle obligatoire (pas agrÃ©gateur pur). Bonus +10% si membre SPPF."
+          ["Artiste-interprète","ADAMI","Enregistrement","MA/Jazz/Monde"],
+          "Distribution directe professionnelle obligatoire (pas agrégateur pur). Bonus +10% si membre SPPF."
         ,
         "adami-enr-3d"
       ));;
@@ -717,11 +717,11 @@ function calculateResults() {
         aids.push(card(
           "Aide Projet Musical Global 365",
           "ADAMI",
-          "25 000 â¬ â 40 000 â¬",
+          "25 000 € – 40 000 €",
           "https://www.adami.fr/aides-creations/",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-          ["Artiste-interprÃ¨te","ADAMI","ConfirmÃ©","MA/Jazz/Monde/Classique"],
-          "CONTACT ADAMI OBLIGATOIRE avant tout dÃ©pÃ´t. 1 seule aide par artiste, jamais renouvelable. 3 volets minimum dont enregistrement obligatoire."
+          ["Artiste-interprète","ADAMI","Confirmé","MA/Jazz/Monde/Classique"],
+          "CONTACT ADAMI OBLIGATOIRE avant tout dépôt. 1 seule aide par artiste, jamais renouvelable. 3 volets minimum dont enregistrement obligatoire."
         ,
         "adami-global-365"
       ));;
@@ -732,25 +732,25 @@ function calculateResults() {
       const proj_artiste = answers.projartiste || '';
       if (proj_artiste === 'promo_image' || proj_artiste.includes('promo')) {
         aids.push(card(
-          "Aide Ã  la Promotion par lâImage (EPK/VidÃ©o promo)",
+          "Aide à la Promotion par l’Image (EPK/Vidéo promo)",
           "SPEDIDAM",
-          "80% des frais, max 2 500 â¬",
+          "80% des frais, max 2 500 €",
           "https://www.spedidam.fr/aides/",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-          ["Artiste-interprÃ¨te","SPEDIDAM","Image/VidÃ©o"],
-          "RÃ©alisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%)."
+          ["Artiste-interprète","SPEDIDAM","Image/Vidéo"],
+          "Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%)."
         ,
         "spedidam-image"
       ));;
       }
       if (export_artiste) {
         aids.push(card(
-          "Aide aux DÃ©placements Internationaux",
+          "Aide aux Déplacements Internationaux",
           "SPEDIDAM",
-          "750 â¬ (EEE) / 1 500 â¬ (hors EEE)",
+          "750 € (EEE) / 1 500 € (hors EEE)",
           "https://www.spedidam.fr/aides/",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-          ["Artiste-interprÃ¨te","SPEDIDAM","International"],
+          ["Artiste-interprète","SPEDIDAM","International"],
           "65% des billets pris en charge"
         ,
         "spedidam-international"
@@ -761,13 +761,13 @@ function calculateResults() {
     if (membre_sacem) {
       if ((autoprod === 'oui_1er' || autoprod === 'oui_2e' || autoprod === 'oui_3e') && env_pro) {
         aids.push(card(
-          "Aide Ã  lâAutoproduction de Projet Musical",
+          "Aide à l’Autoproduction de Projet Musical",
           "SACEM",
-          "5 000 â¬ (forfait fixe)",
+          "5 000 € (forfait fixe)",
           "https://aide-aux-projets.sacem.fr",
           "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
           ["Auteur-compositeur","SACEM","Autoproduction"],
-          "Artiste individuel (personne physique), adhÃ©rent SACEM (pas associÃ© professionnel/dÃ©finitif). â¥5 titres. Dossier dÃ©posÃ© APRÃS sortie intÃ©grale (dans les 6 mois). Environnement professionnel formalisÃ© obligatoire."
+          "Artiste individuel (personne physique), adhérent SACEM (pas associé professionnel/définitif). ≥5 titres. Dossier déposé APRÈS sortie intégrale (dans les 6 mois). Environnement professionnel formalisé obligatoire."
         ,
         "sacem-autoprod-artiste"
       ));;
@@ -776,24 +776,24 @@ function calculateResults() {
 
     if (agessa) {
       aids.push(card(
-        "Aide Ã  lâÃcriture et Ã  la Composition",
+        "Aide à l’Écriture et à la Composition",
         "CNM",
-        "2 000 â¬ â 10 000 â¬",
+        "2 000 € – 10 000 €",
         "https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/",
         "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-        ["Artiste-interprÃ¨te","CNM","Composition"],
-        "Personne physique. AffiliÃ© AGESSA/MDA. Membre SACEM."
+        ["Artiste-interprète","CNM","Composition"],
+        "Personne physique. Affilié AGESSA/MDA. Membre SACEM."
       ,
         "sacem-ecriture"
       ));;
       if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
         "Bourse Parcours Auteur-Compositeur",
         "CNM",
-        "20 000 â¬",
+        "20 000 €",
         "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
         "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
-        ["Artiste-interprÃ¨te","CNM","Composition"],
-        "Personne physique. CarriÃ¨re Ã©mergente confirmÃ©e."
+        ["Artiste-interprète","CNM","Composition"],
+        "Personne physique. Carrière émergente confirmée."
       ,
         "sacem-bourse-ac"
       ));; }
@@ -805,36 +805,36 @@ function calculateResults() {
     const autoprod_ac = answers.autoprod || '';
     const env_pro_ac = answers.env_pro === 'oui';
     aids.push(card(
-      "Aide Ã  lâÃcriture et Ã  la Composition",
+      "Aide à l’Écriture et à la Composition",
       "CNM",
-      "2 000 â¬ â 10 000 â¬",
+      "2 000 € – 10 000 €",
       "https://cnm.fr/aides-financieres/aide-a-lecriture-et-a-la-composition/",
       "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
       ["Auteur-compositeur","CNM","Composition"],
-      "Personne physique. AffiliÃ© AGESSA/MDA. Membre SACEM."
+      "Personne physique. Affilié AGESSA/MDA. Membre SACEM."
     ,
         "sacem-ecriture"
       ));;
     if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
       "Bourse Parcours Auteur-Compositeur",
       "CNM",
-      "20 000 â¬",
+      "20 000 €",
       "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
       "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
       ["Auteur-compositeur","CNM","Composition"],
-      "Personne physique. CarriÃ¨re Ã©mergente confirmÃ©e."
+      "Personne physique. Carrière émergente confirmée."
     ,
         "sacem-bourse-ac"
       ));; }
     if (membre_sacem_ac && (autoprod_ac === 'oui_1er' || autoprod_ac === 'oui_2e' || autoprod_ac === 'oui_3e') && env_pro_ac) {
       aids.push(card(
-        "Aide Ã  lâAutoproduction de Projet Musical",
+        "Aide à l’Autoproduction de Projet Musical",
         "SACEM",
-        "5 000 â¬ (forfait fixe)",
+        "5 000 € (forfait fixe)",
         "https://aide-aux-projets.sacem.fr",
         "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
         ["Auteur-compositeur","SACEM","Autoproduction"],
-        "AdhÃ©rent SACEM (pas associÃ© pro/dÃ©finitif). â¥5 titres. Dossier APRÃS sortie intÃ©grale (dans les 6 mois). Environnement pro formalisÃ© obligatoire."
+        "Adhérent SACEM (pas associé pro/définitif). ≥5 titres. Dossier APRÈS sortie intégrale (dans les 6 mois). Environnement pro formalisé obligatoire."
       ,
         "sacem-autoprod-artiste"
       ));;
@@ -855,61 +855,61 @@ function calculateResults() {
     const marketing = answers.proj_prod === 'marketing';
     if (struct_prod) {
       if (invest_phono && (ca_prod === 'plus100k' || ca_prod === '30k_100k') && (membre_scpp || membre_sppf)) {
-        aids.push(card("Aide Ã  la Production Phonographique","CNM","15 000 â¬ (MA/Jazz) / 20 000 â¬ (Classique)","https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique â¥30 000 â¬. Membre SCPP ou SPPF.",
+        aids.push(card("Aide à la Production Phonographique","CNM","15 000 € (MA/Jazz) / 20 000 € (Classique)","https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥30 000 €. Membre SCPP ou SPPF.",
         "cnm-prod-phono"
       ));;
       }
       if (invest_phono && (ca_prod === 'plus100k') && (membre_scpp || membre_sppf)) {
-        aids.push(card("Aide Ã  lâAuto-production Phonographique","CNM","JusquâÃ  350 000 â¬","https://cnm.fr/aides-financieres/aide-a-lauto-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique â¥50 000 â¬. Investissement phono (case 412). SCPP ou SPPF.",
+        aids.push(card("Aide à l’Auto-production Phonographique","CNM","Jusqu’à 350 000 €","https://cnm.fr/aides-financieres/aide-a-lauto-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥50 000 €. Investissement phono (case 412). SCPP ou SPPF.",
         "cnm-autoprod-phono"
       ));;
       }
       if (export_prod && (genre_p.includes('ma') || genre_p === '')) {
-        aids.push(card("DÃ©veloppement International MA â Tranche 1","CNM","400 â¬ â 25 000 â¬","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"Membre SCPP ou SPPF.",
+        aids.push(card("Développement International MA – Tranche 1","CNM","400 € – 25 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"Membre SCPP ou SPPF.",
         "cnm-di-ma-t1"
       ));;
-        aids.push(card("DÃ©veloppement International MA â Tranche 2","CNM","JusquâÃ  80 000 â¬","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"â¥500 000 streams. Membre SCPP ou SPPF.",
+        aids.push(card("Développement International MA – Tranche 2","CNM","Jusqu’à 80 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-international/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","MA"],"≥500 000 streams. Membre SCPP ou SPPF.",
         "cnm-di-ma-t2"
       ));;
       }
       if (export_prod && (genre_p.includes('jazz') || genre_p.includes('cj'))) {
-        aids.push(card("DÃ©veloppement International Jazz â Tranche 1","CNM","400 â¬ â 10 000 â¬","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"â¥1 000 followers. Membre SCPP ou SPPF.",
+        aids.push(card("Développement International Jazz – Tranche 1","CNM","400 € – 10 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"≥1 000 followers. Membre SCPP ou SPPF.",
         "cnm-di-jazz-t1"
       ));;
-        aids.push(card("DÃ©veloppement International Jazz â Tranche 2","CNM","10 000 â¬ â 50 000 â¬","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"â¥200 000 streams. Membre SCPP ou SPPF.",
+        aids.push(card("Développement International Jazz – Tranche 2","CNM","10 000 € – 50 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Jazz"],"≥200 000 streams. Membre SCPP ou SPPF.",
         "cnm-di-jazz-t2"
       ));;
       }
       if (export_prod && genre_p.includes('classique')) {
-        aids.push(card("DÃ©veloppement International Classique","CNM","DI1: 5 000â20 000 â¬ / DI2: 10 000â50 000 â¬","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Classique"],"Membre SCPP ou SPPF.",
+        aids.push(card("Développement International Classique","CNM","DI1: 5 000–20 000 € / DI2: 10 000–50 000 €","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International","Classique"],"Membre SCPP ou SPPF.",
         "cnm-di-classique"
       ));;
       }
       if (export_prod) {
-        aids.push(card("Aide Ã  la MobilitÃ© Individuelle Internationale","CNM","800 â¬ (EEE) / 1 400 â¬ (hors EEE)","https://cnm.fr/aides-financieres/aide-a-la-mobilite-internationale/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International"],"Toutes esthÃ©tiques.",
+        aids.push(card("Aide à la Mobilité Individuelle Internationale","CNM","800 € (EEE) / 1 400 € (hors EEE)","https://cnm.fr/aides-financieres/aide-a-la-mobilite-internationale/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","International"],"Toutes esthétiques.",
         "cnm-mobilite"
       ));;
       }
       if (videomusique) {
-        aids.push(card("Aide Ã  la Musique en Images (clip vidÃ©o)","CNM","30% des coÃ»ts, max 15 000 â¬/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Clip VidÃ©o"],"Label ou Ã©diteur. Membre SCPP ou SPPF.",
+        aids.push(card("Aide à la Musique en Images (clip vidéo)","CNM","30% des coûts, max 15 000 €/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Clip Vidéo"],"Label ou éditeur. Membre SCPP ou SPPF.",
         "cnm-mei"
       ));;
       }
       if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3ans' && answers.activite_musicale === 'oui') {
-        aids.push(card("DÃ©veloppement Ãconomique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 â¬","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 â¬. Au moins 1 CDI. â¥80% activitÃ© musicale.",
+        aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.",
         "cnm-art84"
       ));;
       }
       if (fragilite) {
-        aids.push(card("Aide Ã  la Restructuration Ãconomique","CNM","25% des charges, max 200 000 â¬","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale","Restructuration"],"PME fragilitÃ© avÃ©rÃ©e (hors cessation de paiement/procÃ©dure collective). â¥3 ans. â¥80% activitÃ© CNM. Minimis. NON cumulable avec Art.84 sur le mÃªme exercice.",
+        aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale","Restructuration"],"PME fragilité avérée (hors cessation de paiement/procédure collective). ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.",
         "cnm-restructuration"
       ));;
       }
       if (membre_scpp) {
-        aids.push(card("Aide Ã  la CrÃ©ation Phonographique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/Soutien-a-la-creation/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Phonogramme"],"Membre SCPP uniquement.",
+        aids.push(card("Aide à la Création Phonographique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/Soutien-a-la-creation/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Phonogramme"],"Membre SCPP uniquement.",
         "scpp-creation"
       ));;
-        if (videomusique) { aids.push(card("Aide Ã  la VidÃ©omusique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Clip VidÃ©o"],"Membre SCPP uniquement.",
+        if (videomusique) { aids.push(card("Aide à la Vidéomusique","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Clip Vidéo"],"Membre SCPP uniquement.",
         "scpp-videomusicale"
       ));; }
         if (marketing) { aids.push(card("Aide Marketing / Promotion","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Marketing"],"Membre SCPP uniquement.",
@@ -918,29 +918,29 @@ function calculateResults() {
         aids.push(card("Aide au Showcase","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","Showcase"],"Membre SCPP uniquement.",
         "scpp-showcase"
       ));;
-        if (export_prod) { aids.push(card("Aide Ã  la Formation Artiste / ScÃ¨ne Internationale","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","International"],"Membre SCPP uniquement.",
+        if (export_prod) { aids.push(card("Aide à la Formation Artiste / Scène Internationale","SCPP","Variable selon dossier","https://www.scpp.fr/SCPP/Portail/Aides-et-actions/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SCPP","International"],"Membre SCPP uniquement.",
         "scpp-formation"
       ));; }
       }
       if (membre_sppf) {
-        aids.push(card("Aide Ã  lâEnregistrement dâAlbum","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Enregistrement"],"Membre SPPF uniquement.","sppf-enregistrement",
+        aids.push(card("Aide à l’Enregistrement d’Album","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Enregistrement"],"Membre SPPF uniquement.","sppf-enregistrement",
         "sppf-enregistrement"
       ));;
-        if (videomusique) { aids.push(card("Aide Ã  la VidÃ©omusique","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Clip VidÃ©o"],"Membre SPPF uniquement.","sppf-videomusicale",
+        if (videomusique) { aids.push(card("Aide à la Vidéomusique","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Clip Vidéo"],"Membre SPPF uniquement.","sppf-videomusicale",
         "sppf-videomusicale"
       ));; }
         aids.push(card("Aide aux Showcases","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","Showcase"],"Membre SPPF uniquement.","sppf-showcase",
         "sppf-showcase"
       ));;
-        if (export_prod) { aids.push(card("Aide Genre et RÃ©pertoire Musical (GRM) / International","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","International"],"Membre SPPF uniquement.","sppf-grm",
+        if (export_prod) { aids.push(card("Aide Genre et Répertoire Musical (GRM) / International","SPPF","Variable selon dossier","https://www.sppf.com/aides-sppf/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPPF","International"],"Membre SPPF uniquement.","sppf-grm",
         "sppf-grm"
       ));; }
-        if (invest_phono) { aids.push(card("Bonification CroisÃ©e ADAMI/SPPF","ADAMI + SPPF","Bonification de +10% sur aide ADAMI production","https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","ADAMI","SPPF"],"Applicable sur les aides ADAMI 2D/3D si label membre SPPF.",
+        if (invest_phono) { aids.push(card("Bonification Croisée ADAMI/SPPF","ADAMI + SPPF","Bonification de +10% sur aide ADAMI production","https://www.adami.fr/aides-creations/aide-a-la-production-denregistrement/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","ADAMI","SPPF"],"Applicable sur les aides ADAMI 2D/3D si label membre SPPF.",
         "adami-sppf-bonif"
       ));; }
       }
       if (answers.proj_prod === 'promo_image') {
-        aids.push(card("Aide Ã  la Promotion par lâImage (EPK/VidÃ©o promo)","SPEDIDAM","80% des frais, max 2 500 â¬","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPEDIDAM","Image/VidÃ©o"],"RÃ©alisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). VidÃ©o promo/EPK UNIQUEMENT (pas clip musical).",
+        aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).",
         "spedidam-image"
       ));;
       }
@@ -958,44 +958,44 @@ function calculateResults() {
     const clip_edit = answers.clip_edit === 'oui';
     const ca_edit = answers.ca_edit || '';
     if (struct_edit && droits_sacem !== 'moins4k') {
-      aids.push(card("Aide au DÃ©veloppement Ãditorial","CNM","45% des dÃ©penses, max 25 000 â¬/projet","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","DÃ©veloppement Ãditorial"],"Ãditeur original. Personne morale. CA Ã©ditorial >50%.","cnm-dev-editorial",
+      aids.push(card("Aide au Développement Éditorial","CNM","45% des dépenses, max 25 000 €/projet","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Développement Éditorial"],"Éditeur original. Personne morale. CA éditorial >50%.","cnm-dev-editorial",
         "cnm-dev-editorial"
       ));;
       if (genre_edit.includes('jazz') || genre_edit.includes('cj') || genre_edit.includes('classique')) {
-        aids.push(card("DÃ©veloppement Ãditorial Contemporain & Jazz","CNM","45% des dÃ©penses","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","Jazz","Contemporain","Classique"],"Volet spÃ©cifique Jazz / Musique Contemporaine / Classique.",
+        aids.push(card("Développement Éditorial Contemporain & Jazz","CNM","45% des dépenses","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Jazz","Contemporain","Classique"],"Volet spécifique Jazz / Musique Contemporaine / Classique.",
         "cnm-dev-editorial-jazz"
       ));;
       }
       if (clip_edit || videomusique_edit) {
-        aids.push(card("Aide Ã  la Musique en Images (clip vidÃ©o)","CNM","30% des coÃ»ts, max 15 000 â¬/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","Clip VidÃ©o"],"Label ou Ã©diteur.","cnm-mei",
+        aids.push(card("Aide à la Musique en Images (clip vidéo)","CNM","30% des coûts, max 15 000 €/clip","https://cnm.fr/aides-financieres/aide-a-la-musique-en-images/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Clip Vidéo"],"Label ou éditeur.","cnm-mei",
         "cnm-mei"
       ));;
       }
       if (struct_edit && answers.sacem_edit === 'oui') {
-        aids.push(card("DÃ©veloppement Ãconomique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 â¬","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","PME Musicale"],"PME musicale. CA>100 000 â¬. Au moins 1 CDI. â¥80% activitÃ© musicale.",
+        aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.",
         "cnm-art84"
       ));;
       }
       if (fragilite_edit) {
-        aids.push(card("Aide Ã  la Restructuration Ãconomique","CNM","25% des charges, max 200 000 â¬","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","PME Musicale","Restructuration"],"PME fragilitÃ© avÃ©rÃ©e. â¥3 ans. â¥80% activitÃ© CNM. Minimis. NON cumulable avec Art.84 sur le mÃªme exercice.",
+        aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","PME Musicale","Restructuration"],"PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.",
         "cnm-restructuration"
       ));;
       }
       if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k_moy') && contrat_pref) {
-        aids.push(card("DÃ©veloppement Ãditorial MA â V1 (DÃ©veloppement A/C)","SACEM","Max 10 000 â¬ (50% des dÃ©penses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","SACEM","MA","DÃ©veloppement Ãditorial"],"Ãditeur MA. â¥5 000 â¬ droits SACEM en moyenne sur 2 ans. Plusieurs A/C au catalogue. Contrat de prÃ©fÃ©rence signÃ©.","sacem-dev-v1",
+        aids.push(card("Développement Éditorial MA – V1 (Développement A/C)","SACEM","Max 10 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Développement Éditorial"],"Éditeur MA. ≥5 000 € droits SACEM en moyenne sur 2 ans. Plusieurs A/C au catalogue. Contrat de préférence signé.","sacem-dev-v1",
         "sacem-dev-v1"
       ));;
       }
       if ((genre_edit.includes('ma') || genre_edit.includes('cj') || genre_edit === '') && (droits_sacem === 'plus5k_moy') && valorisation) {
-        aids.push(card("DÃ©veloppement Ãditorial MA â V2 (Valorisation Patrimoniale)","SACEM","Max 15 000 â¬ (50% des dÃ©penses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","SACEM","MA","Patrimoine"],"Catalogue â¥10 ans. Projet anniversaire, anthologie, compilations. â¥5 000 â¬ droits SACEM en moyenne sur 2 ans.","sacem-dev-v2",
+        aids.push(card("Développement Éditorial MA – V2 (Valorisation Patrimoniale)","SACEM","Max 15 000 € (50% des dépenses)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","SACEM","MA","Patrimoine"],"Catalogue ≥10 ans. Projet anniversaire, anthologie, compilations. ≥5 000 € droits SACEM en moyenne sur 2 ans.","sacem-dev-v2",
         "sacem-dev-v2"
       ));;
       }
-      aids.push(card("CrÃ©dit dâImpÃ´t pour les Ãditeurs de Musique (CIEM)","Ãtat (ImpÃ´ts)","15% â 30% des dÃ©penses Ã©ligibles","https://cnm.fr/aides-financieres/credit-dimpot-pour-les-editeurs-de-musique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","Fiscal","CIEM"],"Ãditeur original. Personne morale imposable en France. Se dÃ©clare lors de la liasse fiscale.","ciem",
+      aids.push(card("Crédit d’Impôt pour les Éditeurs de Musique (CIEM)","État (Impôts)","15% – 30% des dépenses éligibles","https://cnm.fr/aides-financieres/credit-dimpot-pour-les-editeurs-de-musique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","Fiscal","CIEM"],"Éditeur original. Personne morale imposable en France. Se déclare lors de la liasse fiscale.","ciem",
         "ciem"
       ));;
       if (export_edit) {
-        aids.push(card("Aides Ã  lâExport / DÃ©veloppement International","CNM","Variable (voir aides DI)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Ãditeur","CNM","International"],"Consulter les fiches DI selon lâesthÃ©tique.",
+        aids.push(card("Aides à l’Export / Développement International","CNM","Variable (voir aides DI)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","International"],"Consulter les fiches DI selon l’esthétique.",
         "cnm-export-editeur"
       ));;
       }
@@ -1014,53 +1014,53 @@ function calculateResults() {
     const premiere_partie = proj_sv === 'premiere_partie' || answers.premiere_partie === 'oui';
     const nb_reprs = answers.nb_reprs || '';
     if (licence_sv === 'licence2' || licence_sv === 'les_deux') {
-      aids.push(card("Aide Ã  la CrÃ©ation de Spectacle Vivant Musical","CNM","JusquâÃ  75 000 â¬","https://cnm.fr/aides-financieres/aide-a-la-creation-de-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","CrÃ©ation"],"Licence entrepreneur de spectacles cat.2. Minimum 8 reprÃ©sentations.",
+      aids.push(card("Aide à la Création de Spectacle Vivant Musical","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-a-la-creation-de-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Création"],"Licence entrepreneur de spectacles cat.2. Minimum 8 représentations.",
         "cnm-spectacle-creation"
       ));;
-      aids.push(card("Aide Ã  la Production et Diffusion de Spectacle Vivant","CNM","JusquâÃ  75 000 â¬","https://cnm.fr/aides-financieres/aide-a-la-production-et-diffusion/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.2.",
+      aids.push(card("Aide à la Production et Diffusion de Spectacle Vivant","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-a-la-production-et-diffusion/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.2.",
         "cnm-spectacle-prod"
       ));;
-      aids.push(card("CrÃ©dit dâImpÃ´t Spectacle Vivant (CISV)","Ãtat / CNM","30% des dÃ©penses (PME/TPE), max 500 000 â¬/spectacle","https://cnm.fr/aides-financieres/credit-dimpot-pour-le-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","Fiscal","CISV"],"Licence cat.2. TPE/PME imposables en France.",
+      aids.push(card("Crédit d’Impôt Spectacle Vivant (CISV)","État / CNM","30% des dépenses (PME/TPE), max 500 000 €/spectacle","https://cnm.fr/aides-financieres/credit-dimpot-pour-le-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","Fiscal","CISV"],"Licence cat.2. TPE/PME imposables en France.",
         "cisv"
       ));;
-      aids.push(card("Droit de Tirage (aide automatique)","CNM","60% de la taxe sur les spectacles reversÃ©e","https://cnm.fr/aides-financieres/droit-de-tirage/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Automatique"],"Aide automatique basÃ©e sur la taxe versÃ©e. Licence cat.2.",
+      aids.push(card("Droit de Tirage (aide automatique)","CNM","60% de la taxe sur les spectacles reversée","https://cnm.fr/aides-financieres/droit-de-tirage/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Automatique"],"Aide automatique basée sur la taxe versée. Licence cat.2.",
         "cnm-droit-tirage"
       ));;
       if (spectacle_creation && answers.membre === 'sacem_adherent') {
-        aids.push(card("Aide Ã  la CrÃ©ation de Spectacle Musical","SACEM","Max 15 000 â¬ (double flÃ©chage A/C + Producteur)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SACEM","CrÃ©ation"],"Spectacle â¥60 min avec narration et mise en scÃ¨ne (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT premiÃ¨re reprÃ©sentation publique.",
+        aids.push(card("Aide à la Création de Spectacle Musical","SACEM","Max 15 000 € (double fléchage A/C + Producteur)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SACEM","Création"],"Spectacle ≥60 min avec narration et mise en scène (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT première représentation publique.",
         "cnm-creation-spectacle-musical"
       ));;
       }
       if (premiere_partie) {
-        aids.push(card("Aide PremiÃ¨re Partie Musique","ADAMI","70% salaires bruts (plafond 300 â¬/cachet) + 250 â¬/reprÃ©sentation, max 6 000 â¬","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","PremiÃ¨re Partie"],"3 reprÃ©sentations min. Salles >250 places. DurÃ©e 20-45 min. Cession <750 â¬ HT (non symbolique). Festivals exclus. Exclusif CNM sur mÃªmes dates.",
+        aids.push(card("Aide Première Partie Musique","ADAMI","70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
         "cnm-premiere-partie"
       ));;
       }
     }
     if (licence_sv === 'licence3' || licence_sv === 'les_deux') {
-      aids.push(card("Aide aux Promoteurs et Diffuseurs de Spectacles","CNM","JusquâÃ  75 000 â¬","https://cnm.fr/aides-financieres/aide-aux-promoteurs-et-diffuseurs/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.3.",
+      aids.push(card("Aide aux Promoteurs et Diffuseurs de Spectacles","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-aux-promoteurs-et-diffuseurs/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Diffusion"],"Licence entrepreneur de spectacles cat.3.",
         "cnm-promoteurs"
       ));;
     }
     const nb_ok = nb_reprs === 'plus6' || nb_reprs === 'plus8';
     if (nb_ok) {
       const taux_spedidam = artistes_sv === '8plus' ? "50%" : "40%";
-      aids.push(card("Aide au Spectacle Musical","SPEDIDAM",taux_spedidam + " du coÃ»t employeur (seuil min 6 000 â¬)","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Spectacle"],"6 reprÃ©sentations minimum sur 5 jours (4 jours si â¥8 artistes). 50% si â¥8 artistes sur TOUTES les dates. Logo SPEDIDAM requis (sinon -20%). Max 10 rÃ©pÃ©titions. PÃ©riode â¤6 mois.",
+      aids.push(card("Aide au Spectacle Musical","SPEDIDAM",taux_spedidam + " du coût employeur (seuil min 6 000 €)","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Spectacle"],"6 représentations minimum sur 5 jours (4 jours si ≥8 artistes). 50% si ≥8 artistes sur TOUTES les dates. Logo SPEDIDAM requis (sinon -20%). Max 10 répétitions. Période ≤6 mois.",
         "cnm-spectacle-musical"
       ));;
     }
     if (promo_image_sv) {
-      aids.push(card("Aide Ã  la Promotion par lâImage (EPK/VidÃ©o promo)","SPEDIDAM","80% des frais, max 2 500 â¬","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Image/VidÃ©o"],"RÃ©alisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). VidÃ©o promo/EPK UNIQUEMENT (pas clip musical).",
+      aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).",
         "spedidam-image-jazz"
       ));;
     }
     if (fragilite_sv) {
-      aids.push(card("Aide Ã  la Restructuration Ãconomique","CNM","25% des charges, max 200 000 â¬","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Restructuration"],"PME fragilitÃ© avÃ©rÃ©e. â¥3 ans. â¥80% activitÃ© CNM. Minimis. NON cumulable avec Art.84 sur le mÃªme exercice.",
+      aids.push(card("Aide à la Restructuration Économique","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-a-la-restructuration-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Restructuration"],"PME fragilité avérée. ≥3 ans. ≥80% activité CNM. Minimis. NON cumulable avec Art.84 sur le même exercice.",
         "cnm-restructuration-jazz"
       ));;
     }
     if (export_sv && (genre_s.includes('jazz') || genre_s.includes('cj'))) {
-      aids.push(card("Aide Ã  la MobilitÃ© Jazz Internationale","CNM","800 â¬ (EEE) / 1 400 â¬ (hors EEE)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Jazz","International"],"EsthÃ©tique Jazz.",
+      aids.push(card("Aide à la Mobilité Jazz Internationale","CNM","800 € (EEE) / 1 400 € (hors EEE)","https://cnm.fr/aides-financieres/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Jazz","International"],"Esthétique Jazz.",
         "cnm-mobilite-jazz"
       ));;
     }
@@ -1070,13 +1070,13 @@ function calculateResults() {
   if (!container) return;
 
   if (aids.length === 0) {
-    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiÃ©e</h3><p>Selon vos rÃ©ponses, aucune aide ne correspond exactement Ã  votre profil actuel.<br>Consultez directement : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
+    container.innerHTML = '<div class="no-results"><h3>Aucune aide identifiée</h3><p>Selon vos réponses, aucune aide ne correspond exactement à votre profil actuel.<br>Consultez directement : <a href="https://cnm.fr" target="_blank">CNM</a>, <a href="https://www.adami.fr" target="_blank">ADAMI</a>, <a href="https://www.spedidam.fr" target="_blank">SPEDIDAM</a>, <a href="https://aide-aux-projets.sacem.fr" target="_blank">SACEM</a></p></div>';
     return;
   }
 
   // Group by org
   const orgs = {};
-  const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','Ãtat (ImpÃ´ts)','Ãtat / CNM','Autres'];
+  const orgOrder = ['CNM','ADAMI','SPEDIDAM','SACEM','SCPP','SPPF','ADAMI + SPPF','État (Impôts)','État / CNM','Autres'];
   aids.forEach(function(html) {
     const orgMatch = html.match(/class="aid-org">([^<]+)<\/span>/);
     const org = orgMatch ? orgMatch[1] : 'Autres';
@@ -1085,7 +1085,7 @@ function calculateResults() {
   });
 
   // Summary banner
-  let html = '<div class="results-summary"><div class="results-summary-icon">â</div><div class="results-summary-text"><strong>Aides identifiÃ©es pour votre profil</strong><span>Cliquez sur chaque carte pour accÃ©der aux dÃ©tails et monter votre dossier</span></div><div class="results-count">'+aids.length+'</div></div>';
+  let html = '<div class="results-summary"><div class="results-summary-icon">✓</div><div class="results-summary-text"><strong>Aides identifiées pour votre profil</strong><span>Cliquez sur chaque carte pour accéder aux détails et monter votre dossier</span></div><div class="results-count">'+aids.length+'</div></div>';
 
   // Sections by org
   orgOrder.forEach(function(org) {
@@ -1104,7 +1104,7 @@ function calculateResults() {
   });
 
   // Footer
-  html += '<div class="results-footer"><p>â ï¸ Ce test est indicatif. VÃ©rifiez les critÃ¨res complets sur les sites officiels avant de dÃ©poser un dossier.</p><button onclick="location.reload()" class="btn-restart">âº Recommencer le test</button></div>';
+  html += '<div class="results-footer"><p>⚠️ Ce test est indicatif. Vérifiez les critères complets sur les sites officiels avant de déposer un dossier.</p><button onclick="location.reload()" class="btn-restart">↺ Recommencer le test</button></div>';
 
   container.innerHTML = html;
 
