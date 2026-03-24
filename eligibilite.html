@@ -88,8 +88,8 @@ header span{color:var(--gris-texte)}
 .aid-actions{display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.06);margin-top:14px}
 .aid-actions a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:11px 16px;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px;border-right:1px solid rgba(255,255,255,0.06)}
 .aid-actions a:last-child{border-right:none}
-.btn-fiche{color:rgba(255,255,255,0.6);background:transparent}
-.btn-fiche:hover{color:var(--blanc);background:rgba(255,255,255,0.05)}
+
+
 .btn-site{color:rgba(255,255,255,0.45);background:transparent}
 .btn-site:hover{color:var(--blanc);background:rgba(255,255,255,0.05)}
 .btn-dossier{color:var(--rouge)!important;background:rgba(232,0,29,0.06)!important;margin-left:auto;border-left:1px solid rgba(232,0,29,0.2)!important;font-weight:600}
@@ -640,7 +640,7 @@ function calculateResults() {
     const tagHtml = (tags||[]).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
     const noteHtml = note ? '<p class="aid-note">'+note+'</p>' : '';
     const dossierBtn = dossierId ? '<a href="dossier.html?aide='+dossierId+'" class="btn-dossier">&#x1F4CB;&nbsp;Monter mon dossier &#x2192;</a>' : '';
-    return '<div class="aid-card"><div class="aid-card-inner"><div class="aid-header"><span class="aid-org">'+org+'</span><span class="aid-amount">'+amount+'</span></div><div class="aid-name">'+name+'</div><div class="aid-tags">'+tagHtml+'</div>'+noteHtml+'</div><div class="aid-actions"><a href="'+fiche+'" target="_blank" class="btn-fiche">&#x1F4C4;&nbsp;Voir la fiche</a><a href="'+url+'" target="_blank" class="btn-site">&#x1F310;&nbsp;Site officiel</a>'+dossierBtn+'</div></div>';
+    return '<div class="aid-card"><div class="aid-card-inner"><div class="aid-header"><span class="aid-org">'+org+'</span><span class="aid-amount">'+amount+'</span></div><div class="aid-name">'+name+'</div><div class="aid-tags">'+tagHtml+'</div>'+noteHtml+'</div><div class="aid-actions"><a href="'+fiche+dossierBtn+'</div></div>';
   }
 
   const genre = answers.genre || answers.genre_artiste || '';
