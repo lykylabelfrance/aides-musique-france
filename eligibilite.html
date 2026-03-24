@@ -633,7 +633,9 @@ function validateStep(n){
       answers.ca_edit=getSelectedOption('ca-edit-group');
     }
     if(profiles.includes('spectacle')){answers.licence_sv=getSelectedOption('licence-sv-group');}
-    buildStep3();
+    if((answers.membre||[]).includes('non_membre')){calculateResults();showStep(6);return;}
+  if(answers.org_prod==='non' && (getProfiles().includes('producteur'))){calculateResults();showStep(6);return;}
+  buildStep3();
     showStep(3);
     return;
   }
