@@ -339,16 +339,14 @@ function buildStep3(){
   let html='';
 
   if(profiles.includes('artiste') && !profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Type de projet artistique</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
-    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
-    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
-    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
-    </div></div>`;
+    html+=`<div class="question"><h3>Genre musical principal de votre catalogue</h3>
+    <div class="options" id="genre-group">
+    <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop…</button>
+    <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
+    <button class="option-btn" data-value="classique" onclick="selectOption(this,'genre-group')">Musique classique / contemporaine</button>
+    <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
+    <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-group')">Autre</button>
+    </div></div>`
   }
   if(profiles.includes('auteur') && !profiles.includes('artiste')){
     // Auteur seul step3 : genre + droits SACEM + autoprod
@@ -542,6 +540,12 @@ function buildStep5(){
       <button class="option-btn" data-value="licence" onclick="selectOption(this,'adami-contrat-group')">Contrat de licence avec un label (→ ADAMI 2D)</button>
       <button class="option-btn" data-value="distribution" onclick="selectOption(this,'adami-contrat-group')">Contrat de distribution directe pro (→ ADAMI 3D, inclut promo)</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-contrat-group')">Pas encore de contrat</button>
+      </div></div>
+      <div class="question"><h3>Quel est le montant annuel de vos droits ADAMI perçus ?</h3>
+      <div class="options" id="droits-adami-group">
+      <button class="option-btn" data-value="moins300" onclick="selectOption(this,'droits-adami-group')">Moins de 300 €</button>
+      <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
+      <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">Plus de 5 000 €</button>
       </div></div>`;
     }
     if(answers.membre==='spedidam'){
@@ -558,6 +562,11 @@ function buildStep5(){
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
+      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu’auteur-compositeur ?</h3>
+      <div class="options" id="droits-sacem-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j’ai des droits SACEM déclarés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
+      </div></div>`
     }
     if(answers.projartiste==='ecriture'||answers.projartiste==='enregistrement'){
       html+=`<div class="question"><h3>Êtes-vous affilié(e) à l'AGESSA ?</h3>
