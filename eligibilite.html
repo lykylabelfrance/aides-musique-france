@@ -145,7 +145,7 @@ header span{color:var(--gris-texte)}
 
 <!-- STEP 2 -->
 <div class="step" id="step2">
-<div class="step-header"><div class="step-num">2</div><div class="step-title">Votre structure</div></div>
+<div class="step-header"><div class="step-num">2</div><div class="step-title">Vos adhésions</div></div>
 <div id="step2-content"></div>
 <button class="btn-secondary" onclick="goBack(2)">← Retour</button>
 <button class="btn" onclick="validateStep(2)">Continuer →</button>
@@ -241,37 +241,37 @@ function buildStep2(){
 
   if(profiles.includes('artiste') && !profiles.includes('auteur')){
     // Artiste seul : ADAMI, SPEDIDAM, SACEM ou non membre
-    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits voisins ?</h3>
-    <div class="options" id="membre-group">
-    <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (artiste-interprète)</button>
-    <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (artiste-interprète)</button>
-    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre</button>
+    html+=`<div class="question"><h3>Vos adhésions à une société de droits voisins <small>(plusieurs choix possibles)</small></h3>
+    <div class="checkbox-group" id="membre-group">
+    <div class="check-option" data-value="adami" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>ADAMI</strong><span>Droits voisins – interprétation</span></div></div>
+    <div class="check-option" data-value="spedidam" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SPEDIDAM</strong><span>Droits voisins – interprétation</span></div></div>
+    <div class="check-option" data-value="non_membre" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>Non membre</strong><span>Pas encore affilié(e)</span></div></div>
     </div></div>`;
   }
   if(profiles.includes('auteur') && !profiles.includes('artiste')){
     // Auteur seul : SACEM uniquement
     html+=`<div class="question"><h3>Êtes-vous membre de la SACEM ?</h3>
-    <div class="options" id="membre-group">
-    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">Oui – statut adhérent (émergent)</button>
-    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">Oui – statut professionnel / définitif</button>
-    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non – pas encore membre SACEM</button>
+    <div class="checkbox-group" id="membre-group">
+    <div class="check-option" data-value="sacem_adherent" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SACEM – adhérent</strong><span>Statut émergent</span></div></div>
+    <div class="check-option" data-value="sacem_pro" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SACEM – professionnel</strong><span>Statut définitif</span></div></div>
+    <div class="check-option" data-value="non_membre" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>Non membre SACEM</strong><span>Pas encore adhérent(e)</span></div></div>
     </div></div>`;
   }
   if(profiles.includes('artiste') && profiles.includes('auteur')){
     // Les deux : toutes les sociétés possibles
-    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits ?</h3>
+    html+=`<div class="question"><h3>Vos adhésions à une société de droits <small>(plusieurs choix possibles)</small></h3>
     <p>En tant qu'artiste-interprète ET auteur-compositeur, vous pouvez être membre de plusieurs sociétés.</p>
-    <div class="options" id="membre-group">
-    <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (droits voisins – interprétation)</button>
-    <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (droits voisins – interprétation)</button>
-    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM – statut adhérent (droits d'auteur)</button>
-    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM – statut professionnel/définitif (droits d'auteur)</button>
-    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre / en cours d'adhésion</button>
+    <div class="checkbox-group" id="membre-group">
+    <div class="check-option" data-value="adami" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>ADAMI</strong><span>Droits voisins – interprétation</span></div></div>
+    <div class="check-option" data-value="spedidam" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SPEDIDAM</strong><span>Droits voisins – interprétation</span></div></div>
+    <div class="check-option" data-value="sacem_adherent" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SACEM – adhérent</strong><span>Droits d'auteur</span></div></div>
+    <div class="check-option" data-value="sacem_pro" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>SACEM – professionnel</strong><span>Droits d'auteur</span></div></div>
+    <div class="check-option" data-value="non_membre" onclick="toggleCheck(this,'membre-group')"><div class="checkmark"></div><div class="check-label"><strong>Non membre</strong><span>En cours d'adhésion</span></div></div>
     </div></div>`;
   }
 
   if(profiles.includes('producteur')){
-    html+=`<div class="question"><h3>Votre structure juridique (Label)</h3>
+    html+=`<div class="question"><h3>Vos adhésions juridique (Label)</h3>
     <div class="options" id="struct-prod-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-prod-group')">Oui – SAS, SASU, SARL, EURL ou Association</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-prod-group')">Non – Pas encore de structure</button>
@@ -301,7 +301,7 @@ function buildStep2(){
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Votre structure d'édition</h3>
+    html+=`<div class="question"><h3>Vos adhésions d'édition</h3>
     <div class="options" id="struct-edit-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-edit-group')">Oui – Personne morale (SARL, SAS, SASU...)</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-edit-group')">Non – Pas de structure juridique</button>
@@ -356,7 +356,7 @@ function buildStep3(){
     <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
     <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-group')">Autre</button>
     </div></div>`;
-    if(answers.membre==='sacem_adherent'){
+    if((answers.membre||[]).includes('sacem_adherent')){
       html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu'auteur-compositeur ?</h3>
       <div class="options" id="droits-sacem-ac-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j'ai des droits SACEM déclarés</button>
@@ -515,7 +515,7 @@ function buildStep5(){
   let html='';
 
   if(profiles.includes('artiste')||profiles.includes('auteur')){
-    if(answers.membre==='adami'){
+    if((answers.membre||[]).includes('adami')){
             html+=`<div class="question"><h3>Avez-vous au moins 25 cachets de spectacle vivant déclarés à l'ADAMI sur les 3 dernières années ?</h3>
       <p>Cachets justifiables par bulletins de salaire ou contrats de travail d'artiste (hors enregistrements studio)</p>
       <div class="options" id="adami-cachets-group">
@@ -536,7 +536,7 @@ function buildStep5(){
       <div class="question"><h3>Type de contrat d'exploitation pour votre prochain enregistrement ?</h3>
       <div class="options" id="adami-contrat-group">
       <button class="option-btn" data-value="licence" onclick="selectOption(this,'adami-contrat-group')">Contrat de licence avec un label (→ ADAMI 2D)</button>
-      <button class="option-btn" data-value="distribution" onclick="selectOption(this,'adami-contrat-group')">Contrat de distribution directe pro (→ ADAMI 3D, inclut promo)</button>
+      <button class="option-btn" data-value="distribution" onclick="selectOption(this,'adami-contrat-group')">Contrat de distribution directe pro, hors agrégateur (→ ADAMI 3D, inclut promo)</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-contrat-group')">Pas encore de contrat</button>
       </div></div>
       <div class="question"><h3>Quel est le montant annuel de vos droits ADAMI perçus ?</h3>
@@ -557,45 +557,22 @@ function buildStep5(){
       <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
     }
-    if(answers.membre==='spedidam'){
+    if((answers.membre||[]).includes('spedidam')){
       html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
       <div class="options" id="export-artiste-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui – déplacements pour salons/concerts à l'étranger</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'export-artiste-group')">Non</button>
       </div></div>`;
     }
-    if(answers.membre==='sacem_adherent'){
+    if((answers.membre||[]).includes('sacem_adherent')){
       html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
       <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
       <div class="options" id="env-pro-group">
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
       </div></div>`;
-      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu’auteur-compositeur ?</h3>
-      <div class="options" id="droits-sacem-ac-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j’ai des droits SACEM déclarés</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
-      </div></div>`
-    }
-    if(answers.membre==='sacem_pro'){
-      html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
-      <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
-      <div class="options" id="env-pro-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
-      </div></div>`;
-      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu’auteur-compositeur ?</h3>
-      <div class="options" id="droits-sacem-ac-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j’ai des droits SACEM déclarés</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
-      </div></div>`
-    }
-    if((answers.projartiste||[]).includes('ecriture')||(answers.projartiste||[]).includes('enregistrement')){
-      html+=`<div class="question"><h3>Êtes-vous affilié(e) à l'AGESSA ?</h3>
-      <div class="options" id="agessa-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'agessa-group')">Oui</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'agessa-group')">Non</button>
-      </div></div>`;
+      
+      
     }
   }
 
@@ -610,7 +587,7 @@ function buildStep5(){
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-prod-group')">Oui – salons pros, tournées export</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'export-prod-group')">Non</button>
     </div></div>
-    <div class="question"><h3>Votre structure est-elle en situation de fragilité économique (avec potentiel de rebond) ?</h3>
+    <div class="question"><h3>Vos adhésions est-elle en situation de fragilité économique (avec potentiel de rebond) ?</h3>
     <p>Exercises déficitaires, fonds propres en baisse, trésorerie tendue – mais pas en cessation de paiement</p>
     <div class="options" id="fragilite-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'fragilite-group')">Oui – fragilité avérée, structure viable</button>
@@ -661,7 +638,7 @@ function validateStep(n){
   if(n===2){
     const profiles=getProfiles();
     // Collect step2 answers
-    if(profiles.includes('artiste')||profiles.includes('auteur')){answers.membre=getSelectedOption('membre-group')||'non_membre';}
+    if(profiles.includes('artiste')||profiles.includes('auteur')){answers.membre=getCheckedValues('membre-group')||'non_membre';}
     if(profiles.includes('producteur')){
       answers.struct_prod=getSelectedOption('struct-prod-group');
       answers.org_prod=getSelectedOption('org-prod-group');
@@ -681,7 +658,7 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       answers.genre=getSelectedOption('genre-group');
-      if(answers.membre==='sacem_adherent'){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
+      if((answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
       answers.genre_prod=getSelectedOption('genre-prod-group');
@@ -709,14 +686,14 @@ function validateStep(n){
   if(n===5){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
-      if(answers.membre==='adami'){
+      if((answers.membre||[]).includes('adami')){
         answers.adami_cachets=getSelectedOption('adami-cachets-group'); answers.adami_albums=getSelectedOption('adami-albums-group');
         answers.adami_concerts=getSelectedOption('adami-concerts-group');
         answers.adami_contrat=getSelectedOption('adami-contrat-group');
       }
-      if(answers.membre==='spedidam') answers.export_artiste=getSelectedOption('export-artiste-group');
-      if(answers.membre==='sacem_adherent') answers.env_pro=getSelectedOption('env-pro-group');
-      if(answers.membre==='adami'||answers.membre==='spedidam') answers.droits_adami=getSelectedOption('droits-adami-group');
+      if((answers.membre||[]).includes('spedidam')) answers.export_artiste=getSelectedOption('export-artiste-group');
+      if((answers.membre||[]).includes('sacem_adherent')) answers.env_pro=getSelectedOption('env-pro-group');
+      if((answers.membre||[]).includes('adami')||(answers.membre||[]).includes('spedidam')) answers.droits_adami=getSelectedOption('droits-adami-group');
       answers.agessa=getSelectedOption('agessa-group');
     }
     if(profiles.includes('producteur')){
@@ -756,9 +733,9 @@ function calculateResults() {
   const genre_edit = answers.genre_edit || genre || '';
 
   if (profiles.includes('artiste')) {
-    const membre_adami = answers.membre === 'adami';
-    const membre_spedidam = answers.membre === 'spedidam';
-    const membre_sacem = answers.membre === 'sacem_adherent' || answers.membre === 'sacem_pro';
+    const membre_adami = (answers.membre||[]).includes('adami');
+    const membre_spedidam = (answers.membre||[]).includes('spedidam');
+    const membre_sacem = (answers.membre||[]).includes('sacem_adherent') || (answers.membre||[]).includes('sacem_pro');
     const droits_adami = answers.droits_adami || '';
     const adami_albums = answers.adami_albums || '';
     const adami_concerts = answers.adami_concerts || '';
@@ -878,7 +855,7 @@ function calculateResults() {
   }
 
     if (profiles.includes('auteur')) {
-    const membre_sacem_ac = answers.membre === 'sacem_adherent';
+    const membre_sacem_ac = (answers.membre||[]).includes('sacem_adherent');
     const autoprod_ac = answers.autoprod || '';
     const env_pro_ac = answers.env_pro === 'oui';
     aids.push(card(
@@ -1103,7 +1080,7 @@ function calculateResults() {
       aids.push(card("Droit de Tirage (aide automatique)","CNM","60% de la taxe sur les spectacles reversée","https://cnm.fr/aides-financieres/droit-de-tirage/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Automatique"],"Aide automatique basée sur la taxe versée. Licence cat.2.",
         "cnm-droit-tirage"
       ));;
-      if (spectacle_creation && answers.membre === 'sacem_adherent') {
+      if (spectacle_creation && (answers.membre||[]).includes('sacem_adherent')) {
         aids.push(card("Aide à la Création de Spectacle Musical","SACEM","Max 15 000 € (double fléchage A/C + Producteur)","https://aide-aux-projets.sacem.fr","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SACEM","Création"],"Spectacle ≥60 min avec narration et mise en scène (pas simple concert). A/C SACEM + Producteur avec licence cat.2. Dossier AVANT première représentation publique.",
         "cnm-creation-spectacle-musical"
       ));;
