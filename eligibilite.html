@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+é<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -410,6 +410,7 @@ function buildStep4(){
     <button class="option-btn" data-value="marketing" onclick="selectOption(this,'projet-prod-group')">Marketing / promotion / attaché de presse</button>
     <button class="option-btn" data-value="international_prod" onclick="selectOption(this,'projet-prod-group')">Export / développement international</button>
     <button class="option-btn" data-value="dev_eco" onclick="selectOption(this,'projet-prod-group')">Développement économique de la structure</button>
+        <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-prod-group')">Promotion par l'image (EPK, vidéo promo)</button>
     </div></div>`;
   }
 
@@ -556,7 +557,7 @@ function validateStep(n){
     if(profiles.includes('producteur')){
       answers.struct_prod=getSelectedOption('struct-prod-group');
       answers.org_prod=getSelectedOption('org-prod-group');
-      answers.ca_prod=getSelectedOption('ca-prod-group'); answers.anciennete_prod=getSelectedOption('anciennete-prod-group');
+      answers.ca_prod=getSelectedOption('ca-prod-group'); answers.anciennete_prod=getSelectedOption('anciennete-prod-group'); answers.activite_musicale=getSelectedOption('activite-musicale-group');
     }
     if(profiles.includes('editeur')){
       answers.struct_edit=getSelectedOption('struct-edit-group');
@@ -573,7 +574,7 @@ function validateStep(n){
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       answers.genre=getSelectedOption('genre-group');
       if(answers.membre==='adami'||answers.membre==='spedidam') answers.droits_adami=getSelectedOption('droits-adami-group');
-      if(answers.membre==='sacem_adherent') answers.autoprod=getSelectedOption('autoprod-group');
+      if(answers.membre==='sacem_adherent'){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
       answers.genre_prod=getSelectedOption('genre-prod-group');
@@ -602,7 +603,7 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       if(answers.membre==='adami'){
-        answers.adami_albums=getSelectedOption('adami-albums-group');
+        answers.adami_cachets=getSelectedOption('adami-cachets-group'); answers.adami_albums=getSelectedOption('adami-albums-group');
         answers.adami_concerts=getSelectedOption('adami-concerts-group');
         answers.adami_contrat=getSelectedOption('adami-contrat-group');
       }
@@ -659,7 +660,7 @@ function calculateResults() {
     const env_pro = answers.env_pro === 'oui';
     const agessa = answers.agessa === 'oui';
 
-    if (membre_adami) {
+    if (membre_adami && answers.adami_cachets === 'oui') {
       aids.push(card(
         "Bourse Parcours Artiste",
         "ADAMI",
@@ -779,7 +780,7 @@ function calculateResults() {
       ,
         "sacem-ecriture"
       ));;
-      aids.push(card(
+      if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
         "Bourse Parcours Auteur-Compositeur",
         "CNM",
         "20 000 €",
@@ -789,7 +790,7 @@ function calculateResults() {
         "Personne physique. Carrière émergente confirmée."
       ,
         "sacem-bourse-ac"
-      ));;
+      ));; }
     }
   }
 
@@ -808,7 +809,7 @@ function calculateResults() {
     ,
         "sacem-ecriture"
       ));;
-    aids.push(card(
+    if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
       "Bourse Parcours Auteur-Compositeur",
       "CNM",
       "20 000 €",
@@ -818,7 +819,7 @@ function calculateResults() {
       "Personne physique. Carrière émergente confirmée."
     ,
         "sacem-bourse-ac"
-      ));;
+      ));; }
     if (membre_sacem_ac && (autoprod_ac === 'oui_1er' || autoprod_ac === 'oui_2e' || autoprod_ac === 'oui_3e') && env_pro_ac) {
       aids.push(card(
         "Aide à l’Autoproduction de Projet Musical",
@@ -847,12 +848,12 @@ function calculateResults() {
     const videomusique = answers.proj_prod === 'videomusique' || answers.proj_prod === 'clip';
     const marketing = answers.proj_prod === 'marketing';
     if (struct_prod) {
-      if (invest_phono && (ca_prod === 'plus100k' || ca_prod === '30k_100k')) {
+      if (invest_phono && (ca_prod === 'plus100k' || ca_prod === '30k_100k') && (membre_scpp || membre_sppf)) {
         aids.push(card("Aide à la Production Phonographique","CNM","15 000 € (MA/Jazz) / 20 000 € (Classique)","https://cnm.fr/aides-financieres/aide-a-la-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥30 000 €. Membre SCPP ou SPPF.",
         "cnm-prod-phono"
       ));;
       }
-      if (invest_phono && (ca_prod === 'plus100k')) {
+      if (invest_phono && (ca_prod === 'plus100k') && (membre_scpp || membre_sppf)) {
         aids.push(card("Aide à l’Auto-production Phonographique","CNM","Jusqu’à 350 000 €","https://cnm.fr/aides-financieres/aide-a-lauto-production-phonographique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","Phonogramme"],"CA phonographique ≥50 000 €. Investissement phono (case 412). SCPP ou SPPF.",
         "cnm-autoprod-phono"
       ));;
@@ -888,7 +889,7 @@ function calculateResults() {
         "cnm-mei"
       ));;
       }
-      if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3ans') {
+      if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3ans' && answers.activite_musicale === 'oui') {
         aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.",
         "cnm-art84"
       ));;
@@ -932,7 +933,7 @@ function calculateResults() {
         "adami-sppf-bonif"
       ));; }
       }
-      if (answers.promo_image_prod === 'oui') {
+      if (answers.proj_prod === 'promo_image') {
         aids.push(card("Aide à la Promotion par l’Image (EPK/Vidéo promo)","SPEDIDAM","80% des frais, max 2 500 €","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","SPEDIDAM","Image/Vidéo"],"Réalisateur avec SIRET obligatoire. 1 aide/structure/an. Logo SPEDIDAM requis (sinon -20%). Vidéo promo/EPK UNIQUEMENT (pas clip musical).",
         "spedidam-image"
       ));;
