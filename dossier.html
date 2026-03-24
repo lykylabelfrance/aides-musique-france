@@ -2565,6 +2565,7 @@
     AIDS.forEach(aid => buildRecap(aid.id));
     // Autofill forms
     autofillForms();
+    injectEspaceQuestions();
 
     // URL param: ?aide=cnm-dev-editorial
     const params = new URLSearchParams(window.location.search);
@@ -2579,6 +2580,91 @@
     if (section) section.classList.add('active');
     const tab = document.querySelector('.aid-tab[data-id="' + id + '"]');
     if (tab) tab.classList.add('active');
+  }
+
+  // ============================================================
+  // ESPACE QUESTIONS (I-DA / ADEL / CNM)
+  // ============================================================
+  function injectEspaceQuestions() {
+    var ESPACE_CONFIG = {
+      'adami-bourse-artiste':  { org:'ADAMI', espaceNom:'I-DA', question:'Avez-vous déjà un espace I-DA (portail ADAMI) ?' },
+      'adami-enr-2d':          { org:'ADAMI', espaceNom:'I-DA', question:'Avez-vous déjà un espace I-DA (portail ADAMI) ?' },
+      'adami-enr-3d':          { org:'ADAMI', espaceNom:'I-DA', question:'Avez-vous déjà un espace I-DA (portail ADAMI) ?' },
+      'adami-global-365':      { org:'ADAMI', espaceNom:'I-DA', question:'Avez-vous déjà un espace I-DA (portail ADAMI) ?' },
+      'adami-sppf-bonif':      { org:'ADAMI', espaceNom:'I-DA', question:'Avez-vous déjà un espace I-DA (portail ADAMI) ?' },
+      'spedidam-image':         { org:'SPEDIDAM', espaceNom:'ADEL', question:'Avez-vous déjà un espace ADEL (portail SPEDIDAM) ?' },
+      'spedidam-international': { org:'SPEDIDAM', espaceNom:'ADEL', question:'Avez-vous déjà un espace ADEL (portail SPEDIDAM) ?' },
+      'spedidam-image-jazz':    { org:'SPEDIDAM', espaceNom:'ADEL', question:'Avez-vous déjà un espace ADEL (portail SPEDIDAM) ?' },
+    };
+    var CNM_SECTIONS = ['cnm-dev-editorial','cnm-mei','cnm-prod-phono','cnm-autoprod-phono','cnm-di-ma-t1','cnm-di-ma-t2','cnm-di-jazz-t1','cnm-di-jazz-t2','cnm-di-classique','cnm-mobilite','cnm-art84','cnm-restructuration','cnm-spectacle-creation','cnm-spectacle-prod','cnm-droit-tirage','cnm-creation-spectacle-musical','cnm-premiere-partie','cnm-promoteurs','cnm-spectacle-musical','cnm-restructuration-jazz','cnm-mobilite-jazz','cnm-export-editeur','cnm-dev-editorial-jazz'];
+    CNM_SECTIONS.forEach(function(id){ ESPACE_CONFIG[id] = { org:'CNM', espaceNom:'CNM', question:'Votre espace CNM est-il toujours affilié ?' }; });
+    var DOCS_ADH = {
+      'ADAMI':    [
+        { title:"Formulaire d'adhésion ADAMI",                   desc:"Télécharger et compléter sur adami.fr" },
+        { title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
+        { title:"Contrats de travail / bulletins de salaire",     desc:"Justificatifs de cachets déclarés à l'ADAMI" },
+        { title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
+      ],
+      'SPEDIDAM': [
+        { title:"Formulaire d'adhésion SPEDIDAM",                desc:"Télécharger et compléter sur spedidam.fr" },
+        { title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
+        { title:"Justificatifs de cachets (bulletins / contrats)", desc:"Preuves d'activité d'artiste-interprète" },
+        { title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
+      ],
+      'CNM':      [
+        { title:"Formulaire d'affiliation / réactivation CNM",    desc:"A compléter sur cnm.fr — vérifier statut existant" },
+        { title:"Extrait Kbis ou statuts (si structure)",          desc:"Document officiel d'immatriculation" },
+        { title:"Attestation d'affiliation en cours ou expirée",  desc:"Courrier CNM ou capture espace portail" },
+        { title:"RIB de la structure",                            desc:"Relevé d'identité bancaire de l'entité" },
+      ],
+    };
+    Object.keys(ESPACE_CONFIG).forEach(function(aidId) {
+      var cfg = ESPACE_CONFIG[aidId];
+      var section = document.getElementById('section-' + aidId);
+      if (!section) return;
+      var body = section.querySelector('.section-body');
+      if (!body) return;
+      if (body.querySelector('.espace-question-block')) return;
+      var docs = DOCS_ADH[cfg.org] || [];
+      var docsHtml = docs.map(function(d) {
+        return '<div class="checklist-item required">'
+          + '<div class="item-header">'
+          + '<span class="item-title">' + d.title + '</span>'
+          + '<span class="item-badge required-badge">Requis</span>'
+          + '</div>'
+          + '<p class="item-desc">' + d.desc + '</p>'
+          + '</div>';
+      }).join('');
+      var blockId = 'espace-adh-' + aidId;
+      var html = '<div class="block-card espace-question-block" style="border-left:3px solid #e63946;">'
+        + '<h3 class="block-title" style="color:#e63946;">⚡ Pré-requis — Espace ' + cfg.espaceNom + '</h3>'
+        + '<div class="question" style="margin:0 0 12px;">'
+        + '<p style="margin-bottom:10px;font-size:0.97rem;">' + cfg.question + '</p>'
+        + '<div style="display:flex;gap:10px;">'
+        + '<button class="option-btn" onclick="setEspaceAnswer(\'' + aidId + '\',\'oui\')" style="flex:1;">✅ Oui — j\'ai un espace ' + cfg.espaceNom + ' actif</button>'
+        + '<button class="option-btn" onclick="setEspaceAnswer(\'' + aidId + '\',\'non\')" style="flex:1;">❌ Non — je dois en créer un</button>'
+        + '</div></div>'
+        + '<div id="' + blockId + '" style="display:none;margin-top:14px;">'
+        + '<div class="block-card" style="background:#1a0a0a;border:1px solid #e63946;">'
+        + '<h4 style="color:#e63946;margin:0 0 10px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">📋 Documents pour adhérer à ' + cfg.org + ' (' + cfg.espaceNom + ')</h4>'
+        + docsHtml
+        + '</div></div></div>';
+      body.insertAdjacentHTML('afterbegin', html);
+    });
+  }
+
+  var espaceAnswers = {};
+  function setEspaceAnswer(aidId, val) {
+    espaceAnswers[aidId] = val;
+    var blockId = 'espace-adh-' + aidId;
+    var adhBlock = document.getElementById(blockId);
+    if (adhBlock) adhBlock.style.display = val === 'non' ? 'block' : 'none';
+    var section = document.getElementById('section-' + aidId);
+    if (!section) return;
+    var btns = section.querySelectorAll('.espace-question-block .option-btn');
+    btns.forEach(function(b) { b.classList.remove('selected'); });
+    var clicked = val === 'oui' ? btns[0] : btns[1];
+    if (clicked) clicked.classList.add('selected');
   }
 
   // ============================================================
