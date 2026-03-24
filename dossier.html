@@ -2673,18 +2673,7 @@
     if (item.classList.contains('done')) { item.classList.remove('done'); cb.classList.remove('checked'); }
     else { item.classList.add('done'); cb.classList.add('checked'); }
   }
-  function setEspaceAnswer(aidId, val) {
-    espaceAnswers[aidId] = val;
-    var blockId = 'espace-adh-' + aidId;
-    var adhBlock = document.getElementById(blockId);
-    if (adhBlock) adhBlock.style.display = val === 'non' ? 'block' : 'none';
-    var section = document.getElementById('section-' + aidId);
-    if (!section) return;
-    var btns = section.querySelectorAll('.espace-question-block .option-btn');
-    btns.forEach(function(b) { b.classList.remove('selected'); });
-    var clicked = val === 'oui' ? btns[0] : btns[1];
-    if (clicked) clicked.classList.add('selected');
-  }
+
 
   // ============================================================
   // BUILD CHECKLISTS
