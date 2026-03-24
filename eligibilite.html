@@ -499,12 +499,12 @@ function buildStep4(){
   }
 
   if(profiles.includes('spectacle')){
-    html+=`<div class="question"><h3>Type de projet spectacle</h3>
-    <div class="options" id="projet-sv-group">
-    <button class="option-btn" data-value="creation" onclick="selectOption(this,'projet-sv-group')">Création d'un nouveau spectacle</button>
-    <button class="option-btn" data-value="diffusion" onclick="selectOption(this,'projet-sv-group')">Production / diffusion (tournée, série de dates)</button>
-    <button class="option-btn" data-value="promo_sv" onclick="selectOption(this,'projet-sv-group')">Promotion image / EPK pour la structure</button>
-    <button class="option-btn" data-value="international_sv" onclick="selectOption(this,'projet-sv-group')">Développement international</button>
+    html+=`<div class="question"><h3>Type(s) de projet spectacle <small>(plusieurs choix possibles)</small></h3>
+    <div class="checkbox-group" id="projet-sv-group">
+    <div class="check-option" data-value="creation" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Création d'un nouveau spectacle</strong><span>Création originale</span></div></div>
+    <div class="check-option" data-value="diffusion" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Production / diffusion (tournée, série de dates)</strong><span>Tournée & dates</span></div></div>
+    <div class="check-option" data-value="promo_sv" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Promotion image / EPK pour la structure</strong><span>Communication & visibilité</span></div></div>
+    <div class="check-option" data-value="international_sv" onclick="toggleCheck(this,'projet-sv-group')"><div class="checkmark"></div><div class="check-label"><strong>Développement international</strong><span>Export & marchés étrangers</span></div></div>
     </div></div>`;
   }
 
@@ -679,7 +679,7 @@ function validateStep(n){
     if(profiles.includes('artiste')||profiles.includes('auteur')) answers.projartiste=getCheckedValues('projet-artiste-group');
     if(profiles.includes('producteur')) answers.proj_prod=getCheckedValues('projet-prod-group');
     if(profiles.includes('editeur')){const _editProj=getCheckedValues('projet-edit-group');answers.dev_editorial=_editProj.includes('dev_editorial')?'oui':'non';answers.valorisation_patrimoine=_editProj.includes('valorisation_patrimoine')?'oui':'non';answers.clip_edit=_editProj.includes('clip_edit')?'oui':'non';answers.export_edit=_editProj.includes('international_edit')?'oui':'non';}
-    if(profiles.includes('spectacle')) answers.proj_sv=getSelectedOption('projet-sv-group');
+    if(profiles.includes('spectacle')) answers.proj_sv=getCheckedValues('projet-sv-group');
     buildStep5();
     showStep(5);
     return;
@@ -1063,7 +1063,7 @@ function calculateResults() {
     const artistes_sv = answers.artistes_sv || '';
     const export_sv = answers.export_sv === 'oui';
     const fragilite_sv = answers.fragilite === 'oui';
-    const promo_image_sv = answers.proj_sv === 'promo_sv' || answers.promo_image_sv === 'oui';
+    const promo_image_sv = (answers.proj_sv||[]).includes('promo_sv') || answers.promo_image_sv === 'oui';
     const proj_sv = answers.proj_sv || '';
     const spectacle_creation = proj_sv === 'creation' || answers.spectacle_creation === 'oui';
     const premiere_partie = proj_sv === 'premiere_partie' || answers.premiere_partie === 'oui';
