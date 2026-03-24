@@ -950,7 +950,7 @@ function calculateResults() {
         "cnm-mei"
       ));;
       }
-      if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3ans' && answers.activite_musicale === 'oui') {
+      if (cdi_prod && (ca_prod === 'plus100k') && answers.anciennete_prod === 'plus3' && answers.activite_musicale === 'oui') {
         aids.push(card("Développement Économique des Entreprises Musicales (Art. 84)","CNM","25% des charges, max 200 000 €","https://cnm.fr/aides-financieres/aide-au-developpement-economique/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Producteur","CNM","PME Musicale"],"PME musicale. CA>100 000 €. Au moins 1 CDI. ≥80% activité musicale.",
         "cnm-art84"
       ));;
@@ -1065,8 +1065,8 @@ function calculateResults() {
     const fragilite_sv = answers.fragilite === 'oui';
     const promo_image_sv = (answers.proj_sv||[]).includes('promo_sv') || answers.promo_image_sv === 'oui';
     const proj_sv = answers.proj_sv || '';
-    const spectacle_creation = proj_sv === 'creation' || answers.spectacle_creation === 'oui';
-    const premiere_partie = proj_sv === 'premiere_partie' || answers.premiere_partie === 'oui';
+    const spectacle_creation = (Array.isArray(proj_sv) ? proj_sv.includes('creation') : proj_sv === 'creation') || answers.spectacle_creation === 'oui';
+    const premiere_partie = (Array.isArray(proj_sv) ? proj_sv.includes('premiere_partie') : proj_sv === 'premiere_partie') || answers.premiere_partie === 'oui';
     const nb_reprs = answers.nb_reprs || '';
     if (licence_sv === 'licence2' || licence_sv === 'les_deux') {
       aids.push(card("Aide à la Création de Spectacle Vivant Musical","CNM","Jusqu’à 75 000 €","https://cnm.fr/aides-financieres/aide-a-la-creation-de-spectacle-vivant/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","CNM","Création"],"Licence entrepreneur de spectacles cat.2. Minimum 8 représentations.",
