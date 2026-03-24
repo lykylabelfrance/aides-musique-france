@@ -875,7 +875,7 @@ function calculateResults() {
       }
     }
 
-    if (membre_sacem) {
+    if (membre_sacem && !profiles.includes('auteur')) {
       if ((autoprod === 'oui_1er' || autoprod === 'oui_3e') && env_pro) {
         aids.push(card(
           "Aide à l’Autoproduction de Projet Musical",
