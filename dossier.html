@@ -2622,8 +2622,7 @@
       var cfg = ESPACE_CONFIG[aidId];
       var section = document.getElementById('section-' + aidId);
       if (!section) return;
-      var body = section.querySelector('.section-body');
-      if (!body) return;
+      var body = section.querySelector('.section-body') || section;
       if (body.querySelector('.espace-question-block')) return;
       var docs = DOCS_ADH[cfg.org] || [];
       var docsHtml = docs.map(function(d) {
