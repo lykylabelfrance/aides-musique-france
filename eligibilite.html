@@ -545,6 +545,17 @@ function buildStep5(){
       <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
       <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">Plus de 5 000 €</button>
       </div></div>`;
+    html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
+      <div class="options" id="export-artiste-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-artiste-group')">Oui – déplacements pour salons/concerts à l'étranger</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'export-artiste-group')">Non</button>
+      </div></div>`;
+    html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
+      <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
+      <div class="options" id="env-pro-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
+      </div></div>`;
     }
     if(answers.membre==='spedidam'){
       html+=`<div class="question"><h3>Avez-vous des dates de concert à l'international ?</h3>
@@ -554,6 +565,19 @@ function buildStep5(){
       </div></div>`;
     }
     if(answers.membre==='sacem_adherent'){
+      html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
+      <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
+      <div class="options" id="env-pro-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'env-pro-group')">Oui – j'ai un manager, un éditeur, un tourneur ou une salle partenaire</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'env-pro-group')">Non – je travaille en totale indépendance</button>
+      </div></div>`;
+      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu’auteur-compositeur ?</h3>
+      <div class="options" id="droits-sacem-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j’ai des droits SACEM déclarés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
+      </div></div>`
+    }
+    if(answers.membre==='sacem_pro'){
       html+=`<div class="question"><h3>Avez-vous un environnement professionnel formalisé ?</h3>
       <p>Manager, éditeur, tourneur ou salle partenaire engagé sur le projet</p>
       <div class="options" id="env-pro-group">
@@ -734,7 +758,7 @@ function calculateResults() {
   if (profiles.includes('artiste')) {
     const membre_adami = answers.membre === 'adami';
     const membre_spedidam = answers.membre === 'spedidam';
-    const membre_sacem = answers.membre === 'sacem_adherent';
+    const membre_sacem = answers.membre === 'sacem_adherent' || answers.membre === 'sacem_pro';
     const droits_adami = answers.droits_adami || '';
     const adami_albums = answers.adami_albums || '';
     const adami_concerts = answers.adami_concerts || '';
