@@ -369,6 +369,12 @@ function buildStep3(){
       <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j'ai des droits SACEM déclarés</button>
       <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
       </div></div>
+      <div class="question"><h3>Vos revenus artistiques bruts HT (hors aides CNM) sur 2022+2023+2024 sont-ils ≥ 15 000 € ?</h3>
+      <p>Total brut HT des années 2022, 2023 et 2024 cumulés — hors aides directes CNM</p>
+      <div class="options" id="revenus-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'revenus-ac-group')">Oui – total ≥ 15 000 € bruts HT</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'revenus-ac-group')">Non – total &lt; 15 000 €</button>
+      </div></div>
       <div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
       <div class="options" id="autoprod-group">
       <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
@@ -656,7 +662,7 @@ function validateStep(n){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       answers.genre=getSelectedOption('genre-group');
-      if(profiles.includes('auteur') && !profiles.includes('artiste') && (answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
+      if(profiles.includes('auteur') && !profiles.includes('artiste') && (answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.revenus_ac=getSelectedOption('revenus-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
       answers.genre_prod=getSelectedOption('genre-prod-group');
@@ -887,14 +893,14 @@ function calculateResults() {
     ,
         "sacem-ecriture"
       ));;
-    if (answers.droits_sacem_ac && answers.droits_sacem_ac !== 'non') { aids.push(card(
+    if (answers.droits_sacem_ac === 'oui' && answers.revenus_ac === 'oui') { aids.push(card(
       "Bourse Parcours Auteur-Compositeur",
       "CNM",
       "20 000 €",
       "https://cnm.fr/aides-financieres/bourse-parcours-auteur-compositeur/",
       "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
       ["Auteur-compositeur","CNM","Composition"],
-      "Personne physique. Carrière émergente confirmée."
+      "Personne physique. Revenus artistiques bruts HT ≥15 000 € cumulés 2022-2024 (hors aides CNM). Carrière émergente confirmée."
     ,
         "sacem-bourse-ac"
       ));; }
