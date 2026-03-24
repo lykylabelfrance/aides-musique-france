@@ -29,8 +29,13 @@
     .hero-stats{display:flex;gap:40px;margin-top:50px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);}
     .stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--rouge);line-height:1;}
     .stat-label{font-size:11px;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
-    .bande{background:var(--rouge);color:var(--blanc);padding:9px 50px;display:flex;gap:28px;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.09em;}
-    .bande span{opacity:0.7;}
+    .bande{background:var(--rouge);padding:0 50px;display:flex;gap:0;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.09em;}
+    .bande-item{display:flex;align-items:center;gap:10px;padding:10px 20px 10px 0;text-decoration:none;color:var(--blanc);transition:background 0.2s,color 0.2s;border-right:1px solid rgba(255,255,255,0.15);padding-right:20px;margin-right:20px;}
+    .bande-item:last-child{border-right:none;margin-right:0;}
+    .bande-item:hover .bande-org{background:rgba(0,0,0,0.4);}
+    .bande-item:hover .bande-cats{opacity:1;}
+    .bande-org{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.08em;background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:2px;white-space:nowrap;transition:background 0.2s;}
+    .bande-cats{opacity:0.75;font-size:10.5px;letter-spacing:0.07em;transition:opacity 0.2s;}
     main{max-width:1100px;margin:0 auto;padding:50px 50px 80px;}
     .section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.08em;display:flex;align-items:center;gap:12px;margin-bottom:24px;margin-top:40px;}
     .section-title::before{content:'';display:block;width:5px;height:26px;background:var(--rouge);flex-shrink:0;}
@@ -80,12 +85,30 @@
     </ul>
   </nav>
   <div class="bande">
-    <span>CNM</span> Aides Production Showcase International Edition
-    <span>SCPP</span> Formation Artiste Videomusique Marketing
-    <span>ADAMI</span> Bourse Artiste Projet Global 365
-    <span>SPPF</span> Enregistrement Album GRM
-    <span>SACEM</span> Autoproduction Spectacle Musical
-    <span>SPEDIDAM</span> Spectacle Deplacement International
+    <a href="aides.html#cnm" class="bande-item">
+      <span class="bande-org">CNM</span>
+      <span class="bande-cats">Prod &middot; Showcase &middot; Intl &middot; Edition</span>
+    </a>
+    <a href="aides.html#scpp" class="bande-item">
+      <span class="bande-org">SCPP</span>
+      <span class="bande-cats">Formation &middot; Artiste &middot; Marketing</span>
+    </a>
+    <a href="aides.html#adami" class="bande-item">
+      <span class="bande-org">ADAMI</span>
+      <span class="bande-cats">Bourse &middot; Projet Global &middot; 365</span>
+    </a>
+    <a href="aides.html#sppf" class="bande-item">
+      <span class="bande-org">SPPF</span>
+      <span class="bande-cats">Enregistrement &middot; Album &middot; GRM</span>
+    </a>
+    <a href="aides.html#sacem" class="bande-item">
+      <span class="bande-org">SACEM</span>
+      <span class="bande-cats">Autoproduction &middot; Spectacle &middot; Musical</span>
+    </a>
+    <a href="aides.html#spedidam" class="bande-item">
+      <span class="bande-org">SPEDIDAM</span>
+      <span class="bande-cats">Spectacle &middot; International</span>
+    </a>
   </div>
   <section class="hero">
     <div class="hero-inner">
