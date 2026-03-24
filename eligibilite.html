@@ -519,7 +519,13 @@ function buildStep5(){
   }
 
   if(profiles.includes('spectacle')){
-    html+=`<div class="question"><h3>Nombre d'artistes sur scène (pour toutes les dates) ?</h3>
+    html+=`<div class="question"><h3>Nombre de représentations prévues ?</h3>
+    <div class="options" id="nb-reprs-group">
+      <button class="option-btn" data-value="plus8" onclick="selectOption(this,'nb-reprs-group')">8 représentations ou plus</button>
+      <button class="option-btn" data-value="plus6" onclick="selectOption(this,'nb-reprs-group')">6 à 7 représentations (5 jours min)</button>
+      <button class="option-btn" data-value="moins6" onclick="selectOption(this,'nb-reprs-group')">Moins de 6 représentations</button>
+    </div></div>`;
+  html+=`<div class="question"><h3>Nombre d'artistes sur scène (pour toutes les dates) ?</h3>
     <div class="options" id="artistes-sv-group">
     <button class="option-btn" data-value="8plus" onclick="selectOption(this,'artistes-sv-group')">8 artistes ou plus (taux SPEDIDAM majoré 50%)</button>
     <button class="option-btn" data-value="moins8" onclick="selectOption(this,'artistes-sv-group')">Moins de 8 artistes (taux standard 40%)</button>
@@ -615,7 +621,8 @@ function validateStep(n){
       answers.export_edit=getSelectedOption('export-edit-group');
     }
     if(profiles.includes('spectacle')){
-      answers.artistes_sv=getSelectedOption('artistes-sv-group');
+      answers.nb_reprs=getSelectedOption('nb-reprs-group');
+        answers.artistes_sv=getSelectedOption('artistes-sv-group');
       answers.export_sv=getSelectedOption('export-sv-group');
     }
     calculateResults();
@@ -666,9 +673,9 @@ function calculateResults() {
         "adami-bourse-artiste"
       ));;
 
-      const genres_adami = ['ma','jazz','monde','cj','ma_cj'];
+      const genres_adami = ['ma','jazz','world','cj','ma_cj'];
       const genre_ok_adami = genres_adami.some(function(g){return genre.includes(g);}) || genre === '';
-      if (adami_contrat === 'licence' && genre_ok_adami && (droits_adami === 'plus300' || droits_adami === 'plus5k')) {
+      if (adami_contrat === 'licence' && genre_ok_adami && (droits_adami === '300_5k' || droits_adami === 'plus5k')) {
         aids.push(card(
           "Aide Production Enregistrement 2D (Licence)",
           "ADAMI",
@@ -682,7 +689,7 @@ function calculateResults() {
       ));;
       }
 
-      if (adami_contrat === 'distrib_directe' && genre_ok_adami && (droits_adami === 'plus300' || droits_adami === 'plus5k')) {
+      if (adami_contrat === 'distribution' && genre_ok_adami && (droits_adami === '300_5k' || droits_adami === 'plus5k')) {
         aids.push(card(
           "Aide Production Enregistrement 3D (Distribution Directe)",
           "ADAMI",
@@ -696,10 +703,10 @@ function calculateResults() {
       ));;
       }
 
-      const genre_ma_monde = ['ma','monde','ma_cj'].some(function(g){return genre.includes(g);});
+      const genre_ma_monde = ['ma','world','ma_cj'].some(function(g){return genre.includes(g);});
       const genre_jazz_cl = ['jazz','classique','cj'].some(function(g){return genre.includes(g);});
-      const cond_365_ma = genre_ma_monde && adami_albums === 'oui' && adami_concerts === 'grd' && droits_adami === 'plus5k';
-      const cond_365_jazz = genre_jazz_cl && adami_concerts === 'grd' && (droits_adami === 'plus300' || droits_adami === 'plus5k');
+      const cond_365_ma = genre_ma_monde && adami_albums === 'oui' && (adami_concerts === 'oui_600' || adami_concerts === 'oui_300') && droits_adami === 'plus5k';
+      const cond_365_jazz = genre_jazz_cl && (adami_concerts === 'oui_600' || adami_concerts === 'oui_300') && (droits_adami === '300_5k' || droits_adami === 'plus5k');
       if (cond_365_ma || cond_365_jazz) {
         aids.push(card(
           "Aide Projet Musical Global 365",
@@ -788,7 +795,7 @@ function calculateResults() {
   }
 
   if (profiles.includes('auteur')) {
-    const membre_sacem_ac = answers.membre_sacem_adherent === 'oui';
+    const membre_sacem_ac = answers.membre === 'sacem_adherent';
     const autoprod_ac = answers.autoprod || '';
     const env_pro_ac = answers.env_pro === 'oui';
     aids.push(card(
@@ -1031,7 +1038,7 @@ function calculateResults() {
     }
     const nb_ok = nb_reprs === 'plus6' || nb_reprs === 'plus8';
     if (nb_ok) {
-      const taux_spedidam = artistes_sv === 'plus8_toutes' ? "50%" : "40%";
+      const taux_spedidam = artistes_sv === '8plus' ? "50%" : "40%";
       aids.push(card("Aide au Spectacle Musical","SPEDIDAM",taux_spedidam + " du coût employeur (seuil min 6 000 €)","https://www.spedidam.fr/aides/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","SPEDIDAM","Spectacle"],"6 représentations minimum sur 5 jours (4 jours si ≥8 artistes). 50% si ≥8 artistes sur TOUTES les dates. Logo SPEDIDAM requis (sinon -20%). Max 10 répétitions. Période ≤6 mois.",
         "cnm-spectacle-musical"
       ));;
