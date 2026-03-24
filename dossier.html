@@ -2599,60 +2599,80 @@
     var CNM_SECTIONS = ['cnm-dev-editorial','cnm-mei','cnm-prod-phono','cnm-autoprod-phono','cnm-di-ma-t1','cnm-di-ma-t2','cnm-di-jazz-t1','cnm-di-jazz-t2','cnm-di-classique','cnm-mobilite','cnm-art84','cnm-restructuration','cnm-spectacle-creation','cnm-spectacle-prod','cnm-droit-tirage','cnm-creation-spectacle-musical','cnm-premiere-partie','cnm-promoteurs','cnm-spectacle-musical','cnm-restructuration-jazz','cnm-mobilite-jazz','cnm-export-editeur','cnm-dev-editorial-jazz'];
     CNM_SECTIONS.forEach(function(id){ ESPACE_CONFIG[id] = { org:'CNM', espaceNom:'CNM', question:'Votre espace CNM est-il toujours affilié ?' }; });
     var DOCS_ADH = {
-      'ADAMI':    [
-        { title:"Formulaire d'adhésion ADAMI",                   desc:"Télécharger et compléter sur adami.fr" },
-        { title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
-        { title:"Contrats de travail / bulletins de salaire",     desc:"Justificatifs de cachets déclarés à l'ADAMI" },
-        { title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
+      'ADAMI': [
+        { id:'adh_adami_1', title:"Formulaire d'adhésion ADAMI",                  desc:"Télécharger et compléter sur adami.fr" },
+        { id:'adh_adami_2', title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
+        { id:'adh_adami_3', title:"Contrats de travail / bulletins de salaire",     desc:"Justificatifs de cachets déclarés à l'ADAMI" },
+        { id:'adh_adami_4', title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
       ],
       'SPEDIDAM': [
-        { title:"Formulaire d'adhésion SPEDIDAM",                desc:"Télécharger et compléter sur spedidam.fr" },
-        { title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
-        { title:"Justificatifs de cachets (bulletins / contrats)", desc:"Preuves d'activité d'artiste-interprète" },
-        { title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
+        { id:'adh_sped_1', title:"Formulaire d'adhésion SPEDIDAM",                desc:"Télécharger et compléter sur spedidam.fr" },
+        { id:'adh_sped_2', title:"Justificatif d'identité",                       desc:"Carte d'identité ou passeport en cours de validité" },
+        { id:'adh_sped_3', title:"Justificatifs de cachets (bulletins / contrats)", desc:"Preuves d'activité d'artiste-interprète" },
+        { id:'adh_sped_4', title:"RIB personnel",                                  desc:"Relevé d'identité bancaire au nom de l'artiste" },
       ],
-      'CNM':      [
-        { title:"Formulaire d'affiliation / réactivation CNM",    desc:"A compléter sur cnm.fr — vérifier statut existant" },
-        { title:"Extrait Kbis ou statuts (si structure)",          desc:"Document officiel d'immatriculation" },
-        { title:"Attestation d'affiliation en cours ou expirée",  desc:"Courrier CNM ou capture espace portail" },
-        { title:"RIB de la structure",                            desc:"Relevé d'identité bancaire de l'entité" },
+      'CNM': [
+        { id:'adh_cnm_1', title:"Formulaire d'affiliation / réactivation CNM",     desc:"A compléter sur cnm.fr — vérifier statut existant" },
+        { id:'adh_cnm_2', title:"Extrait Kbis ou statuts (si structure)",           desc:"Document officiel d'immatriculation" },
+        { id:'adh_cnm_3', title:"Attestation d'affiliation en cours ou expirée",   desc:"Courrier CNM ou capture espace portail" },
+        { id:'adh_cnm_4', title:"RIB de la structure",                              desc:"Relevé d'identité bancaire de l'entité" },
       ],
     };
     Object.keys(ESPACE_CONFIG).forEach(function(aidId) {
       var cfg = ESPACE_CONFIG[aidId];
       var section = document.getElementById('section-' + aidId);
       if (!section) return;
-      var body = section.querySelector('.section-body') || section;
-      if (body.querySelector('.espace-question-block')) return;
+      var container = section.querySelector('.section-body') || section;
+      if (container.querySelector('.espace-question-block')) return;
       var docs = DOCS_ADH[cfg.org] || [];
-      var docsHtml = docs.map(function(d) {
-        return '<div class="checklist-item required">'
-          + '<div class="item-header">'
-          + '<span class="item-title">' + d.title + '</span>'
-          + '<span class="item-badge required-badge">Requis</span>'
+      var itemsHtml = docs.map(function(d) {
+        var fkey = aidId + '_' + d.id;
+        return '<div class="check-item" id="checkitem-' + fkey + '">'
+          + '<div class="check-item-header" onclick="toggleEspaceCheck(\'' + fkey + '\')">'
+          + '<div class="check-box" id="checkbox-' + fkey + '"><span class="check-icon">✓</span></div>'
+          + '<div class="check-text"><div class="check-title">' + d.title + '</div>'
+          + '<p class="check-desc">' + d.desc + '</p></div>'
+          + '<span class="check-badge required">REQUIS</span>'
           + '</div>'
-          + '<p class="item-desc">' + d.desc + '</p>'
-          + '</div>';
+          + '<div class="file-zone" id="filezone-' + fkey + '">'
+          + '<label class="file-input-label" for="file-' + fkey + '">+ Déposer un fichier</label>'
+          + '<input type="file" class="file-input" id="file-' + fkey + '" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="handleFile(this,\'' + fkey + '\',\'' + aidId + '\')"/>'
+          + '<span class="file-name" id="filename-' + fkey + '">Aucun fichier sélectionné</span>'
+          + '</div></div>';
       }).join('');
-      var blockId = 'espace-adh-' + aidId;
-      var html = '<div class="block-card espace-question-block" style="border-left:3px solid #e63946;">'
-        + '<h3 class="block-title" style="color:#e63946;">⚡ Pré-requis — Espace ' + cfg.espaceNom + '</h3>'
-        + '<div class="question" style="margin:0 0 12px;">'
-        + '<p style="margin-bottom:10px;font-size:0.97rem;">' + cfg.question + '</p>'
-        + '<div style="display:flex;gap:10px;">'
-        + '<button class="option-btn" onclick="setEspaceAnswer(\'' + aidId + '\',\'oui\')" style="flex:1;">✅ Oui — j\'ai un espace ' + cfg.espaceNom + ' actif</button>'
-        + '<button class="option-btn" onclick="setEspaceAnswer(\'' + aidId + '\',\'non\')" style="flex:1;">❌ Non — je dois en créer un</button>'
+      var adhBlockId = 'adh-block-' + aidId;
+      var html = '<div class="section-block espace-question-block">'
+        + '<h2>PRÉ-REQUIS — ESPACE ' + cfg.espaceNom + '</h2>'
+        + '<p class="section-sub">' + cfg.question + '</p>'
+        + '<div style="display:flex;gap:12px;margin:18px 0;">'
+        + '<button class="btn-secondary" style="flex:1;padding:14px;background:#1a1a1a;border:2px solid #333;" id="btn-oui-' + aidId + '" onclick="setEspaceAnswer(\'' + aidId + '\',\'oui\')">OUI — J\'AI UN ESPACE ' + cfg.espaceNom + ' ACTIF</button>'
+        + '<button class="btn-secondary" style="flex:1;padding:14px;background:#1a1a1a;border:2px solid #333;" id="btn-non-' + aidId + '" onclick="setEspaceAnswer(\'' + aidId + '\',\'non\')">NON — JE DOIS EN CRÉER UN</button>'
         + '</div></div>'
-        + '<div id="' + blockId + '" style="display:none;margin-top:14px;">'
-        + '<div class="block-card" style="background:#1a0a0a;border:1px solid #e63946;">'
-        + '<h4 style="color:#e63946;margin:0 0 10px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">📋 Documents pour adhérer à ' + cfg.org + ' (' + cfg.espaceNom + ')</h4>'
-        + docsHtml
-        + '</div></div></div>';
-      body.insertAdjacentHTML('afterbegin', html);
+        + '<div class="section-block" id="' + adhBlockId + '" style="display:none;border-top-color:#e63946;">'
+        + '<h2>ADHÉSION ' + cfg.org + ' (' + cfg.espaceNom + ') — DOCUMENTS REQUIS</h2>'
+        + '<p class="section-sub">Ces documents sont nécessaires pour créer votre espace avant de déposer votre dossier.</p>'
+        + itemsHtml + '</div>';
+      container.insertAdjacentHTML('afterbegin', html);
     });
   }
 
   var espaceAnswers = {};
+  function setEspaceAnswer(aidId, val) {
+    espaceAnswers[aidId] = val;
+    var adhBlock = document.getElementById('adh-block-' + aidId);
+    if (adhBlock) adhBlock.style.display = val === 'non' ? 'block' : 'none';
+    var btnOui = document.getElementById('btn-oui-' + aidId);
+    var btnNon = document.getElementById('btn-non-' + aidId);
+    if (btnOui) { btnOui.style.borderColor = val === 'oui' ? 'var(--rouge)' : '#333'; btnOui.style.color = val === 'oui' ? 'var(--rouge)' : ''; }
+    if (btnNon) { btnNon.style.borderColor = val === 'non' ? 'var(--rouge)' : '#333'; btnNon.style.color = val === 'non' ? 'var(--rouge)' : ''; }
+  }
+  function toggleEspaceCheck(fkey) {
+    var cb = document.getElementById('checkbox-' + fkey);
+    var item = document.getElementById('checkitem-' + fkey);
+    if (!cb || !item) return;
+    if (item.classList.contains('done')) { item.classList.remove('done'); cb.classList.remove('checked'); }
+    else { item.classList.add('done'); cb.classList.add('checked'); }
+  }
   function setEspaceAnswer(aidId, val) {
     espaceAnswers[aidId] = val;
     var blockId = 'espace-adh-' + aidId;
