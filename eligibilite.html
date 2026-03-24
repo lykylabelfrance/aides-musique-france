@@ -444,11 +444,11 @@ function buildStep5(){
 
   if(profiles.includes('artiste')||profiles.includes('auteur')){
     if(answers.membre==='adami'){
-            html+=`<div class="question"><h3>Avez-vous au moins 25 cachets de spectacle vivant d�clar�s � l'ADAMI sur les 3 derni�res ann�es ?</h3>
+            html+=`<div class="question"><h3>Avez-vous au moins 25 cachets de spectacle vivant déclarés à l'ADAMI sur les 3 dernières années ?</h3>
       <p>Cachets justifiables par bulletins de salaire ou contrats de travail d'artiste (hors enregistrements studio)</p>
       <div class="options" id="adami-cachets-group">
-      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-cachets-group')">Oui  25 cachets ou plus, justifi�s</button>
-      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-cachets-group')">Non  moins de 25 cachets justifiables</button>
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'adami-cachets-group')">Oui — 25 cachets ou plus, justifiés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'adami-cachets-group')">Non — moins de 25 cachets justifiables</button>
       </div></div>`;
       html+=`<div class="question"><h3>Avez-vous 2 albums distribués professionnellement (pour ADAMI 365) ?</h3>
       <div class="options" id="adami-albums-group">
