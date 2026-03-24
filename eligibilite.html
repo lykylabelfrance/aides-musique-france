@@ -303,12 +303,15 @@ function buildStep2(){
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Avez-vous un contrat de préférence éditorial en cours avec vos A/C ?</h3>
-    <div class="options" id="contrat-pref-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'contrat-pref-group')">Oui</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'contrat-pref-group')">Non</button>
-    </div></div>`;
-  }s,'sacem-edit-group')">Non</button>
+    html+=`<div class="question"><h3>Votre structure d'édition</h3>
+    <div class="options" id="struct-edit-group">
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-edit-group')">Oui – Personne morale (SARL, SAS, SASU...)</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-edit-group')">Non – Pas de structure juridique</button>
+    </div></div>
+    <div class="question"><h3>Êtes-vous membre SACEM en tant qu'éditeur ?</h3>
+    <div class="options" id="sacem-edit-group">
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-edit-group')">Oui – Membre éditeur SACEM actif</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'sacem-edit-group')">Non</button>
     </div></div>
     <div class="question"><h3>Votre activité principale est-elle l'édition musicale (CA éditorial > 50%) ?</h3>
     <div class="options" id="ca-edit-group">
@@ -439,7 +442,31 @@ function buildStep4(){
   const profiles=getProfiles();
   let html='';
 
-  if(profiles.includes('artiste')||profiles.includes('auteur')){
+  if(profiles.includes('artiste') && !profiles.includes('auteur')){
+    // Artiste seul : toutes les options d'interprète
+    html+=`<div class="question"><h3>Type de projet artistique</h3>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <div class="options" id="projet-artiste-group">
+    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
+    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
+    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
+    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    </div></div>`;
+  }
+  if(profiles.includes('auteur') && !profiles.includes('artiste')){
+    // Auteur seul : options d'auteur-compositeur uniquement
+    html+=`<div class="question"><h3>Type de projet artistique</h3>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <div class="options" id="projet-artiste-group">
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire d'écriture)</button>
+    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Production / enregistrement (maquette, album autoproduit)</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, export de catalogue)</button>
+    </div></div>`;
+  }
+  if(profiles.includes('artiste') && profiles.includes('auteur')){
+    // Les deux : toutes les options artiste + écriture
     html+=`<div class="question"><h3>Type de projet artistique</h3>
     <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
     <div class="options" id="projet-artiste-group">
