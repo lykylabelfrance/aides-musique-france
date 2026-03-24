@@ -920,7 +920,7 @@ function calculateResults() {
     const membre_sppf = answers.org_prod === 'sppf';
     const struct_prod = answers.struct_prod === 'oui';
     const ca_prod = answers.ca_prod || '';
-    const genre_p = genre;
+    const genre_p = answers.genre_prod || genre;
     const invest_phono = answers.invest_phono === 'oui_50k' || answers.invest_phono === 'oui_moins';
     const export_prod = answers.export_prod === 'oui';
     const fragilite = answers.fragilite === 'oui';
@@ -1031,7 +1031,7 @@ function calculateResults() {
     const valorisation = answers.valorisation_patrimoine === 'oui';
     const clip_edit = answers.clip_edit === 'oui';
     const ca_edit = answers.ca_edit || '';
-    if (struct_edit && droits_sacem !== 'moins4k') {
+    if (struct_edit && droits_sacem !== 'moins4k' && answers.dev_editorial === 'oui') {
       aids.push(card("Aide au Développement Éditorial","CNM","45% des dépenses, max 25 000 €/projet","https://cnm.fr/aides-financieres/aide-au-developpement-editorial/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Éditeur","CNM","Développement Éditorial"],"Éditeur original. Personne morale. CA éditorial >50%.","cnm-dev-editorial",
         "cnm-dev-editorial"
       ));;
