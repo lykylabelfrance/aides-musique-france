@@ -724,7 +724,7 @@ function isMembreOf(org) {
   if (org === 'SPEDIDAM') return mb.includes('spedidam');
   if (org === 'SCPP') return op === 'scpp';
   if (org === 'SPPF') return op === 'sppf';
-  if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro') || answers.sacem_edit === 'oui';
+  if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro') || answers.sacem_edit === 'oui' || answers.sacem_sv === 'oui';
   return true;
 }
 
