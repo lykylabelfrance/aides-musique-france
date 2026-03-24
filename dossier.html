@@ -2604,6 +2604,7 @@
     };
     var CNM_SECTIONS = ['cnm-dev-editorial','cnm-mei','cnm-prod-phono','cnm-autoprod-phono','cnm-di-ma-t1','cnm-di-ma-t2','cnm-di-jazz-t1','cnm-di-jazz-t2','cnm-di-classique','cnm-mobilite','cnm-art84','cnm-restructuration','cnm-spectacle-creation','cnm-spectacle-prod','cnm-droit-tirage','cnm-creation-spectacle-musical','cnm-premiere-partie','cnm-promoteurs','cnm-spectacle-musical','cnm-restructuration-jazz','cnm-mobilite-jazz','cnm-export-editeur','cnm-dev-editorial-jazz'];
     CNM_SECTIONS.forEach(function(id){ ESPACE_CONFIG[id] = { org:'CNM', espaceNom:'CNM', question:'Votre espace CNM est-il toujours affilié ?' }; });
+    ESPACE_CONFIG['cnm-spectacle-musical'] = { org:'SPEDIDAM', espaceNom:'ADEL', question:'Avez-vous déjà un espace ADEL (portail SPEDIDAM) ?' };
     var DOCS_ADH = {
       'ADAMI': [
         { id:'adh_adami_1', title:"Formulaire d'adhésion ADAMI",                  desc:"Télécharger et compléter sur adami.fr" },
