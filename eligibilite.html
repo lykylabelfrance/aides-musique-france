@@ -700,11 +700,26 @@ function validateStep(n){
 }
 
 
+
+function isMembreOf(org) {
+  if (org === 'CNM') return true;
+  const mb = answers.membre || [];
+  const op = answers.org_prod || '';
+  if (org === 'ADAMI') return mb.includes('adami');
+  if (org === 'SPEDIDAM') return mb.includes('spedidam');
+  if (org === 'SCPP') return op === 'scpp';
+  if (org === 'SPPF') return op === 'sppf';
+  if (org === 'SACEM') return mb.includes('sacem_adherent') || mb.includes('sacem_pro');
+  return true;
+}
+
 function calculateResults() {
   const profiles = getProfiles();
   let aids = [];
 
   function card(name, org, amount, url, fiche, tags, note, dossierId) {
+  if (!isMembreOf(org)) return '';
+
     const tagHtml = (tags||[]).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
     const noteHtml = note ? '<p class="aid-note">'+note+'</p>' : '';
     const dossierBtn = dossierId ? '<a href="dossier.html?aide='+dossierId+'" class="btn-dossier">&#x1F4CB;&nbsp;Monter mon dossier &#x2192;</a>' : '';
