@@ -351,13 +351,28 @@ function buildStep3(){
     </div></div>`;
   }
   if(profiles.includes('auteur') && !profiles.includes('artiste')){
-    html+=`<div class="question"><h3>Type de projet</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire d'écriture)</button>
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Production / enregistrement d'un projet</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international</button>
+    // Auteur seul step3 : genre + droits SACEM + autoprod
+    html+=`<div class="question"><h3>Genre musical principal de votre catalogue</h3>
+    <div class="options" id="genre-group">
+    <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop…</button>
+    <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
+    <button class="option-btn" data-value="classique" onclick="selectOption(this,'genre-group')">Musique classique / contemporaine</button>
+    <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
+    <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-group')">Autre</button>
     </div></div>`;
+    if(answers.membre==='sacem_adherent'){
+      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu'auteur-compositeur ?</h3>
+      <div class="options" id="droits-sacem-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j'ai des droits SACEM déclarés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
+      </div></div>
+      <div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
+      <div class="options" id="autoprod-group">
+      <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
+      <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement ou plus (>10K€ droits/an)</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'autoprod-group')">Non – pas encore sorti de projet</button>
+      </div></div>`;
+    }
   }
   if(profiles.includes('artiste') && profiles.includes('auteur')){
     html+=`<div class="question"><h3>Type de projet artistique</h3>
@@ -372,16 +387,6 @@ function buildStep3(){
     </div></div>`;
   }
 
-  if(profiles.includes('auteur') && !profiles.includes('artiste')){
-    // Auteur seul en step4 : projets d'écriture/composition/production/international
-    html+=`<div class="question"><h3>Type de projet</h3>
-    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
-    <div class="options" id="projet-artiste-group">
-    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / résidence de création (paroles, musique)</button>
-    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Production / enregistrement (maquette, démo)</button>
-    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, placements)</button>
-    </div></div>`;
-  }
   if(profiles.includes('producteur')){
     html+=`<div class="question"><h3>Genre musical principal de vos productions</h3>
     <div class="options" id="genre-prod-group">
@@ -825,7 +830,7 @@ function calculateResults() {
     }
 
     if (membre_sacem) {
-      if ((autoprod === 'oui_1er' || autoprod === 'oui_2e' || autoprod === 'oui_3e') && env_pro) {
+      if ((autoprod === 'oui_1er' || autoprod === 'oui_3e') && env_pro) {
         aids.push(card(
           "Aide à l’Autoproduction de Projet Musical",
           "SACEM",
@@ -892,7 +897,7 @@ function calculateResults() {
     ,
         "sacem-bourse-ac"
       ));; }
-    if (membre_sacem_ac && (autoprod_ac === 'oui_1er' || autoprod_ac === 'oui_2e' || autoprod_ac === 'oui_3e') && env_pro_ac) {
+    if (membre_sacem_ac && (autoprod_ac === 'oui_1er' || autoprod_ac === 'oui_3e') && env_pro_ac) {
       aids.push(card(
         "Aide à l’Autoproduction de Projet Musical",
         "SACEM",
