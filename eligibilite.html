@@ -289,19 +289,26 @@ function buildStep2(){
     <button class="option-btn" data-value="plus100k" onclick="selectOption(this,'ca-prod-group')">Plus de 100 000 €</button>
     <button class="option-btn" data-value="30k_100k" onclick="selectOption(this,'ca-prod-group')">Entre 30 000 € et 100 000 €</button>
     <button class="option-btn" data-value="moins30k" onclick="selectOption(this,'ca-prod-group')">Moins de 30 000 €</button>
+    </div></div>
+    <div class="question"><h3>Ancienneté de votre structure ?</h3>
+    <div class="options" id="anciennete-prod-group">
+    <button class="option-btn" data-value="plus3" onclick="selectOption(this,'anciennete-prod-group')">3 ans ou plus</button>
+    <button class="option-btn" data-value="moins3" onclick="selectOption(this,'anciennete-prod-group')">Moins de 3 ans</button>
+    </div></div>
+    <div class="question"><h3>La musique représente-t-elle ≥ 80 % de votre activité ?</h3>
+    <div class="options" id="activite-musicale-group">
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'activite-musicale-group')">Oui – musique = activité principale</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'activite-musicale-group')">Non – activité mixte</button>
     </div></div>`;
   }
 
   if(profiles.includes('editeur')){
-    html+=`<div class="question"><h3>Votre structure d'édition</h3>
-    <div class="options" id="struct-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'struct-edit-group')">Oui – Personne morale (SARL, SAS, SASU...)</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'struct-edit-group')">Non – Pas de structure juridique</button>
-    </div></div>
-    <div class="question"><h3>Êtes-vous membre SACEM en tant qu'éditeur ?</h3>
-    <div class="options" id="sacem-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-edit-group')">Oui – Membre éditeur SACEM actif</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'sacem-edit-group')">Non</button>
+    html+=`<div class="question"><h3>Avez-vous un contrat de préférence éditorial en cours avec vos A/C ?</h3>
+    <div class="options" id="contrat-pref-group">
+    <button class="option-btn" data-value="oui" onclick="selectOption(this,'contrat-pref-group')">Oui</button>
+    <button class="option-btn" data-value="non" onclick="selectOption(this,'contrat-pref-group')">Non</button>
+    </div></div>`;
+  }s,'sacem-edit-group')">Non</button>
     </div></div>
     <div class="question"><h3>Votre activité principale est-elle l'édition musicale (CA éditorial > 50%) ?</h3>
     <div class="options" id="ca-edit-group">
@@ -328,27 +335,50 @@ function buildStep3(){
   const profiles=getProfiles();
   let html='';
 
-  if(profiles.includes('artiste')||profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Genre musical principal de votre projet</h3>
-    <div class="options" id="genre-group">
-    <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-group')">Musiques actuelles (MA) – pop, rock, electro, hip-hop, R&B…</button>
-    <button class="option-btn" data-value="jazz" onclick="selectOption(this,'genre-group')">Jazz</button>
-    <button class="option-btn" data-value="classique" onclick="selectOption(this,'genre-group')">Musique classique / contemporaine</button>
-    <button class="option-btn" data-value="world" onclick="selectOption(this,'genre-group')">Musiques du monde / traditionnelles</button>
-    <button class="option-btn" data-value="autre" onclick="selectOption(this,'genre-group')">Autre</button>
+  if(profiles.includes('artiste') && !profiles.includes('auteur')){
+    html+=`<div class="question"><h3>Type de projet artistique</h3>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <div class="options" id="projet-artiste-group">
+    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
+    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
+    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
+    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
     </div></div>`;
-
-    if(answers.membre==='adami'||answers.membre==='spedidam'){
-      html+=`<div class="question"><h3>Droits voisins perçus (ADAMI/SPEDIDAM) sur les 5 dernières années</h3>
-      <div class="options" id="droits-adami-group">
-      <button class="option-btn" data-value="plus5k" onclick="selectOption(this,'droits-adami-group')">5 000 € ou plus (ADAMI 365)</button>
-      <button class="option-btn" data-value="300_5k" onclick="selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
+  }
+  if(profiles.includes('auteur') && !profiles.includes('artiste')){
+    html+=`<div class="question"><h3>Type de projet</h3>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <div class="options" id="projet-artiste-group">
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire d'écriture)</button>
+    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Production / enregistrement d'un projet</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international</button>
+    </div></div>`;
+  }
+  if(profiles.includes('artiste') && profiles.includes('auteur')){
+    html+=`<div class="question"><h3>Type de projet artistique</h3>
+    <p>Sélectionnez le type de projet pour lequel vous cherchez une aide.</p>
+    <div class="options" id="projet-artiste-group">
+    <button class="option-btn" data-value="enregistrement" onclick="selectOption(this,'projet-artiste-group')">Enregistrement / production (album, EP)</button>
+    <button class="option-btn" data-value="spectacle_creation" onclick="selectOption(this,'projet-artiste-group')">Création d'un spectacle musical ambitieux</button>
+    <button class="option-btn" data-value="premiere_partie" onclick="selectOption(this,'projet-artiste-group')">Programme de premières parties (3+ dates en salles >250 places)</button>
+    <button class="option-btn" data-value="international" onclick="selectOption(this,'projet-artiste-group')">Développement international (salons, tournées export)</button>
+    <button class="option-btn" data-value="ecriture" onclick="selectOption(this,'projet-artiste-group')">Écriture / composition (résidence, séminaire)</button>
+    <button class="option-btn" data-value="promo_image" onclick="selectOption(this,'projet-artiste-group')">Promotion par l'image (EPK, vidéo promo)</button>
+    </div></div>`;
+  }"selectOption(this,'droits-adami-group')">Entre 300 € et 5 000 €</button>
       <button class="option-btn" data-value="moins300" onclick="selectOption(this,'droits-adami-group')">Moins de 300 €</button>
       </div></div>`;
     }
 
     if(answers.membre==='sacem_adherent'){
-      html+=`<div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
+      html+=`<div class="question"><h3>Percevez-vous des droits SACEM en tant qu'auteur-compositeur ?</h3>
+      <div class="options" id="droits-sacem-ac-group">
+      <button class="option-btn" data-value="oui" onclick="selectOption(this,'droits-sacem-ac-group')">Oui – j'ai des droits SACEM déclarés</button>
+      <button class="option-btn" data-value="non" onclick="selectOption(this,'droits-sacem-ac-group')">Non – pas encore de droits perçus</button>
+      </div></div>
+      <div class="question"><h3>Avez-vous sorti au moins un projet autoproduit (EP/album ≥5 titres) ?</h3>
       <div class="options" id="autoprod-group">
       <button class="option-btn" data-value="oui_1er" onclick="selectOption(this,'autoprod-group')">Oui – 1er ou 2e enregistrement autoproduit</button>
       <button class="option-btn" data-value="oui_3e" onclick="selectOption(this,'autoprod-group')">Oui – 3e enregistrement (>10K€ droits/an)</button>
@@ -538,11 +568,6 @@ function buildStep5(){
     <div class="options" id="contrat-pref-group">
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'contrat-pref-group')">Oui</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'contrat-pref-group')">Non</button>
-    </div></div>
-    <div class="question"><h3>Développement à l'international ?</h3>
-    <div class="options" id="export-edit-group">
-    <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-edit-group')">Oui</button>
-    <button class="option-btn" data-value="non" onclick="selectOption(this,'export-edit-group')">Non</button>
     </div></div>`;
   }
 
@@ -646,7 +671,7 @@ function validateStep(n){
     }
     if(profiles.includes('editeur')){
       answers.contrat_pref=getSelectedOption('contrat-pref-group');
-      answers.export_edit=getSelectedOption('export-edit-group');
+      // export_edit already collected in step4 via international_edit checkbox
     }
     if(profiles.includes('spectacle')){
       answers.nb_reprs=getSelectedOption('nb-reprs-group');
