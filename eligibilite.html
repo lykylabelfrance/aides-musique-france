@@ -239,13 +239,35 @@ function buildStep2(){
   const profiles=getProfiles();
   let html='';
 
-  if(profiles.includes('artiste')||profiles.includes('auteur')){
-    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits voisins / d'auteur ?</h3>
+  if(profiles.includes('artiste') && !profiles.includes('auteur')){
+    // Artiste seul : ADAMI, SPEDIDAM, SACEM ou non membre
+    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits voisins ?</h3>
     <div class="options" id="membre-group">
     <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (artiste-interprète)</button>
     <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (artiste-interprète)</button>
-    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM – statut adhérent (A/C émergent)</button>
-    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM – statut professionnel/définitif</button>
+    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM – statut adhérent (aussi auteur-compositeur)</button>
+    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM – statut professionnel/définitif (aussi auteur-compositeur)</button>
+    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre</button>
+    </div></div>`;
+  }
+  if(profiles.includes('auteur') && !profiles.includes('artiste')){
+    // Auteur seul : SACEM uniquement
+    html+=`<div class="question"><h3>Êtes-vous membre de la SACEM ?</h3>
+    <div class="options" id="membre-group">
+    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">Oui – statut adhérent (émergent)</button>
+    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">Oui – statut professionnel / définitif</button>
+    <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non – pas encore membre SACEM</button>
+    </div></div>`;
+  }
+  if(profiles.includes('artiste') && profiles.includes('auteur')){
+    // Les deux : toutes les sociétés possibles
+    html+=`<div class="question"><h3>Êtes-vous membre d'une société de droits ?</h3>
+    <p>En tant qu'artiste-interprète ET auteur-compositeur, vous pouvez être membre de plusieurs sociétés.</p>
+    <div class="options" id="membre-group">
+    <button class="option-btn" data-value="adami" onclick="selectOption(this,'membre-group')">ADAMI (droits voisins – interprétation)</button>
+    <button class="option-btn" data-value="spedidam" onclick="selectOption(this,'membre-group')">SPEDIDAM (droits voisins – interprétation)</button>
+    <button class="option-btn" data-value="sacem_adherent" onclick="selectOption(this,'membre-group')">SACEM – statut adhérent (droits d'auteur)</button>
+    <button class="option-btn" data-value="sacem_pro" onclick="selectOption(this,'membre-group')">SACEM – statut professionnel/définitif (droits d'auteur)</button>
     <button class="option-btn" data-value="non_membre" onclick="selectOption(this,'membre-group')">Non membre / en cours d'adhésion</button>
     </div></div>`;
   }
