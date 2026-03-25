@@ -227,6 +227,22 @@ function updateProgress(step){
   document.getElementById('progress-text').innerText='Étape '+step+' / 6'; document.getElementById('progress-pct').innerText=pct+'%';
 }
 
+function showAlert(msg, stepId){
+  // Remove previous alerts in this step
+  const prev = document.querySelectorAll('#'+stepId+' .form-alert');
+  prev.forEach(a => a.remove());
+  const el = document.getElementById(stepId);
+  const alertDiv = document.createElement('div');
+  alertDiv.className = 'form-alert';
+  alertDiv.style.cssText = 'background:rgba(232,0,29,0.12);border:1px solid rgba(232,0,29,0.5);color:rgba(255,120,120,0.95);padding:12px 16px;margin-bottom:12px;font-size:.875rem;font-family:"DM Mono",monospace;';
+  alertDiv.textContent = '⚠ ' + msg;
+  // Insert before first button in this step
+  const firstBtn = el.querySelector('button');
+  if(firstBtn) el.insertBefore(alertDiv, firstBtn);
+  else el.appendChild(alertDiv);
+  // Auto-remove after 4s
+  setTimeout(() => alertDiv.remove(), 4000);
+}
 function showStep(n){
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
   const el=document.getElementById('step'+n);
@@ -414,7 +430,7 @@ function buildStep3(){
     }
   }
 
-  if(profiles.includes('producteur')){
+  if(profiles.includes('producteur') && !profiles.includes('artiste') && !profiles.includes('auteur')){
     html+=`<div class="question"><h3>Genre musical principal de vos productions</h3>
     <div class="options" id="genre-prod-group">
     <button class="option-btn" data-value="ma" onclick="selectOption(this,'genre-prod-group')">Musiques actuelles (MA)</button>
@@ -648,7 +664,7 @@ function buildStep5(){
 function validateStep(n){
   if(n===1){
     const vals=getCheckedValues('profil-group');
-    if(vals.length===0){alert('Veuillez sélectionner au moins un profil.');return;}
+    if(vals.length===0){showAlert('Veuillez sélectionner au moins un profil.','step1');return;}
     answers.profil=vals;
     buildStep2();
     showStep(2);
@@ -656,8 +672,12 @@ function validateStep(n){
   }
   if(n===2){
     const profiles=getProfiles();
-    // Collect step2 answers
-    if(profiles.includes('artiste')||profiles.includes('auteur')){answers.membre=getCheckedValues('membre-group')||'non_membre';}
+    // Validation: vérifier sélections obligatoires
+    if(profiles.includes('artiste')||profiles.includes('auteur')){
+      const mb=getCheckedValues('membre-group');
+      if(mb.length===0){showAlert('Veuillez sélectionner au moins une adhésion (ou « Non membre »).','step2');return;}
+      answers.membre=mb;
+    }
     if(profiles.includes('producteur')){
       answers.struct_prod=getSelectedOption('struct-prod-group');
       answers.org_prod=getSelectedOption('org-prod-group');
@@ -680,11 +700,18 @@ function validateStep(n){
   if(n===3){
     const profiles=getProfiles();
     if(profiles.includes('artiste')||profiles.includes('auteur')){
-      answers.genre=getSelectedOption('genre-group');
+      const g=getSelectedOption('genre-group');
+      if(!g){showAlert('Veuillez sélectionner un genre musical.','step3');return;}
+      answers.genre=g;
       if(profiles.includes('auteur') && (answers.membre||[]).includes('sacem_adherent')){ answers.droits_sacem_ac=getSelectedOption('droits-sacem-ac-group'); answers.revenus_ac=getSelectedOption('revenus-ac-group'); answers.autoprod=getSelectedOption('autoprod-group'); }
     }
     if(profiles.includes('producteur')){
-      answers.genre_prod=getSelectedOption('genre-prod-group');
+      // Si producteur seul: prendre genre-prod-group, sinon utiliser genre artiste
+      if(!profiles.includes('artiste') && !profiles.includes('auteur')){
+        answers.genre_prod=getSelectedOption('genre-prod-group');
+      } else {
+        answers.genre_prod=answers.genre||getSelectedOption('genre-group');
+      }
       answers.invest_phono=getSelectedOption('invest-phono-group');
     }
     if(profiles.includes('editeur')){
@@ -698,7 +725,11 @@ function validateStep(n){
   }
   if(n===4){
     const profiles=getProfiles();
-    if(profiles.includes('artiste')||profiles.includes('auteur')) answers.projartiste=getCheckedValues('projet-artiste-group');
+    if(profiles.includes('artiste')||profiles.includes('auteur')){
+      const projA=getCheckedValues('projet-artiste-group');
+      if(projA.length===0){showAlert('Veuillez sélectionner au moins un type de projet.','step4');return;}
+      answers.projartiste=projA;
+    }
     if(profiles.includes('producteur')) answers.proj_prod=getCheckedValues('projet-prod-group');
     if(profiles.includes('editeur')){const _editProj=getCheckedValues('projet-edit-group');answers.dev_editorial=_editProj.includes('dev_editorial')?'oui':'non';answers.valorisation_patrimoine=_editProj.includes('valorisation_patrimoine')?'oui':'non';answers.clip_edit=_editProj.includes('clip_edit')?'oui':'non';answers.export_edit=_editProj.includes('international_edit')?'oui':'non';}
     if(profiles.includes('spectacle')) answers.proj_sv=getCheckedValues('projet-sv-group');
