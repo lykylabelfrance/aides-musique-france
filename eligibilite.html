@@ -744,6 +744,30 @@ function validateStep(n){
   }
   if(n===5){
     const profiles=getProfiles();
+    // Validation: vérifier que les questions obligatoires sont répondues
+    if(profiles.includes('artiste')||profiles.includes('auteur')){
+      if((answers.membre||[]).includes('adami')){
+        const requiredAdami=['adami-cachets-group','adami-albums-group','adami-concerts-group','adami-contrat-group','droits-adami-group'];
+        for(let i=0;i<requiredAdami.length;i++){
+          const g=document.getElementById(requiredAdami[i]);
+          if(g && !g.querySelector('.option-btn.selected')){showAlert('Veuillez répondre à toutes les questions avant de continuer.','step5');return;}
+        }
+      }
+    }
+    if(profiles.includes('producteur')){
+      const requiredProd=['cdi-prod-group','export-prod-group','fragilite-group'];
+      for(let i=0;i<requiredProd.length;i++){
+        const g=document.getElementById(requiredProd[i]);
+        if(g && !g.querySelector('.option-btn.selected')){showAlert('Veuillez répondre à toutes les questions avant de continuer.','step5');return;}
+      }
+    }
+    if(profiles.includes('spectacle')){
+      const requiredSV=['nb-reprs-group','artistes-sv-group','export-sv-group'];
+      for(let i=0;i<requiredSV.length;i++){
+        const g=document.getElementById(requiredSV[i]);
+        if(g && !g.querySelector('.option-btn.selected')){showAlert('Veuillez répondre à toutes les questions avant de continuer.','step5');return;}
+      }
+    }
     if(profiles.includes('artiste')||profiles.includes('auteur')){
       if((answers.membre||[]).includes('adami')){
         answers.adami_cachets=getSelectedOption('adami-cachets-group'); answers.adami_albums=getSelectedOption('adami-albums-group');
