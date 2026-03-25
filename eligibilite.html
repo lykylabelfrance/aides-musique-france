@@ -1159,6 +1159,38 @@ function calculateResults() {
         "cnm-mobilite-jazz"
       ));;
     }
+    if (export_sv && genre_s.includes('ma')) {
+      aids.push(card(
+        "Aide à la Mobilité Individuelle MA (Salons Internationaux)",
+        "CNM",
+        "800 € (EEE) / 1 400 € (hors EEE) par personne/déplacement",
+        "https://cnm.fr/aides-financieres/aide-a-la-mobilite-individuelle-a-linternational-3/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Spectacle Vivant","CNM","MA","International"],
+        "Personne morale affiliée CNM. 50% des dépenses, max 800 € (EEE) / 1 400 € (hors EEE). 2 dossiers max/an.",
+        "cnm-mobilite-ma"
+      ));;
+      aids.push(card(
+        "Développement International MA – Tranche 1",
+        "CNM",
+        "400 € – 25 000 €",
+        "https://cnm.fr/aides-financieres/aide-aux-projets-developpement-international-musiques-actuelles-1/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Spectacle Vivant","CNM","MA","International"],
+        "Personne morale affiliée CNM. 50% des dépenses, entre 400 € et 25 000 €. Max 3 aides/an/projet.",
+        "cnm-di-ma-t1-sv"
+      ));;
+      aids.push(card(
+        "Développement International MA – Tranche 2",
+        "CNM",
+        "Jusqu’à 80 000 €",
+        "https://cnm.fr/aides-financieres/aide-aux-projets-developpement-international-musiques-actuelles-2/",
+        "https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",
+        ["Spectacle Vivant","CNM","MA","International"],
+        "Personne morale affiliée CNM. 50% des dépenses, max 80 000 € par projet. Max 3 aides/an/projet.",
+        "cnm-di-ma-t2-sv"
+      ));;
+    }
   }
 
   const container = document.getElementById('results-container');
