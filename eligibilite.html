@@ -79,7 +79,7 @@ header span{color:var(--gris-texte)}
 .aid-card{background:#111;border:1px solid rgba(255,255,255,0.07);border-left:3px solid var(--rouge);padding:0;overflow:hidden;transition:border-color .2s,transform .15s}
 .aid-card:hover{border-color:rgba(232,0,29,0.5);border-left-color:var(--rouge);transform:translateX(2px)}
 .aid-card-inner{padding:20px 22px}
-.aid-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.aid-header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
 .aid-org{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--rouge);background:rgba(232,0,29,0.08);border:1px solid rgba(232,0,29,0.2);padding:3px 10px;align-self:flex-start;white-space:nowrap}
 .aid-amount{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--blanc);letter-spacing:1px;text-align:right;line-height:1.1;max-width:65%;word-break:break-word}
 .aid-name{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--blanc);letter-spacing:1.5px;margin-bottom:8px;line-height:1.1}
@@ -962,7 +962,7 @@ function calculateResults() {
       }
     }
      if ((answers.projartiste||[]).includes('premiere_partie')) {
-      aids.push(card("Aide Première Partie Musique","ADAMI","70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
+      aids.push(card("Aide Première Partie Musique","ADAMI","Max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
         "cnm-premiere-partie"
       ));;
     }
@@ -1200,7 +1200,7 @@ function calculateResults() {
       ));;
       }
       if (premiere_partie) {
-        aids.push(card("Aide Première Partie Musique","ADAMI","70% salaires bruts (plafond 300 €/cachet) + 250 €/représentation, max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
+        aids.push(card("Aide Première Partie Musique","ADAMI","Max 6 000 €","https://www.adami.fr/aides-creations/","https://drive.google.com/drive/u/8/folders/1YSTvJFyVCetgLt5pq20vjjLkv9cbmoNu",["Spectacle Vivant","ADAMI","Première Partie"],"3 représentations min. Salles >250 places. Durée 20-45 min. Cession <750 € HT (non symbolique). Festivals exclus. Exclusif CNM sur mêmes dates.",
         "cnm-premiere-partie"
       ));;
       }
