@@ -230,18 +230,23 @@ function updateProgress(step){
 function showAlert(msg, stepId){
   // Remove previous alerts in this step
   const prev = document.querySelectorAll('#'+stepId+' .form-alert');
-  prev.forEach(a => a.remove());
+  prev.forEach(function(a){a.remove();});
   const el = document.getElementById(stepId);
   const alertDiv = document.createElement('div');
   alertDiv.className = 'form-alert';
   alertDiv.style.cssText = 'background:rgba(232,0,29,0.12);border:1px solid rgba(232,0,29,0.5);color:rgba(255,120,120,0.95);padding:12px 16px;margin-bottom:12px;font-size:.875rem;font-family:"DM Mono",monospace;';
   alertDiv.textContent = '⚠ ' + msg;
-  // Insert before first button in this step
-  const firstBtn = el.querySelector('button');
-  if(firstBtn) el.insertBefore(alertDiv, firstBtn);
-  else el.appendChild(alertDiv);
-  // Auto-remove after 4s
-  setTimeout(() => alertDiv.remove(), 4000);
+  // Insert: after dynamic content div if exists, otherwise before btn-secondary, otherwise append
+  const dynContent = el.querySelector('[id$="-content"]');
+  if(dynContent){
+    dynContent.appendChild(alertDiv);
+  } else {
+    const btnSec = el.querySelector('.btn-secondary');
+    if(btnSec) el.insertBefore(alertDiv, btnSec);
+    else el.appendChild(alertDiv);
+  }
+  // Auto-remove after 5s
+  setTimeout(function(){if(alertDiv.parentNode)alertDiv.parentNode.removeChild(alertDiv);}, 5000);
 }
 function showStep(n){
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
