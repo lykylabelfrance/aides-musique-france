@@ -686,7 +686,7 @@ function buildStep5(){
     }
     // ── Phase 2: Question Innovation ──
     if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
-      html+=`<div class="question"><h3>💡 Avez-vous un projet d'innovation technologique lié à la musique ?</h3><p>IA, blockchain, streaming, outils numériques — débloque les aides CNM Innovation et Bpifrance</p><div class="options" data-q="projet_innovation"><button class="option-btn" data-val="oui">💡 Oui, projet innovant</button><button class="option-btn" data-val="non">Non</button></div></div>`;
+      html+=`<div class="question"><h3>💡 Avez-vous un projet d'innovation technologique lié à la musique ?</h3><p>IA, blockchain, streaming, outils numériques — débloque les aides CNM Innovation</p><div class="options" data-q="projet_innovation"><button class="option-btn" data-val="oui">💡 Oui, projet innovant</button><button class="option-btn" data-val="non">Non</button></div></div>`;
     }
     // ── Phase 2: Question EAC ──
     html+=`<div class="question"><h3>🎓 Portez-vous un projet d'Éducation Artistique et Culturelle (EAC) ?</h3><p>Ateliers, résidences scolaires, médiation culturelle — débloque l'aide ADAMI EAC</p><div class="options" data-q="projet_eac"><button class="option-btn" data-val="oui">🎓 Oui, projet EAC</button><button class="option-btn" data-val="non">Non</button></div></div>`;
@@ -1443,10 +1443,6 @@ function calculateResults() {
       aids.push(card("IFCIC — Prêt Direct aux Entreprises Culturelles", "IFCIC", "Montant selon besoin et capacité", "https://www.ifcic.fr/financement/le-pret/", "ifcic-pret", ["financement", "prêt", "trésorerie"], "Prêt direct de l'IFCIC pour financer les besoins des entreprises musicales à tous les stades de développement.", null));
     }
 
-    // ── Phase 2: Bpifrance Innovation Créative ──
-    if ((hasProfile('producteur') || hasProfile('editeur')) && projet_innovation === 'oui') {
-      aids.push(card("Bpifrance — Subvention Innovation Créative (ICC)", "Bpifrance", "Subvention selon le projet", "https://www.bpifrance.fr/catalogue-offres/subvention-innovation-innovation-creative", "bpi-innovation", ["innovation", "ICC", "subvention", "tech"], "Subvention pour les projets d'innovation dans les industries culturelles et créatives.", null));
-    }
 
     // ── Phase 2: ADAMI EAC ──
     if (projet_eac === 'oui') {
