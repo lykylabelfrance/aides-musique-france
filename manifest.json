@@ -1,0 +1,20 @@
+{
+  "name": "Aides Musique France",
+  "short_name": "Aides Musique",
+  "description": "Annuaire des 90 aides et subventions pour la musique en France avec test d eligibilite gratuit",
+  "start_url": "/aides-musique-france/",
+  "scope": "/aides-musique-france/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#e8001d",
+  "lang": "fr",
+  "categories": ["business", "finance", "education"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
