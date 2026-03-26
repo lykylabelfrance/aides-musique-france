@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-          <button class="filter-btn" onclick="filterOrga('fadem',this)">FADEM (1)</button>
-          <button class="filter-btn" onclick="filterOrga('region',this)">Région (5)</button>
-          <button class="filter-btn" onclick="filterOrga('regionidf',this)">Région IDF (1)</button>
-          <button class="filter-btn" onclick="filterOrga('dacdrac',this)">DAC/DRAC (4)</button>
-          <button class="filter-btn" onclick="filterOrga('villedeparis',this)">Ville de Paris (3)</button>
-          <button class="filter-btn" onclick="filterOrga('prma',this)">PRMA (3)</button>
-          <button class="filter-btn" onclick="filterOrga('departement',this)">Département (1)</button>
-          <button class="filter-btn" onclick="filterOrga('mairie',this)">Mairie (1)</button>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +57,23 @@
     .profil-tag{background:var(--gris-clair);color:var(--gris-texte);font-family:"DM Mono",monospace;font-size:9px;padding:2px 6px;letter-spacing:0.06em;}
     footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:30px 50px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;}
     footer strong{color:var(--rouge);}
-  </style>
+  
+    .search-bar { margin-bottom: 1.2rem; position: relative; }
+    .search-bar input {
+      width: 100%; padding: 0.9rem 1.2rem 0.9rem 3rem;
+      border: 2px solid #333; border-radius: 12px;
+      background: #1a1a1a; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    .search-bar input:focus { outline: none; border-color: var(--rouge); }
+    .search-bar input::placeholder { color: #888; }
+    .search-bar .search-icon {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      color: #888; font-size: 1.2rem; pointer-events: none;
+    }
+    .no-results { text-align:center; padding:3rem; color:#888; font-size:1.1rem; display:none; }
+    </style>
 </head>
 <body>
   <nav>
@@ -86,6 +93,11 @@
   </div>
   <main>
     <div class="filters">
+      <div class="search-bar">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="Rechercher une aide, un organisme, un mot-clé..." oninput="searchAides(this.value)">
+      </div>
+    
       <span class="filter-label">Filtrer par :</span>
       <button class="filter-btn active-rouge" onclick="filterOrga('all',this)">Tous (90)</button>
       <button class="filter-btn" onclick="filterOrga('cnm',this)">CNM (34)</button>
@@ -97,8 +109,17 @@
       <button class="filter-btn" onclick="filterOrga('fonpeps',this)">FONPEPS (2)</button>
       <button class="filter-btn" onclick="filterOrga('ifcic',this)">IFCIC (2)</button>
       <button class="filter-btn" onclick="filterOrga('minculture',this)">Min. Culture (2)</button>
+      <button class="filter-btn" onclick="filterOrga('fadem',this)">FADEM (1)</button>
+      <button class="filter-btn" onclick="filterOrga('region',this)">Région (5)</button>
+      <button class="filter-btn" onclick="filterOrga('regionidf',this)">Région IDF (1)</button>
+      <button class="filter-btn" onclick="filterOrga('dacdrac',this)">DAC/DRAC (4)</button>
+      <button class="filter-btn" onclick="filterOrga('villedeparis',this)">Ville de Paris (3)</button>
+      <button class="filter-btn" onclick="filterOrga('prma',this)">PRMA (3)</button>
+      <button class="filter-btn" onclick="filterOrga('departement',this)">Département (1)</button>
+      <button class="filter-btn" onclick="filterOrga('mairie',this)">Mairie (1)</button>
     </div>
     <div class="results-count" id="resultsCount">Affichage de <strong>58</strong> dispositifs</div>
+    <div class="no-results" id="noResults">Aucune aide ne correspond à votre recherche.</div>
 
     <!-- CNM -->
     <div class="section-bloc" id="cnm">
@@ -332,6 +353,29 @@
     var count = orgaCount[orga] || 0;
     document.getElementById("resultsCount").innerHTML = "Affichage de <strong>" + count + "</strong> dispositifs";
   }
-  </script>
+  
+    function searchAides(query) {
+      var q = query.toLowerCase().trim();
+      var cards = document.querySelectorAll('.aide-card');
+      var sections = document.querySelectorAll('.section-bloc');
+      var count = 0;
+      cards.forEach(function(card) {
+        var text = card.textContent.toLowerCase();
+        var match = !q || text.indexOf(q) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) count++;
+      });
+      sections.forEach(function(sec) {
+        var visCards = sec.querySelectorAll('.aide-card');
+        var hasVisible = false;
+        visCards.forEach(function(c) { if (c.style.display !== 'none') hasVisible = true; });
+        sec.style.display = hasVisible ? '' : 'none';
+      });
+      var noRes = document.getElementById('noResults');
+      if (noRes) noRes.style.display = count === 0 ? 'block' : 'none';
+      var rc = document.getElementById('resultsCount');
+      if (rc) rc.querySelector('strong').textContent = count;
+    }
+    </script>
 </body>
 </html>
