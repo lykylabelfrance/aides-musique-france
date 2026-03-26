@@ -4,6 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monter mon dossier – Aides Musique France</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Outil interactif pour constituer votre dossier de demande d'aide dans le secteur musical. Checklist, pieces justificatives et generation automatique.">
+  <meta name="keywords" content="dossier aide musique, subvention musique, pieces justificatives, CNM, SCPP, ADAMI, demande aide">
+  <link rel="canonical" href="https://lykylabelfrance.github.io/aides-musique-france/dossier.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Monter mon Dossier — Aides Musique France">
+  <meta property="og:description" content="Outil interactif pour constituer votre dossier de demande d'aide musicale.">
+  <meta property="og:url" content="https://lykylabelfrance.github.io/aides-musique-france/dossier.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monter mon Dossier — Aides Musique France">
+  <meta name="twitter:description" content="Outil interactif pour constituer votre dossier de demande d'aide musicale.">
+  <meta name="twitter:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e8001d">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -583,6 +599,15 @@
   </style>
 </head>
 <body>
+  <nav style="background:#0a0a0a;padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:0.08em;">LYKY <span style="color:#e8001d;">LABEL</span></div>
+    <ul style="display:flex;gap:32px;list-style:none;margin:0;padding:0;">
+      <li><a href="index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;">Accueil</a></li>
+      <li><a href="aides.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;">Aides <span style="background:#e8001d;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-family:'DM Mono',monospace;">90</span></a></li>
+      <li><a href="eligibilite.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;">Test Eligibilite</a></li>
+      <li><a href="dossier.html" style="color:#fff;text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;">Dossier</a></li>
+    </ul>
+  </nav>
   <header>
     <a href="index.html" class="header-logo">AIDES <span>MUSIQUE</span> FRANCE</a>
     <a href="eligibilite.html" class="header-back">← Retour aux résultats</a>
@@ -3035,6 +3060,39 @@
   function calcBudget_cnm_mobilite_jazz() { const t=Array.from(document.querySelectorAll('#section-cnm-mobilite-jazz .budget-input')).reduce((s,i)=>s+(parseFloat(i.value)||0),0); const el=document.getElementById('total-cnm-mobilite-jazz'); if(el) el.textContent=t.toLocaleString('fr-FR')+' € (forfait selon zone)'; }
   function calcBudget_cnm_export_editeur() { const t=Array.from(document.querySelectorAll('#section-cnm-export-editeur .budget-input')).reduce((s,i)=>s+(parseFloat(i.value)||0),0); const el=document.getElementById('total-cnm-export-editeur'); if(el) el.textContent=t.toLocaleString('fr-FR')+' €'; }
   function calcBudget_cnm_dev_editorial_jazz() { const t=Array.from(document.querySelectorAll('#section-cnm-dev-editorial-jazz .budget-input')).reduce((s,i)=>s+(parseFloat(i.value)||0),0); const el=document.getElementById('total-cnm-dev-editorial-jazz'); if(el) el.textContent=(t*0.45).toLocaleString('fr-FR')+' €'; }
+  </script>
+
+  <footer style="background:#0a0a0a;color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;">
+    <span>2026 -- <strong>Lyky Label France</strong> -- Usage interne / Clients partenaires</span>
+    <span><a href="mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Mentions legales</a></span>
+  </footer>
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Outil de constitution de dossier - Aides Musique France",
+    "description": "Outil interactif pour constituer votre dossier de demande d aide dans le secteur musical.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+    "provider": {"@type": "Organization", "name": "Lyky Label France"}
+  }, {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Comment monter un dossier de demande d aide musique",
+    "description": "Guide etape par etape pour constituer un dossier complet de demande de subvention musicale.",
+    "step": [
+      {"@type": "HowToStep", "name": "Identifier l aide", "text": "Selectionnez l aide correspondant a votre projet musical."},
+      {"@type": "HowToStep", "name": "Preparer les pieces", "text": "Rassemblez les pieces justificatives requises."},
+      {"@type": "HowToStep", "name": "Remplir le formulaire", "text": "Completez la checklist interactive."},
+      {"@type": "HowToStep", "name": "Verifier et soumettre", "text": "Verifiez votre dossier et soumettez-le."}
+    ]
+  }]
+  </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function(e) { console.log('SW error:', e); });
+  }
   </script>
 </body>
 </html>
