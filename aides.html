@@ -1,3 +1,5 @@
+
+    <div id="statusFilter" class="filter-status-wrap" style="max-width:1200px;margin:0 auto 20px;padding:0 20px;"><button class="filter-status-btn active" onclick="filterStatus('all')">Tous</button><button class="filter-status-btn" onclick="filterStatus('ouvert')">Ouvert</button><button class="filter-status-btn" onclick="filterStatus('permanent')">Permanent</button><button class="filter-status-btn" onclick="filterStatus('ferme')">Ferme</button><button class="filter-status-btn" onclick="filterStatus('a-venir')">A venir</button></div>
 <!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -86,7 +88,17 @@
       color: #888; font-size: 1.2rem; pointer-events: none;
     }
     .no-results { text-align:center; padding:3rem; color:#888; font-size:1.1rem; display:none; }
-    </style>
+    
+    .aide-status-badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700;font-family:"DM Mono",monospace;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;}
+    .status-ouvert{background:#22c55e;color:#fff;}
+    .status-ferme{background:#ef4444;color:#fff;}
+    .status-permanent{background:#3b82f6;color:#fff;}
+    .status-a-venir{background:#f59e0b;color:#fff;}
+    .filter-status-wrap{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px;}
+    .filter-status-btn{padding:6px 16px;border-radius:20px;border:2px solid var(--gris-medium);background:var(--blanc);cursor:pointer;font-family:"DM Sans",sans-serif;font-weight:600;font-size:13px;transition:all .2s;}
+    .filter-status-btn:hover{border-color:var(--noir);}
+    .filter-status-btn.active{background:var(--noir);color:var(--blanc);border-color:var(--noir);}
+  </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Catalogue des Aides Musique 2026","url":"https://lykylabelfrance.github.io/aides-musique-france/aides.html","description":"Catalogue complet des aides publiques et privées pour la musique en France","publisher":{"@type":"Organization","name":"Lyky Label France"}}</script>
 </head>
 <body>
@@ -390,6 +402,10 @@
       var rc = document.getElementById('resultsCount');
       if (rc) rc.querySelector('strong').textContent = count;
     }
-    </script>
+    
+function initStatus(){var cards=document.querySelectorAll(".aide-card");cards.forEach(function(card){var footer=card.querySelector(".aide-footer");var text=footer?footer.textContent:"";var status="ouvert";if(text.indexOf("Sur dossier")!==-1||text.indexOf("Permanent")!==-1)status="permanent";var header=card.querySelector(".aide-card-header");if(header){var badge=document.createElement("span");badge.className="aide-status-badge status-"+status;badge.textContent=status==="permanent"?"Permanent":status==="ouvert"?"Ouvert":status==="ferme"?"Ferme":"A venir";header.appendChild(badge)}card.setAttribute("data-status",status)})}
+function filterStatus(s){var btns=document.querySelectorAll(".filter-status-btn");btns.forEach(function(b){b.classList.remove("active")});event.target.classList.add("active");var cards=document.querySelectorAll(".aide-card");cards.forEach(function(card){if(s==="all"||card.getAttribute("data-status")===s){card.style.display=""}else{card.style.display="none"}})}
+window.addEventListener("DOMContentLoaded",initStatus);
+</script>
 </body>
 </html>
