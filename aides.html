@@ -3,6 +3,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e8001d">
     <meta property="og:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
     <meta name="twitter:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
   <meta name="description" content="Catalogue complet des aides à la musique en France 2026 : CNM, SACEM, Adami, SPEDIDAM, crédits d'impôt, régions. Filtrez par activité, statut et organisme.">
@@ -410,5 +412,7 @@ function initStatus(){var today=new Date();var statusMap={"Aide Production Phono
 function filterStatus(s){var btns=document.querySelectorAll(".filter-status-btn");btns.forEach(function(b){b.classList.remove("active")});event.target.classList.add("active");var cards=document.querySelectorAll(".aide-card");cards.forEach(function(card){if(s==="all"||card.getAttribute("data-status")===s){card.style.display=""}else{card.style.display="none"}})}
 window.addEventListener("DOMContentLoaded",initStatus);
 </script>
+
+  <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
 </body>
 </html>
