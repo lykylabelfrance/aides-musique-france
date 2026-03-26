@@ -1,3 +1,398 @@
+ <!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catalogue complet des aides à la musique en France 2026 : CNM, SACEM, Adami, SPEDIDAM, crédits d'impôt, régions. Filtrez par activité, statut et organisme.">
+  <meta name="keywords" content="catalogue aides musique, CNM, SACEM, Adami, SPEDIDAM, crédit impôt phonographique, subventions musique France 2026">
+  <link rel="canonical" href="https://lykylabelfrance.github.io/aides-musique-france/aides.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Catalogue des Aides Musique 2026 — Lyky Label">
+  <meta property="og:description" content="Catalogue complet des aides à la musique en France 2026 : CNM, SACEM, Adami, SPEDIDAM, crédits d'impôt.">
+  <meta property="og:url" content="https://lykylabelfrance.github.io/aides-musique-france/aides.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Catalogue des Aides Musique 2026 — Lyky Label">
+  <meta name="twitter:description" content="Toutes les aides pour la musique en France, filtrées par activité et organisme.">
+  <meta name="robots" content="index, follow">
+
+  <title>Catalogue des Aides Musique 2026 -- Lyky Label</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--noir:#0a0a0a;--rouge:#e8001d;--blanc:#ffffff;--gris-clair:#f2f2f2;--gris-medium:#e0e0e0;--gris-texte:#555;--vert:#00a854;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:"DM Sans",sans-serif;background:var(--gris-clair);color:var(--noir);font-size:14px;line-height:1.6;}
+    nav{background:var(--noir);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--blanc);letter-spacing:0.08em;}
+    .nav-logo span{color:var(--rouge);}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:"DM Mono",monospace;letter-spacing:0.08em;text-transform:uppercase;}
+    .nav-links a.active{color:var(--blanc);}
+    .nav-badge{background:var(--rouge);color:var(--blanc);font-size:10px;padding:2px 7px;border-radius:20px;font-family:"DM Mono",monospace;margin-left:6px;vertical-align:middle;}
+    .page-header{background:var(--noir);padding:50px 50px 40px;}
+    .page-header-inner{max-width:1100px;margin:0 auto;}
+    .page-tag{display:inline-block;background:var(--rouge);color:var(--blanc);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:16px;}
+    .page-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(40px,5vw,72px);letter-spacing:0.03em;line-height:0.92;color:var(--blanc);}
+    .page-title span{color:var(--rouge);}
+    .page-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-top:12px;}
+    main{max-width:1100px;margin:0 auto;padding:40px 50px 80px;}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding:20px;background:var(--blanc);border:1px solid var(--gris-medium);}
+    .filter-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris-texte);align-self:center;margin-right:8px;}
+    .filter-btn{background:transparent;border:1px solid var(--gris-medium);color:var(--gris-texte);padding:6px 14px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:0.06em;cursor:pointer;transition:all 0.15s;}
+    .filter-btn:hover{background:var(--noir);color:var(--blanc);border-color:var(--noir);}
+    .filter-btn.active-rouge{background:var(--rouge);color:var(--blanc);border-color:var(--rouge);}
+    .results-count{font-family:"DM Mono",monospace;font-size:11px;color:var(--gris-texte);margin-bottom:20px;letter-spacing:0.06em;}
+    .results-count strong{color:var(--rouge);}
+    .section-bloc{margin-bottom:50px;}
+    .orga-header{display:flex;align-items:center;gap:20px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid var(--noir);}
+    .orga-acronym-big{font-family:"Bebas Neue",sans-serif;font-size:42px;color:var(--noir);letter-spacing:0.04em;line-height:1;}
+    .orga-full-name{font-size:12px;color:var(--gris-texte);max-width:300px;}
+    .orga-total{font-family:"DM Mono",monospace;font-size:10px;color:var(--rouge);letter-spacing:0.1em;text-transform:uppercase;margin-left:auto;}
+    .aide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+    .aide-card{background:var(--blanc);border:1px solid var(--gris-medium);padding:24px;text-decoration:none;display:block;transition:border-color 0.2s,box-shadow 0.2s;}
+    .aide-card:hover{border-color:var(--rouge);box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+    .aide-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+    .aide-orga-badge{background:var(--noir);color:var(--blanc);font-family:"DM Mono",monospace;font-size:9px;letter-spacing:0.1em;padding:3px 8px;text-transform:uppercase;}
+    .aide-type-badge{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:0.08em;padding:3px 8px;text-transform:uppercase;}
+    .badge-production{background:#e8f5e9;color:#2e7d32;}
+    .badge-showcase{background:#fff3e0;color:#e65100;}
+    .badge-marketing{background:#e3f2fd;color:#1565c0;}
+    .badge-formation{background:#f3e5f5;color:#6a1b9a;}
+    .badge-international{background:#e0f7fa;color:#00695c;}
+    .badge-bourse{background:#fce4ec;color:#880e4f;}
+    .badge-edition{background:#f9fbe7;color:#558b2f;}
+    .badge-autre{background:#eceff1;color:#37474f;}
+    .aide-nom{font-family:"Bebas Neue",sans-serif;font-size:18px;letter-spacing:0.04em;color:var(--noir);line-height:1.1;margin-bottom:8px;}
+    .aide-desc{font-size:12px;color:var(--gris-texte);line-height:1.5;margin-bottom:14px;}
+    .aide-footer{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--gris-medium);padding-top:12px;margin-top:4px;}
+    .aide-montant{font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--rouge);}
+    .aide-montant-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--gris-texte);letter-spacing:0.08em;text-transform:uppercase;}
+    .aide-profils{display:flex;gap:4px;flex-wrap:wrap;}
+    .profil-tag{background:var(--gris-clair);color:var(--gris-texte);font-family:"DM Mono",monospace;font-size:9px;padding:2px 6px;letter-spacing:0.06em;}
+    footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:30px 50px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;}
+    footer strong{color:var(--rouge);}
+  
+    .search-bar { margin-bottom: 1.2rem; position: relative; }
+    .search-bar input {
+      width: 100%; padding: 0.9rem 1.2rem 0.9rem 3rem;
+      border: 2px solid #333; border-radius: 12px;
+      background: #1a1a1a; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    .search-bar input:focus { outline: none; border-color: var(--rouge); }
+    .search-bar input::placeholder { color: #888; }
+    .search-bar .search-icon {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      color: #888; font-size: 1.2rem; pointer-events: none;
+    }
+    .no-results { text-align:center; padding:3rem; color:#888; font-size:1.1rem; display:none; }
+    </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Catalogue des Aides Musique 2026","url":"https://lykylabelfrance.github.io/aides-musique-france/aides.html","description":"Catalogue complet des aides publiques et privées pour la musique en France","publisher":{"@type":"Organization","name":"Lyky Label France"}}</script>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">LYKY <span>LABEL</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="aides.html" class="active">Aides <span class="nav-badge">90</span></a></li>
+      <li><a href="eligibilite.html">Test Eligibilite</a></li>
+    </ul>
+  </nav>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-tag">Catalogue 2026</div>
+      <h1 class="page-title">Aides &amp; <span>Dispositifs</span><br>Fiscaux Musique</h1>
+      <p class="page-sub">90 dispositifs repertories -- CNM, SCPP, ADAMI, SPPF, SACEM, SPEDIDAM</p>
+    </div>
+  </div>
+  <main>
+    <div class="filters">
+      <div class="search-bar">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="Rechercher une aide, un organisme, un mot-clé..." oninput="searchAides(this.value)">
+      </div>
+    
+      <span class="filter-label">Filtrer par :</span>
+      <button class="filter-btn active-rouge" onclick="filterOrga('all',this)">Tous (90)</button>
+      <button class="filter-btn" onclick="filterOrga('cnm',this)">CNM (34)</button>
+      <button class="filter-btn" onclick="filterOrga('scpp',this)">SCPP (5)</button>
+      <button class="filter-btn" onclick="filterOrga('adami',this)">ADAMI (8)</button>
+      <button class="filter-btn" onclick="filterOrga('sppf',this)">SPPF (6)</button>
+      <button class="filter-btn" onclick="filterOrga('sacem',this)">SACEM (4)</button>
+      <button class="filter-btn" onclick="filterOrga('spedidam',this)">SPEDIDAM (3)</button>
+      <button class="filter-btn" onclick="filterOrga('fonpeps',this)">FONPEPS (2)</button>
+      <button class="filter-btn" onclick="filterOrga('ifcic',this)">IFCIC (2)</button>
+      <button class="filter-btn" onclick="filterOrga('minculture',this)">Min. Culture (2)</button>
+      <button class="filter-btn" onclick="filterOrga('fadem',this)">FADEM (1)</button>
+      <button class="filter-btn" onclick="filterOrga('region',this)">Région (5)</button>
+      <button class="filter-btn" onclick="filterOrga('regionidf',this)">Région IDF (1)</button>
+      <button class="filter-btn" onclick="filterOrga('dacdrac',this)">DAC/DRAC (4)</button>
+      <button class="filter-btn" onclick="filterOrga('villedeparis',this)">Ville de Paris (3)</button>
+      <button class="filter-btn" onclick="filterOrga('prma',this)">PRMA (3)</button>
+      <button class="filter-btn" onclick="filterOrga('departement',this)">Département (1)</button>
+      <button class="filter-btn" onclick="filterOrga('mairie',this)">Mairie (1)</button>
+    </div>
+    <div class="results-count" id="resultsCount">Affichage de <strong>58</strong> dispositifs</div>
+    <div class="no-results" id="noResults">Aucune aide ne correspond à votre recherche.</div>
+
+    <!-- CNM -->
+    <div class="section-bloc" id="cnm">
+      <div class="orga-header"><div><div class="orga-acronym-big">CNM</div><div class="orga-full-name">Centre National de la Musique</div></div><div class="orga-total">27 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-production">Production</span></div><div class="aide-nom">Aide Production Phonographique</div><div class="aide-desc">Soutien a la production phonographique. Labels et producteurs independants.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Producteur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-production">Production</span></div><div class="aide-nom">Aide Automatique Production Phonographique</div><div class="aide-desc">Aide calculee automatiquement selon les ventes et streams de l annee precedente.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Auto-calcul</div></div><div class="aide-profils"><span class="profil-tag">Label</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-showcase">Showcase</span></div><div class="aide-nom">Aide Production Diffusion Spectacle Vivant</div><div class="aide-desc">Soutien a la production et la diffusion de spectacles de musiques actuelles.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Diffuseur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-showcase">Creation</span></div><div class="aide-nom">Aide Creation Spectacle Musical</div><div class="aide-desc">Finance la creation et les repetitions de spectacles musicaux inedits.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Compagnie</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">International</span></div><div class="aide-nom">Export A -- Strategie Developpement International</div><div class="aide-desc">Strategie globale de developpement a l international. Labels, managers, editeurs.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Manager</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">International</span></div><div class="aide-nom">Export B -- Diffusion Internationale Tournees</div><div class="aide-desc">Soutien aux tournees et diffusions a l international.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Tourneur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-marketing">Marketing</span></div><div class="aide-nom">Export C -- Marketing Promotion Internationale</div><div class="aide-desc">Campagnes marketing et promotionnelles a l international.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Manager</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-edition">Edition</span></div><div class="aide-nom">Aide Editeur Developpement Editorial</div><div class="aide-desc">Soutien aux editeurs musicaux pour le developpement de leur catalogue.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Editeur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-bourse">Bourse</span></div><div class="aide-nom">Bourse Parcours Auteurs-Compositeurs</div><div class="aide-desc">Bourse pour les auteurs et compositeurs en debut de carriere.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Auteur</span><span class="profil-tag">Compositeur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-autre">Restructuration</span></div><div class="aide-nom">Aide Restructuration Economique</div><div class="aide-desc">Accompagnement financier des structures en difficulte economique.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Structure</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-autre">Tirage</span></div><div class="aide-nom">Droit de Tirage</div><div class="aide-desc">Mecanisme de financement souple pour les producteurs phonographiques eligibles.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Auto-calcul</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Producteur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-showcase">Promoteur</span></div><div class="aide-nom">Aide Promoteurs Diffuseurs</div><div class="aide-desc">Soutien aux promoteurs et diffuseurs de concerts.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Promoteur</span><span class="profil-tag">Diffuseur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">Outre-mer</span></div><div class="aide-nom">Fonds Outre-mer — Aide a la Structuration</div><div class="aide-desc">Renforcement des capacites des structures musicales en Outre-mer (DROM-COM).</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Editeur</span><span class="profil-tag">Spectacle</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">Outre-mer</span></div><div class="aide-nom">Fonds Outre-mer — Soutien a la Mobilite</div><div class="aide-desc">Aide aux deplacements entre l'Outre-mer et la metropole pour artistes et professionnels.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Transport + hebergement</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">Outre-mer</span></div><div class="aide-nom">Fonds Outre-mer — Soutien a la Diffusion</div><div class="aide-desc">Aide a la diffusion de spectacles dans des lieux non conventionnels en territoires ultramarins.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Spectacle</span><span class="profil-tag">Diffuseur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">Innovation</span></div><div class="aide-nom">CNM — Aide a l'Innovation</div><div class="aide-desc">Soutien aux projets d'innovation technologique ou de service creant de la valeur pour les professionnels de la musique.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Editeur</span><span class="profil-tag">Spectacle</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-production">Accompagnement</span></div><div class="aide-nom">CNM — Accompagnement et Professionnalisation</div><div class="aide-desc">Aide aux dispositifs d'accompagnement, de professionnalisation et aux rencontres professionnelles.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Editeur</span><span class="profil-tag">Spectacle</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Soutien aux diffusions alternatives - FOM</div><div class="aide-desc">Soutien aux diffusions alternatives dans les territoires d'Outre-mer.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Soutien Digital (volet 1) - FOM</div><div class="aide-desc">Développement digital en Outre-mer (volet 1).</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Soutien Digital (volet 2) - FOM</div><div class="aide-desc">Développement digital en Outre-mer (volet 2).</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à la structuration FOM (volet 1)</div><div class="aide-desc">Structuration entreprises musicales Outre-mer (volet 1).</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à la structuration FOM (volet 2)</div><div class="aide-desc">Structuration entreprises musicales Outre-mer (volet 2).</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à la structuration FOM (volet 3)</div><div class="aide-desc">Structuration entreprises musicales Outre-mer (volet 3).</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Outre-mer</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide La Réunion - Structuration intégration artistes</div><div class="aide-desc">Soutien à la structuration et intégration d'artistes à La Réunion.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">La Réunion</span></span></div></div></div>
+    </div>
+
+    <!-- SCPP -->
+    <div class="section-bloc" id="scpp">
+      <div class="orga-header"><div><div class="orga-acronym-big">SCPP</div><div class="orga-full-name">Societe Civile des Producteurs Phonographiques</div></div><div class="orga-total">5 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-formation">Formation</span></div><div class="aide-nom">Aide a la Formation Artiste</div><div class="aide-desc">Finance la montee en competences via 5 organismes conventionnes SCPP. Ne pas vendre une formation, vendre un plan de developpement.</div><div class="aide-footer"><div><div class="aide-montant">1600-2000 EUR</div><div class="aide-montant-label">HT max 2/an</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-showcase">Showcase</span></div><div class="aide-nom">Aide Showcase</div><div class="aide-desc">Financement des showcases et concerts de promotion pour les membres SCPP.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-production">Production</span></div><div class="aide-nom">Aide Creation Phonogramme</div><div class="aide-desc">Soutien a la creation et l enregistrement de phonogrammes.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Producteur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-marketing">Marketing</span></div><div class="aide-nom">Aide Marketing</div><div class="aide-desc">Soutien aux campagnes marketing et promotionnelles des membres SCPP.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-production">Video</span></div><div class="aide-nom">Aide Videomusique</div><div class="aide-desc">Financement de la production de clips et videos musicales.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Artiste</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ADAMI -->
+    <div class="section-bloc" id="adami">
+      <div class="orga-header"><div><div class="orga-acronym-big">ADAMI</div><div class="orga-full-name">Societe de gestion des droits des artistes et musiciens interpretes</div></div><div class="orga-total">5 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-bourse">Bourse</span></div><div class="aide-nom">Bourse Parcours Artiste</div><div class="aide-desc">Bourse d accompagnement pour les artistes-interpretes en developpement de carriere.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-showcase">Showcase</span></div><div class="aide-nom">Aide Premiere Partie Musique</div><div class="aide-desc">Financement des premieres parties de concerts pour les artistes emergents.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-production">Production</span></div><div class="aide-nom">Aide Production Enregistrement 2D-3D</div><div class="aide-desc">Soutien a la production d enregistrements en 2D ou 3D (binaural, spatial audio).</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Label</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-bourse">Projet Global</span></div><div class="aide-nom">Aide Projet Musical Global 365</div><div class="aide-desc">Soutien complet au projet artistique sur 365 jours -- le dispositif le plus complet de ADAMI.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste-Interprete</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-production">EAC</span></div><div class="aide-nom">ADAMI — Aide EAC (Education Artistique et Culturelle)</div><div class="aide-desc">Soutien aux projets d'education artistique et culturelle portes par des artistes-interpretes.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Interprete</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à la promotion d'un enregistrement</div><div class="aide-desc">Soutien à la promotion d'enregistrements d'artistes-interprètes.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste-interprète</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide aux contenus numériques</div><div class="aide-desc">Soutien à la création de contenus numériques.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste-interprète</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide au projet musical global</div><div class="aide-desc">Accompagnement global d'un projet musical d'artiste-interprète.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste-interprète</span></span></div></div></div>
+    </div>
+
+    <!-- SPPF -->
+    <div class="section-bloc" id="sppf">
+      <div class="orga-header"><div><div class="orga-acronym-big">SPPF</div><div class="orga-full-name">Societe Civile des Producteurs de Phonogrammes en France</div></div><div class="orga-total">5 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-production">Production</span></div><div class="aide-nom">Aide Enregistrement Album</div><div class="aide-desc">Financement de l enregistrement d un album pour les producteurs independants membres SPPF.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Producteur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-showcase">Showcase</span></div><div class="aide-nom">Aide Showcase</div><div class="aide-desc">Soutien aux showcases de promotion pour les membres SPPF.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-production">Video</span></div><div class="aide-nom">Aide Videomusique</div><div class="aide-desc">Production de clips et videos musicales pour les membres SPPF.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Label</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-bourse">Bonus</span></div><div class="aide-nom">Bonification Croisee SPPF-ADAMI</div><div class="aide-desc">Dispositif croise SPPF-ADAMI offrant une bonification supplementaire sur les aides.</div><div class="aide-footer"><div><div class="aide-montant">+Bonus</div><div class="aide-montant-label">Croisement</div></div><div class="aide-profils"><span class="profil-tag">Label</span><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-autre">Remuneration</span></div><div class="aide-nom">GRM -- Garantie Remuneration Minimale</div><div class="aide-desc">Garantie de remuneration minimale pour les artistes-interpretes sous contrat avec labels membres SPPF.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Garanti</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Label</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à l'organisation de tournée (Tour support)</div><div class="aide-desc">Soutien financier pour l'organisation de tournées.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span></span></div></div></div>
+    </div>
+
+    <!-- SACEM -->
+    <div class="section-bloc" id="sacem">
+      <div class="orga-header"><div><div class="orga-acronym-big">SACEM</div><div class="orga-full-name">Societe des Auteurs, Compositeurs et Editeurs de Musique</div></div><div class="orga-total">3 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-production">Autoproduction</span></div><div class="aide-nom">Aide Autoproduction Projet Musical</div><div class="aide-desc">Soutien aux auteurs-compositeurs qui autoproduisent leurs projets musicaux sans label.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Auteur</span><span class="profil-tag">Compositeur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-showcase">Spectacle</span></div><div class="aide-nom">Creation Spectacle Musical</div><div class="aide-desc">Finance la creation de spectacles musicaux originaux par des membres SACEM.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Auteur</span><span class="profil-tag">Compositeur</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-edition">Editorial</span></div><div class="aide-nom">Dev Editorial Valorisation Patrimoniale MA</div><div class="aide-desc">Developpement editorial et valorisation du patrimoine des musiques actuelles.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Editeur</span><span class="profil-tag">Auteur</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide au Développement Éditorial – Musiques Actuelles</div><div class="aide-desc">Soutien au développement éditorial musiques actuelles.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Auteur</span><span class="profil-tag">Éditeur</span></span></div></div></div>
+    </div>
+
+    <!-- SPEDIDAM -->
+    <div class="section-bloc" id="spedidam">
+      <div class="orga-header"><div><div class="orga-acronym-big">SPEDIDAM</div><div class="orga-full-name">Societe de Perception et de Distribution des Droits des Artistes et Musiciens Interpretes</div></div><div class="orga-total">3 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPEDIDAM</span><span class="aide-type-badge badge-showcase">Spectacle</span></div><div class="aide-nom">Aide Spectacle Musical</div><div class="aide-desc">Soutien a la production et diffusion de spectacles musicaux pour les artistes-interpretes.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPEDIDAM</span><span class="aide-type-badge badge-international">International</span></div><div class="aide-nom">Aide Deplacement International</div><div class="aide-desc">Financement des deplacements et tournees a l international pour les interpretes membres.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Interprete</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">SPEDIDAM</span><span class="aide-type-badge badge-marketing">Image</span></div><div class="aide-nom">Aide Promotion Image</div><div class="aide-desc">Soutien aux actions de promotion et de developpement de l image des artistes-interpretes.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div></div><div class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Interprete</span></div></div></div>
+      </div>
+    </div>
+  
+
+    <!-- FONPEPS -->
+    <div class="section-bloc" id="fonpeps">
+      <div class="orga-header"><div><div class="orga-acronym-big">FONPEPS</div><div class="orga-full-name">Fonds National pour l'Emploi Pérenne dans le Spectacle</div></div><div class="orga-count">1 dispositif</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">FONPEPS</span><span class="aide-type-badge badge-production">Emploi</span></div><div class="aide-nom">FONPEPS — Aide APAJ (Parcours Artiste Jeune)</div><div class="aide-desc">Aide a l'employeur pour l'embauche en CDI ou CDD ≥ 3 mois d'artistes et techniciens du spectacle.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Selon duree contrat</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Spectacle</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">FONPEPS</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">FONPEPS - Aide au spectacle vivant</div><div class="aide-desc">Aide à l'emploi dans le spectacle vivant musical.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Spectacle vivant</span></span></div></div></div>
+    </div>
+
+
+    <!-- IFCIC -->
+    <div class="section-bloc" id="ifcic">
+      <div class="orga-header"><div><div class="orga-acronym-big">IFCIC</div><div class="orga-full-name">Institut pour le Financement du Cinema et des Industries Culturelles</div></div><div class="orga-count">2 dispositifs</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">IFCIC</span><span class="aide-type-badge badge-production">Garantie</span></div><div class="aide-nom">IFCIC — Garantie de Pret Bancaire</div><div class="aide-desc">Garantie bancaire pour faciliter l'acces au credit des entreprises culturelles et musicales. Commission 0,5-0,7% par an.</div><div class="aide-footer"><div><div class="aide-montant">50-70%</div><div class="aide-montant-label">du pret garanti</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Editeur</span><span class="profil-tag">Spectacle</span></div></div></div>
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">IFCIC</span><span class="aide-type-badge badge-production">Pret</span></div><div class="aide-nom">IFCIC — Pret Direct aux Entreprises Culturelles</div><div class="aide-desc">Pret direct de l'IFCIC pour financer les besoins des entreprises musicales a tous les stades de developpement.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Selon besoin</div></div><div class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Editeur</span><span class="profil-tag">Spectacle</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="section-bloc" id="minculture">
+      <div class="orga-header"><div><div class="orga-acronym-big">Min. Culture</div><div class="orga-full-name">Ministere de la Culture</div></div><div class="orga-count">1 dispositif</div></div>
+      <div class="aide-grid">
+        <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Min. Culture</span><span class="aide-type-badge badge-production">Composition</span></div><div class="aide-nom">Aide a la Composition Musicale</div><div class="aide-desc">Aide a la creation d'oeuvres musicales originales, attribuee par les DRAC. Pour compositeurs membres SACEM.</div><div class="aide-footer"><div><div class="aide-montant">Variable</div><div class="aide-montant-label">Via DRAC</div></div><div class="aide-profils"><span class="profil-tag">Compositeur</span><span class="profil-tag">Auteur</span></div></div></div>
+      
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Min. Culture</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Dispositif compositeurs associés</div><div class="aide-desc">Compositeurs associés dans les scènes pluridisciplinaires.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Auteur</span></span></div></div></div>
+    </div>
+
+
+        <div class="section-bloc" id="fadem">
+          <div class="orga-header">
+            <span class="orga-acronym">FADEM</span>
+            <span class="orga-full-name">Fonds d'Aide et de Développement pour les Musiques actuelles</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">FADEM</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">FADEM - Fonds d'aide aux musiques actuelles</div><div class="aide-desc">Fonds d'aide et de développement pour les musiques actuelles.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="region">
+          <div class="orga-header">
+            <span class="orga-acronym">Région</span>
+            <span class="orga-full-name">Conseils Régionaux</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à la réalisation d'album</div><div class="aide-desc">Aide régionale à la réalisation d'un album.</div><div class="aide-footer"><span class="aide-montant">Jusqu'à 6 000 €</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide clip vidéo</div><div class="aide-desc">Aide régionale à la réalisation de clip vidéo.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide professionnalisation</div><div class="aide-desc">Aide régionale aux actions de professionnalisation.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide à l'équipement</div><div class="aide-desc">Aide régionale à l'acquisition d'équipement.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide export / diffusion hors région</div><div class="aide-desc">Aide à la diffusion des artistes hors de la région.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="regionidf">
+          <div class="orga-header">
+            <span class="orga-acronym">Région IDF</span>
+            <span class="orga-full-name">Région Île-de-France</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Région IDF</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide diffusion spectacle vivant IDF</div><div class="aide-desc">Aide à la diffusion des œuvres dans le spectacle vivant en Île-de-France.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Spectacle vivant</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="dacdrac">
+          <div class="orga-header">
+            <span class="orga-acronym">DAC/DRAC</span>
+            <span class="orga-full-name">Directions des Affaires Culturelles / Directions Régionales</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">DAC/DRAC</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide écriture œuvre musicale originale</div><div class="aide-desc">Aide à l'écriture d'une œuvre musicale originale.</div><div class="aide-footer"><span class="aide-montant">Jusqu'à 13 000 €</span><span class="aide-profils"><span class="profil-tag">Auteur</span><span class="profil-tag">Artiste</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">DAC/DRAC</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">ADSV - Aides déconcentrées spectacle vivant</div><div class="aide-desc">Aides déconcentrées au spectacle vivant.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Spectacle vivant</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">DAC/DRAC</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide résidence de création</div><div class="aide-desc">Aide à la résidence de création musicale.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">DAC/DRAC</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">FEAC MOM</div><div class="aide-desc">Fonds d'encouragement aux initiatives artistiques et culturelles Outre-mer.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Tous profils</span><span class="profil-tag">Outre-mer</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="villedeparis">
+          <div class="orga-header">
+            <span class="orga-acronym">Ville de Paris</span>
+            <span class="orga-full-name">Mairie de Paris</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Ville de Paris</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide résidence création musicale</div><div class="aide-desc">Aide à la résidence de création d'œuvres musicales.</div><div class="aide-footer"><span class="aide-montant">Jusqu'à 10 000 €</span><span class="aide-profils"><span class="profil-tag">Artiste</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Ville de Paris</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide diffusion musique</div><div class="aide-desc">Aide à la diffusion d'œuvres dans le domaine de la musique.</div><div class="aide-footer"><span class="aide-montant">Jusqu'à 15 000 €</span><span class="aide-profils"><span class="profil-tag">Producteur</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Ville de Paris</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide jeunes artistes musique</div><div class="aide-desc">Aide aux jeunes artistes dans le domaine de la musique.</div><div class="aide-footer"><span class="aide-montant">Jusqu'à 15 000 €</span><span class="aide-profils"><span class="profil-tag">Artiste</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="prma">
+          <div class="orga-header">
+            <span class="orga-acronym">PRMA</span>
+            <span class="orga-full-name">Pôles Régionaux de Musiques Actuelles</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">PRMA</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">AMI - Aide à la mise en image</div><div class="aide-desc">Aide à la réalisation de clips et contenus visuels.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">PRMA</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Tournée Générale (TG)</div><div class="aide-desc">Aide à l'organisation de tournées régionales.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">PRMA</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">FRAM - Fonds régional aide à la mobilité</div><div class="aide-desc">Aide à la mobilité des artistes et structures.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="departement">
+          <div class="orga-header">
+            <span class="orga-acronym">Département</span>
+            <span class="orga-full-name">Conseils Départementaux</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Département</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide professionnalisation départementale</div><div class="aide-desc">Aide départementale aux actions de professionnalisation.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+          </div>
+        </div>
+
+        <div class="section-bloc" id="mairie">
+          <div class="orga-header">
+            <span class="orga-acronym">Mairie</span>
+            <span class="orga-full-name">Communes</span>
+          </div>
+          <div class="aide-grid">
+            <div class="aide-card"><div class="aide-card-header"><span class="aide-orga-badge">Mairie</span><span class="aide-type-badge badge-subvention">Subvention</span></div><div class="aide-nom">Aide fonctionnement + Actions EAC</div><div class="aide-desc">Aide municipale au fonctionnement et à l'éducation artistique et culturelle.</div><div class="aide-footer"><span class="aide-montant">Variable</span><span class="aide-profils"><span class="profil-tag">Artiste</span><span class="profil-tag">Producteur</span><span class="profil-tag">Spectacle vivant</span></span></div></div>
+          </div>
+        </div></main>
+
+  <footer>
+    <span>2026 -- <strong>Lyky Label France</strong> -- Usage interne / Clients partenaires</span>
+    <span>Donnees 2026 -- CNM SCPP ADAMI SPPF SACEM SPEDIDAM</span>
+  </footer>
+
+  <script>
+  var orgaCount = {all:47, cnm:22, scpp:5, adami:4, sppf:5, sacem:3, spedidam:3};
+
+  function filterOrga(orga, btn) {
+    var btns = document.querySelectorAll(".filter-btn");
+    for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active-rouge"); }
+    btn.classList.add("active-rouge");
+    var blocs = document.querySelectorAll(".section-bloc");
+    for (var j = 0; j < blocs.length; j++) {
+      if (orga === "all" || blocs[j].id === orga) { blocs[j].style.display = ""; }
+      else { blocs[j].style.display = "none"; }
+    }
+    var count = orgaCount[orga] || 0;
+    document.getElementById("resultsCount").innerHTML = "Affichage de <strong>" + count + "</strong> dispositifs";
+  }
+  
+    function searchAides(query) {
+      var q = query.toLowerCase().trim();
+      var cards = document.querySelectorAll('.aide-card');
+      var sections = document.querySelectorAll('.section-bloc');
+      var count = 0;
+      cards.forEach(function(card) {
+        var text = card.textContent.toLowerCase();
+        var match = !q || text.indexOf(q) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) count++;
+      });
+      sections.forEach(function(sec) {
+        var visCards = sec.querySelectorAll('.aide-card');
+        var hasVisible = false;
+        visCards.forEach(function(c) { if (c.style.display !== 'none') hasVisible = true; });
+        sec.style.display = hasVisible ? '' : 'none';
+      });
+      var noRes = document.getElementById('noResults');
+      if (noRes) noRes.style.display = count === 0 ? 'block' : 'none';
+      var rc = document.getElementById('resultsCount');
+      if (rc) rc.querySelector('strong').textContent = count;
+    }
+    </script>
+</body>
+</html>
 <!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8">
