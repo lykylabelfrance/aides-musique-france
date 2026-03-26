@@ -1,4 +1,4 @@
-var CACHE_NAME = 'aides-musique-v1';
+var CACHE_NAME = 'aides-musique-v2';
 var urlsToCache = [
   '/aides-musique-france/',
   '/aides-musique-france/index.html',
@@ -7,7 +7,9 @@ var urlsToCache = [
   '/aides-musique-france/mentions-legales.html',
   '/aides-musique-france/favicon.svg',
   '/aides-musique-france/og-image.svg',
-  '/aides-musique-france/manifest.json'
+  '/aides-musique-france/manifest.json',
+  '/aides-musique-france/dossier.html',
+  '/aides-musique-france/404.html'
 ];
 
 self.addEventListener('install', function(event) {
