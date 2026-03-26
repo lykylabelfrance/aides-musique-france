@@ -3,6 +3,452 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trouvez toutes les aides publiques et privées pour la musique en France : subventions, crédits d'impôt, fonds de soutien pour artistes, labels, éditeurs et producteurs.">
+  <meta name="keywords" content="aides musique France, subventions musique, crédit impôt phonographique, CNM, SACEM, Adami, producteur musique, label indépendant">
+  <link rel="canonical" href="https://lykylabelfrance.github.io/aides-musique-france/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aides Musique France — Lyky Label">
+  <meta property="og:description" content="Trouvez toutes les aides publiques et privées pour la musique en France : subventions, crédits d'impôt, fonds de soutien.">
+  <meta property="og:url" content="https://lykylabelfrance.github.io/aides-musique-france/">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Aides Musique France — Lyky Label">
+  <meta name="twitter:description" content="Trouvez toutes les aides publiques et privées pour la musique en France.">
+  <meta name="robots" content="index, follow">
+
+  <title>Aides Musique France — Lyky Label</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--noir:#0a0a0a;--rouge:#e8001d;--blanc:#ffffff;--gris-clair:#f2f2f2;--gris-medium:#e0e0e0;--gris-texte:#555;--vert:#00a854;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--gris-clair);color:var(--noir);font-size:14px;line-height:1.6;}
+    nav{background:var(--noir);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blanc);letter-spacing:0.08em;}
+    .nav-logo span{color:var(--rouge);}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blanc);}
+    .nav-badge{background:var(--rouge);color:var(--blanc);font-size:10px;padding:2px 7px;border-radius:20px;font-family:'DM Mono',monospace;margin-left:6px;vertical-align:middle;}
+    .hero{background:var(--noir);padding:80px 50px 60px;position:relative;overflow:hidden;}
+    .hero::before{content:'MUSIC AIDES FRANCE';font-family:'Bebas Neue',sans-serif;font-size:22vw;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,0.025);pointer-events:none;white-space:nowrap;}
+    .hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;}
+    .hero-tag{display:inline-block;background:var(--rouge);color:var(--blanc);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:20px;}
+    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,90px);letter-spacing:0.03em;line-height:0.92;color:var(--blanc);margin-bottom:20px;}
+    .hero-title span{color:var(--rouge);}
+    .hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,0.6);max-width:560px;margin-bottom:40px;}
+    .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+    .btn-primary{background:var(--rouge);color:var(--blanc);padding:14px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;font-weight:500;display:inline-block;}
+    .btn-secondary{background:transparent;color:var(--blanc);padding:14px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.25);display:inline-block;}
+    .hero-stats{display:flex;gap:40px;margin-top:50px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--rouge);line-height:1;}
+    .stat-label{font-size:11px;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
+    .bande{background:var(--rouge);padding:0 50px;display:flex;gap:0;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.09em;}
+    .bande-item{display:flex;align-items:center;gap:10px;padding:10px 20px 10px 0;text-decoration:none;color:var(--blanc);transition:background 0.2s,color 0.2s;border-right:1px solid rgba(255,255,255,0.15);padding-right:20px;margin-right:20px;}
+    .bande-item:last-child{border-right:none;margin-right:0;}
+    .bande-item:hover .bande-org{background:rgba(0,0,0,0.4);}
+    .bande-item:hover .bande-cats{opacity:1;}
+    .bande-org{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.08em;background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:2px;white-space:nowrap;transition:background 0.2s;}
+    .bande-cats{opacity:0.75;font-size:10.5px;letter-spacing:0.07em;transition:opacity 0.2s;}
+    main{max-width:1100px;margin:0 auto;padding:50px 50px 80px;}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.08em;display:flex;align-items:center;gap:12px;margin-bottom:24px;margin-top:40px;}
+    .section-title::before{content:'';display:block;width:5px;height:26px;background:var(--rouge);flex-shrink:0;}
+    .section-title .num{font-family:'DM Mono',monospace;font-size:11px;color:var(--rouge);letter-spacing:0.1em;}
+    .orga-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:40px;}
+    .orga-card{background:var(--blanc);border:1px solid var(--gris-medium);padding:20px;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.15s;}
+    .orga-card:hover{border-color:var(--rouge);transform:translateY(-2px);}
+    .orga-acronym{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--noir);letter-spacing:0.04em;line-height:1;}
+    .orga-name{font-size:11px;color:var(--gris-texte);margin:6px 0 10px;line-height:1.4;}
+    .orga-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--rouge);letter-spacing:0.08em;}
+    .aide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:40px;}
+    .aide-card{background:var(--blanc);border:1px solid var(--gris-medium);padding:24px;text-decoration:none;display:block;transition:border-color 0.2s;}
+    .aide-card:hover{border-color:var(--rouge);}
+    .aide-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+    .aide-orga-badge{background:var(--noir);color:var(--blanc);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:3px 8px;text-transform:uppercase;}
+    .aide-type-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:3px 8px;text-transform:uppercase;}
+    .badge-production{background:#e8f5e9;color:#2e7d32;}
+    .badge-showcase{background:#fff3e0;color:#e65100;}
+    .badge-marketing{background:#e3f2fd;color:#1565c0;}
+    .badge-formation{background:#f3e5f5;color:#6a1b9a;}
+    .badge-international{background:#e0f7fa;color:#00695c;}
+    .badge-bourse{background:#fce4ec;color:#880e4f;}
+    .badge-autre{background:#eceff1;color:#37474f;}
+    .aide-nom{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;color:var(--noir);line-height:1.1;margin-bottom:8px;}
+    .aide-desc{font-size:12px;color:var(--gris-texte);line-height:1.5;margin-bottom:14px;}
+    .aide-montant{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--rouge);}
+    .aide-montant-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--gris-texte);letter-spacing:0.08em;text-transform:uppercase;}
+    .cta-eligibilite{background:var(--noir);padding:50px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;margin-bottom:40px;}
+    .cta-eligibilite h2{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--blanc);letter-spacing:0.04em;line-height:1.1;}
+    .cta-eligibilite h2 span{color:var(--rouge);}
+    .cta-eligibilite p{font-size:13px;color:rgba(255,255,255,0.6);margin-top:10px;max-width:500px;}
+    .cta-steps{display:flex;flex-direction:column;gap:12px;min-width:220px;}
+    .step{display:flex;align-items:center;gap:12px;}
+    .step-num{width:28px;height:28px;background:var(--rouge);color:var(--blanc);font-family:'Bebas Neue',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .step-text{font-size:12px;color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;letter-spacing:0.06em;}
+    footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;}
+    footer strong{color:var(--rouge);}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Aides Musique France","url":"https://lykylabelfrance.github.io/aides-musique-france/","description":"Annuaire des aides pour la musique en France","publisher":{"@type":"Organization","name":"Lyky Label France"}}</script>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">LYKY <span>LABEL</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="aides.html">Aides <span class="nav-badge">90</span></a></li>
+      <li><a href="eligibilite.html">Test Eligibilite</a></li>
+    </ul>
+  </nav>
+  <div class="bande">
+    <a href="aides.html#cnm" class="bande-item">
+      <span class="bande-org">CNM</span>
+      <span class="bande-cats">Prod &middot; Showcase &middot; Intl &middot; Edition</span>
+    </a>
+    <a href="aides.html#scpp" class="bande-item">
+      <span class="bande-org">SCPP</span>
+      <span class="bande-cats">Formation &middot; Artiste &middot; Marketing</span>
+    </a>
+    <a href="aides.html#adami" class="bande-item">
+      <span class="bande-org">ADAMI</span>
+      <span class="bande-cats">Bourse &middot; Projet Global &middot; 365</span>
+    </a>
+    <a href="aides.html#sppf" class="bande-item">
+      <span class="bande-org">SPPF</span>
+      <span class="bande-cats">Enregistrement &middot; Album &middot; GRM</span>
+    </a>
+    <a href="aides.html#sacem" class="bande-item">
+      <span class="bande-org">SACEM</span>
+      <span class="bande-cats">Autoproduction &middot; Spectacle &middot; Musical</span>
+    </a>
+    <a href="aides.html#spedidam" class="bande-item">
+      <span class="bande-org">SPEDIDAM</span>
+      <span class="bande-cats">Spectacle &middot; International</span>
+    </a>
+  </div>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Referentiel 2026 -- Dispositifs Fiscaux Musique</div>
+      <h1 class="hero-title">Aides &amp;<br><span>Subventions</span><br>Musique</h1>
+      <p class="hero-sub">Base de reference des dispositifs de financement dans la musique en France. CNM, SCPP, ADAMI, SPPF, SACEM, SPEDIDAM.</p>
+      <div class="hero-ctas">
+        <a href="aides.html" class="btn-primary">Parcourir les aides</a>
+        <a href="eligibilite.html" class="btn-secondary">Tester mon eligibilite</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">47</div><div class="stat-label">Dispositifs repertories</div></div>
+        <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Organismes couverts</div></div>
+        <div class="stat-item"><div class="stat-num">2026</div><div class="stat-label">Donnees a jour</div></div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <div class="section-title"><span class="num">01 --</span> Organismes</div>
+    <div class="orga-grid">
+      <a href="aides.html#cnm" class="orga-card"><div class="orga-acronym">CNM</div><div class="orga-name">Centre National de la Musique</div><div class="orga-count">34 dispositifs</div></a>
+      <a href="aides.html#scpp" class="orga-card"><div class="orga-acronym">SCPP</div><div class="orga-name">Societe Civile des Producteurs Phonographiques</div><div class="orga-count">5 dispositifs</div></a>
+      <a href="aides.html#adami" class="orga-card"><div class="orga-acronym">ADAMI</div><div class="orga-name">Societe de gestion des droits des artistes</div><div class="orga-count">8 dispositifs</div></a>
+      <a href="aides.html#sppf" class="orga-card"><div class="orga-acronym">SPPF</div><div class="orga-name">Societe Civile des Producteurs de Phonogrammes en France</div><div class="orga-count">6 dispositifs</div></a>
+      <a href="aides.html#sacem" class="orga-card"><div class="orga-acronym">SACEM</div><div class="orga-name">Societe des Auteurs, Compositeurs et Editeurs de Musique</div><div class="orga-count">4 dispositifs</div></a>
+      <a href="aides.html#spedidam" class="orga-card"><div class="orga-acronym">SPEDIDAM</div><div class="orga-name">Societe de Perception et de Distribution des Droits des Artistes</div><div class="orga-count">3 dispositifs</div></a>
+    </div>
+            <div class="orga-card"><div class="orga-acronym">FONPEPS</div><div class="orga-full-name">Fonds National pour l'Emploi Perenne dans le Spectacle</div><div class="orga-count">2 dispositifs</div></div>
+            <div class="orga-card"><div class="orga-acronym">IFCIC</div><div class="orga-full-name">Institut pour le Financement du Cinema et des Industries Culturelles</div><div class="orga-count">2 dispositifs</div></div>
+            <div class="orga-card"><div class="orga-acronym">Min. Culture</div><div class="orga-full-name">Ministere de la Culture</div><div class="orga-count">2 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">FADEM</div><div class="orga-full-name">Fonds d'Aide aux Musiques actuelles</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">Région</div><div class="orga-full-name">Conseils Régionaux</div><div class="orga-count">5 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Région IDF</div><div class="orga-full-name">Région Île-de-France</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">DAC/DRAC</div><div class="orga-full-name">Directions Affaires Culturelles</div><div class="orga-count">4 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Ville de Paris</div><div class="orga-full-name">Mairie de Paris</div><div class="orga-count">3 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">PRMA</div><div class="orga-full-name">Pôles Régionaux Musiques Actuelles</div><div class="orga-count">3 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Département</div><div class="orga-full-name">Conseils Départementaux</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">Mairie</div><div class="orga-full-name">Communes</div><div class="orga-count">1 dispositif</div></div>
+    <div class="section-title"><span class="num">02 --</span> Aides mises en avant</div>
+    <div class="aide-grid">
+      <a href="aides.html#cnm-production" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide a la Production Phonographique</div>
+        <div class="aide-desc">Soutien a la production d'enregistrements phonographiques. Labels, producteurs independants.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon dossier</div>
+      </a>
+      <a href="aides.html#cnm-export-a" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">International</span></div>
+        <div class="aide-nom">Export A -- Strategie Developpement International</div>
+        <div class="aide-desc">Strategie globale de developpement a l'international pour labels et managers.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon projet</div>
+      </a>
+      <a href="aides.html#scpp-formation" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-formation">Formation</span></div>
+        <div class="aide-nom">Aide a la Formation d'Artiste</div>
+        <div class="aide-desc">Finance la montee en competences des artistes via 5 organismes conventionnes.</div>
+        <div class="aide-montant">1600 -- 2000 EUR</div><div class="aide-montant-label">HT / organisme</div>
+      </a>
+      <a href="aides.html#adami-global" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-bourse">Projet Global</span></div>
+        <div class="aide-nom">Aide Projet Musical Global 365</div>
+        <div class="aide-desc">Soutien complet au projet artistique d'un artiste-interprete sur 365 jours.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div>
+      </a>
+      <a href="aides.html#sppf-album" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide a l'Enregistrement Album</div>
+        <div class="aide-desc">Financement de l'enregistrement d'un album pour les producteurs independants membres SPPF.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon projet</div>
+      </a>
+      <a href="aides.html#sacem-autoproduction" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide Autoproduction Projet Musical</div>
+        <div class="aide-desc">Soutien aux auteurs-compositeurs qui autoproduisent leurs projets musicaux.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon dossier</div>
+      </a>
+    </div>
+    <div class="cta-eligibilite">
+      <div>
+        <h2>Tester mon<br><span>Eligibilite</span></h2>
+        <p>Repondez a quelques questions sur votre profil et votre projet -- obtenez la liste des aides auxquelles vous pouvez pretendre.</p>
+        <br>
+        <a href="eligibilite.html" class="btn-primary">Demarrer le test</a>
+      </div>
+      <div class="cta-steps">
+        <div class="step"><div class="step-num">1</div><div class="step-text">Votre profil</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text">Votre projet</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text">Vos droits</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text">Resultats</div></div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>2026 -- <strong>Lyky Label France</strong> -- Usage interne / Clients partenaires</span>
+    <span>Donnees 2026 -- CNM SCPP ADAMI SPPF SACEM SPEDIDAM</span>
+  </footer>
+</body>
+</html>
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trouvez toutes les aides publiques et privées pour la musique en France : subventions, crédits d'impôt, fonds de soutien pour artistes, labels, éditeurs et producteurs.">
+  <meta name="keywords" content="aides musique France, subventions musique, crédit impôt phonographique, CNM, SACEM, Adami, producteur musique, label indépendant">
+  <link rel="canonical" href="https://lykylabelfrance.github.io/aides-musique-france/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aides Musique France — Lyky Label">
+  <meta property="og:description" content="Trouvez toutes les aides publiques et privées pour la musique en France : subventions, crédits d'impôt, fonds de soutien.">
+  <meta property="og:url" content="https://lykylabelfrance.github.io/aides-musique-france/">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Aides Musique France — Lyky Label">
+  <meta name="twitter:description" content="Trouvez toutes les aides publiques et privées pour la musique en France.">
+  <meta name="robots" content="index, follow">
+
+  <title>Aides Musique France — Lyky Label</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--noir:#0a0a0a;--rouge:#e8001d;--blanc:#ffffff;--gris-clair:#f2f2f2;--gris-medium:#e0e0e0;--gris-texte:#555;--vert:#00a854;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--gris-clair);color:var(--noir);font-size:14px;line-height:1.6;}
+    nav{background:var(--noir);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blanc);letter-spacing:0.08em;}
+    .nav-logo span{color:var(--rouge);}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blanc);}
+    .nav-badge{background:var(--rouge);color:var(--blanc);font-size:10px;padding:2px 7px;border-radius:20px;font-family:'DM Mono',monospace;margin-left:6px;vertical-align:middle;}
+    .hero{background:var(--noir);padding:80px 50px 60px;position:relative;overflow:hidden;}
+    .hero::before{content:'MUSIC AIDES FRANCE';font-family:'Bebas Neue',sans-serif;font-size:22vw;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,0.025);pointer-events:none;white-space:nowrap;}
+    .hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;}
+    .hero-tag{display:inline-block;background:var(--rouge);color:var(--blanc);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;margin-bottom:20px;}
+    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,90px);letter-spacing:0.03em;line-height:0.92;color:var(--blanc);margin-bottom:20px;}
+    .hero-title span{color:var(--rouge);}
+    .hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,0.6);max-width:560px;margin-bottom:40px;}
+    .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+    .btn-primary{background:var(--rouge);color:var(--blanc);padding:14px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;font-weight:500;display:inline-block;}
+    .btn-secondary{background:transparent;color:var(--blanc);padding:14px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.25);display:inline-block;}
+    .hero-stats{display:flex;gap:40px;margin-top:50px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--rouge);line-height:1;}
+    .stat-label{font-size:11px;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
+    .bande{background:var(--rouge);padding:0 50px;display:flex;gap:0;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.09em;}
+    .bande-item{display:flex;align-items:center;gap:10px;padding:10px 20px 10px 0;text-decoration:none;color:var(--blanc);transition:background 0.2s,color 0.2s;border-right:1px solid rgba(255,255,255,0.15);padding-right:20px;margin-right:20px;}
+    .bande-item:last-child{border-right:none;margin-right:0;}
+    .bande-item:hover .bande-org{background:rgba(0,0,0,0.4);}
+    .bande-item:hover .bande-cats{opacity:1;}
+    .bande-org{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.08em;background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:2px;white-space:nowrap;transition:background 0.2s;}
+    .bande-cats{opacity:0.75;font-size:10.5px;letter-spacing:0.07em;transition:opacity 0.2s;}
+    main{max-width:1100px;margin:0 auto;padding:50px 50px 80px;}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.08em;display:flex;align-items:center;gap:12px;margin-bottom:24px;margin-top:40px;}
+    .section-title::before{content:'';display:block;width:5px;height:26px;background:var(--rouge);flex-shrink:0;}
+    .section-title .num{font-family:'DM Mono',monospace;font-size:11px;color:var(--rouge);letter-spacing:0.1em;}
+    .orga-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:40px;}
+    .orga-card{background:var(--blanc);border:1px solid var(--gris-medium);padding:20px;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.15s;}
+    .orga-card:hover{border-color:var(--rouge);transform:translateY(-2px);}
+    .orga-acronym{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--noir);letter-spacing:0.04em;line-height:1;}
+    .orga-name{font-size:11px;color:var(--gris-texte);margin:6px 0 10px;line-height:1.4;}
+    .orga-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--rouge);letter-spacing:0.08em;}
+    .aide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:40px;}
+    .aide-card{background:var(--blanc);border:1px solid var(--gris-medium);padding:24px;text-decoration:none;display:block;transition:border-color 0.2s;}
+    .aide-card:hover{border-color:var(--rouge);}
+    .aide-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+    .aide-orga-badge{background:var(--noir);color:var(--blanc);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:3px 8px;text-transform:uppercase;}
+    .aide-type-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:3px 8px;text-transform:uppercase;}
+    .badge-production{background:#e8f5e9;color:#2e7d32;}
+    .badge-showcase{background:#fff3e0;color:#e65100;}
+    .badge-marketing{background:#e3f2fd;color:#1565c0;}
+    .badge-formation{background:#f3e5f5;color:#6a1b9a;}
+    .badge-international{background:#e0f7fa;color:#00695c;}
+    .badge-bourse{background:#fce4ec;color:#880e4f;}
+    .badge-autre{background:#eceff1;color:#37474f;}
+    .aide-nom{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;color:var(--noir);line-height:1.1;margin-bottom:8px;}
+    .aide-desc{font-size:12px;color:var(--gris-texte);line-height:1.5;margin-bottom:14px;}
+    .aide-montant{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--rouge);}
+    .aide-montant-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--gris-texte);letter-spacing:0.08em;text-transform:uppercase;}
+    .cta-eligibilite{background:var(--noir);padding:50px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;margin-bottom:40px;}
+    .cta-eligibilite h2{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--blanc);letter-spacing:0.04em;line-height:1.1;}
+    .cta-eligibilite h2 span{color:var(--rouge);}
+    .cta-eligibilite p{font-size:13px;color:rgba(255,255,255,0.6);margin-top:10px;max-width:500px;}
+    .cta-steps{display:flex;flex-direction:column;gap:12px;min-width:220px;}
+    .step{display:flex;align-items:center;gap:12px;}
+    .step-num{width:28px;height:28px;background:var(--rouge);color:var(--blanc);font-family:'Bebas Neue',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .step-text{font-size:12px;color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;letter-spacing:0.06em;}
+    footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;}
+    footer strong{color:var(--rouge);}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Aides Musique France","url":"https://lykylabelfrance.github.io/aides-musique-france/","description":"Annuaire des aides pour la musique en France","publisher":{"@type":"Organization","name":"Lyky Label France"}}</script>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">LYKY <span>LABEL</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="aides.html">Aides <span class="nav-badge">90</span></a></li>
+      <li><a href="eligibilite.html">Test Eligibilite</a></li>
+    </ul>
+  </nav>
+  <div class="bande">
+    <a href="aides.html#cnm" class="bande-item">
+      <span class="bande-org">CNM</span>
+      <span class="bande-cats">Prod &middot; Showcase &middot; Intl &middot; Edition</span>
+    </a>
+    <a href="aides.html#scpp" class="bande-item">
+      <span class="bande-org">SCPP</span>
+      <span class="bande-cats">Formation &middot; Artiste &middot; Marketing</span>
+    </a>
+    <a href="aides.html#adami" class="bande-item">
+      <span class="bande-org">ADAMI</span>
+      <span class="bande-cats">Bourse &middot; Projet Global &middot; 365</span>
+    </a>
+    <a href="aides.html#sppf" class="bande-item">
+      <span class="bande-org">SPPF</span>
+      <span class="bande-cats">Enregistrement &middot; Album &middot; GRM</span>
+    </a>
+    <a href="aides.html#sacem" class="bande-item">
+      <span class="bande-org">SACEM</span>
+      <span class="bande-cats">Autoproduction &middot; Spectacle &middot; Musical</span>
+    </a>
+    <a href="aides.html#spedidam" class="bande-item">
+      <span class="bande-org">SPEDIDAM</span>
+      <span class="bande-cats">Spectacle &middot; International</span>
+    </a>
+  </div>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Referentiel 2026 -- Dispositifs Fiscaux Musique</div>
+      <h1 class="hero-title">Aides &amp;<br><span>Subventions</span><br>Musique</h1>
+      <p class="hero-sub">Base de reference des dispositifs de financement dans la musique en France. CNM, SCPP, ADAMI, SPPF, SACEM, SPEDIDAM.</p>
+      <div class="hero-ctas">
+        <a href="aides.html" class="btn-primary">Parcourir les aides</a>
+        <a href="eligibilite.html" class="btn-secondary">Tester mon eligibilite</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">47</div><div class="stat-label">Dispositifs repertories</div></div>
+        <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Organismes couverts</div></div>
+        <div class="stat-item"><div class="stat-num">2026</div><div class="stat-label">Donnees a jour</div></div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <div class="section-title"><span class="num">01 --</span> Organismes</div>
+    <div class="orga-grid">
+      <a href="aides.html#cnm" class="orga-card"><div class="orga-acronym">CNM</div><div class="orga-name">Centre National de la Musique</div><div class="orga-count">34 dispositifs</div></a>
+      <a href="aides.html#scpp" class="orga-card"><div class="orga-acronym">SCPP</div><div class="orga-name">Societe Civile des Producteurs Phonographiques</div><div class="orga-count">5 dispositifs</div></a>
+      <a href="aides.html#adami" class="orga-card"><div class="orga-acronym">ADAMI</div><div class="orga-name">Societe de gestion des droits des artistes</div><div class="orga-count">8 dispositifs</div></a>
+      <a href="aides.html#sppf" class="orga-card"><div class="orga-acronym">SPPF</div><div class="orga-name">Societe Civile des Producteurs de Phonogrammes en France</div><div class="orga-count">6 dispositifs</div></a>
+      <a href="aides.html#sacem" class="orga-card"><div class="orga-acronym">SACEM</div><div class="orga-name">Societe des Auteurs, Compositeurs et Editeurs de Musique</div><div class="orga-count">4 dispositifs</div></a>
+      <a href="aides.html#spedidam" class="orga-card"><div class="orga-acronym">SPEDIDAM</div><div class="orga-name">Societe de Perception et de Distribution des Droits des Artistes</div><div class="orga-count">3 dispositifs</div></a>
+    </div>
+            <div class="orga-card"><div class="orga-acronym">FONPEPS</div><div class="orga-full-name">Fonds National pour l'Emploi Perenne dans le Spectacle</div><div class="orga-count">2 dispositifs</div></div>
+            <div class="orga-card"><div class="orga-acronym">IFCIC</div><div class="orga-full-name">Institut pour le Financement du Cinema et des Industries Culturelles</div><div class="orga-count">2 dispositifs</div></div>
+            <div class="orga-card"><div class="orga-acronym">Min. Culture</div><div class="orga-full-name">Ministere de la Culture</div><div class="orga-count">2 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">FADEM</div><div class="orga-full-name">Fonds d'Aide aux Musiques actuelles</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">Région</div><div class="orga-full-name">Conseils Régionaux</div><div class="orga-count">5 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Région IDF</div><div class="orga-full-name">Région Île-de-France</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">DAC/DRAC</div><div class="orga-full-name">Directions Affaires Culturelles</div><div class="orga-count">4 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Ville de Paris</div><div class="orga-full-name">Mairie de Paris</div><div class="orga-count">3 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">PRMA</div><div class="orga-full-name">Pôles Régionaux Musiques Actuelles</div><div class="orga-count">3 dispositifs</div></div>
+          <div class="orga-card"><div class="orga-acronym">Département</div><div class="orga-full-name">Conseils Départementaux</div><div class="orga-count">1 dispositif</div></div>
+          <div class="orga-card"><div class="orga-acronym">Mairie</div><div class="orga-full-name">Communes</div><div class="orga-count">1 dispositif</div></div>
+    <div class="section-title"><span class="num">02 --</span> Aides mises en avant</div>
+    <div class="aide-grid">
+      <a href="aides.html#cnm-production" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide a la Production Phonographique</div>
+        <div class="aide-desc">Soutien a la production d'enregistrements phonographiques. Labels, producteurs independants.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon dossier</div>
+      </a>
+      <a href="aides.html#cnm-export-a" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">CNM</span><span class="aide-type-badge badge-international">International</span></div>
+        <div class="aide-nom">Export A -- Strategie Developpement International</div>
+        <div class="aide-desc">Strategie globale de developpement a l'international pour labels et managers.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon projet</div>
+      </a>
+      <a href="aides.html#scpp-formation" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SCPP</span><span class="aide-type-badge badge-formation">Formation</span></div>
+        <div class="aide-nom">Aide a la Formation d'Artiste</div>
+        <div class="aide-desc">Finance la montee en competences des artistes via 5 organismes conventionnes.</div>
+        <div class="aide-montant">1600 -- 2000 EUR</div><div class="aide-montant-label">HT / organisme</div>
+      </a>
+      <a href="aides.html#adami-global" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">ADAMI</span><span class="aide-type-badge badge-bourse">Projet Global</span></div>
+        <div class="aide-nom">Aide Projet Musical Global 365</div>
+        <div class="aide-desc">Soutien complet au projet artistique d'un artiste-interprete sur 365 jours.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Sur dossier</div>
+      </a>
+      <a href="aides.html#sppf-album" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SPPF</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide a l'Enregistrement Album</div>
+        <div class="aide-desc">Financement de l'enregistrement d'un album pour les producteurs independants membres SPPF.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon projet</div>
+      </a>
+      <a href="aides.html#sacem-autoproduction" class="aide-card">
+        <div class="aide-card-header"><span class="aide-orga-badge">SACEM</span><span class="aide-type-badge badge-production">Production</span></div>
+        <div class="aide-nom">Aide Autoproduction Projet Musical</div>
+        <div class="aide-desc">Soutien aux auteurs-compositeurs qui autoproduisent leurs projets musicaux.</div>
+        <div class="aide-montant">Variable</div><div class="aide-montant-label">Selon dossier</div>
+      </a>
+    </div>
+    <div class="cta-eligibilite">
+      <div>
+        <h2>Tester mon<br><span>Eligibilite</span></h2>
+        <p>Repondez a quelques questions sur votre profil et votre projet -- obtenez la liste des aides auxquelles vous pouvez pretendre.</p>
+        <br>
+        <a href="eligibilite.html" class="btn-primary">Demarrer le test</a>
+      </div>
+      <div class="cta-steps">
+        <div class="step"><div class="step-num">1</div><div class="step-text">Votre profil</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text">Votre projet</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text">Vos droits</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text">Resultats</div></div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>2026 -- <strong>Lyky Label France</strong> -- Usage interne / Clients partenaires</span>
+    <span>Donnees 2026 -- CNM SCPP ADAMI SPPF SACEM SPEDIDAM</span>
+  </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aides Musique France — Lyky Label</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
