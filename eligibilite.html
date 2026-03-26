@@ -375,6 +375,11 @@ function buildStep2(){
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'sacem-sv-group')">Oui – spectacle avec auteur/compositeur SACEM</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'sacem-sv-group')">Non</button>
     </div></div>`;
+    // ── Phase 1: Question IS ──
+    if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
+      html+=`<div class="question"><h3>\u{1F4BC} Votre structure est-elle soumise \u00e0 l'Imp\u00f4t sur les Soci\u00e9t\u00e9s (IS) ?</h3><p>Obligatoire pour les cr\u00e9dits d'imp\u00f4t (CIPP, CISV, CIEM)</p><div class="options" data-q="soumis_is"><button class="option-btn" data-val="oui">\u2705 Oui, soumis \u00e0 l'IS</button><button class="option-btn" data-val="non">\u274C Non (IR, micro-entreprise\u2026)</button></div></div>`;
+    }
+
   }
 
   if(!html) html='<p style="color:#888">Aucun profil sélectionné.</p>';
@@ -673,6 +678,13 @@ function buildStep5(){
     <button class="option-btn" data-value="oui" onclick="selectOption(this,'export-sv-group')">Oui – salons pros, tournées à l'étranger</button>
     <button class="option-btn" data-value="non" onclick="selectOption(this,'export-sv-group')">Non</button>
     </div></div>`;
+    // ── Phase 1: Question Outre-mer ──
+    html+=`<div class="question"><h3>\u{1F334} Votre structure est-elle bas\u00e9e en Outre-mer (DROM-COM) ?</h3><p>Guadeloupe, Martinique, Guyane, R\u00e9union, Mayotte, Polyn\u00e9sie, Nouvelle-Cal\u00e9donie\u2026</p><div class="options" data-q="outre_mer"><button class="option-btn" data-val="oui">\u{1F334} Oui, bas\u00e9 en Outre-mer</button><button class="option-btn" data-val="non">\u{1F3D9} Non, m\u00e9tropole</button></div></div>`;
+    // ── Phase 1: Question Emploi/Salariés (FONPEPS) ──
+    if (hasProfile('producteur') || hasProfile('spectacle')) {
+      html+=`<div class="question"><h3>\u{1F465} Employez-vous ou pr\u00e9voyez-vous d'employer des artistes/techniciens ?</h3><p>CDI ou CDD de 3 mois minimum \u2014 d\u00e9bloque l'aide FONPEPS (APAJ)</p><div class="options" data-q="emploi_salaries"><button class="option-btn" data-val="cdi">CDI en cours ou pr\u00e9vu</button><button class="option-btn" data-val="cdd3">CDD \u2265 3 mois</button><button class="option-btn" data-val="intermittent">Intermittents uniquement</button><button class="option-btn" data-val="non">Pas de salari\u00e9s</button></div></div>`;
+    }
+
   }
 
   if(!html) html='<p style="color:#888">Aucun critère à vérifier.</p>';
@@ -1326,7 +1338,82 @@ function calculateResults() {
         ["Spectacle Vivant","CNM","Classique","International"],
         "Personne morale affiliée CNM. 50% des dépenses, entre 20 000 € et 80 000 €.",
         "cnm-di-classique-t2-sv"
-      ));;
+      ));
+
+    // ══════════════════════════════════════════
+    // PHASE 1 — Nouvelles aides
+    // ══════════════════════════════════════════
+    const soumis_is = getSelectedOption('soumis_is');
+    const outre_mer = getSelectedOption('outre_mer');
+    const emploi_sal = getSelectedOption('emploi_salaries');
+
+    // ── FONPEPS / APAJ ──
+    if ((hasProfile('producteur') || hasProfile('spectacle')) && (emploi_sal === 'cdi' || emploi_sal === 'cdd3')) {
+      aids.push(card(
+        "FONPEPS \u2014 Aide APAJ (Parcours Artiste Jeune)",
+        "FONPEPS",
+        "Subvention forfaitaire selon dur\u00e9e du contrat",
+        "https://www.culture.gouv.fr/Thematiques/Spectacle-vivant/Le-Fonpeps",
+        "fonpeps-apaj",
+        ["emploi", "CDI/CDD", "artistes", "techniciens"],
+        "Aide \u00e0 l'employeur pour l'embauche en CDI ou CDD \u2265 3 mois d'artistes et techniciens du spectacle. Bar\u00e8me progressif selon la dur\u00e9e.",
+        null
+      ));
+    }
+
+    // ── Fonds Outre-mer CNM — Structuration ──
+    if (outre_mer === 'oui' && (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle'))) {
+      aids.push(card(
+        "Fonds Outre-mer \u2014 Aide \u00e0 la Structuration",
+        "CNM",
+        "Variable selon le projet",
+        "https://cnm.fr/aides/fonds-outre-mer/",
+        "cnm-om-structuration",
+        ["outre-mer", "structuration", "\u00e9quipement"],
+        "Renforcement des capacit\u00e9s des structures musicales en Outre-mer : recrutement, \u00e9quipement, formation. Si\u00e8ge social en DROM-COM obligatoire.",
+        null
+      ));
+    }
+
+    // ── Fonds Outre-mer CNM — Mobilité ──
+    if (outre_mer === 'oui') {
+      aids.push(card(
+        "Fonds Outre-mer \u2014 Soutien \u00e0 la Mobilit\u00e9",
+        "CNM",
+        "Prise en charge transport + h\u00e9bergement",
+        "https://cnm.fr/aides/fonds-outre-mer/",
+        "cnm-om-mobilite",
+        ["outre-mer", "mobilit\u00e9", "transport"],
+        "Aide aux d\u00e9placements entre l'Outre-mer et la m\u00e9tropole ou entre territoires ultramarins.",
+        null
+      ));
+    }
+
+    // ── Fonds Outre-mer CNM — Diffusion ──
+    if (outre_mer === 'oui' && hasProfile('spectacle')) {
+      aids.push(card(
+        "Fonds Outre-mer \u2014 Soutien \u00e0 la Diffusion",
+        "CNM",
+        "Variable selon le projet",
+        "https://cnm.fr/aides/fonds-outre-mer/",
+        "cnm-om-diffusion",
+        ["outre-mer", "diffusion", "spectacle"],
+        "Aide \u00e0 la diffusion de spectacles dans des lieux non conventionnels en territoires ultramarins.",
+        null
+      ));
+    }
+
+    // ── PHASE 1: Filtre IS sur crédits d'imp\u00f4t ──
+    // Retirer les cr\u00e9dits d'imp\u00f4t si la structure n'est pas soumise \u00e0 l'IS
+    if (soumis_is === 'non') {
+      for (let i = aids.length - 1; i >= 0; i--) {
+        const aidText = typeof aids[i] === 'string' ? aids[i].toLowerCase() : '';
+        if (aidText.includes('cr\u00e9dit') && aidText.includes('imp\u00f4t')) {
+          aids.splice(i, 1);
+        }
+      }
+    }
+;
     }
   }
 
