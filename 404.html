@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>404 - Page non trouvee | Aides Musique France</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--noir:#0a0a0a;--rouge:#e8001d;--blanc:#ffffff;--gris-clair:#f2f2f2;--gris-texte:#555;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--noir);color:var(--blanc);min-height:100vh;display:flex;flex-direction:column;}
+    nav{background:var(--noir);padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;border-bottom:1px solid rgba(255,255,255,0.1);}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blanc);letter-spacing:0.08em;text-decoration:none;}
+    .nav-logo span{color:var(--rouge);}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--blanc);}
+    .nav-badge{background:var(--rouge);color:var(--blanc);font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-family:'DM Mono',monospace;}
+    main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:50px;}
+    .error-code{font-family:'Bebas Neue',sans-serif;font-size:180px;color:var(--rouge);line-height:1;letter-spacing:0.04em;opacity:0.8;}
+    .error-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.06em;margin:10px 0 15px;color:var(--blanc);}
+    .error-desc{font-size:14px;color:rgba(255,255,255,0.5);max-width:400px;margin:0 auto 30px;line-height:1.6;}
+    .error-links{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+    .error-links a{display:inline-block;padding:12px 28px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+    .btn-primary{background:var(--rouge);color:var(--blanc);}
+    .btn-primary:hover{background:#c00018;}
+    .btn-secondary{border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+    .btn-secondary:hover{border-color:var(--blanc);color:var(--blanc);}
+    footer{background:var(--noir);color:rgba(255,255,255,0.3);padding:20px 50px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-align:center;border-top:1px solid rgba(255,255,255,0.05);}
+    footer a{color:rgba(255,255,255,0.4);text-decoration:none;}
+    @media(max-width:768px){
+      nav{padding:0 20px;}
+      .nav-links{gap:16px;}
+      .error-code{font-size:100px;}
+      .error-title{font-size:24px;}
+      main{padding:30px 20px;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">LYKY <span>LABEL</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="aides.html">Aides <span class="nav-badge">90</span></a></li>
+      <li><a href="eligibilite.html">Test Eligibilite</a></li>
+      <li><a href="dossier.html">Dossier</a></li>
+    </ul>
+  </nav>
+  <main>
+    <div>
+      <div class="error-code">404</div>
+      <h1 class="error-title">PAGE NON TROUVEE</h1>
+      <p class="error-desc">Cette page n existe pas ou a ete deplacee. Pas de panique, les aides musique sont toujours la.</p>
+      <div class="error-links">
+        <a href="index.html" class="btn-primary">Retour accueil</a>
+        <a href="aides.html" class="btn-secondary">Voir les aides</a>
+        <a href="eligibilite.html" class="btn-secondary">Test eligibilite</a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    2026 -- Lyky Label France -- <a href="mentions-legales.html">Mentions legales</a>
+  </footer>
+</body>
+</html>
