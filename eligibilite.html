@@ -684,6 +684,16 @@ function buildStep5(){
     if (hasProfile('producteur') || hasProfile('spectacle')) {
       html+=`<div class="question"><h3>\u{1F465} Employez-vous ou pr\u00e9voyez-vous d'employer des artistes/techniciens ?</h3><p>CDI ou CDD de 3 mois minimum \u2014 d\u00e9bloque l'aide FONPEPS (APAJ)</p><div class="options" data-q="emploi_salaries"><button class="option-btn" data-val="cdi">CDI en cours ou pr\u00e9vu</button><button class="option-btn" data-val="cdd3">CDD \u2265 3 mois</button><button class="option-btn" data-val="intermittent">Intermittents uniquement</button><button class="option-btn" data-val="non">Pas de salari\u00e9s</button></div></div>`;
     }
+    // ── Phase 2: Question Innovation ──
+    if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
+      html+=`<div class="question"><h3>💡 Avez-vous un projet d'innovation technologique lié à la musique ?</h3><p>IA, blockchain, streaming, outils numériques — débloque les aides CNM Innovation et Bpifrance</p><div class="options" data-q="projet_innovation"><button class="option-btn" data-val="oui">💡 Oui, projet innovant</button><button class="option-btn" data-val="non">Non</button></div></div>`;
+    }
+    // ── Phase 2: Question EAC ──
+    html+=`<div class="question"><h3>🎓 Portez-vous un projet d'Éducation Artistique et Culturelle (EAC) ?</h3><p>Ateliers, résidences scolaires, médiation culturelle — débloque l'aide ADAMI EAC</p><div class="options" data-q="projet_eac"><button class="option-btn" data-val="oui">🎓 Oui, projet EAC</button><button class="option-btn" data-val="non">Non</button></div></div>`;
+    // ── Phase 2: Question Besoin financement bancaire ──
+    if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
+      html+=`<div class="question"><h3>🏦 Avez-vous besoin d'un financement bancaire (prêt, garantie) ?</h3><p>Débloque les dispositifs IFCIC (garantie et prêt direct)</p><div class="options" data-q="besoin_financement"><button class="option-btn" data-val="oui">🏦 Oui, besoin de financement</button><button class="option-btn" data-val="non">Non, pas pour l'instant</button></div></div>`;
+    }
 
   }
 
@@ -1346,6 +1356,9 @@ function calculateResults() {
     const soumis_is = getSelectedOption('soumis_is');
     const outre_mer = getSelectedOption('outre_mer');
     const emploi_sal = getSelectedOption('emploi_salaries');
+    const projet_innovation = getSelectedOption('projet_innovation');
+    const projet_eac = getSelectedOption('projet_eac');
+    const besoin_financement = getSelectedOption('besoin_financement');
 
     // ── FONPEPS / APAJ ──
     if ((hasProfile('producteur') || hasProfile('spectacle')) && (emploi_sal === 'cdi' || emploi_sal === 'cdd3')) {
@@ -1401,6 +1414,40 @@ function calculateResults() {
         "Aide \u00e0 la diffusion de spectacles dans des lieux non conventionnels en territoires ultramarins.",
         null
       ));
+ // ── Phase 2: CNM Innovation ──
+    if ((hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) && projet_innovation === 'oui') {
+      aids.push(card("CNM — Aide à l'Innovation", "CNM", "Variable selon le projet", "https://cnm.fr/focus/innovation/", "cnm-innovation", ["innovation", "tech", "numérique", "IA"], "Soutien aux projets d'innovation technologique ou de service créant de la valeur pour les professionnels de la musique.", null));
+    }
+
+    // ── Phase 2: CNM Accompagnement / Professionnalisation ──
+    if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
+      aids.push(card("CNM — Accompagnement et Professionnalisation", "CNM", "Variable selon le projet", "https://cnm.fr/aides-financieres/aide-aux-dispositifs-daccompagnement-de-professionnalisation-et-aux-rencontres-professionnelles-favorisant-le-rayonnement-et-lemergence-des-projets/", "cnm-accompagnement", ["accompagnement", "professionnalisation", "formation"], "Aide aux dispositifs d'accompagnement, de professionnalisation et aux rencontres professionnelles.", null));
+    }
+
+    // ── Phase 2: IFCIC Garantie de prêt ──
+    if ((hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) && besoin_financement === 'oui') {
+      aids.push(card("IFCIC — Garantie de Prêt Bancaire", "IFCIC", "Garantie 50-70% du prêt, commission 0,5-0,7%/an", "https://www.ifcic.fr/financement/la-garantie/", "ifcic-garantie", ["financement", "garantie", "banque", "prêt"], "Garantie bancaire pour faciliter l'accès au crédit des entreprises culturelles et musicales.", null));
+    }
+
+    // ── Phase 2: IFCIC Prêt direct ──
+    if ((hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) && besoin_financement === 'oui') {
+      aids.push(card("IFCIC — Prêt Direct aux Entreprises Culturelles", "IFCIC", "Montant selon besoin et capacité", "https://www.ifcic.fr/financement/le-pret/", "ifcic-pret", ["financement", "prêt", "trésorerie"], "Prêt direct de l'IFCIC pour financer les besoins des entreprises musicales à tous les stades de développement.", null));
+    }
+
+    // ── Phase 2: Bpifrance Innovation Créative ──
+    if ((hasProfile('producteur') || hasProfile('editeur')) && projet_innovation === 'oui') {
+      aids.push(card("Bpifrance — Subvention Innovation Créative (ICC)", "Bpifrance", "Subvention selon le projet", "https://www.bpifrance.fr/catalogue-offres/subvention-innovation-innovation-creative", "bpi-innovation", ["innovation", "ICC", "subvention", "tech"], "Subvention pour les projets d'innovation dans les industries culturelles et créatives.", null));
+    }
+
+    // ── Phase 2: ADAMI EAC ──
+    if (projet_eac === 'oui') {
+      aids.push(card("ADAMI — Aide EAC (Éducation Artistique et Culturelle)", "ADAMI", "Variable selon le projet", "https://www.adami.fr/suis-porteurde-projet/aides-eac/", "adami-eac", ["EAC", "éducation", "médiation", "scolaire"], "Soutien aux projets d'éducation artistique et culturelle portés par des artistes-interprètes.", null));
+    }
+
+    // ── Phase 2: Ministère de la Culture — Aide à la composition ──
+    if (hasProfile('artiste') && (membre_sacem_ac || membre_sacem)) {
+      aids.push(card("Ministère de la Culture — Aide à la Composition Musicale", "Min. Culture", "Variable selon le projet", "https://www.culture.gouv.fr/catalogue-des-demarches-et-subventions/appels-a-projets-candidatures/aide-a-la-composition-musicale", "minculture-composition", ["composition", "création", "DRAC"], "Aide à la création d'œuvres musicales originales, attribuée par les DRAC.", null));
+    }
     }
 
     // ── PHASE 1: Filtre IS sur crédits d'imp\u00f4t ──
@@ -1443,6 +1490,8 @@ function calculateResults() {
     if (orgs[org] && orgs[org].length > 0) {
       const plural = orgs[org].length > 1 ? ' aides' : ' aide';
       html += '<div class="org-section"><div class="org-section-header"><span class="org-badge">'+org+'</span><span class="org-count">'+orgs[org].length+plural+'</span></div><div class="aids-grid">'+orgs[org].join('')+'</div></div>';
+    // ── Phase 2: Export PDF Button ──
+    html+=`<div style="text-align:center;margin:1.5rem 0"><button onclick="exportResultsPDF()" style="background:var(--rouge);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:1rem;cursor:pointer;font-weight:600;transition:all .2s">📄 Exporter mes résultats en PDF</button></div>`;
       delete orgs[org];
     }
   });
@@ -1460,6 +1509,38 @@ function calculateResults() {
   container.innerHTML = html;
 
 }
+    // ── Phase 2: Export PDF Function ──
+    function exportResultsPDF(){
+      const cards=document.querySelectorAll('.aid-card');
+      if(!cards.length){alert('Aucune aide à exporter.');return;}
+      let body='<html><head><meta charset="utf-8"><title>Mes Aides Musique France - Résultats</title>';
+      body+='<style>body{font-family:Arial,sans-serif;padding:30px;color:#222}h1{color:#e8001d;border-bottom:3px solid #e8001d;padding-bottom:10px}';
+      body+='.aide{border:1px solid #ddd;border-radius:8px;padding:15px;margin:12px 0;page-break-inside:avoid}';
+      body+='.aide h3{margin:0 0 5px;color:#e8001d}.aide .org{font-weight:bold;color:#555;font-size:0.9em}';
+      body+='.aide .desc{margin:8px 0;color:#444}.aide .montant{background:#f5f5f5;padding:5px 10px;border-radius:4px;display:inline-block;font-weight:600}';
+      body+='.footer{margin-top:30px;text-align:center;color:#999;font-size:0.85em;border-top:1px solid #ddd;padding-top:15px}';
+      body+='@media print{body{padding:10px}.aide{border:1px solid #ccc}}</style></head><body>';
+      body+='<h1>🎵 Mes Aides Musique France</h1>';
+      body+='<p>Résultats personnalisés — '+cards.length+' aides trouvées — Généré le '+new Date().toLocaleDateString('fr-FR')+'</p>';
+      cards.forEach(c=>{
+        const nom=c.querySelector('.aid-name')?.textContent||'';
+        const org=c.querySelector('.aid-org')?.textContent||'';
+        const amount=c.querySelector('.aid-amount')?.textContent||'';
+        const desc=c.querySelector('.aid-note')?.textContent||'';
+        const tags=Array.from(c.querySelectorAll('.aid-tag')).map(t=>t.textContent).join(', ');
+        body+='<div class="aide"><span class="org">'+org+'</span><h3>'+nom+'</h3>';
+        if(desc)body+='<div class="desc">'+desc+'</div>';
+        if(amount)body+='<div class="montant">'+amount+'</div>';
+        if(tags)body+='<div style="margin-top:6px;color:#777;font-size:0.85em">Tags: '+tags+'</div>';
+        body+='</div>';
+      });
+      body+='<div class="footer">Généré par LYKY LABEL FRANCE — lykylabelfrance.github.io/aides-musique-france<br>Ce document est indicatif. Vérifiez les conditions sur les sites officiels.</div>';
+      body+='</body></html>';
+      const win=window.open('','_blank');
+      win.document.write(body);
+      win.document.close();
+      setTimeout(()=>{win.print();},500);
+    }
 </script>
 </body>
 </html>
