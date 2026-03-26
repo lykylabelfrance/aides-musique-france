@@ -693,6 +693,15 @@ function buildStep5(){
     // ── Phase 2: Question Besoin financement bancaire ──
     if (hasProfile('producteur') || hasProfile('editeur') || hasProfile('spectacle')) {
       html+=`<div class="question"><h3>🏦 Avez-vous besoin d'un financement bancaire (prêt, garantie) ?</h3><p>Débloque les dispositifs IFCIC (garantie et prêt direct)</p><div class="options" data-q="besoin_financement"><button class="option-btn" data-val="oui">🏦 Oui, besoin de financement</button><button class="option-btn" data-val="non">Non, pas pour l'instant</button></div></div>`;
+    html+=`<div class="question-bloc" data-q="zone_geographique">
+      <p class="question-label">🗺️ Dans quelle zone géographique êtes-vous principalement basé ?</p>
+      <div class="option-group">
+        <label class="option-card"><input type="radio" name="zone_geographique" value="ile_de_france"><span>Île-de-France</span></label>
+        <label class="option-card"><input type="radio" name="zone_geographique" value="la_reunion"><span>La Réunion</span></label>
+        <label class="option-card"><input type="radio" name="zone_geographique" value="outre_mer_autre"><span>Autre territoire Outre-mer</span></label>
+        <label class="option-card"><input type="radio" name="zone_geographique" value="autre_region"><span>Autre région métropolitaine</span></label>
+      </div>
+    </div>`;
     }
 
   }
@@ -1447,6 +1456,136 @@ function calculateResults() {
     // ── Phase 2: Ministère de la Culture — Aide à la composition ──
     if (hasProfile('artiste') && (membre_sacem_ac || membre_sacem)) {
       aids.push(card("Ministère de la Culture — Aide à la Composition Musicale", "Min. Culture", "Variable selon le projet", "https://www.culture.gouv.fr/catalogue-des-demarches-et-subventions/appels-a-projets-candidatures/aide-a-la-composition-musicale", "minculture-composition", ["composition", "création", "DRAC"], "Aide à la création d'œuvres musicales originales, attribuée par les DRAC.", null));
+    // === PHASE 3: Aides supplémentaires du tableau de veille ===
+
+    // --- CNM Fonds Outre-mer supplémentaires ---
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Soutien aux diffusions alternatives - FOM", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Outre-mer uniquement", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Soutien Digital (volet 1) - FOM", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Développement digital Outre-mer", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Soutien Digital (volet 2) - FOM", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Développement digital Outre-mer", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Aide à la structuration - FOM (volet 1)", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Structuration entreprises Outre-mer", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Aide à la structuration - FOM (volet 2)", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Structuration entreprises Outre-mer", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("Aide à la structuration - FOM (volet 3)", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Structuration entreprises Outre-mer", ""));
+    }
+    if (hasProfile('producteur') && getSelectedOption('outre_mer') === 'oui' && getSelectedOption('zone_geographique') === 'la_reunion') {
+      aids.push(card("Aide La Réunion - Structuration intégration artistes", "CNM", "Variable", "https://cnm.fr/aides/fonds-outre-mer/", "", ["Producteur", "CNM"], "Spécifique La Réunion", ""));
+    }
+
+    // --- FONPEPS supplémentaire ---
+    if (hasProfile('spectacle')) {
+      aids.push(card("FONPEPS - Aide au spectacle vivant", "FONPEPS", "Variable", "https://www.culture.gouv.fr/Thematiques/Theatre-spectacles/Le-FONPEPS", "", ["Spectacle vivant", "FONPEPS"], "Emploi dans le spectacle vivant", ""));
+    }
+
+    // --- Ministère de la Culture ---
+    if (hasProfile('artiste') || hasProfile('auteur')) {
+      aids.push(card("Dispositif compositeurs associés", "Min. Culture", "Variable", "https://www.culture.gouv.fr/", "", ["Artiste", "Auteur", "Min. Culture"], "Scènes pluridisciplinaires", ""));
+    }
+
+    // --- ADAMI supplémentaires ---
+    if (hasProfile('artiste') && getSelectedOption('membre_adami') === 'adami') {
+      aids.push(card("Aide à la promotion d'un enregistrement", "ADAMI", "Variable", "https://www.adami.fr/aides-financieres/", "", ["Artiste-interprète", "ADAMI"], "Promotion d'enregistrements", ""));
+    }
+    if (hasProfile('artiste') && getSelectedOption('membre_adami') === 'adami') {
+      aids.push(card("Aide aux contenus numériques", "ADAMI", "Variable", "https://www.adami.fr/aides-financieres/", "", ["Artiste-interprète", "ADAMI"], "Création contenus numériques", ""));
+    }
+    if (hasProfile('artiste') && getSelectedOption('membre_adami') === 'adami') {
+      aids.push(card("Aide au projet musical global", "ADAMI", "Variable", "https://www.adami.fr/aides-financieres/", "", ["Artiste-interprète", "ADAMI"], "Accompagnement global projet musical", ""));
+    }
+
+    // --- SPPF supplémentaire ---
+    if (hasProfile('producteur') && getSelectedOption('membre_prod') === 'sppf') {
+      aids.push(card("Aide à l'organisation de tournée (Tour support)", "SPPF", "Variable", "https://www.sppf.com/aides/", "", ["Producteur", "SPPF"], "Organisation de tournées", ""));
+    }
+
+    // --- SACEM supplémentaire ---
+    if (hasProfile('auteur') || hasProfile('editeur')) {
+      aids.push(card("Aide au Développement Éditorial – Musiques Actuelles", "SACEM", "Variable", "https://www.sacem.fr/", "", ["Auteur", "Éditeur", "SACEM"], "Développement éditorial musiques actuelles", ""));
+    }
+
+    // --- FADEM (privé) ---
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("FADEM - Fonds d'aide aux musiques actuelles", "FADEM", "Variable", "https://www.fadem.fr/", "", ["Artiste", "Producteur", "FADEM"], "Musiques actuelles", ""));
+    }
+
+    // --- Aides LOCALES / RÉGIONALES ---
+
+    // Région
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("Aide régionale à la réalisation d'album", "Région", "Jusqu'à 6 000 €", "", "", ["Artiste", "Producteur", "Région"], "Selon votre conseil régional", ""));
+    }
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("Aide régionale clip vidéo", "Région", "Variable", "", "", ["Artiste", "Producteur", "Région"], "Selon votre conseil régional", ""));
+    }
+    if (hasProfile('artiste') || hasProfile('spectacle')) {
+      aids.push(card("Aide régionale professionnalisation", "Région", "Variable", "", "", ["Artiste", "Spectacle vivant", "Région"], "Résidence, concert, tournée", ""));
+    }
+    if (hasProfile('producteur') || hasProfile('spectacle')) {
+      aids.push(card("Aide régionale à l'équipement", "Région", "Variable", "", "", ["Producteur", "Spectacle vivant", "Région"], "Acquisition d'équipement", ""));
+    }
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("Aide régionale export / diffusion hors région", "Région", "Variable", "", "", ["Artiste", "Producteur", "Région"], "Diffusion hors de votre région", ""));
+    }
+
+    // Région Île-de-France
+    if (hasProfile('spectacle') && getSelectedOption('zone_geographique') === 'ile_de_france') {
+      aids.push(card("Aide diffusion spectacle vivant Île-de-France", "Région IDF", "Variable", "https://www.iledefrance.fr/", "", ["Spectacle vivant", "Région IDF"], "Basé en Île-de-France", ""));
+    }
+
+    // DAC / DRAC
+    if (hasProfile('auteur') || hasProfile('artiste')) {
+      aids.push(card("Aide à l'écriture d'une œuvre musicale originale (DAC)", "DAC/DRAC", "Jusqu'à 13 000 €", "", "", ["Auteur", "Artiste", "DAC/DRAC"], "Via votre DRAC régionale", ""));
+    }
+    if (hasProfile('spectacle')) {
+      aids.push(card("ADSV - Aides déconcentrées au spectacle vivant", "DAC/DRAC", "Variable", "", "", ["Spectacle vivant", "DAC/DRAC"], "Attribuée par les DRAC", ""));
+    }
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("Aide à la résidence de création (DAC/DRAC)", "DAC/DRAC", "Variable", "", "", ["Artiste", "Producteur", "DAC/DRAC"], "Résidence de création musicale", ""));
+    }
+    if (getSelectedOption('outre_mer') === 'oui') {
+      aids.push(card("FEAC MOM - Fonds initiatives artistiques Outre-mer", "DAC/DRAC", "Variable", "", "", ["Tous profils", "DAC/DRAC"], "Outre-mer uniquement", ""));
+    }
+
+    // Ville de Paris
+    if (hasProfile('artiste') && getSelectedOption('zone_geographique') === 'ile_de_france') {
+      aids.push(card("Aide à la résidence de création musicale (Paris)", "Ville de Paris", "Jusqu'à 10 000 €", "https://www.paris.fr/", "", ["Artiste", "Ville de Paris"], "Basé à Paris", ""));
+    }
+    if ((hasProfile('producteur') || hasProfile('spectacle')) && getSelectedOption('zone_geographique') === 'ile_de_france') {
+      aids.push(card("Aide à la diffusion musicale (Paris)", "Ville de Paris", "Jusqu'à 15 000 €", "https://www.paris.fr/", "", ["Producteur", "Spectacle vivant", "Ville de Paris"], "Basé à Paris", ""));
+    }
+    if (hasProfile('artiste') && getSelectedOption('zone_geographique') === 'ile_de_france') {
+      aids.push(card("Aide aux jeunes artistes musique (Paris)", "Ville de Paris", "Jusqu'à 15 000 €", "https://www.paris.fr/", "", ["Artiste", "Ville de Paris"], "Jeunes artistes basés à Paris", ""));
+    }
+
+    // PRMA
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("AMI - Aide à la mise en image (PRMA)", "PRMA", "Variable", "", "", ["Artiste", "Producteur", "PRMA"], "Clips et contenus visuels", ""));
+    }
+    if (hasProfile('spectacle') || hasProfile('artiste')) {
+      aids.push(card("Tournée Générale - PRMA", "PRMA", "Variable", "", "", ["Artiste", "Spectacle vivant", "PRMA"], "Tournées régionales", ""));
+    }
+    if (hasProfile('artiste') || hasProfile('producteur')) {
+      aids.push(card("FRAM - Fonds régional aide à la mobilité", "PRMA", "Variable", "", "", ["Artiste", "Producteur", "PRMA"], "Mobilité artistes et structures", ""));
+    }
+
+    // Département
+    if (hasProfile('artiste') || hasProfile('spectacle')) {
+      aids.push(card("Aide départementale professionnalisation", "Département", "Variable", "", "", ["Artiste", "Spectacle vivant", "Département"], "Résidence, concert, tournée", ""));
+    }
+
+    // Mairie
+    if (hasProfile('artiste') || hasProfile('spectacle') || hasProfile('producteur')) {
+      aids.push(card("Aide municipale fonctionnement + EAC", "Mairie", "Variable", "", "", ["Artiste", "Producteur", "Spectacle vivant", "Mairie"], "Fonctionnement et éducation artistique", ""));
+    }
     }
     }
 
