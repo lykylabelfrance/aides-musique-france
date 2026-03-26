@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lykylabelfrance.github.io/aides-musique-france/sitemap.xml
+
