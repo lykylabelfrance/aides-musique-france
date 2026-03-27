@@ -37,7 +37,19 @@
       main{padding:30px 20px;}
     }
   </style>
-</head>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="404 - Page non trouvee | Aides Musique France">
+  <meta property="og:description" content="Page non trouvee. Retrouvez toutes les aides musique en France.">
+  <meta property="og:url" content="https://lykylabelfrance.github.io/aides-musique-france/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="404 - Page non trouvee | Aides Musique France">
+  <meta name="twitter:description" content="Page non trouvee. Retrouvez toutes les aides musique en France.">
+  <meta name="twitter:image" content="https://lykylabelfrance.github.io/aides-musique-france/og-image.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e8001d"></head>
 <body>
   <nav>
     <a href="index.html" class="nav-logo">LYKY <span>LABEL</span></a>
@@ -63,5 +75,11 @@
   <footer>
     2026 -- Lyky Label France -- <a href="mentions-legales.html">Mentions legales</a>
   </footer>
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function(e) { console.log('SW error:', e); });
+  }
+  </script>
 </body>
 </html>
