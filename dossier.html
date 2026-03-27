@@ -608,11 +608,6 @@
       <li><a href="dossier.html" style="color:#fff;text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;">Dossier</a></li>
     </ul>
   </nav>
-  <header>
-    <a href="index.html" class="header-logo">AIDES <span>MUSIQUE</span> FRANCE</a>
-    <a href="eligibilite.html" class="header-back">← Retour aux résultats</a>
-  </header>
-
   <div class="hero">
     <div class="hero-badge">Outil de constitution de dossier</div>
     <h1>MONTER MON <span>DOSSIER</span></h1>
@@ -3062,9 +3057,9 @@
   function calcBudget_cnm_dev_editorial_jazz() { const t=Array.from(document.querySelectorAll('#section-cnm-dev-editorial-jazz .budget-input')).reduce((s,i)=>s+(parseFloat(i.value)||0),0); const el=document.getElementById('total-cnm-dev-editorial-jazz'); if(el) el.textContent=(t*0.45).toLocaleString('fr-FR')+' €'; }
   </script>
 
-  <footer style="background:#0a0a0a;color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;">
-    <span>2026 -- <strong>Lyky Label France</strong> -- Usage interne / Clients partenaires</span>
-    <span><a href="mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Mentions legales</a></span>
+  <footer style="background:#0a0a0a;color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <span>2026 – Lyky Label France – <a href="mentions-legales.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Mentions légales</a></span>
+    <span>Données 2026 – CNM SCPP ADAMI SPPF SACEM SPEDIDAM</span>
   </footer>
   <script type="application/ld+json">
   [{
