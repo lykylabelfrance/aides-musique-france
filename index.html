@@ -223,9 +223,14 @@
   <section style="background:var(--noir);padding:50px;text-align:center;margin:0;">
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--blanc);letter-spacing:0.04em;margin-bottom:8px;">RESTEZ <span style="color:var(--rouge);">INFORME</span></h2>
     <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;">Recevez les alertes d ouverture et fermeture des aides, les nouvelles subventions et nos conseils pour vos dossiers.</p>
-    <form action="https://formsubmit.co/lykylabelfrance@gmail.com" method="POST" style="display:flex;gap:10px;justify-content:center;max-width:500px;margin:0 auto;flex-wrap:wrap;">
-      <input type="email" name="email" placeholder="Votre email professionnel" required style="flex:1;min-width:250px;padding:12px 16px;border:none;background:rgba(255,255,255,0.1);color:var(--blanc);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;outline:none;">
-      <button type="submit" style="background:var(--rouge);color:var(--blanc);border:none;padding:12px 24px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;">S inscrire</button>
+    <form action="https://formsubmit.co/lykylabelfrance@gmail.com" method="POST" class="newsletter-form">
+      <input type="hidden" name="_subject" value="Nouvelle inscription newsletter – Aides Musique France">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://lykylabelfrance.github.io/aides-musique-france/index.html?subscribed=1">
+      <input type="text" name="_honey" style="display:none">
+      <input type="email" name="email" placeholder="Votre email" required aria-label="Adresse email">
+      <button type="submit">S’inscrire</button>
     </form>
     <p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:12px;font-family:'DM Mono',monospace;">Pas de spam. Desabonnement en 1 clic. Conforme RGPD.</p>
   </section>
@@ -236,5 +241,14 @@
   </footer>
 
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+<script>
+if(new URLSearchParams(location.search).get("subscribed")==="1"){
+  var b = document.createElement("div");
+  b.style.cssText = "position:fixed;top:0;left:0;right:0;background:#e8001d;color:#fff;text-align:center;padding:14px;font-weight:700;z-index:9999;";
+  b.innerHTML = "\u2705 Merci ! Votre inscription \u00e0 la newsletter est confirm\u00e9e. <button onclick=\"this.parentElement.remove()\" style=\"background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;margin-left:12px;\">&times;</button>";
+  document.body.prepend(b);
+  history.replaceState(null,"",location.pathname);
+}
+</script>
 </body>
 </html>
