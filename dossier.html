@@ -1906,7 +1906,1206 @@
         <div class="block-card"><h3 class="block-title">E — Portail &amp; Soumission</h3><div class="portal-card"><div class="portal-info"><span class="portal-label">CNM</span><a href="https://cnm.fr/aides-financieres/aide-au-developpement-editorial/" target="_blank" class="portal-link">Accéder au portail →</a></div></div><div class="action-btns"><button class="btn-primary" onclick="exportPDF('cnm-dev-editorial-jazz')">⬇ Exporter PDF</button><button class="btn-secondary" onclick="saveProgress()"> Sauvegarder</button></div></div>
       </div>
     </div>
+
+    <div class="dossier-section" id="section-cnm-bourse-ac">
+
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Bourse Parcours Auteurs-Compositeurs · Jusqu'à 15 000 € · Auteurs-compositeurs professionnels</p>
+        <div class="recap-grid" id="recap-cnm-bourse-ac"></div>
+        <ul>
+          <li>Auteur-compositeur professionnel</li>
+          <li>Projet de création original</li>
+          <li>Résider en France</li>
+          <li>Justifier d'une activité de création</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appel à candidatures annuel — dates à confirmer pour 2026.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL À CANDIDATURES</div>
+          <div class="session-badge">ANNUEL</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-bourse-ac">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-bourse-ac"></div></div>
+          <span class="progress-pct" id="pct-cnm-bourse-ac">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c1" onchange="updateProgress('progress-cnm-bourse-ac')"><span>Formulaire de candidature CNM complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c2" onchange="updateProgress('progress-cnm-bourse-ac')"><span>CV artistique détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c3" onchange="updateProgress('progress-cnm-bourse-ac')"><span>Note d'intention du projet</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c4" onchange="updateProgress('progress-cnm-bourse-ac')"><span>Extraits musicaux (démos, maquettes)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c5" onchange="updateProgress('progress-cnm-bourse-ac')"><span>Budget prévisionnel du projet</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c6" onchange="updateProgress('progress-cnm-bourse-ac')"><span>Copie pièce d'identité</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-bourse-ac-c7" onchange="updateProgress('progress-cnm-bourse-ac')"><span>RIB</span></label>
+      </div>
+
+      <div class="section-block">
+        <h2>D — BUDGET PRÉVISIONNEL PROJET</h2>
+        <ul>
+          <li>Frais de création (studio, musiciens, arrangements)</li>
+          <li>Frais de déplacement et résidence</li>
+          <li>Frais de formation complémentaire</li>
+          <li>Matériel nécessaire au projet</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+
     </div>
+    <div class="dossier-section" id="section-cnm-fom-structuration">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Fonds Outre-mer — Aide à la Structuration · Variable selon dossier · Structures musicales ultramarines</p>
+        <div class="recap-grid" id="recap-cnm-fom-structuration"></div>
+        <ul>
+          <li>Structure implantée en Outre-mer</li>
+          <li>Activité dans le secteur musical</li>
+          <li>Projet de structuration ou développement</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dépôt en continu — Commission trimestrielle.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-fom-structuration">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-fom-structuration"></div></div>
+          <span class="progress-pct" id="pct-cnm-fom-structuration">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c1" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Formulaire CNM FOM complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c2" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Statuts de la structure</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c3" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Kbis ou récépissé de déclaration</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c4" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Dernier bilan et compte de résultat</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c5" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Note de présentation de la structure</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c6" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Projet de développement détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c7" onchange="updateProgress('progress-cnm-fom-structuration')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-structuration-c8" onchange="updateProgress('progress-cnm-fom-structuration')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET STRUCTURATION</h2>
+        <ul>
+          <li>Charges de personnel</li>
+          <li>Frais de fonctionnement</li>
+          <li>Investissements matériels</li>
+          <li>Actions de développement artistique</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-cnm-fom-mobilite">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Fonds Outre-mer — Soutien à la Mobilité · Variable selon dossier · Artistes et structures ultramarins</p>
+        <div class="recap-grid" id="recap-cnm-fom-mobilite"></div>
+        <ul>
+          <li>Artiste ou structure basé en Outre-mer</li>
+          <li>Projet de mobilité vers l'Hexagone ou international</li>
+          <li>Invitation ou programmation confirmée</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dépôt en continu — Commission trimestrielle.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-fom-mobilite">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-fom-mobilite"></div></div>
+          <span class="progress-pct" id="pct-cnm-fom-mobilite">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c1" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>Formulaire CNM FOM Mobilité complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c2" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>Justificatif de domiciliation Outre-mer</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c3" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>Invitation ou contrat de programmation</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c4" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>Devis transports et hébergement</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c5" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>Budget prévisionnel déplacement</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c6" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>CV artiste ou présentation structure</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-mobilite-c7" onchange="updateProgress('progress-cnm-fom-mobilite')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET MOBILITÉ</h2>
+        <ul>
+          <li>Transport (aérien, terrestre)</li>
+          <li>Hébergement</li>
+          <li>Per diem / restauration</li>
+          <li>Frais de visa si international</li>
+          <li>Location matériel sur place</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-cnm-fom-diffusion">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Fonds Outre-mer — Soutien à la Diffusion · Variable selon dossier · Diffuseurs et programmateurs ultramarins</p>
+        <div class="recap-grid" id="recap-cnm-fom-diffusion"></div>
+        <ul>
+          <li>Diffuseur ou programmateur basé en Outre-mer</li>
+          <li>Lieu de diffusion identifié</li>
+          <li>Programmation musicale régulière</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dépôt en continu — Commission trimestrielle.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-fom-diffusion">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-fom-diffusion"></div></div>
+          <span class="progress-pct" id="pct-cnm-fom-diffusion">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c1" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Formulaire CNM FOM Diffusion complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c2" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Présentation du lieu ou festival</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c3" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Programme de diffusion prévu</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c4" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c5" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Bilan activité précédente</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c6" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>Kbis ou statuts</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-fom-diffusion-c7" onchange="updateProgress('progress-cnm-fom-diffusion')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET DIFFUSION</h2>
+        <ul>
+          <li>Cachets artistiques</li>
+          <li>Frais techniques (son, lumière)</li>
+          <li>Communication et promotion</li>
+          <li>Logistique et transports artistes</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-cnm-innovation">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Aide à l'Innovation · Variable selon projet · Entreprises du secteur musical</p>
+        <div class="recap-grid" id="recap-cnm-innovation"></div>
+        <ul>
+          <li>Entreprise du secteur musical</li>
+          <li>Projet innovant (techno, usage, modèle)</li>
+          <li>Siège social en France</li>
+          <li>Immatriculation à jour</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appels à projets ponctuels — Consultez le site CNM.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL À PROJETS</div>
+          <div class="session-badge">PONCTUEL</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-innovation">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-innovation"></div></div>
+          <span class="progress-pct" id="pct-cnm-innovation">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c1" onchange="updateProgress('progress-cnm-innovation')"><span>Formulaire CNM Innovation complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c2" onchange="updateProgress('progress-cnm-innovation')"><span>Présentation détaillée du projet innovant</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c3" onchange="updateProgress('progress-cnm-innovation')"><span>Étude de marché ou benchmark</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c4" onchange="updateProgress('progress-cnm-innovation')"><span>Budget prévisionnel R&amp;D</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c5" onchange="updateProgress('progress-cnm-innovation')"><span>Planning de réalisation</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c6" onchange="updateProgress('progress-cnm-innovation')"><span>CV des porteurs de projet</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c7" onchange="updateProgress('progress-cnm-innovation')"><span>Kbis à jour</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c8" onchange="updateProgress('progress-cnm-innovation')"><span>Dernier bilan comptable</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-innovation-c9" onchange="updateProgress('progress-cnm-innovation')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET INNOVATION</h2>
+        <ul>
+          <li>Recherche et développement</li>
+          <li>Prototypage / POC</li>
+          <li>Tests utilisateurs</li>
+          <li>Ressources humaines dédiées</li>
+          <li>Prestations externes techniques</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-cnm-accompagnement">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">CNM · Accompagnement et Professionnalisation · Variable selon programme · Structures et professionnels de la musique</p>
+        <div class="recap-grid" id="recap-cnm-accompagnement"></div>
+        <ul>
+          <li>Structure ou professionnel du secteur musical</li>
+          <li>Besoin identifié d'accompagnement</li>
+          <li>Projet de montée en compétences</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Programme continu — Consultez le site CNM.</p>
+        <div class="sessions-row">
+          <div class="session-badge">PROGRAMME CONTINU</div>
+          <div class="session-badge">INSCRIPTIONS OUVERTES</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-cnm-accompagnement">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-cnm-accompagnement"></div></div>
+          <span class="progress-pct" id="pct-cnm-accompagnement">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c1" onchange="updateProgress('progress-cnm-accompagnement')"><span>Formulaire de candidature CNM</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c2" onchange="updateProgress('progress-cnm-accompagnement')"><span>Présentation de la structure</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c3" onchange="updateProgress('progress-cnm-accompagnement')"><span>Diagnostic des besoins</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c4" onchange="updateProgress('progress-cnm-accompagnement')"><span>Plan de professionnalisation</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c5" onchange="updateProgress('progress-cnm-accompagnement')"><span>CV des bénéficiaires</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c6" onchange="updateProgress('progress-cnm-accompagnement')"><span>Kbis ou statuts</span></label>
+          <label class="checklist-item"><input type="checkbox" id="cnm-accompagnement-c7" onchange="updateProgress('progress-cnm-accompagnement')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET ACCOMPAGNEMENT</h2>
+        <ul>
+          <li>Formations professionnelles</li>
+          <li>Coaching et mentorat</li>
+          <li>Outils et logiciels</li>
+          <li>Frais de déplacement formation</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://cnm.fr/aides/" target="_blank" rel="noopener">le portail CNM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-adami-premiere-partie">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">ADAMI · Aide Première Partie Musique · Jusqu'à 5 000 € · Artistes-interprètes émergents</p>
+        <div class="recap-grid" id="recap-adami-premiere-partie"></div>
+        <ul>
+          <li>Artiste-interprète principal</li>
+          <li>Première partie confirmée d'un artiste programmé</li>
+          <li>Salle ou festival identifié</li>
+          <li>Artiste inscrit à l'ADAMI ou ayant-droit</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dépôt au moins 1 mois avant la date du concert.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+          <div class="session-badge">1 MOIS AVANT CONCERT</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-adami-premiere-partie">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-adami-premiere-partie"></div></div>
+          <span class="progress-pct" id="pct-adami-premiere-partie">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c1" onchange="updateProgress('progress-adami-premiere-partie')"><span>Formulaire ADAMI Première Partie complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c2" onchange="updateProgress('progress-adami-premiere-partie')"><span>Contrat ou attestation de programmation</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c3" onchange="updateProgress('progress-adami-premiere-partie')"><span>Biographie artiste</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c4" onchange="updateProgress('progress-adami-premiere-partie')"><span>Lien écoute (Spotify, SoundCloud, etc.)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c5" onchange="updateProgress('progress-adami-premiere-partie')"><span>Budget prévisionnel de la première partie</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-premiere-partie-c6" onchange="updateProgress('progress-adami-premiere-partie')"><span>RIB artiste ou structure</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET PREMIÈRE PARTIE</h2>
+        <ul>
+          <li>Cachet artiste et musiciens</li>
+          <li>Transport vers le lieu</li>
+          <li>Hébergement si nécessaire</li>
+          <li>Location backline complémentaire</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.adami.fr/aides-financieres/" target="_blank" rel="noopener">le portail ADAMI</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-adami-promo-enregistrement">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">ADAMI · Aide à la promotion d'un enregistrement · Variable selon dossier · Artistes-interprètes avec sortie discographique</p>
+        <div class="recap-grid" id="recap-adami-promo-enregistrement"></div>
+        <ul>
+          <li>Artiste-interprète avec enregistrement finalisé ou à paraître</li>
+          <li>Plan de promotion défini</li>
+          <li>Distribution confirmée (physique ou digitale)</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Commission mensuelle — Dépôt 6 semaines avant la commission.</p>
+        <div class="sessions-row">
+          <div class="session-badge">COMMISSION MENSUELLE</div>
+          <div class="session-badge">DÉPÔT 6 SEM. AVANT</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-adami-promo-enregistrement">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-adami-promo-enregistrement"></div></div>
+          <span class="progress-pct" id="pct-adami-promo-enregistrement">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c1" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Formulaire ADAMI Promotion complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c2" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Copie de l'enregistrement (master ou prêt-à-presser)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c3" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Plan de promotion détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c4" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Contrat de distribution</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c5" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Devis attaché de presse / promo digitale</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c6" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Budget prévisionnel promotion</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c7" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>Biographie et dossier de presse</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-promo-enr-c8" onchange="updateProgress('progress-adami-promo-enregistrement')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET PROMOTION</h2>
+        <ul>
+          <li>Attaché(e) de presse</li>
+          <li>Campagne digitale (ads, playlisting)</li>
+          <li>Supports visuels (pochette, visuels promo)</li>
+          <li>Relations médias</li>
+          <li>Showcases promotionnels</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.adami.fr/aides-financieres/" target="_blank" rel="noopener">le portail ADAMI</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-adami-contenus-numeriques">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">ADAMI · Aide aux contenus numériques · Variable selon dossier · Artistes-interprètes créant du contenu digital</p>
+        <div class="recap-grid" id="recap-adami-contenus-numeriques"></div>
+        <ul>
+          <li>Artiste-interprète principal</li>
+          <li>Projet de contenu numérique original</li>
+          <li>Diffusion sur plateformes digitales</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Commission mensuelle — Consultez le calendrier ADAMI.</p>
+        <div class="sessions-row">
+          <div class="session-badge">COMMISSION MENSUELLE</div>
+          <div class="session-badge">CALENDRIER ADAMI</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-adami-contenus-numeriques">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-adami-contenus-numeriques"></div></div>
+          <span class="progress-pct" id="pct-adami-contenus-numeriques">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c1" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Formulaire ADAMI Contenus Numériques complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c2" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Note d'intention créative</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c3" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Maquette ou extraits du projet</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c4" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Plan de diffusion digitale</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c5" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Budget prévisionnel production</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c6" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>Devis prestataires techniques</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c7" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>CV artiste</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-cn-c8" onchange="updateProgress('progress-adami-contenus-numeriques')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET CONTENUS NUMÉRIQUES</h2>
+        <ul>
+          <li>Production audiovisuelle</li>
+          <li>Post-production et montage</li>
+          <li>Graphisme et motion design</li>
+          <li>Diffusion et promotion digitale</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.adami.fr/aides-financieres/" target="_blank" rel="noopener">le portail ADAMI</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-adami-eac">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">ADAMI · Aide EAC (Éducation Artistique et Culturelle) · Variable selon dossier · Artistes-interprètes menant des actions EAC</p>
+        <div class="recap-grid" id="recap-adami-eac"></div>
+        <ul>
+          <li>Artiste-interprète professionnel</li>
+          <li>Projet d'action EAC structuré</li>
+          <li>Partenariat avec établissement scolaire ou structure culturelle</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Commission trimestrielle — Consultez le calendrier ADAMI.</p>
+        <div class="sessions-row">
+          <div class="session-badge">COMMISSION TRIMESTRIELLE</div>
+          <div class="session-badge">CALENDRIER ADAMI</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-adami-eac">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-adami-eac"></div></div>
+          <span class="progress-pct" id="pct-adami-eac">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c1" onchange="updateProgress('progress-adami-eac')"><span>Formulaire ADAMI EAC complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c2" onchange="updateProgress('progress-adami-eac')"><span>Descriptif du projet pédagogique</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c3" onchange="updateProgress('progress-adami-eac')"><span>Convention de partenariat (école, MJC, etc.)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c4" onchange="updateProgress('progress-adami-eac')"><span>CV artiste-intervenant</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c5" onchange="updateProgress('progress-adami-eac')"><span>Planning des interventions</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c6" onchange="updateProgress('progress-adami-eac')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="adami-eac-c7" onchange="updateProgress('progress-adami-eac')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET EAC</h2>
+        <ul>
+          <li>Rémunération artiste-intervenant</li>
+          <li>Matériel pédagogique</li>
+          <li>Transports</li>
+          <li>Restitution publique éventuelle</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.adami.fr/aides-financieres/" target="_blank" rel="noopener">le portail ADAMI</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-sppf-tour-support">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPPF · Aide à l'organisation de tournée (Tour Support) · Variable selon dossier · Membres SPPF avec artiste en tournée</p>
+        <div class="recap-grid" id="recap-sppf-tour-support"></div>
+        <ul>
+          <li>Producteur membre de la SPPF</li>
+          <li>Artiste avec album sorti dans les 18 derniers mois</li>
+          <li>Tournée de minimum 5 dates confirmées</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Commissions SPPF 2026 : 14 janv., 26 fév., 9 avr., 4 juin, 27 août, 7 oct., 19 nov.</p>
+        <div class="sessions-row">
+          <div class="session-badge">14 JANVIER 2026</div>
+          <div class="session-badge">26 FÉVRIER 2026</div>
+          <div class="session-badge">9 AVRIL 2026</div>
+          <div class="session-badge">4 JUIN 2026</div>
+          <div class="session-badge">27 AOÛT 2026</div>
+          <div class="session-badge">7 OCTOBRE 2026</div>
+          <div class="session-badge">19 NOVEMBRE 2026</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sppf-tour-support">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sppf-tour-support"></div></div>
+          <span class="progress-pct" id="pct-sppf-tour-support">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c1" onchange="updateProgress('progress-sppf-tour-support')"><span>Formulaire SPPF Tour Support complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c2" onchange="updateProgress('progress-sppf-tour-support')"><span>Contrats de cession ou attestations dates</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c3" onchange="updateProgress('progress-sppf-tour-support')"><span>Plan de tournée détaillé (minimum 5 dates)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c4" onchange="updateProgress('progress-sppf-tour-support')"><span>Budget prévisionnel tournée</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c5" onchange="updateProgress('progress-sppf-tour-support')"><span>Justificatif de sortie album récent</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c6" onchange="updateProgress('progress-sppf-tour-support')"><span>Copie de l'album</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sppf-ts-c7" onchange="updateProgress('progress-sppf-tour-support')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET TOURNÉE</h2>
+        <ul>
+          <li>Cachets musiciens et techniciens</li>
+          <li>Transports (bus, train, avion)</li>
+          <li>Hébergement et per diem</li>
+          <li>Location backline et matériel</li>
+          <li>Production technique (son, lumières)</li>
+          <li>Direction de tournée</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.sppf.com/aides-financieres/" target="_blank" rel="noopener">le portail SPPF</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-sacem-creation-spectacle">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SACEM · Création Spectacle Musical · Variable selon dossier · Membres SACEM (auteurs, compositeurs, éditeurs)</p>
+        <div class="recap-grid" id="recap-sacem-creation-spectacle"></div>
+        <ul>
+          <li>Membre SACEM (auteur, compositeur ou éditeur)</li>
+          <li>Projet de création de spectacle musical original</li>
+          <li>Lieu de création identifié</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appel à projets — Consultez le calendrier SACEM 2026.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL À PROJETS</div>
+          <div class="session-badge">CALENDRIER SACEM 2026</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-sacem-creation-spectacle">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-sacem-creation-spectacle"></div></div>
+          <span class="progress-pct" id="pct-sacem-creation-spectacle">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c1" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Formulaire SACEM Création Spectacle complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c2" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Note d'intention artistique</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c3" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Synopsis ou livret du spectacle</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c4" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Extraits musicaux (maquettes)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c5" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Planning de création et répétitions</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c6" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Budget prévisionnel détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c7" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>CV des auteurs/compositeurs</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c8" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>Lettres d'engagement (lieu, interprètes)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="sacem-cs-c9" onchange="updateProgress('progress-sacem-creation-spectacle')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET CRÉATION SPECTACLE</h2>
+        <ul>
+          <li>Droits d'auteur et commandes d'œuvres</li>
+          <li>Résidence de création</li>
+          <li>Répétitions et mise en scène</li>
+          <li>Interprètes et musiciens</li>
+          <li>Scénographie et costumes</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.sacem.fr/aides-financieres/" target="_blank" rel="noopener">le portail SACEM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-spedidam-spectacle">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">SPEDIDAM · Aide Spectacle Musical · Variable selon dossier · Artistes-interprètes en spectacle vivant</p>
+        <div class="recap-grid" id="recap-spedidam-spectacle"></div>
+        <ul>
+          <li>Au moins un artiste-interprète rémunéré au cachet</li>
+          <li>Spectacle musical live</li>
+          <li>Lieu de représentation confirmé</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Sessions trimestrielles — Dépôt 2 mois avant la commission.</p>
+        <div class="sessions-row">
+          <div class="session-badge">SESSION TRIMESTRIELLE</div>
+          <div class="session-badge">DÉPÔT 2 MOIS AVANT</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-spedidam-spectacle">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-spedidam-spectacle"></div></div>
+          <span class="progress-pct" id="pct-spedidam-spectacle">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c1" onchange="updateProgress('progress-spedidam-spectacle')"><span>Formulaire SPEDIDAM Spectacle complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c2" onchange="updateProgress('progress-spedidam-spectacle')"><span>Contrat de cession ou lettre de programmation</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c3" onchange="updateProgress('progress-spedidam-spectacle')"><span>Liste des artistes-interprètes avec cachets</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c4" onchange="updateProgress('progress-spedidam-spectacle')"><span>Budget prévisionnel du spectacle</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c5" onchange="updateProgress('progress-spedidam-spectacle')"><span>Biographie artiste(s)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c6" onchange="updateProgress('progress-spedidam-spectacle')"><span>Affiche ou support de communication</span></label>
+          <label class="checklist-item"><input type="checkbox" id="spedidam-sp-c7" onchange="updateProgress('progress-spedidam-spectacle')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET SPECTACLE MUSICAL</h2>
+        <ul>
+          <li>Cachets artistes-interprètes</li>
+          <li>Charges sociales</li>
+          <li>Frais de déplacement</li>
+          <li>Hébergement</li>
+          <li>Location matériel</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.spedidam.fr/aides-financieres/" target="_blank" rel="noopener">le portail SPEDIDAM</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-fonpeps-apaj">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">FONPEPS · Aide APAJ (Aide au Parcours de l'Artiste Jeune) · Aide forfaitaire · Artistes de moins de 30 ans</p>
+        <div class="recap-grid" id="recap-fonpeps-apaj"></div>
+        <ul>
+          <li>Artiste de moins de 30 ans</li>
+          <li>Premier contrat ou début de parcours professionnel</li>
+          <li>Employeur du spectacle vivant</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dispositif permanent — Dépôt en continu auprès de l'ASP.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DISPOSITIF PERMANENT</div>
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-fonpeps-apaj">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-fonpeps-apaj"></div></div>
+          <span class="progress-pct" id="pct-fonpeps-apaj">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c1" onchange="updateProgress('progress-fonpeps-apaj')"><span>Formulaire FONPEPS APAJ complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c2" onchange="updateProgress('progress-fonpeps-apaj')"><span>Copie contrat de travail (CDDU ou CDD)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c3" onchange="updateProgress('progress-fonpeps-apaj')"><span>Copie pièce d'identité de l'artiste</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c4" onchange="updateProgress('progress-fonpeps-apaj')"><span>Justificatif de moins de 30 ans</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c5" onchange="updateProgress('progress-fonpeps-apaj')"><span>Attestation employeur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-apaj-c6" onchange="updateProgress('progress-fonpeps-apaj')"><span>RIB de l'employeur</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — AIDE FONPEPS APAJ</h2>
+        <ul>
+          <li>Aide forfaitaire versée à l'employeur</li>
+          <li>Couvre une partie des charges sociales</li>
+          <li>Applicable aux CDDU et CDD du spectacle</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/fonpeps" target="_blank" rel="noopener">le portail FONPEPS / ASP</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-fonpeps-spectacle-vivant">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">FONPEPS · Aide au Spectacle Vivant · Aide forfaitaire · Employeurs du spectacle vivant</p>
+        <div class="recap-grid" id="recap-fonpeps-spectacle-vivant"></div>
+        <ul>
+          <li>Employeur relevant du spectacle vivant</li>
+          <li>Embauche en CDI ou CDD longue durée</li>
+          <li>Projet artistique identifié</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dispositif permanent — Dépôt en continu auprès de l'ASP.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DISPOSITIF PERMANENT</div>
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-fonpeps-spectacle-vivant">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-fonpeps-spectacle-vivant"></div></div>
+          <span class="progress-pct" id="pct-fonpeps-spectacle-vivant">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c1" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>Formulaire FONPEPS Spectacle Vivant complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c2" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>Copie contrat de travail</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c3" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>Attestation de l'employeur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c4" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>Présentation du projet artistique</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c5" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>Kbis ou récépissé association</span></label>
+          <label class="checklist-item"><input type="checkbox" id="fonpeps-sv-c6" onchange="updateProgress('progress-fonpeps-spectacle-vivant')"><span>RIB de l'employeur</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — AIDE FONPEPS SPECTACLE VIVANT</h2>
+        <ul>
+          <li>Aide forfaitaire à l'employeur</li>
+          <li>Compensation charges sociales</li>
+          <li>Encouragement à l'emploi durable dans le spectacle</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/fonpeps" target="_blank" rel="noopener">le portail FONPEPS / ASP</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-ifcic-garantie">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">IFCIC · Garantie de Prêt Bancaire · Garantie jusqu'à 70% du prêt · Entreprises culturelles emprunteuses</p>
+        <div class="recap-grid" id="recap-ifcic-garantie"></div>
+        <ul>
+          <li>Entreprise du secteur musical ou culturel</li>
+          <li>Prêt bancaire en cours de négociation</li>
+          <li>Activité principale dans les industries culturelles</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dispositif permanent — Dépôt en continu.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DISPOSITIF PERMANENT</div>
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-ifcic-garantie">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-ifcic-garantie"></div></div>
+          <span class="progress-pct" id="pct-ifcic-garantie">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c1" onchange="updateProgress('progress-ifcic-garantie')"><span>Dossier de demande IFCIC complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c2" onchange="updateProgress('progress-ifcic-garantie')"><span>Business plan ou projet d'entreprise</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c3" onchange="updateProgress('progress-ifcic-garantie')"><span>Derniers bilans comptables (3 ans)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c4" onchange="updateProgress('progress-ifcic-garantie')"><span>Prévisionnel financier</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c5" onchange="updateProgress('progress-ifcic-garantie')"><span>Offre de prêt bancaire</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c6" onchange="updateProgress('progress-ifcic-garantie')"><span>Kbis à jour</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c7" onchange="updateProgress('progress-ifcic-garantie')"><span>Statuts</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-g-c8" onchange="updateProgress('progress-ifcic-garantie')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — GARANTIE IFCIC</h2>
+        <ul>
+          <li>Garantie jusqu'à 70% du montant emprunté</li>
+          <li>Facilite l'accès au crédit bancaire</li>
+          <li>Commission de garantie annuelle</li>
+          <li>Durée alignée sur le prêt garanti</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.ifcic.fr/" target="_blank" rel="noopener">le portail IFCIC</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-ifcic-pret">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">IFCIC · Prêt Direct aux Entreprises · Variable selon dossier · Entreprises culturelles en développement</p>
+        <div class="recap-grid" id="recap-ifcic-pret"></div>
+        <ul>
+          <li>Entreprise du secteur musical ou culturel</li>
+          <li>Besoin de trésorerie ou investissement</li>
+          <li>Structure financière viable</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Dispositif permanent — Dépôt en continu.</p>
+        <div class="sessions-row">
+          <div class="session-badge">DISPOSITIF PERMANENT</div>
+          <div class="session-badge">DÉPÔT EN CONTINU</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-ifcic-pret">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-ifcic-pret"></div></div>
+          <span class="progress-pct" id="pct-ifcic-pret">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c1" onchange="updateProgress('progress-ifcic-pret')"><span>Dossier de demande IFCIC complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c2" onchange="updateProgress('progress-ifcic-pret')"><span>Business plan détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c3" onchange="updateProgress('progress-ifcic-pret')"><span>Derniers bilans comptables (3 ans)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c4" onchange="updateProgress('progress-ifcic-pret')"><span>Prévisionnel financier N+1 et N+2</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c5" onchange="updateProgress('progress-ifcic-pret')"><span>Plan de financement</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c6" onchange="updateProgress('progress-ifcic-pret')"><span>Kbis à jour</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c7" onchange="updateProgress('progress-ifcic-pret')"><span>Statuts</span></label>
+          <label class="checklist-item"><input type="checkbox" id="ifcic-p-c8" onchange="updateProgress('progress-ifcic-pret')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — PRÊT DIRECT IFCIC</h2>
+        <ul>
+          <li>Prêt à taux préférentiel</li>
+          <li>Complément aux financements bancaires</li>
+          <li>Durée adaptée au projet</li>
+          <li>Remboursement échelonné</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.ifcic.fr/" target="_blank" rel="noopener">le portail IFCIC</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-minculture-composition">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">Min. Culture · Aide à la Composition Musicale · Variable selon commande · Compositeurs professionnels</p>
+        <div class="recap-grid" id="recap-minculture-composition"></div>
+        <ul>
+          <li>Compositeur professionnel</li>
+          <li>Commande d'œuvre identifiée</li>
+          <li>Commanditaire (ensemble, orchestre, festival, etc.)</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appels à projets annuels — Consultez le site du Ministère.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL ANNUEL</div>
+          <div class="session-badge">CALENDRIER MINISTÈRE</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-minculture-composition">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-minculture-composition"></div></div>
+          <span class="progress-pct" id="pct-minculture-composition">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c1" onchange="updateProgress('progress-minculture-composition')"><span>Formulaire ministériel complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c2" onchange="updateProgress('progress-minculture-composition')"><span>Note d'intention de l'œuvre</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c3" onchange="updateProgress('progress-minculture-composition')"><span>CV du compositeur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c4" onchange="updateProgress('progress-minculture-composition')"><span>Lettre de commande du commanditaire</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c5" onchange="updateProgress('progress-minculture-composition')"><span>Extraits d'œuvres antérieures</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c6" onchange="updateProgress('progress-minculture-composition')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-comp-c7" onchange="updateProgress('progress-minculture-composition')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET COMPOSITION</h2>
+        <ul>
+          <li>Commande d'écriture</li>
+          <li>Copistes et gravure musicale</li>
+          <li>Enregistrement maquette</li>
+          <li>Frais de résidence création</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/" target="_blank" rel="noopener">le portail du Ministère de la Culture</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-minculture-compositeurs-associes">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">Min. Culture · Dispositif Compositeurs Associés · Variable selon résidence · Compositeurs en résidence</p>
+        <div class="recap-grid" id="recap-minculture-compositeurs-associes"></div>
+        <ul>
+          <li>Compositeur professionnel</li>
+          <li>Structure d'accueil identifiée (orchestre, ensemble, lieu)</li>
+          <li>Convention de résidence prévue</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appel annuel — Dossier à déposer auprès de la DRAC.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL ANNUEL</div>
+          <div class="session-badge">DÉPÔT DRAC</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-minculture-compositeurs-associes">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-minculture-compositeurs-associes"></div></div>
+          <span class="progress-pct" id="pct-minculture-compositeurs-associes">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c1" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Formulaire DRAC complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c2" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Convention de résidence tripartite</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c3" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Projet artistique détaillé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c4" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>CV compositeur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c5" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Lettre de la structure d'accueil</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c6" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Planning de résidence</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c7" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="minc-ca-c8" onchange="updateProgress('progress-minculture-compositeurs-associes')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET RÉSIDENCE COMPOSITEUR</h2>
+        <ul>
+          <li>Rémunération compositeur</li>
+          <li>Création et commandes d'œuvres</li>
+          <li>Ateliers et rencontres publiques</li>
+          <li>Actions EAC liées à la résidence</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/" target="_blank" rel="noopener">le portail du Ministère de la Culture / DRAC</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-region-album">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">Région · Aide à la réalisation d'album · Variable selon région · Labels et producteurs régionaux</p>
+        <div class="recap-grid" id="recap-region-album"></div>
+        <ul>
+          <li>Label ou producteur implanté dans la région</li>
+          <li>Projet d'enregistrement d'album</li>
+          <li>Artiste régional ou distribution régionale</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Varie selon les régions — Consultez votre Conseil régional.</p>
+        <div class="sessions-row">
+          <div class="session-badge">CALENDRIER RÉGIONAL</div>
+          <div class="session-badge">VARIABLE SELON RÉGION</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-region-album">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-region-album"></div></div>
+          <span class="progress-pct" id="pct-region-album">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c1" onchange="updateProgress('progress-region-album')"><span>Formulaire régional complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c2" onchange="updateProgress('progress-region-album')"><span>Présentation du projet d'album</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c3" onchange="updateProgress('progress-region-album')"><span>Maquettes ou démos</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c4" onchange="updateProgress('progress-region-album')"><span>Contrat artiste-producteur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c5" onchange="updateProgress('progress-region-album')"><span>Devis studio d'enregistrement</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c6" onchange="updateProgress('progress-region-album')"><span>Budget prévisionnel production</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c7" onchange="updateProgress('progress-region-album')"><span>Kbis ou statuts</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c8" onchange="updateProgress('progress-region-album')"><span>Dernier bilan</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-alb-c9" onchange="updateProgress('progress-region-album')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET PRODUCTION ALBUM</h2>
+        <ul>
+          <li>Studio d'enregistrement</li>
+          <li>Musiciens additionnels</li>
+          <li>Mixage et mastering</li>
+          <li>Fabrication (pressage, duplication)</li>
+          <li>Graphisme pochette</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="#" target="_blank" rel="noopener">le site de votre Conseil régional</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+    <div class="dossier-section" id="section-region-clip">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">Région · Aide Clip Vidéo · Variable selon région · Artistes et producteurs régionaux</p>
+        <div class="recap-grid" id="recap-region-clip"></div>
+        <ul>
+          <li>Artiste ou producteur implanté dans la région</li>
+          <li>Projet de clip vidéo musical</li>
+          <li>Réalisation par un professionnel</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Varie selon les régions — Consultez votre Conseil régional.</p>
+        <div class="sessions-row">
+          <div class="session-badge">CALENDRIER RÉGIONAL</div>
+          <div class="session-badge">VARIABLE SELON RÉGION</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-region-clip">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-region-clip"></div></div>
+          <span class="progress-pct" id="pct-region-clip">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c1" onchange="updateProgress('progress-region-clip')"><span>Formulaire régional complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c2" onchange="updateProgress('progress-region-clip')"><span>Synopsis et note d'intention visuelle</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c3" onchange="updateProgress('progress-region-clip')"><span>Morceau audio finalisé</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c4" onchange="updateProgress('progress-region-clip')"><span>Devis réalisateur et équipe technique</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c5" onchange="updateProgress('progress-region-clip')"><span>Budget prévisionnel clip</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c6" onchange="updateProgress('progress-region-clip')"><span>CV du réalisateur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="region-clip-c7" onchange="updateProgress('progress-region-clip')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET CLIP VIDÉO</h2>
+        <ul>
+          <li>Réalisation et mise en scène</li>
+          <li>Équipe technique (chef op, etc.)</li>
+          <li>Location matériel et décors</li>
+          <li>Post-production et montage</li>
+          <li>Effets spéciaux / animation</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="#" target="_blank" rel="noopener">le site de votre Conseil régional</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-drac-ecriture">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">DAC/DRAC · Aide écriture œuvre musicale originale · Variable selon DRAC · Auteurs-compositeurs</p>
+        <div class="recap-grid" id="recap-drac-ecriture"></div>
+        <ul>
+          <li>Auteur-compositeur professionnel</li>
+          <li>Projet d'écriture d'œuvre originale</li>
+          <li>Résidence dans le ressort de la DRAC</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Calendrier variable selon la DRAC — Contactez votre direction régionale.</p>
+        <div class="sessions-row">
+          <div class="session-badge">CALENDRIER DRAC</div>
+          <div class="session-badge">VARIABLE SELON RÉGION</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-drac-ecriture">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-drac-ecriture"></div></div>
+          <span class="progress-pct" id="pct-drac-ecriture">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c1" onchange="updateProgress('progress-drac-ecriture')"><span>Formulaire DRAC complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c2" onchange="updateProgress('progress-drac-ecriture')"><span>Note d'intention de l'œuvre</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c3" onchange="updateProgress('progress-drac-ecriture')"><span>CV du compositeur/auteur</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c4" onchange="updateProgress('progress-drac-ecriture')"><span>Extraits d'œuvres antérieures</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c5" onchange="updateProgress('progress-drac-ecriture')"><span>Calendrier de travail prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c6" onchange="updateProgress('progress-drac-ecriture')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-ecr-c7" onchange="updateProgress('progress-drac-ecriture')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET ÉCRITURE</h2>
+        <ul>
+          <li>Temps d'écriture et composition</li>
+          <li>Enregistrement maquettes</li>
+          <li>Collaboration artistique</li>
+          <li>Documentation et recherche</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/Regions" target="_blank" rel="noopener">votre DRAC régionale</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-drac-adsv">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">DAC/DRAC · ADSV — Aides déconcentrées au spectacle vivant · Variable selon DRAC · Compagnies et ensembles musicaux</p>
+        <div class="recap-grid" id="recap-drac-adsv"></div>
+        <ul>
+          <li>Compagnie, ensemble ou structure de spectacle vivant</li>
+          <li>Conventionnement ou aide au projet</li>
+          <li>Implantation dans le ressort de la DRAC</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Calendrier variable selon la DRAC.</p>
+        <div class="sessions-row">
+          <div class="session-badge">CALENDRIER DRAC</div>
+          <div class="session-badge">CONVENTIONNEMENT OU PROJET</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-drac-adsv">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-drac-adsv"></div></div>
+          <span class="progress-pct" id="pct-drac-adsv">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c1" onchange="updateProgress('progress-drac-adsv')"><span>Formulaire DRAC ADSV complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c2" onchange="updateProgress('progress-drac-adsv')"><span>Projet artistique et culturel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c3" onchange="updateProgress('progress-drac-adsv')"><span>Bilan d'activité (si renouvellement)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c4" onchange="updateProgress('progress-drac-adsv')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c5" onchange="updateProgress('progress-drac-adsv')"><span>Derniers comptes annuels</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c6" onchange="updateProgress('progress-drac-adsv')"><span>Statuts de la structure</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c7" onchange="updateProgress('progress-drac-adsv')"><span>Planning de diffusion</span></label>
+          <label class="checklist-item"><input type="checkbox" id="drac-adsv-c8" onchange="updateProgress('progress-drac-adsv')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET SPECTACLE VIVANT</h2>
+        <ul>
+          <li>Création et production</li>
+          <li>Diffusion et tournée</li>
+          <li>Actions culturelles (EAC, médiation)</li>
+          <li>Fonctionnement de la structure</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.culture.gouv.fr/Regions" target="_blank" rel="noopener">votre DRAC régionale</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>
+
+    <div class="dossier-section" id="section-paris-jeunes-artistes">
+      <div class="section-block">
+        <h2>A — RÉCAPITULATIF ÉLIGIBILITÉ</h2>
+        <p class="section-sub">Ville de Paris · Aide Jeunes Artistes Musique · Variable selon dossier · Artistes émergents parisiens</p>
+        <div class="recap-grid" id="recap-paris-jeunes-artistes"></div>
+        <ul>
+          <li>Artiste émergent résidant à Paris</li>
+          <li>Projet musical original</li>
+          <li>Début de parcours professionnel</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>B — DATES DE SESSION 2026</h2>
+        <p class="section-sub">Appel à candidatures annuel — Consultez paris.fr.</p>
+        <div class="sessions-row">
+          <div class="session-badge">APPEL ANNUEL</div>
+          <div class="session-badge">CALENDRIER PARIS.FR</div>
+        </div>
+      </div>
+      <div class="section-block">
+        <h2>C — CHECKLIST PIÈCES JUSTIFICATIVES</h2>
+        <div class="progress-wrap" id="progress-paris-jeunes-artistes">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="progressbar-paris-jeunes-artistes"></div></div>
+          <span class="progress-pct" id="pct-paris-jeunes-artistes">0 %</span>
+        </div>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c1" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>Formulaire Ville de Paris complété</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c2" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>Présentation du projet musical</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c3" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>Extraits musicaux (démos)</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c4" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>CV artistique</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c5" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>Justificatif de domicile parisien</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c6" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>Budget prévisionnel</span></label>
+          <label class="checklist-item"><input type="checkbox" id="paris-ja-c7" onchange="updateProgress('progress-paris-jeunes-artistes')"><span>RIB</span></label>
+      </div>
+      <div class="section-block">
+        <h2>D — BUDGET PROJET JEUNE ARTISTE</h2>
+        <ul>
+          <li>Création et enregistrement</li>
+          <li>Promotion et diffusion</li>
+          <li>Formation complémentaire</li>
+          <li>Matériel professionnel</li>
+        </ul>
+      </div>
+      <div class="section-block">
+        <h2>E — PORTAIL &amp; SOUMISSION</h2>
+        <p>Déposez votre dossier sur <a href="https://www.paris.fr/" target="_blank" rel="noopener">le portail de la Ville de Paris</a>.</p>
+        <p class="section-sub">Conservez une copie PDF de chaque document avant envoi.</p>
+      </div>
+    </div>    </div>
   </main>
   <script>
   // ============================================================
