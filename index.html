@@ -91,7 +91,14 @@
     .step-text{font-size:12px;color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;letter-spacing:0.06em;}
     footer{background:var(--noir);color:rgba(255,255,255,0.4);padding:30px 50px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;display:flex;justify-content:space-between;align-items:center;}
     footer strong{color:var(--rouge);}
-  </style>
+  
+.newsletter-form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:600px;margin:0 auto}
+.newsletter-form input[type="text"],.newsletter-form input[type="email"]{padding:12px 16px;border:2px solid rgba(232,0,29,.4);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-size:1rem;flex:1 1 180px;min-width:0;outline:none;transition:border .3s}
+.newsletter-form input::placeholder{color:rgba(255,255,255,.5)}
+.newsletter-form input:focus{border-color:var(--rouge)}
+.newsletter-form button{padding:12px 28px;background:var(--rouge);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .3s;flex:0 0 auto}
+.newsletter-form button:hover{background:#c00018}
+</style>
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Aides Musique France","url":"https://lykylabelfrance.github.io/aides-musique-france/","description":"Annuaire complet des 74 aides et subventions pour la musique en France : CNM, SCPP, ADAMI, SPPF, SACEM, SPEDIDAM, FONPEPS, IFCIC et collectivites territoriales. Test d eligibilite gratuit.","publisher":{"@type":"Organization","name":"Lyky Label France","url":"https://lykylabelfrance.github.io/aides-musique-france/","email":"lykylabelfrance@gmail.com","foundingDate":"2024","knowsAbout":["Production musicale","Edition musicale","Management artistique","Subventions musique France","Credit d impot phonographique"]},"inLanguage":"fr","audience":{"@type":"Audience","audienceType":"Professionnels de la musique en France"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quelles sont les principales aides pour la musique en France ?","acceptedAnswer":{"@type":"Answer","text":"Les principales aides pour la musique en France proviennent de 17 organismes : le CNM (Centre National de la Musique) avec 34 dispositifs, la SCPP, l ADAMI, la SPPF, la SACEM, la SPEDIDAM, le FONPEPS, l IFCIC, le Ministere de la Culture et les collectivites territoriales. Au total, 74 dispositifs couvrent la production, l edition, le spectacle vivant, l export, la formation et l innovation."}},{"@type":"Question","name":"Comment savoir si je suis eligible aux aides musique ?","acceptedAnswer":{"@type":"Answer","text":"Utilisez le test d eligibilite gratuit sur aides-musique-france : en 6 etapes et 7 questions, l outil analyse votre profil (statut juridique, activite, effectif, chiffre d affaires) et vous indique les aides auxquelles vous pouvez pretendre parmi les 105 dispositifs repertories."}},{"@type":"Question","name":"Quelles aides pour produire un album en France ?","acceptedAnswer":{"@type":"Answer","text":"Pour la production phonographique : l aide a la production du CNM, le credit d impot phonographique (CIPP), les aides SCPP et SPPF a la production, l aide ADAMI aux artistes-interpretes, et les dispositifs SACEM pour l edition. Les montants varient de quelques milliers d euros a plusieurs centaines de milliers selon le projet."}},{"@type":"Question","name":"Quelles aides pour organiser un concert ou une tournee ?","acceptedAnswer":{"@type":"Answer","text":"Pour le spectacle vivant : l aide aux festivals et salles du CNM, le credit d impot spectacle vivant (CISV), les aides SPEDIDAM et ADAMI pour les artistes, le FONPEPS pour l emploi, et les subventions des DRAC, regions et communes. Le CNM propose aussi des aides specifiques pour l international et les tournees."}}]},{"@context":"https://schema.org","@type":"Dataset","name":"Base de donnees des aides musique France 2026","description":"Repertoire de 74 dispositifs d aide publics et prives pour les professionnels de la musique en France, mis a jour en 2026.","url":"https://lykylabelfrance.github.io/aides-musique-france/aides.html","creator":{"@type":"Organization","name":"Lyky Label France"},"temporalCoverage":"2026","spatialCoverage":{"@type":"Place","name":"France"},"variableMeasured":"Dispositifs de financement musical","keywords":["aides musique","subventions musique France","CNM","SCPP","ADAMI","SPPF","SACEM","SPEDIDAM","credit impot phonographique","credit impot spectacle vivant","FONPEPS","IFCIC"]}]</script>
 </head>
 <body>
@@ -224,14 +231,16 @@
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--blanc);letter-spacing:0.04em;margin-bottom:8px;">RESTEZ <span style="color:var(--rouge);">INFORME</span></h2>
     <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;">Recevez les alertes d ouverture et fermeture des aides, les nouvelles subventions et nos conseils pour vos dossiers.</p>
     <form action="https://formsubmit.co/lykylabelfrance@gmail.com" method="POST" class="newsletter-form">
-      <input type="hidden" name="_subject" value="Nouvelle inscription newsletter – Aides Musique France">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://lykylabelfrance.github.io/aides-musique-france/index.html?subscribed=1">
-      <input type="text" name="_honey" style="display:none">
-      <input type="email" name="email" placeholder="Votre email" required aria-label="Adresse email">
-      <button type="submit">S’inscrire</button>
-    </form>
+              <input type="hidden" name="_subject" value="Nouvelle inscription newsletter – Aides Musique France">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://lykylabelfrance.github.io/aides-musique-france/index.html?subscribed=1">
+              <input type="text" name="_honey" style="display:none">
+              <input type="text" name="prenom" placeholder="Prénom" required>
+              <input type="text" name="nom" placeholder="Nom" required>
+              <input type="email" name="email" placeholder="Votre email" required>
+              <button type="submit">S'inscrire</button>
+            </form>
     <p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:12px;font-family:'DM Mono',monospace;">Pas de spam. Desabonnement en 1 clic. Conforme RGPD.</p>
   </section>
 
