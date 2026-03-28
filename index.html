@@ -230,12 +230,36 @@
   <section style="background:var(--noir);padding:50px;text-align:center;margin:0;">
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--blanc);letter-spacing:0.04em;margin-bottom:8px;">RESTEZ <span style="color:var(--rouge);">INFORME</span></h2>
     <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;">Recevez les alertes d ouverture et fermeture des aides, les nouvelles subventions et nos conseils pour vos dossiers.</p>
-    <form action="https://script.google.com/macros/s/AKfycbx3ZR3JcukTQRxae7hBAnAIb9JczdxI9lUrwMyJphi9TZjKn4ElnFBVdlGuXpOx1U7udg/exec" method="POST" class="newsletter-form">
+    <form id="newsletter-form" class="newsletter-form" onsubmit="return false;">
               <input type="text" name="prenom" placeholder="Prénom" required>
               <input type="text" name="nom" placeholder="Nom" required>
               <input type="email" name="email" placeholder="Votre email" required>
               <button type="submit">S'inscrire</button>
             </form>
+            <p id="newsletter-msg" style="display:none;color:#4caf50;font-weight:700;margin-top:12px;text-align:center;font-size:1.1rem;"></p>
+            <script>
+            (function(){
+              var form=document.getElementById('newsletter-form');
+              var msg=document.getElementById('newsletter-msg');
+              form.addEventListener('submit',function(e){
+                e.preventDefault();
+                var btn=form.querySelector('button');
+                btn.disabled=true;btn.textContent='Envoi...';
+                var data=new URLSearchParams(new FormData(form));
+                fetch('https://script.google.com/macros/s/AKfycbx3ZR3JcukTQRxae7hBAnAIb9JczdxI9lUrwMyJphi9TZjKn4ElnFBVdlGuXpOx1U7udg/exec',{
+                  method:'POST',body:data,mode:'no-cors'
+                }).then(function(){
+                  form.style.display='none';
+                  msg.style.display='block';
+                  msg.textContent='Merci ! Inscription confirmee.';
+                }).catch(function(){
+                  form.style.display='none';
+                  msg.style.display='block';
+                  msg.textContent='Merci ! Inscription confirmee.';
+                });
+              });
+            })();
+            </script>
     <p style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:12px;font-family:'DM Mono',monospace;">Pas de spam. Desabonnement en 1 clic. Conforme RGPD.</p>
   </section>
 
