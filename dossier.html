@@ -4335,70 +4335,48 @@
 
 
 <script>
-// Regroup aidTabs buttons by organisme with accordions
+// Regroup aidTabs buttons by organisme with accordions (v2)
 (function(){
   var tabs=document.getElementById("aidTabs");
   if(!tabs||!tabs.children.length)return;
+  var orgaOrder=["CNM","SACEM","SCPP","SPPF","ADAMI","SPEDIDAM","FONPEPS","IFCIC","Min. Culture","FADEM","Region","DAC/DRAC","Ville de Paris","PRMA","Departement","Mairie"];
+  function detectOrga(txt){
+    txt=txt.trim().toUpperCase();
+    if(txt.indexOf("CNM")===0||txt.indexOf("CISV")===0)return "CNM";
+    if(txt.indexOf("SACEM")===0||txt.indexOf("CIEM")===0)return "SACEM";
+    if(txt.indexOf("SCPP")===0)return "SCPP";
+    if(txt.indexOf("SPPF")===0)return "SPPF";
+    if(txt.indexOf("ADAMI")===0)return "ADAMI";
+    if(txt.indexOf("SPEDIDAM")===0||txt.indexOf("SPEDI")===0)return "SPEDIDAM";
+    if(txt.indexOf("FONPEPS")===0||txt.indexOf("APAJ")>-1)return "FONPEPS";
+    if(txt.indexOf("IFCIC")===0)return "IFCIC";
+    if(txt.indexOf("MIN")===0||txt.indexOf("COMPOSITION")===0)return "Min. Culture";
+    if(txt.indexOf("FADEM")===0)return "FADEM";
+    if(txt.indexOf("REGION")===0||txt.indexOf("R\u00C9GION")===0)return "Region";
+    if(txt.indexOf("DAC")===0||txt.indexOf("DRAC")===0)return "DAC/DRAC";
+    if(txt.indexOf("PARIS")===0||txt.indexOf("VILLE")===0)return "Ville de Paris";
+    if(txt.indexOf("PRMA")===0)return "PRMA";
+    if(txt.indexOf("DEPT")===0||txt.indexOf("D\u00C9PART")===0)return "Departement";
+    if(txt.indexOf("MAIRIE")===0)return "Mairie";
+    return "Autre";
+  }
   var orgaMap={};
-  var orgaOrder=["CNM","SACEM","ADAMI","SCPP","SPPF","SPEDIDAM","FONPEPS","IFCIC","Min. Culture","FADEM","Region","Region IDF","DAC/DRAC","Ville de Paris","PRMA","Departement","Mairie"];
-  // Parse section IDs to determine organisme
-  var sections=document.querySelectorAll(".dossier-section");
-  var sectionOrga={};
-  sections.forEach(function(s){
-    var id=s.id.replace("section-","");
-    var orga="Autre";
-    if(id.startsWith("cnm"))orga="CNM";
-    else if(id.startsWith("sacem"))orga="SACEM";
-    else if(id.startsWith("adami"))orga="ADAMI";
-    else if(id.startsWith("scpp"))orga="SCPP";
-    else if(id.startsWith("sppf"))orga="SPPF";
-    else if(id.startsWith("spedidam"))orga="SPEDIDAM";
-    else if(id.startsWith("fonpeps"))orga="FONPEPS";
-    else if(id.startsWith("ifcic"))orga="IFCIC";
-    else if(id.startsWith("min-culture")||id.startsWith("minculture"))orga="Min. Culture";
-    else if(id.startsWith("fadem"))orga="FADEM";
-    else if(id.startsWith("region-idf"))orga="Region IDF";
-    else if(id.startsWith("region"))orga="Region";
-    else if(id.startsWith("dac")||id.startsWith("drac"))orga="DAC/DRAC";
-    else if(id.startsWith("ville-paris")||id.startsWith("paris"))orga="Ville de Paris";
-    else if(id.startsWith("prma"))orga="PRMA";
-    else if(id.startsWith("departement")||id.startsWith("dept"))orga="Departement";
-    else if(id.startsWith("mairie"))orga="Mairie";
-    else if(id==="ciem")orga="SACEM";
-    else if(id==="cisv")orga="CNM";
-    sectionOrga[s.id]=orga;
-  });
-  // Group existing tab buttons by organisme
   var btns=Array.from(tabs.children);
   btns.forEach(function(btn){
-    var target=btn.getAttribute("data-target")||btn.getAttribute("onclick");
-    var sid="";
-    sections.forEach(function(s){
-      if(target&&target.indexOf(s.id)>-1)sid=s.id;
-    });
-    if(!sid){
-      // Try matching by text content
-      var txt=btn.textContent.trim().toLowerCase();
-      sections.forEach(function(s){
-        var h=s.querySelector("h2,h3");
-        if(h&&h.textContent.trim().toLowerCase()===txt)sid=s.id;
-      });
-    }
-    var orga=sectionOrga[sid]||"Autre";
+    var orga=detectOrga(btn.textContent);
     if(!orgaMap[orga])orgaMap[orga]=[];
     orgaMap[orga].push(btn);
   });
-  // Rebuild tabs with accordion groups
   tabs.innerHTML="";
   tabs.style.cssText="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem;";
-  orgaOrder.forEach(function(orga){
+  orgaOrder.concat(Object.keys(orgaMap).filter(function(k){return orgaOrder.indexOf(k)<0})).forEach(function(orga){
     var group=orgaMap[orga];
     if(!group||!group.length)return;
     var acc=document.createElement("details");
     acc.className="orga-accordion";
     acc.style.cssText="border:1px solid rgba(232,0,29,0.2);border-radius:8px;overflow:hidden;";
     var sum=document.createElement("summary");
-    sum.style.cssText="padding:0.75rem 1rem;background:rgba(232,0,29,0.08);cursor:pointer;font-weight:700;color:#e8001d;font-family:Bebas Neue,sans-serif;font-size:1.2rem;letter-spacing:1px;list-style:none;display:flex;justify-content:space-between;align-items:center;";
+    sum.style.cssText="padding:0.75rem 1rem;background:rgba(232,0,29,0.08);cursor:pointer;font-weight:700;color:#e8001d;font-family:Bebas Neue,sans-serif;font-size:1.2rem;letter-spacing:1px;list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none;";
     sum.innerHTML=orga+' <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);font-family:DM Mono,monospace;">('+group.length+')</span>';
     acc.appendChild(sum);
     var inner=document.createElement("div");
@@ -4407,11 +4385,11 @@
     acc.appendChild(inner);
     tabs.appendChild(acc);
   });
-  // Open first accordion by default
   var first=tabs.querySelector("details");
   if(first)first.open=true;
 })();
 </script>
+
 <div id="rgpd-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0a0a0a;border-top:2px solid #e8001d;padding:1rem 2rem;z-index:9999;text-align:center;font-size:0.95rem;color:#fff;">Ce site utilise uniquement des cookies techniques necessaires a son fonctionnement.<button onclick="document.getElementById('rgpd-banner').style.display='none';localStorage.setItem('rgpd-ok','1')" style="margin-left:1.5rem;background:#e8001d;color:#fff;border:none;padding:0.5rem 1.5rem;border-radius:4px;cursor:pointer;font-weight:600;">Compris</button></div>
 <script>if(!localStorage.getItem('rgpd-ok'))document.getElementById('rgpd-banner').style.display='flex'</script>
 </body>
