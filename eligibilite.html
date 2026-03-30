@@ -842,7 +842,7 @@ function calculateResults() {
       if (pertinent.length + autresEligible.length + conditionnel.length + crossProfile.length === 0) {
         html += "<p>Aucune aide trouv\u00e9e. Modifiez vos r\u00e9ponses.</p>";
       }
-      document.getElementById("step6-results").innerHTML = html;
+      document.getElementById("results-container").innerHTML = html;
     }
 
     function renderCard(aide, status, ogcName, condMsg) {
