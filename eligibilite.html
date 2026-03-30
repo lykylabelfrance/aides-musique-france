@@ -349,13 +349,16 @@ function getSelectedOption(groupName){
 
 function goBack(step){ showStep(step - 1, false); }
 
-function updateProgress(){
-  var pct = Math.round(((currentStep - 1) / 5) * 100);
-  var bar = document.getElementById("progressBar");
-  if(bar){ bar.style.width = pct + "%"; bar.setAttribute("aria-valuenow", pct); }
-  var label = document.getElementById("progressLabel");
-  if(label) label.textContent = "\u00c9tape " + currentStep + " / 6";
-}
+function updateProgress() {
+      var totalSteps = 6;
+      var percent = Math.round((currentStep / totalSteps) * 100);
+      var fill = document.getElementById("progress-fill");
+      var label = document.getElementById("progress-text");
+      var pct = document.getElementById("progress-pct");
+      if (fill) fill.style.width = percent + "%";
+      if (label) label.textContent = "\u00C9tape " + currentStep + " / " + totalSteps;
+      if (pct) pct.textContent = percent + "%";
+    }
 
 function showAlert(msg, type){
   var prev = document.querySelector(".wizard-alert"); if(prev) prev.remove();
@@ -378,7 +381,8 @@ function showStep(n, rebuild){
     if(n===5) buildStep5();
   }
   if(n===6) calculateResults();
-  window.scrollTo({top:0, behavior:'smooth'});
+  updateProgress();
+      window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function makeCheck(value, label, groupId){
@@ -795,23 +799,20 @@ function calculateResults() {
     }
 
 function renderCard(aide, status, ogcName) {
-      var borderColor, bgColor, statusMsg;
-      if (status === "eligible") {
-        borderColor = "#27ae60"; bgColor = "#0d1f0d";
-        statusMsg = '<span style="color:#27ae60">\u2705 \u00c9ligible</span>';
-      } else if (status === "cross") {
-        borderColor = "#f39c12"; bgColor = "#1f1a0d";
-        statusMsg = '<span style="color:#f39c12">\u2197\ufe0f Accessible via votre label / producteur (adh\u00e9sion ' + ogcName + ')</span>';
-      } else {
-        borderColor = "#ccc"; bgColor = "#0d0d0d";
-        statusMsg = '<span style="color:#ccc">\ud83d\udd12 Adh\u00e9sion ' + ogcName + ' requise</span>';
-      }
-      return '<div class="result-card" style="border:2px solid ' + borderColor + '; background:' + bgColor + '; padding:1.2rem; border-radius:12px; margin-bottom:1rem;">' +
-        '<h3 style="margin:0 0 .5rem; color:#fff;">' + aide.nom + '</h3>' +
-        '<p style="margin:0 0 .3rem; color:#aaa;">Organisme : ' + aide.org + '</p>' +
-        '<p style="margin:0 0 .3rem; color:#aaa;">Type : ' + aide.type + '</p>' +
-        '<p style="margin:0;">' + statusMsg + '</p>' +
-        '</div>';
+      var borderColor = status === 'cross' ? '#f39c12' : (status === 'conditionnel' ? '#e74c3c' : '#27ae60');
+      var statusLabel = status === 'cross' ? 'Via ' + (ogcName || 'label') : (status === 'conditionnel' ? 'Conditionnel' : 'Eligible');
+      var statusIcon = status === 'cross' ? '\uD83E\uDD1D' : (status === 'conditionnel' ? '\uD83D\uDD12' : '\u2705');
+      var btnStyle = status === 'conditionnel' ? 'opacity:0.5;pointer-events:none;' : '';
+      var btnLabel = status === 'conditionnel' ? 'Adh\u00e9sion requise' : 'Monter mon dossier \u2192';
+      return '<div style="border-left:4px solid ' + borderColor + ';padding:12px 16px;margin:8px 0;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)">' +
+        '<h3 style="margin:0 0 6px;font-size:15px;color:#2c3e50">' + aide.nom + '</h3>' +
+        '<p style="margin:2px 0;font-size:13px;color:#7f8c8d">Organisme : ' + aide.org + '</p>' +
+        '<p style="margin:2px 0;font-size:13px;color:#7f8c8d">Type : ' + aide.type + '</p>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">' +
+          '<span style="font-size:12px;color:' + borderColor + ';font-weight:600">' + statusIcon + ' ' + statusLabel + '</span>' +
+          '<a href="dossier.html?aide=' + aide.id + '" style="display:inline-block;padding:6px 14px;background:' + borderColor + ';color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:600;' + btnStyle + '">' + btnLabel + '</a>' +
+        '</div>' +
+      '</div>';
     }
 
 function shareResults(){
