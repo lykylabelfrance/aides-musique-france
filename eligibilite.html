@@ -612,110 +612,187 @@ function validateStep(n){
   }
 }
 
-function isMembreOf(org){
-  var mb = answers.membre || [];
-  switch(org){
-    case "adami": return mb.includes("adami");
-    case "spedidam": return mb.includes("spedidam");
-    case "sacem": return mb.includes("sacem-adherent") || mb.includes("sacem-pro") || mb.includes("sacem-editeur");
-    case "scpp": return mb.includes("scpp");
-    case "sppf": return mb.includes("sppf");
-    default: return true;
-  }
-}
-
-function calculateResults(){
-  var profiles = getProfiles();
-  var projets = answers.projet || {};
-  var seen = {}; var eligible = []; var conditionnel = [];
-  AIDES.forEach(function(aide){
-    var profilMatch = aide.profils.some(function(p){ return profiles.includes(p); });
-    if(!profilMatch) return;
-    if(seen[aide.id]) return; seen[aide.id] = true;
-    var membreOk = isMembreOf(aide.org);
-    var score = 1;
-    if(membreOk && ["adami","spedidam","scpp","sppf","sacem"].indexOf(aide.org) >= 0) score += 2;
-    var allProjVals = Object.keys(projets).map(function(k){ return projets[k]; });
-    allProjVals.forEach(function(proj){
-      var t = aide.type.toLowerCase();
-      if(t.indexOf("production") >= 0 && (proj === "album" || proj === "production-phono")) score++;
-      if(t.indexOf("showcase") >= 0 && (proj === "showcase" || proj === "showcase-prod")) score++;
-      if(t.indexOf("international") >= 0 && (proj.indexOf("international") >= 0 || proj.indexOf("export") >= 0)) score++;
-      if(t.indexOf("video") >= 0 && (proj === "clip" || proj === "video-prod")) score++;
-      if(t.indexOf("editorial") >= 0 && (proj === "dev-editorial" || proj === "editorial" || proj === "valorisation")) score++;
-      if(t.indexOf("creation") >= 0 && (proj === "creation-sv" || proj === "spectacle-creation")) score++;
-      if(t.indexOf("bourse") >= 0 && (proj === "formation" || proj === "composition")) score++;
-      if(t.indexOf("marketing") >= 0 && (proj === "promo" || proj === "marketing-prod")) score++;
-      if(t.indexOf("tournee") >= 0 && (proj === "tournee" || proj === "diffusion-sv")) score++;
-      if(t.indexOf("spectacle") >= 0 && (proj === "spectacle-creation" || proj === "creation-sv" || proj === "diffusion-sv")) score++;
-      if(t.indexOf("promotion") >= 0 && (proj === "promo" || proj === "marketing-prod")) score++;
-      if(t.indexOf("composition") >= 0 && proj === "composition") score++;
-      if(t.indexOf("formation") >= 0 && proj === "formation") score++;
-      if(t.indexOf("diffusion") >= 0 && (proj === "diffusion-sv" || proj === "tournee")) score++;
-      if(t.indexOf("equipement") >= 0 && (proj === "structuration-prod" || proj === "structuration-sv")) score++;
-    });
-    
-    // Critere scoring
-    var crit = answers.criteres || {};
-    if(crit['cachets'] === 2) score += 2;
-    else if(crit['cachets'] === 1) score += 1;
-    if(crit['anciennete-a'] === 2 || crit['anciennete-p'] === 2) score += 1;
-    if(crit['albums'] === 2) score += 1;
-    if(crit['sorties-prod'] === 2) score += 1;
-    if(crit['export-a'] === 0 || crit['export-p'] === 0 || crit['export-e'] === 0 || crit['export-sv'] === 0){
-      if(aide.type && aide.type.toLowerCase().indexOf('international') > -1) score += 3;
+function isMembreOf(org) {
+      var mb = answers.membre || [];
+      switch(org) {
+        case "adami": return mb.indexOf("adami") > -1;
+        case "spedidam": return mb.indexOf("spedidam") > -1 || mb.indexOf("licence-sv") > -1;
+        case "sacem": return mb.indexOf("sacem-adherent") > -1 || mb.indexOf("sacem-pro") > -1 || mb.indexOf("sacem-editeur") > -1;
+        case "scpp": return mb.indexOf("scpp") > -1;
+        case "sppf": return mb.indexOf("sppf") > -1;
+        default: return true;
+      }
     }
-    if(crit['ca-prod'] === 2 || crit['ca-ed'] === 2) score += 1;
-    if(crit['fragilite-p'] === 0 || crit['fragilite-sv'] === 0){
-      if(aide.nom && aide.nom.toLowerCase().indexOf('urgence') > -1) score += 2;
-    }
-    var item = {aide:aide, score:score};
-    if(membreOk) eligible.push(item); else conditionnel.push(item);
-  });
-  eligible.sort(function(a,b){ return b.score - a.score || a.aide.org.localeCompare(b.aide.org); });
-  conditionnel.sort(function(a,b){ return b.score - a.score || a.aide.org.localeCompare(b.aide.org); });
-  var el = document.getElementById("step6").querySelector(".card");
-  if(!el){ var s6 = document.getElementById("step6"); el = document.createElement("div"); el.className = "card"; s6.appendChild(el); }
-  var html = '<div style="text-align:center;margin-bottom:24px;">';
-  html += '<div style="display:inline-block;background:var(--rouge,#e8001d);color:#fff;font-size:2.5rem;font-weight:900;padding:16px 32px;border-radius:16px;margin-bottom:8px;">'+eligible.length+'</div>';
-  html += '<p style="font-size:1.1rem;font-weight:600;">aides pour lesquelles vous \u00eates potentiellement \u00e9ligible</p>';
-  if(conditionnel.length > 0) html += '<p style="font-size:0.9rem;color:#666;">(+ '+conditionnel.length+' aides conditionnelles sous r\u00e9serve d adh\u00e9sion)</p>';
-  html += "</div>";
-  if(eligible.length > 0){
-    html += '<h3 style="margin:20px 0 12px;font-size:1.15rem;">\u2705 Aides \u00e9ligibles ('+eligible.length+')</h3>';
-    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;">';
-    eligible.forEach(function(m){ html += renderCard(m.aide, "eligible"); });
-    html += "</div>";
-  }
-  if(conditionnel.length > 0){
-    html += '<h3 style="margin:28px 0 12px;font-size:1.15rem;color:#888;">\ud83d\udd12 Aides conditionnelles ('+conditionnel.length+')</h3>';
-    html += '<p style="font-size:0.85rem;color:#999;margin-bottom:12px;">Ces aides n\u00e9cessitent une adh\u00e9sion \u00e0 l organisme concern\u00e9.</p>';
-    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;">';
-    conditionnel.forEach(function(m){ html += renderCard(m.aide, "conditionnel"); });
-    html += "</div>";
-  }
-  if(eligible.length === 0 && conditionnel.length === 0) html += '<p style="text-align:center;padding:2rem;color:#999;">Aucune aide trouv\u00e9e. Modifiez vos crit\u00e8res.</p>';
-  html += '<div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap;">';
-  html += '<button class="btn" onclick="window.print()" style="background:var(--noir,#0a0a0a);color:#fff;">Imprimer / PDF</button>';
-  html += '<button class="btn" onclick="shareResults()" style="background:var(--rouge,#e8001d);color:#fff;">Partager</button>';
-  html += '<button class="btn-secondary" onclick="location.reload()">Recommencer</button>';
-  html += "</div>";
-  el.innerHTML = html;
-}
 
-function renderCard(aide, status){
-  var orgLabel = ORG_LABELS[aide.org] || aide.org.toUpperCase();
-  var border = status === "eligible" ? "var(--rouge,#e8001d)" : "#ccc";
-  var bg = status === "eligible" ? "#fff" : "#f9f9f9";
-  var h = '<div style="background:'+bg+';border:2px solid '+border+';border-radius:12px;padding:14px;">';
-  h += '<div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">';
-  h += '<span style="background:var(--rouge,#e8001d);color:#fff;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:700;">'+orgLabel+'</span>';
-  h += '<span style="background:var(--noir,#0a0a0a);color:#fff;padding:3px 10px;border-radius:20px;font-size:0.75rem;">'+aide.type+'</span>';
-  h += "</div>";
-  h += '<div style="font-weight:700;font-size:0.95rem;margin-bottom:4px;">'+aide.nom+'</div>';
-  if(status === "conditionnel") h += '<div style="font-size:0.8rem;color:#e8001d;margin-top:6px;">Adh\u00e9sion '+orgLabel+' requise</div>';
-  h += "</div>"; return h;
-}
+function calculateResults() {
+      var profils = answers.profil || [];
+      var membres = answers.membre || [];
+      var projets = answers.projet || [];
+      var genres = answers.genre || [];
+      var criteres = answers.criteres || {};
+
+      // OGC membership check
+      function isMembreOGC(org) {
+        switch(org) {
+          case "adami": return membres.indexOf("adami") > -1;
+          case "spedidam": return membres.indexOf("spedidam") > -1 || membres.indexOf("licence-sv") > -1;
+          case "sacem": return membres.indexOf("sacem-adherent") > -1 || membres.indexOf("sacem-pro") > -1 || membres.indexOf("sacem-editeur") > -1;
+          case "scpp": return membres.indexOf("scpp") > -1;
+          case "sppf": return membres.indexOf("sppf") > -1;
+          default: return true;
+        }
+      }
+
+      // Which OGC each profile CAN select
+      var ogcParProfil = {
+        artiste: ["adami", "spedidam"],
+        auteur: ["sacem"],
+        producteur: ["scpp", "sppf"],
+        editeur: ["sacem"],
+        spectacle: ["spedidam"]
+      };
+
+      function canSelectOGC(org) {
+        for (var i = 0; i < profils.length; i++) {
+          var list = ogcParProfil[profils[i]] || [];
+          if (list.indexOf(org) > -1) return true;
+        }
+        return false;
+      }
+
+      // Project type matching
+      var typeProjetMap = {
+        "Aide \u00e0 la production phonographique": ["production-phonographique", "premier-album"],
+        "Aide \u00e0 la production de spectacle vivant": ["spectacle-vivant", "tournee", "festival"],
+        "Aide \u00e0 la diffusion": ["spectacle-vivant", "tournee", "festival"],
+        "Aide \u00e0 l'\u00e9dition musicale": ["edition-musicale"],
+        "Aide \u00e0 la cr\u00e9ation": ["production-phonographique", "creation-musicale", "premier-album"],
+        "Aide au d\u00e9veloppement d'artiste": ["developpement-artiste", "premier-album"],
+        "Aide \u00e0 l'export": ["export-international"],
+        "Aide \u00e0 la formation": ["formation"],
+        "Aide \u00e0 la promotion / marketing": ["promotion-marketing", "clip-video"],
+        "Aide \u00e0 la r\u00e9sidence": ["residence-artistique"],
+        "Aide au clip vid\u00e9o": ["clip-video"],
+        "Aide sociale": ["formation"],
+        "Bourse / Prix": ["creation-musicale", "premier-album"],
+        "Subvention de fonctionnement": ["production-phonographique", "spectacle-vivant", "edition-musicale"]
+      };
+
+      function matchesProject(aide) {
+        if (projets.length === 0) return true;
+        var mappedTypes = typeProjetMap[aide.type] || [];
+        for (var j = 0; j < projets.length; j++) {
+          if (mappedTypes.indexOf(projets[j]) > -1) return true;
+        }
+        return false;
+      }
+
+      // Determine OGC requirement for an aide
+      var ogcAides = {
+        "adami": ["adami"],
+        "spedidam": ["spedidam"],
+        "sacem": ["sacem"],
+        "scpp": ["scpp"],
+        "sppf": ["sppf"]
+      };
+
+      function getRequiredOGC(aide) {
+        var orgLower = aide.org.toLowerCase();
+        for (var key in ogcAides) {
+          if (orgLower.indexOf(key) > -1) return key;
+        }
+        return null;
+      }
+
+      // Filter aides by profile
+      var matchingAides = AIDES.filter(function(a) {
+        for (var i = 0; i < profils.length; i++) {
+          if (a.profils.indexOf(profils[i]) > -1) return true;
+        }
+        return false;
+      });
+
+      // Categorize
+      var pertinent = [];
+      var autresEligible = [];
+      var conditionnel = [];
+      var crossProfile = [];
+
+      matchingAides.forEach(function(aide) {
+        var ogc = getRequiredOGC(aide);
+        if (!ogc || isMembreOGC(ogc)) {
+          // Eligible
+          if (matchesProject(aide)) {
+            pertinent.push({aide: aide, status: "eligible"});
+          } else {
+            autresEligible.push({aide: aide, status: "eligible"});
+          }
+        } else if (canSelectOGC(ogc)) {
+          // User could join this OGC but hasn't
+          conditionnel.push({aide: aide, status: "conditionnel", ogc: ogc});
+        } else {
+          // Cross-profile: OGC not available to user's profiles
+          crossProfile.push({aide: aide, status: "cross", ogc: ogc});
+        }
+      });
+
+      // Build HTML
+      var html = "";
+
+      if (pertinent.length > 0) {
+        html += '<h2 style="color:#27ae60; margin-top:1.5rem;">\u2705 Aides pertinentes pour votre projet (\u200b' + pertinent.length + ')</h2>';
+        pertinent.forEach(function(r) { html += renderCard(r.aide, r.status); });
+      }
+
+      if (autresEligible.length > 0) {
+        html += '<h2 style="color:#3498db; margin-top:1.5rem;">\ud83d\udccc Autres aides disponibles (\u200b' + autresEligible.length + ')</h2>';
+        autresEligible.forEach(function(r) { html += renderCard(r.aide, r.status); });
+      }
+
+      if (conditionnel.length > 0) {
+        html += '<h2 style="color:#ccc; margin-top:1.5rem;">\ud83d\udd12 Aides conditionnelles (\u200b' + conditionnel.length + ')</h2>';
+        conditionnel.forEach(function(r) { html += renderCard(r.aide, r.status, r.ogc); });
+      }
+
+      if (crossProfile.length > 0) {
+        html += '<h2 style="color:#f39c12; margin-top:1.5rem;">\ud83e\udd1d Accessibles via votre label / producteur (\u200b' + crossProfile.length + ')</h2>';
+        crossProfile.forEach(function(r) { html += renderCard(r.aide, r.status, r.ogc); });
+      }
+
+      var total = pertinent.length + autresEligible.length + conditionnel.length + crossProfile.length;
+      if (total === 0) {
+        html = '<p style="color:#aaa; text-align:center; padding:2rem;">Aucune aide trouv\u00e9e pour votre profil. V\u00e9rifiez vos crit\u00e8res.</p>';
+      }
+
+      // Summary header
+      var summary = '<div style="text-align:center; margin-bottom:1.5rem; padding:1rem; background:#111; border-radius:12px;">' +
+        '<h2 style="color:#fff; margin:0 0 .5rem;">R\u00e9sultats de votre \u00e9ligibilit\u00e9</h2>' +
+        '<p style="color:#aaa; margin:0;">' + total + ' aide(s) identifi\u00e9e(s) pour votre profil</p>' +
+        '</div>';
+
+      document.getElementById("results-container").innerHTML = summary + html;
+      window._lastResults = {pertinent: pertinent.length, autres: autresEligible.length, conditionnel: conditionnel.length, cross: crossProfile.length};
+    }
+
+function renderCard(aide, status, ogcName) {
+      var borderColor, bgColor, statusMsg;
+      if (status === "eligible") {
+        borderColor = "#27ae60"; bgColor = "#0d1f0d";
+        statusMsg = '<span style="color:#27ae60">\u2705 \u00c9ligible</span>';
+      } else if (status === "cross") {
+        borderColor = "#f39c12"; bgColor = "#1f1a0d";
+        statusMsg = '<span style="color:#f39c12">\u2197\ufe0f Accessible via votre label / producteur (adh\u00e9sion ' + ogcName + ')</span>';
+      } else {
+        borderColor = "#ccc"; bgColor = "#0d0d0d";
+        statusMsg = '<span style="color:#ccc">\ud83d\udd12 Adh\u00e9sion ' + ogcName + ' requise</span>';
+      }
+      return '<div class="result-card" style="border:2px solid ' + borderColor + '; background:' + bgColor + '; padding:1.2rem; border-radius:12px; margin-bottom:1rem;">' +
+        '<h3 style="margin:0 0 .5rem; color:#fff;">' + aide.nom + '</h3>' +
+        '<p style="margin:0 0 .3rem; color:#aaa;">Organisme : ' + aide.org + '</p>' +
+        '<p style="margin:0 0 .3rem; color:#aaa;">Type : ' + aide.type + '</p>' +
+        '<p style="margin:0;">' + statusMsg + '</p>' +
+        '</div>';
+    }
 
 function shareResults(){
   var params = new URLSearchParams();
