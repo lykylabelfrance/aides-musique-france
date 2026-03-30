@@ -161,6 +161,7 @@ header span{color:var(--gris-texte)}
 <span style="color:rgba(255,255,255,0.2);margin:0 4px">/</span>
 <a href="aides.html" style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.45);text-decoration:none;text-transform:uppercase;letter-spacing:1px">← Aides</a>
 <a href="dossier.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px;font-family:DM Mono,monospace;letter-spacing:0.08em;text-transform:uppercase;">Dossier</a>
+<a href="index.html#faq" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px;font-family:DM Mono,monospace;">FAQ</a>
 <span style="flex:1"></span>
 <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px">Test d’éligibilité</span>
 </header>
@@ -916,6 +917,39 @@ document.addEventListener("DOMContentLoaded", function(){ updateProgress(); load
     <span>Données 2026 – CNM SCPP ADAMI SPPF SACEM SPEDIDAM</span>
   </footer>
 
-  <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+  
+<script>
+// Social Share Buttons - injected after step6 results
+(function(){
+  var step6=document.getElementById("step6");
+  if(!step6)return;
+  var shareDiv=document.createElement("div");
+  shareDiv.id="social-share";
+  shareDiv.style.cssText="margin-top:1.5rem;padding:1rem;border-top:1px solid rgba(255,255,255,0.1);text-align:center;display:none;";
+  shareDiv.innerHTML='<p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:0.75rem;">Partager vos resultats :</p>'
+    +'<button onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\u0027Lien copie !\u0027;setTimeout(function(){this.textContent=\u0027Copier le lien\u0027}.bind(this),2000)" style="background:#333;color:#fff;border:1px solid #555;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;margin:0 0.25rem;">Copier le lien</button>'
+    +'<a id="share-fb" href="#" target="_blank" style="background:#1877f2;color:#fff;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;margin:0 0.25rem;text-decoration:none;display:inline-block;">Facebook</a>'
+    +'<a id="share-tw" href="#" target="_blank" style="background:#1da1f2;color:#fff;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;margin:0 0.25rem;text-decoration:none;display:inline-block;">Twitter</a>'
+    +'<a id="share-li" href="#" target="_blank" style="background:#0a66c2;color:#fff;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;margin:0 0.25rem;text-decoration:none;display:inline-block;">LinkedIn</a>'
+    +'<a id="share-wa" href="#" target="_blank" style="background:#25d366;color:#fff;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;margin:0 0.25rem;text-decoration:none;display:inline-block;">WhatsApp</a>';
+  step6.appendChild(shareDiv);
+  var obs=new MutationObserver(function(){
+    if(step6.style.display!=="none"&&step6.offsetHeight>0){
+      shareDiv.style.display="block";
+      var u=encodeURIComponent(window.location.href);
+      var t=encodeURIComponent("Decouvrez les aides musique auxquelles vous etes eligible !");
+      document.getElementById("share-fb").href="https://www.facebook.com/sharer/sharer.php?u="+u;
+      document.getElementById("share-tw").href="https://twitter.com/intent/tweet?url="+u+"&text="+t;
+      document.getElementById("share-li").href="https://www.linkedin.com/sharing/share-offsite/?url="+u;
+      document.getElementById("share-wa").href="https://wa.me/?text="+t+"%20"+u;
+    }
+  });
+  obs.observe(step6,{attributes:true,attributeFilter:["style"]});
+})();
+</script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+
+<div id="rgpd-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0a0a0a;border-top:2px solid #e8001d;padding:1rem 2rem;z-index:9999;text-align:center;font-size:0.95rem;color:#fff;">Ce site utilise uniquement des cookies techniques necessaires a son fonctionnement.<button onclick="document.getElementById('rgpd-banner').style.display='none';localStorage.setItem('rgpd-ok','1')" style="margin-left:1.5rem;background:#e8001d;color:#fff;border:none;padding:0.5rem 1.5rem;border-radius:4px;cursor:pointer;font-weight:600;">Compris</button></div>
+<script>if(!localStorage.getItem('rgpd-ok'))document.getElementById('rgpd-banner').style.display='flex'</script>
 </body>
 </html>
