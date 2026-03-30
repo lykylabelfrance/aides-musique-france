@@ -628,6 +628,7 @@ function calculateResults() {
       var profils = answers.profil || [];
       var membres = answers.membre || [];
       var projets = answers.projet || [];
+      if (!Array.isArray(projets)) { projets = Object.values(projets); }
       var genres = answers.genre || [];
       var criteres = answers.criteres || {};
 
