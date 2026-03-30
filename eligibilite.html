@@ -218,7 +218,19 @@ header span{color:var(--gris-texte)}
 <!-- STEP 5 -->
 <div class="step" id="step5">
 <div class="step-header"><div class="step-num">5</div><div class="step-title">Critères complémentaires</div></div>
-<div id="step5-content"></div>
+<div id="step5-content">
+            <div id="outremer-group" style="margin-bottom:20px">
+              <h3 style="color:#2c3e50;margin-bottom:10px">Votre structure est-elle basée en Outre-mer ?</h3>
+              <div class="check-option" data-value="oui" onclick="toggleSingle(this,'outremer-group')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">Oui</div>
+              <div class="check-option" data-value="non" onclick="toggleSingle(this,'outremer-group')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">Non</div>
+            </div>
+            <div id="region-group" style="margin-bottom:20px">
+              <h3 style="color:#2c3e50;margin-bottom:10px">Où est située votre structure ?</h3>
+              <div class="check-option" data-value="idf" onclick="toggleSingle(this,'region-group')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">Île-de-France</div>
+              <div class="check-option selected" data-value="province" onclick="toggleSingle(this,'region-group')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #27ae60;border-radius:8px;cursor:pointer;background:#e8f8f0;transition:all 0.3s">Province</div>
+              <div class="check-option" data-value="outremer-dom" onclick="toggleSingle(this,'region-group')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">Outre-mer / DOM</div>
+            </div>
+          </div>
 <button class="btn-secondary" onclick="goBack(5)">← Retour</button>
 <button class="btn" onclick="validateStep(5)">Continuer →</button>
 </div>
@@ -317,6 +329,62 @@ const AIDES = [
 {id:73,org:"departement",nom:"Aide professionnalisation departementale",type:"Formation",profils:["artiste","producteur","spectacle"]},
 {id:74,org:"mairie",nom:"Aide fonctionnement + Actions EAC",type:"EAC",profils:["artiste","spectacle"]}
 ];
+    var AIDE_DOSSIER = {
+      1:"section-cnm-prod-phono", 2:"section-cnm-autoprod-phono",
+      3:"section-cnm-spectacle-prod", 4:"section-cnm-creation-spectacle-musical",
+      5:"section-cnm-di-ma-t1", 6:"section-cnm-di-ma-t1-sv",
+      7:"section-cnm-export-editeur", 8:"section-cnm-dev-editorial",
+      9:"section-cnm-bourse-ac", 10:"section-cnm-restructuration",
+      11:"section-cnm-droit-tirage", 12:"section-cnm-promoteurs",
+      13:"section-cnm-fom-structuration", 14:"section-cnm-fom-mobilite",
+      15:"section-cnm-fom-diffusion", 16:"section-cnm-innovation",
+      17:"section-cnm-accompagnement", 18:"section-cnm-mei",
+      19:"section-cnm-spectacle-creation", 20:"section-cnm-premiere-partie",
+      21:"section-cnm-fom-structuration", 22:"section-cnm-fom-structuration",
+      23:"section-cnm-fom-structuration", 24:"section-cnm-fom-structuration",
+      25:"section-scpp-formation", 26:"section-scpp-showcase",
+      27:"section-scpp-creation", 28:"section-scpp-marketing",
+      29:"section-scpp-videomusicale", 30:"section-adami-bourse-artiste",
+      31:"section-adami-premiere-partie", 32:"section-adami-enr-2d",
+      33:"section-adami-global-365", 34:"section-adami-eac",
+      35:"section-adami-promo-enregistrement", 36:"section-adami-contenus-numeriques",
+      37:"section-adami-global-365", 38:"section-sppf-enregistrement",
+      39:"section-sppf-showcase", 40:"section-sppf-videomusicale",
+      41:"section-adami-sppf-bonif", 42:"section-sppf-grm",
+      43:"section-sppf-tour-support", 44:"section-sacem-autoprod-artiste",
+      45:"section-sacem-creation-spectacle", 46:"section-sacem-dev-v1",
+      47:"section-sacem-dev-v2", 48:"section-spedidam-spectacle",
+      49:"section-spedidam-international", 50:"section-spedidam-image",
+      51:"section-fonpeps-apaj", 52:"section-fonpeps-spectacle-vivant",
+      53:"section-ifcic-garantie", 54:"section-ifcic-pret",
+      55:"section-minculture-composition", 56:"section-minculture-compositeurs-associes",
+      57:"section-region-album", 58:"section-region-clip",
+      59:"section-scpp-formation", 60:"section-cnm-restructuration",
+      61:"section-cnm-mobilite-ma", 62:"section-drac-adsv",
+      63:"section-drac-ecriture", 64:"section-drac-adsv",
+      65:"section-drac-adsv", 66:"section-drac-adsv",
+      67:"section-paris-jeunes-artistes", 68:"section-paris-jeunes-artistes",
+      69:"section-paris-jeunes-artistes", 70:"section-region-clip",
+      71:"section-sppf-tour-support", 72:"section-cnm-mobilite-ma",
+      73:"section-scpp-formation", 74:"section-adami-eac"
+    };
+    var AIDES_OUTREMER = [13,14,15,21,22,23,24];
+    var AIDES_IDF = [62];
+    var AIDES_LOCALES = [57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74];
+
+    function toggleSingle(el, groupId) {
+      var group = document.getElementById(groupId);
+      var opts = group.querySelectorAll(".check-option");
+      for (var i = 0; i < opts.length; i++) {
+        opts[i].classList.remove("selected");
+        opts[i].style.borderColor = "#ddd";
+        opts[i].style.background = "";
+      }
+      el.classList.add("selected");
+      el.style.borderColor = "#27ae60";
+      el.style.background = "#e8f8f0";
+    }
+
 
 let answers = {profil:[],membre:[],genre:"",projet:{},criteres:{}};
 let currentStep = 1;
@@ -599,6 +667,10 @@ function validateStep(n){
     answers.projet = projets; showStep(5);
   }
   else if(n === 5){
+      var omSel = document.querySelectorAll('#outremer-group .check-option.selected');
+      answers.outremer = omSel.length > 0 ? omSel[0].getAttribute('data-value') : 'non';
+      var regSel = document.querySelectorAll('#region-group .check-option.selected');
+      answers.region = regSel.length > 0 ? regSel[0].getAttribute('data-value') : 'province';
     if(!answers.criteres) answers.criteres = {};
     document.querySelectorAll('#step5-content .option-btn.selected[data-critere]').forEach(function(btn){
       answers.criteres[btn.dataset.critere] = parseInt(btn.dataset.value);
@@ -633,10 +705,12 @@ function calculateResults() {
       var membres = answers.membre || [];
       var projets = answers.projet || [];
       if (!Array.isArray(projets)) { projets = Object.values(projets); }
-      var genres = answers.genre || [];
-      var criteres = answers.criteres || {};
+      var outremer = answers.outremer || "non";
+      var region = answers.region || "province";
 
-      // OGC membership check
+      var ogcOrgs = ["adami","spedidam","scpp","sppf","sacem"];
+      var ogcParProfil = {artiste:["adami","spedidam"], auteur:["sacem"], producteur:["scpp","sppf"], editeur:["sacem"], spectacle:["spedidam"]};
+
       function isMembreOGC(org) {
         switch(org) {
           case "adami": return membres.indexOf("adami") > -1;
@@ -648,169 +722,148 @@ function calculateResults() {
         }
       }
 
-      // Which OGC each profile CAN select
-      var ogcParProfil = {
-        artiste: ["adami", "spedidam"],
-        auteur: ["sacem"],
-        producteur: ["scpp", "sppf"],
-        editeur: ["sacem"],
-        spectacle: ["spedidam"]
-      };
-
-      function canSelectOGC(org) {
+      function canProfilSelectOGC(org) {
         for (var i = 0; i < profils.length; i++) {
-          var list = ogcParProfil[profils[i]] || [];
-          if (list.indexOf(org) > -1) return true;
+          var ogcs = ogcParProfil[profils[i]] || [];
+          if (ogcs.indexOf(org) > -1) return true;
         }
         return false;
       }
 
-      // Project type matching
       var typeProjetMap = {
-        "Production": ["album", "production-phono", "autoproduction", "production-sv"],
-        "Showcase": ["showcase", "showcase-prod"],
-        "Creation": ["album", "composition", "creation-sv", "spectacle-creation"],
-        "International": ["international-a", "export-prod", "export-edit", "international-sv"],
-        "Marketing": ["promo", "marketing-prod"],
-        "Edition": ["dev-editorial", "editorial", "valorisation"],
-        "Bourse": ["album", "composition", "autoproduction"],
-        "Restructuration": ["structuration-prod", "structuration-sv"],
-        "Tirage": ["dev-editorial"],
-        "Promoteur": ["showcase-prod"],
-        "Outre-mer": ["album", "production-phono", "creation-sv"],
-        "Innovation": ["innovation-edit"],
-        "Accompagnement": ["album", "structuration-prod"],
-        "Subvention": ["production-phono", "structuration-prod", "structuration-sv"],
-        "Formation": ["formation"],
-        "Video": ["clip", "video-prod"],
-        "Projet Global": ["production-phono", "album"],
-        "EAC": ["formation"],
-        "Promotion": ["promo", "marketing-prod"],
-        "Digital": ["promo", "marketing-prod"],
-        "Bonus": ["album", "production-phono"],
-        "Remuneration": ["album", "composition"],
-        "Tournee": ["tournee", "diffusion-sv"],
-        "Autoproduction": ["autoproduction", "album"],
-        "Spectacle": ["creation-sv", "diffusion-sv", "production-sv", "spectacle-creation"],
-        "Editorial": ["dev-editorial", "editorial", "valorisation"],
-        "Emploi": ["structuration-prod", "structuration-sv"],
-        "Garantie": ["production-phono", "production-sv"],
-        "Pret": ["production-phono", "structuration-prod"],
-        "Composition": ["composition", "album", "creation-sv"],
-        "Equipement": ["structuration-prod", "structuration-sv"],
-        "Diffusion": ["tournee", "diffusion-sv", "showcase", "showcase-prod"],
-        "Mobilite": ["international-a", "international-sv"]
+        "Production":["album","production-phono","autoproduction","production-sv"],
+        "Showcase":["showcase","showcase-prod"],
+        "Creation":["album","composition","creation-sv","spectacle-creation"],
+        "International":["international-a","export-prod","export-edit","international-sv"],
+        "Marketing":["promo","marketing-prod"],
+        "Edition":["dev-editorial","editorial","valorisation"],
+        "Bourse":["album","composition","autoproduction"],
+        "Restructuration":["structuration-prod","structuration-sv"],
+        "Tirage":["dev-editorial"],
+        "Promoteur":["showcase-prod"],
+        "Outre-mer":["album","production-phono","creation-sv","structuration-prod","structuration-sv"],
+        "Innovation":["innovation-edit"],
+        "Accompagnement":["album","structuration-prod"],
+        "Subvention":["production-phono","structuration-prod","structuration-sv"],
+        "Formation":["formation"],
+        "Video":["clip","video-prod"],
+        "Projet Global":["production-phono","album"],
+        "EAC":["formation"],
+        "Promotion":["promo","marketing-prod"],
+        "Digital":["promo","marketing-prod"],
+        "Bonus":["album","production-phono"],
+        "Remuneration":["album","composition"],
+        "Tournee":["tournee","diffusion-sv"],
+        "Autoproduction":["autoproduction","album"],
+        "Spectacle":["creation-sv","diffusion-sv","production-sv","spectacle-creation"],
+        "Editorial":["dev-editorial","editorial","valorisation"],
+        "Emploi":["structuration-prod","structuration-sv"],
+        "Garantie":["production-phono","production-sv"],
+        "Pret":["production-phono","structuration-prod"],
+        "Composition":["composition","album","creation-sv"],
+        "Equipement":["structuration-prod","structuration-sv"],
+        "Diffusion":["tournee","diffusion-sv","showcase","showcase-prod"],
+        "Mobilite":["international-a","international-sv"]
       };
 
-      function matchesProject(aide) {
+      function matchesProjet(aide) {
         if (projets.length === 0) return true;
-        var mappedTypes = typeProjetMap[aide.type] || [];
+        var mapped = typeProjetMap[aide.type] || [];
         for (var j = 0; j < projets.length; j++) {
-          if (mappedTypes.indexOf(projets[j]) > -1) return true;
+          if (mapped.indexOf(projets[j]) > -1) return true;
         }
         return false;
       }
 
-      // Determine OGC requirement for an aide
-      var ogcAides = {
-        "adami": ["adami"],
-        "spedidam": ["spedidam"],
-        "sacem": ["sacem"],
-        "scpp": ["scpp"],
-        "sppf": ["sppf"]
-      };
-
-      function getRequiredOGC(aide) {
-        var orgLower = aide.org.toLowerCase();
-        for (var key in ogcAides) {
-          if (orgLower.indexOf(key) > -1) return key;
-        }
-        return null;
-      }
-
-      // Filter aides by profile
-      var matchingAides = AIDES.filter(function(a) {
+      function matchesProfil(aide) {
         for (var i = 0; i < profils.length; i++) {
-          if (a.profils.indexOf(profils[i]) > -1) return true;
+          if (aide.profils.indexOf(profils[i]) > -1) return true;
         }
         return false;
-      });
+      }
 
-      // Categorize
-      var pertinent = [];
-      var autresEligible = [];
-      var conditionnel = [];
-      var crossProfile = [];
+      var pertinent = [], autresEligible = [], conditionnel = [], crossProfile = [];
 
-      matchingAides.forEach(function(aide) {
-        var ogc = getRequiredOGC(aide);
-        if (!ogc || isMembreOGC(ogc)) {
-          // Eligible
-          if (matchesProject(aide)) {
-            pertinent.push({aide: aide, status: "eligible"});
-          } else {
-            autresEligible.push({aide: aide, status: "eligible"});
-          }
-        } else if (canSelectOGC(ogc)) {
-          // User could join this OGC but hasn't
-          conditionnel.push({aide: aide, status: "conditionnel", ogc: ogc});
-        } else {
-          // Cross-profile: OGC not available to user's profiles
-          crossProfile.push({aide: aide, status: "cross", ogc: ogc});
+      for (var k = 0; k < AIDES.length; k++) {
+        var aide = AIDES[k];
+        var isOGCOrg = ogcOrgs.indexOf(aide.org) > -1;
+        var profilOK = matchesProfil(aide);
+        var projetOK = matchesProjet(aide);
+        var ogcOK = isOGCOrg ? isMembreOGC(aide.org) : true;
+
+        if (AIDES_OUTREMER.indexOf(aide.id) > -1 && outremer !== "oui") {
+          conditionnel.push({aide:aide, msg:"R\u00e9serv\u00e9 structures outre-mer"});
+          continue;
         }
-      });
 
-      // Build HTML
-      var html = "";
+        if (AIDES_IDF.indexOf(aide.id) > -1 && region !== "idf") {
+          conditionnel.push({aide:aide, msg:"R\u00e9serv\u00e9 \u00cele-de-France"});
+          continue;
+        }
 
+        if (!profilOK) {
+          if (isOGCOrg && !canProfilSelectOGC(aide.org)) {
+            crossProfile.push({aide:aide, msg:"Via votre " + aide.profils[0]});
+          } else {
+            crossProfile.push({aide:aide, msg:"Profil " + aide.profils.join("/") + " requis"});
+          }
+          continue;
+        }
+
+        if (isOGCOrg && !ogcOK) {
+          conditionnel.push({aide:aide, msg:"Adh\u00e9sion " + aide.org.toUpperCase() + " requise"});
+          continue;
+        }
+
+        if (projetOK) {
+          pertinent.push({aide:aide, msg:null});
+        } else {
+          autresEligible.push({aide:aide, msg:null});
+        }
+      }
+
+      var html = "<h2>R\u00e9sultats de votre \u00e9ligibilit\u00e9</h2>";
       if (pertinent.length > 0) {
-        html += '<h2 style="color:#27ae60; margin-top:1.5rem;">\u2705 Aides pertinentes pour votre projet (\u200b' + pertinent.length + ')</h2>';
-        pertinent.forEach(function(r) { html += renderCard(r.aide, r.status); });
+        html += "<h2 style=\"color:#27ae60;margin-top:24px\">\u2705 Aides pertinentes pour votre projet (\u200b" + pertinent.length + ")</h2>";
+        for (var i=0;i<pertinent.length;i++) html += renderCard(pertinent[i].aide, "eligible", null, null);
       }
-
       if (autresEligible.length > 0) {
-        html += '<h2 style="color:#3498db; margin-top:1.5rem;">\ud83d\udccc Autres aides disponibles (\u200b' + autresEligible.length + ')</h2>';
-        autresEligible.forEach(function(r) { html += renderCard(r.aide, r.status); });
+        html += "<h2 style=\"color:#2980b9;margin-top:24px\">\uD83D\uDCCC Autres aides disponibles (\u200b" + autresEligible.length + ")</h2>";
+        for (var i=0;i<autresEligible.length;i++) html += renderCard(autresEligible[i].aide, "autres", null, null);
       }
-
       if (conditionnel.length > 0) {
-        html += '<h2 style="color:#ccc; margin-top:1.5rem;">\ud83d\udd12 Aides conditionnelles (\u200b' + conditionnel.length + ')</h2>';
-        conditionnel.forEach(function(r) { html += renderCard(r.aide, r.status, r.ogc); });
+        html += "<h2 style=\"color:#e74c3c;margin-top:24px\">\uD83D\uDD12 Aides conditionnelles (\u200b" + conditionnel.length + ")</h2>";
+        for (var i=0;i<conditionnel.length;i++) html += renderCard(conditionnel[i].aide, "conditionnel", null, conditionnel[i].msg);
       }
-
       if (crossProfile.length > 0) {
-        html += '<h2 style="color:#f39c12; margin-top:1.5rem;">\ud83e\udd1d Accessibles via votre label / producteur (\u200b' + crossProfile.length + ')</h2>';
-        crossProfile.forEach(function(r) { html += renderCard(r.aide, r.status, r.ogc); });
+        html += "<h2 style=\"color:#f39c12;margin-top:24px\">\uD83E\uDD1D Accessibles via votre label / producteur (\u200b" + crossProfile.length + ")</h2>";
+        for (var i=0;i<crossProfile.length;i++) html += renderCard(crossProfile[i].aide, "cross", null, crossProfile[i].msg);
       }
-
-      var total = pertinent.length + autresEligible.length + conditionnel.length + crossProfile.length;
-      if (total === 0) {
-        html = '<p style="color:#aaa; text-align:center; padding:2rem;">Aucune aide trouv\u00e9e pour votre profil. V\u00e9rifiez vos crit\u00e8res.</p>';
+      if (pertinent.length + autresEligible.length + conditionnel.length + crossProfile.length === 0) {
+        html += "<p>Aucune aide trouv\u00e9e. Modifiez vos r\u00e9ponses.</p>";
       }
-
-      // Summary header
-      var summary = '<div style="text-align:center; margin-bottom:1.5rem; padding:1rem; background:#111; border-radius:12px;">' +
-        '<h2 style="color:#fff; margin:0 0 .5rem;">R\u00e9sultats de votre \u00e9ligibilit\u00e9</h2>' +
-        '<p style="color:#aaa; margin:0;">' + total + ' aide(s) identifi\u00e9e(s) pour votre profil</p>' +
-        '</div>';
-
-      document.getElementById("results-container").innerHTML = summary + html;
-      window._lastResults = {pertinent: pertinent.length, autres: autresEligible.length, conditionnel: conditionnel.length, cross: crossProfile.length};
+      document.getElementById("step6-results").innerHTML = html;
     }
 
-function renderCard(aide, status, ogcName) {
-      var borderColor = status === 'cross' ? '#f39c12' : (status === 'conditionnel' ? '#e74c3c' : '#27ae60');
-      var statusLabel = status === 'cross' ? 'Via ' + (ogcName || 'label') : (status === 'conditionnel' ? 'Conditionnel' : 'Eligible');
-      var statusIcon = status === 'cross' ? '\uD83E\uDD1D' : (status === 'conditionnel' ? '\uD83D\uDD12' : '\u2705');
-      var btnStyle = status === 'conditionnel' ? 'opacity:0.5;pointer-events:none;' : '';
-      var btnLabel = status === 'conditionnel' ? 'Adh\u00e9sion requise' : 'Monter mon dossier \u2192';
+    function renderCard(aide, status, ogcName, condMsg) {
+      var borderColor = status === "cross" ? "#f39c12" : (status === "conditionnel" ? "#e74c3c" : (status === "autres" ? "#2980b9" : "#27ae60"));
+      var statusIcon = status === "cross" ? "\uD83E\uDD1D" : (status === "conditionnel" ? "\uD83D\uDD12" : (status === "autres" ? "\uD83D\uDCCC" : "\u2705"));
+      var statusLabel = status === "cross" ? (condMsg || "Via label") : (status === "conditionnel" ? (condMsg || "Conditionnel") : (status === "autres" ? "Disponible" : "\u00c9ligible"));
+
+      var dossierSection = AIDE_DOSSIER[aide.id] || "";
+      var dossierHref = dossierSection ? "dossier.html#" + dossierSection : "#";
+      var btnDisabled = (status === "conditionnel");
+      var btnStyle = btnDisabled ? "opacity:0.5;pointer-events:none;" : "";
+      var btnLabel = btnDisabled ? (condMsg || "Non disponible") : "Monter mon dossier \u2192";
+      var btnBg = btnDisabled ? "#95a5a6" : borderColor;
+
       return '<div style="border-left:4px solid ' + borderColor + ';padding:12px 16px;margin:8px 0;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)">' +
         '<h3 style="margin:0 0 6px;font-size:15px;color:#2c3e50">' + aide.nom + '</h3>' +
-        '<p style="margin:2px 0;font-size:13px;color:#7f8c8d">Organisme : ' + aide.org + '</p>' +
+        '<p style="margin:2px 0;font-size:13px;color:#7f8c8d">Organisme : ' + aide.org.toUpperCase() + '</p>' +
         '<p style="margin:2px 0;font-size:13px;color:#7f8c8d">Type : ' + aide.type + '</p>' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">' +
           '<span style="font-size:12px;color:' + borderColor + ';font-weight:600">' + statusIcon + ' ' + statusLabel + '</span>' +
-          '<a href="dossier.html?aide=' + aide.id + '" style="display:inline-block;padding:6px 14px;background:' + borderColor + ';color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:600;' + btnStyle + '">' + btnLabel + '</a>' +
+          '<a href="' + dossierHref + '" style="display:inline-block;padding:6px 14px;background:' + btnBg + ';color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:600;' + btnStyle + '">' + btnLabel + '</a>' +
         '</div>' +
       '</div>';
     }
