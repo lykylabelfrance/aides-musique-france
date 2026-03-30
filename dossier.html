@@ -4335,8 +4335,8 @@
 
 
 <script>
-// Regroup aidTabs buttons by organisme with accordions (v2)
-(function(){
+// Regroup aidTabs buttons by organisme with accordions (v3)
+document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
   var tabs=document.getElementById("aidTabs");
   if(!tabs||!tabs.children.length)return;
   var orgaOrder=["CNM","SACEM","SCPP","SPPF","ADAMI","SPEDIDAM","FONPEPS","IFCIC","Min. Culture","FADEM","Region","DAC/DRAC","Ville de Paris","PRMA","Departement","Mairie"];
@@ -4387,7 +4387,7 @@
   });
   var first=tabs.querySelector("details");
   if(first)first.open=true;
-})();
+},100)});
 </script>
 
 <div id="rgpd-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0a0a0a;border-top:2px solid #e8001d;padding:1rem 2rem;z-index:9999;text-align:center;font-size:0.95rem;color:#fff;">Ce site utilise uniquement des cookies techniques necessaires a son fonctionnement.<button onclick="document.getElementById('rgpd-banner').style.display='none';localStorage.setItem('rgpd-ok','1')" style="margin-left:1.5rem;background:#e8001d;color:#fff;border:none;padding:0.5rem 1.5rem;border-radius:4px;cursor:pointer;font-weight:600;">Compris</button></div>
