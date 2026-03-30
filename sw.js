@@ -13,6 +13,7 @@ var urlsToCache = [
 ];
 
 self.addEventListener('install', function(event) {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll(urlsToCache);
@@ -43,6 +44,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
+  self.clients.claim();
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
