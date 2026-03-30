@@ -68,6 +68,7 @@
       <li><a href="aides.html">Aides <span class="nav-badge">74</span></a></li>
       <li><a href="eligibilite.html">Test Eligibilite</a></li>
       <li><a href="dossier.html">Dossier</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
     </ul>
   </nav>
 
@@ -150,5 +151,8 @@
     navigator.serviceWorker.register('sw.js').catch(function(e) { console.log('SW error:', e); });
   }
   </script>
+
+  <div id="rgpd-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--noir);border-top:2px solid var(--rouge);padding:1rem 2rem;z-index:9999;text-align:center;font-size:0.95rem;color:var(--blanc);">Ce site utilise uniquement des cookies techniques necessaires a son fonctionnement.<button onclick="document.getElementById('rgpd-banner').style.display='none';localStorage.setItem('rgpd-ok','1')" style="margin-left:1.5rem;background:var(--rouge);color:#fff;border:none;padding:0.5rem 1.5rem;border-radius:4px;cursor:pointer;font-weight:600;">Compris</button></div>
+  <script>if(!localStorage.getItem('rgpd-ok'))document.getElementById('rgpd-banner').style.display='flex'</script>
 </body>
 </html>
