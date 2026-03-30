@@ -1,4 +1,4 @@
-var CACHE_NAME = 'aides-musique-v12';
+var CACHE_NAME = 'aides-musique-v13';
 var urlsToCache = [
   '/aides-musique-france/',
   '/aides-musique-france/index.html',
