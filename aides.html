@@ -411,6 +411,8 @@ window.addEventListener("DOMContentLoaded",initStatus);
 
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}
 
+// Wait for statusMap to be defined by main IIFE
+setTimeout(function(){
 // --- CALENDRIER DEADLINES ---
 (function(){
   var tl=document.getElementById("timeline");
@@ -544,6 +546,7 @@ window.addEventListener("DOMContentLoaded",initStatus);
     document.body.appendChild(overlay);
   };
 })();
+},50);
 </script>
 
   <!-- RGPD Cookie Banner -->
