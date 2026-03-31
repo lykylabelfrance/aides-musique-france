@@ -6,7 +6,7 @@
   <title>Monter mon dossier – Aides Musique France</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="Outil interactif pour constituer votre dossier de demande d'aide dans le secteur musical. Checklist, pieces justificatives et generation automatique.">
-  <meta name="keywords" content="dossier aide musique, subvention musique, pieces justificatives, CNM, SCPP, ADAMI, demande aide">
+  <meta name="keywords" content="dossier aide musique, subvention musique, pieces ustificatives, CNM, SCPP, ADAMI, demande aide">
   <link rel="canonical" href="https://lykylabelfrance.github.io/aides-musique-france/dossier.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Monter mon Dossier — Aides Musique France">
@@ -4477,19 +4477,7 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
   closeBtn.onclick = function(){ overlay.classList.remove("active"); };
   overlay.onclick = function(e){ if(e.target === overlay) overlay.classList.remove("active"); };
 
-  function getChecklistData(sec){
-    var items = sec.querySelectorAll(".checklist label");
-    var checklist = [];
-    var checked = 0;
-    items.forEach(function(lbl){
-      var cb = lbl.querySelector("input[type=checkbox]");
-      var txt = lbl.textContent.trim();
-      var done = cb ? cb.checked : false;
-      if(done) checked++;
-      checklist.push({label: txt, done: done});
-    });
-    return {checklist: checklist, checked: checked, total: items.length};
-  }
+  function getChecklistData(sec){ var items = sec.querySelectorAll(".check-item"); var checklist = []; var checked = 0; items.forEach(function(item){ var titleEl = item.querySelector(".check-title"); var boxEl = item.querySelector(".check-box"); var badgeEl = item.querySelector(".check-badge"); var txt = titleEl ? titleEl.textContent.trim() : ""; var done = boxEl ? boxEl.classList.contains("checked") : false; var badge = badgeEl ? badgeEl.textContent.trim() : ""; if(done) checked++; checklist.push({label: txt, done: done, badge: badge}); }); return {checklist: checklist, checked: checked, total: items.length}; }
   form.onsubmit = function(e){
     e.preventDefault();
     var prenom = document.getElementById("lead-prenom").value.trim();
@@ -4499,11 +4487,7 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours...";
     errorDiv.style.display = "none";
-    var sub = currentSection.querySelector(".section-sub");
-    var parts = sub ? sub.textContent.split(" · ") : ["",""];
-    var organisme = parts[0] ? parts[0].trim() : "";
-    var aideName = parts[1] ? parts[1].trim() : "";
-    var clData = getChecklistData(currentSection);
+    var sub = currentSection.querySelector(".section-sub"); var h2first = currentSection.querySelector("h2"); var parts = sub ? sub.textContent.split(" · ") : [""]; var organisme = parts[0] ? parts[0].trim() : ""; var aideName = parts.length > 1 ? parts[1].trim() : (h2first ? h2first.textContent.trim() : ""); if(parts.length > 2) aideName += " · " + parts.slice(2).join(" · "); var clData = getChecklistData(currentSection);
     var payload = {
       action: "lead_dossier",
       prenom: prenom,
