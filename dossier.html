@@ -4457,59 +4457,114 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
     btn.onclick = function(){ openLeadModal(sec); };
     checklist.parentNode.insertBefore(btn, checklist.nextSibling);
   });
-  function openLeadModal(sec){ currentSection = sec; var allSubs = document.querySelectorAll(".section-sub"); var count = 0; allSubs.forEach(function(s){ var txt = s.textContent.trim(); if(txt.indexOf(" \u00b7 ") > -1){ var parts = txt.split(" \u00b7 "); if(parts[0].length < 25 && parts.length >= 3) count++; }}); aideNameSpan.textContent = count;
-    formWrap.style.display = "block";
-    successDiv.style.display = "none";
-    errorDiv.style.display = "none";
-    errorDiv.textContent = "";
-    form.reset();
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Recevoir mes aides";
-    overlay.classList.add("active");
-    document.getElementById("lead-prenom").focus();
-  }
-
-  closeBtn.onclick = function(){ overlay.classList.remove("active"); };
-  overlay.onclick = function(e){ if(e.target === overlay) overlay.classList.remove("active"); };
-
-  function getChecklistData(sec){ var items = sec.querySelectorAll(".check-item"); var checklist = []; var checked = 0; items.forEach(function(item){ var titleEl = item.querySelector(".check-title"); var boxEl = item.querySelector(".check-box"); var badgeEl = item.querySelector(".check-badge"); var txt = titleEl ? titleEl.textContent.trim() : ""; var done = boxEl ? boxEl.classList.contains("checked") : false; var badge = badgeEl ? badgeEl.textContent.trim() : ""; if(done) checked++; checklist.push({label: txt, done: done, badge: badge}); }); return {checklist: checklist, checked: checked, total: items.length}; }
-  form.onsubmit = function(e){
-    e.preventDefault();
-    var prenom = document.getElementById("lead-prenom").value.trim();
-    var nom = document.getElementById("lead-nom").value.trim();
-    var email = document.getElementById("lead-email").value.trim();
-    if(!prenom || !nom || !email){ errorDiv.textContent = "Veuillez remplir tous les champs."; errorDiv.style.display = "block"; return; }
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Envoi en cours...";
-    errorDiv.style.display = "none";
-    var allAides = [];
-var allSubs = document.querySelectorAll(".section-sub");
-allSubs.forEach(function(s){
-  var txt = s.textContent.trim();
-  if(txt.indexOf(" \u00b7 ") > -1) {
-    var parts = txt.split(" \u00b7 ");
-    if(parts[0].length < 25 && parts.length >= 3) {
-      allAides.push({ organisme: parts[0].trim(), aide: parts[1].trim(), details: parts.slice(2).join(" \u00b7 ") });
+  function getEligibleAides() {
+      var ORG_MAP = {cnm:"CNM",sacem:"SACEM",sppf:"SPPF",scpp:"SCPP",adami:"ADAMI",spedidam:"SPEDIDAM",minculture:"Min. Culture",dacdrac:"DAC/DRAC",ifcic:"IFCIC",region:"Région",fonpeps:"FONPEPS",ville:"Ville de Paris",ciem:"CIEM"};
+      var audit = null;
+      try { audit = JSON.parse(localStorage.getItem("_fullAudit")); } catch(e) {}
+      if(!audit) return [];
+      var domSubs = {};
+      document.querySelectorAll(".section-sub").forEach(function(s){
+        var txt = s.textContent.trim();
+        if(txt.indexOf(" \u00b7 ") > -1){
+          var parts = txt.split(" \u00b7 ");
+          if(parts[0].length < 25 && parts.length >= 3){
+            var key = parts[0].trim().toLowerCase().replace(/[^a-z]/g,"") + "|" + parts[1].trim().toLowerCase().replace(/[^a-z ]/g,"").substring(0,20);
+            domSubs[key] = { organisme: parts[0].trim(), aide: parts[1].trim(), details: parts.slice(2).join(" \u00b7 ") };
+          }
+        }
+      });
+      var result = [];
+      Object.keys(audit).forEach(function(cat){
+        if(!audit[cat].aides) return;
+        audit[cat].aides.forEach(function(a){
+          if(a.pm !== true) return;
+          var orgDisplay = ORG_MAP[a.o] || a.o.toUpperCase();
+          var normOrg = orgDisplay.toLowerCase().replace(/[^a-z]/g,"");
+          var normName = a.n.toLowerCase().replace(/[^a-z ]/g,"").substring(0,20);
+          var domKey = normOrg + "|" + normName;
+          var matched = domSubs[domKey];
+          if(matched){
+            result.push({ organisme: matched.organisme, aide: matched.aide, details: matched.details });
+          } else {
+            result.push({ organisme: orgDisplay, aide: a.n, details: a.t || cat });
+          }
+        });
+      });
+      return result;
     }
-  }
-});
-var payload = { action: "lead_dossier", prenom: prenom, nom: nom, email: email, aides: allAides, totalAides: allAides.length }
-    fetch(ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(payload)
-    }).then(function(){
-      formWrap.style.display = "none";
-      successDiv.style.display = "block";
-      setTimeout(function(){ overlay.classList.remove("active"); }, 4000);
-    }).catch(function(err){
-      errorDiv.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
-      errorDiv.style.display = "block";
+
+    function openLeadModal(sec){
+      currentSection = sec;
+      var eligible = getEligibleAides();
+      aideNameSpan.textContent = eligible.length;
+      formWrap.style.display = "block";
+      successDiv.style.display = "none";
+      errorDiv.style.display = "none";
+      errorDiv.textContent = "";
+      form.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = "Recevoir mes aides";
-    });
-  };
-})();
+      overlay.classList.add("active");
+      document.getElementById("lead-prenom").focus();
+    }
+
+    closeBtn.onclick = function(){ overlay.classList.remove("active"); };
+    overlay.onclick = function(e){ if(e.target === overlay) overlay.classList.remove("active"); };
+
+    function getChecklistData(sec){
+      var items = sec.querySelectorAll(".check-item");
+      var checklist = []; var checked = 0;
+      items.forEach(function(item){
+        var titleEl = item.querySelector(".check-title");
+        var boxEl = item.querySelector(".check-box");
+        var badgeEl = item.querySelector(".check-badge");
+        var txt = titleEl ? titleEl.textContent.trim() : "";
+        var done = boxEl ? boxEl.classList.contains("checked") : false;
+        var badge = badgeEl ? badgeEl.textContent.trim() : "";
+        if(done) checked++;
+        checklist.push({label: txt, done: done, badge: badge});
+      });
+      return {checklist: checklist, checked: checked, total: items.length};
+    }
+
+    form.onsubmit = function(e){
+      e.preventDefault();
+      var prenom = document.getElementById("lead-prenom").value.trim();
+      var nom = document.getElementById("lead-nom").value.trim();
+      var email = document.getElementById("lead-email").value.trim();
+      if(!prenom || !nom || !email){
+        errorDiv.textContent = "Veuillez remplir tous les champs.";
+        errorDiv.style.display = "block";
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Envoi en cours...";
+      errorDiv.style.display = "none";
+      var allAides = getEligibleAides();
+      var payload = {
+        action: "lead_dossier",
+        prenom: prenom,
+        nom: nom,
+        email: email,
+        aides: allAides,
+        totalAides: allAides.length
+      };
+      fetch(ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      }).then(function(){
+        formWrap.style.display = "none";
+        successDiv.style.display = "block";
+        setTimeout(function(){ overlay.classList.remove("active"); }, 4000);
+      }).catch(function(err){
+        errorDiv.textContent = "Erreur lors de l'envoi. Veuillez r\u00e9essayer.";
+        errorDiv.style.display = "block";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Recevoir mes aides";
+      });
+    };
+    })();
 </script></body>
 </html>
