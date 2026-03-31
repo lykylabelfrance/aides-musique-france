@@ -4415,20 +4415,20 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
   <div id="lead-modal">
     <button id="lead-close" aria-label="Fermer">&times;</button>
     <div id="lead-form-wrap">
-      <h3>Recevoir mon dossier par email</h3>
-      <p class="lead-sub">Aide : <span class="lead-aide" id="lead-aide-name"></span></p>
+      <h3>Recevoir mes aides éligibles</h3>
+      <p class="lead-sub">Recevez la liste complète de vos <span class="lead-aide" id="lead-aide-name"></span> aides éligibles avec montants et organismes.</p>
       <form id="lead-form" autocomplete="on">
         <div class="lead-field"><label for="lead-prenom">Prénom *</label><input type="text" id="lead-prenom" name="prenom" required></div>
         <div class="lead-field"><label for="lead-nom">Nom *</label><input type="text" id="lead-nom" name="nom" required></div>
         <div class="lead-field"><label for="lead-email">Email *</label><input type="email" id="lead-email" name="email" required></div>
         <div id="lead-error"></div>
-        <button type="submit" id="lead-submit">Envoyer mon dossier</button>
+        <button type="submit" id="lead-submit">Recevoir mes aides</button>
       </form>
     </div>
     <div id="lead-success">
       <div class="check-icon">✅</div>
-      <h3>Dossier envoyé !</h3>
-      <p>Consultez votre boite email pour retrouver votre checklist complète et notre proposition d'accompagnement.</p>
+      <h3>C'est parti !</h3>
+      <p>Consultez votre boîte email pour découvrir la liste complète de vos aides éligibles avec montants et organismes.</p>
     </div>
   </div>
 </div>
@@ -4453,23 +4453,18 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
     if(!checklist) return;
     var btn = document.createElement("button");
     btn.className = "lead-btn";
-    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Recevoir mon dossier par email';
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Recevoir mes aides éligibles';
     btn.onclick = function(){ openLeadModal(sec); };
     checklist.parentNode.insertBefore(btn, checklist.nextSibling);
   });
-  function openLeadModal(sec){
-    currentSection = sec;
-    var h2 = sec.querySelector("h2");
-    var sub = sec.querySelector(".section-sub");
-    var aideName = sub ? sub.textContent.split(" · ")[1] || h2.textContent : h2.textContent;
-    aideNameSpan.textContent = aideName;
+  function openLeadModal(sec){ currentSection = sec; var allSubs = document.querySelectorAll(".section-sub"); var count = 0; allSubs.forEach(function(s){ var txt = s.textContent.trim(); if(txt.indexOf(" \u00b7 ") > -1){ var parts = txt.split(" \u00b7 "); if(parts[0].length < 25 && parts.length >= 3) count++; }}); aideNameSpan.textContent = count;
     formWrap.style.display = "block";
     successDiv.style.display = "none";
     errorDiv.style.display = "none";
     errorDiv.textContent = "";
     form.reset();
     submitBtn.disabled = false;
-    submitBtn.textContent = "Envoyer mon dossier";
+    submitBtn.textContent = "Recevoir mes aides";
     overlay.classList.add("active");
     document.getElementById("lead-prenom").focus();
   }
@@ -4487,18 +4482,18 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours...";
     errorDiv.style.display = "none";
-    var sub = currentSection.querySelector(".section-sub"); var h2first = currentSection.querySelector("h2"); var parts = sub ? sub.textContent.split(" · ") : [""]; var organisme = parts[0] ? parts[0].trim() : ""; var aideName = parts.length > 1 ? parts[1].trim() : (h2first ? h2first.textContent.trim() : ""); if(parts.length > 2) aideName += " · " + parts.slice(2).join(" · "); var clData = getChecklistData(currentSection);
-    var payload = {
-      action: "lead_dossier",
-      prenom: prenom,
-      nom: nom,
-      email: email,
-      aide: aideName,
-      organisme: organisme,
-      checklist: clData.checklist,
-      checked: clData.checked,
-      total: clData.total
-    };
+    var allAides = [];
+var allSubs = document.querySelectorAll(".section-sub");
+allSubs.forEach(function(s){
+  var txt = s.textContent.trim();
+  if(txt.indexOf(" \u00b7 ") > -1) {
+    var parts = txt.split(" \u00b7 ");
+    if(parts[0].length < 25 && parts.length >= 3) {
+      allAides.push({ organisme: parts[0].trim(), aide: parts[1].trim(), details: parts.slice(2).join(" \u00b7 ") });
+    }
+  }
+});
+var payload = { action: "lead_dossier", prenom: prenom, nom: nom, email: email, aides: allAides, totalAides: allAides.length }
     fetch(ENDPOINT, {
       method: "POST",
       mode: "no-cors",
@@ -4512,7 +4507,7 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){
       errorDiv.textContent = "Erreur lors de l'envoi. Veuillez réessayer.";
       errorDiv.style.display = "block";
       submitBtn.disabled = false;
-      submitBtn.textContent = "Envoyer mon dossier";
+      submitBtn.textContent = "Recevoir mes aides";
     });
   };
 })();
