@@ -659,8 +659,57 @@
 #lead-success .check-icon{font-size:3rem;color:#27ae60;margin-bottom:1rem;}
 #lead-success h3{color:#27ae60;margin-bottom:.5rem;}
 #lead-error{display:none;color:#e8001d;text-align:center;margin-top:.5rem;font-size:.9rem;}</style>
+
+<style id="token-lock-styles">
+#token-lock-overlay{position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;font-family:system-ui,sans-serif}
+#token-lock-overlay h2{font-size:2rem;margin-bottom:1rem;color:#e8001d}
+#token-lock-overlay p{color:#aaa;max-width:500px;text-align:center;line-height:1.6}
+#token-lock-overlay .lock-icon{font-size:4rem;margin-bottom:1rem}
+#token-lock-overlay a{color:#e8001d;text-decoration:underline}
+.token-unlocked #token-lock-overlay{display:none!important}
+</style>
 </head>
 <body>
+<div id="token-lock-overlay">
+  <div class="lock-icon">&#128274;</div>
+  <h2>Acces restreint</h2>
+  <p id="token-lock-msg">Verification de votre acces en cours...</p>
+  <div id="token-lock-spinner">&#9203; Chargement...</div>
+</div>
+<script>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var token=params.get("token");
+  var overlay=document.getElementById("token-lock-overlay");
+  var msg=document.getElementById("token-lock-msg");
+  var spinner=document.getElementById("token-lock-spinner");
+  if(!token){
+    msg.innerHTML="Cette page necessite un lien d'acces personnalise.<br>Faites le <a href='eligibilite.html'>test d'eligibilite</a> pour recevoir votre lien.";
+    spinner.style.display="none";
+    return;
+  }
+  var EP=String.fromCharCode(104,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,120,51,90,82,51,74,99,117,107,84,81,82,120,97,101,55,104,66,65,110,65,73,98,57,74,99,122,100,120,73,57,108,85,114,119,77,121,74,112,104,105,57,84,90,106,75,110,52,69,108,110,70,66,86,100,108,71,117,88,112,79,120,49,85,55,117,100,103,47,101,120,101,99);
+  fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"check_token",token:token})})
+  .then(function(r){return r.json()})
+  .then(function(d){
+    if(d.valid){
+      document.body.classList.add("token-unlocked");
+      var w=document.createElement("div");
+      w.style.cssText="background:#1a3a2a;color:#4ade80;padding:10px 20px;text-align:center;font-size:14px;font-family:system-ui";
+      w.innerHTML="Bienvenue "+d.prenom+" ! Votre acces personnel est actif.";
+      document.body.insertBefore(w,document.body.firstChild);
+    }else{
+      msg.innerHTML="Token invalide ou acces revoque.<br>Contactez-nous pour obtenir un nouvel acces.";
+      spinner.style.display="none";
+    }
+  })
+  .catch(function(){
+    msg.innerHTML="Erreur de verification. Veuillez reessayer.";
+    spinner.style.display="none";
+  });
+})();
+</script>
+
   <nav style="background:#0a0a0a;padding:0 50px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:0.08em;">LYKY <span style="color:#e8001d;">LABEL</span></div>
     <ul style="display:flex;gap:32px;list-style:none;margin:0;padding:0;">
