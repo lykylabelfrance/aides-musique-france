@@ -361,6 +361,12 @@ const AIDES = [
     var AIDES_IDF = [62];
     var AIDES_LOCALES = [57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74];
 
+var AIDE_GENRES = {55:["classique","jazz","monde"],56:["classique","jazz","monde"],63:["classique","jazz","monde"],64:["classique","jazz"],65:["classique","jazz","monde"]};
+var AIDE_CRITERES = {1:{"sorties-prod":1,"ca-prod":1},2:{"sorties-prod":0},3:{"reprs-sv":1},5:{"export-p":0},6:{"export-sv":0},7:{"export-p":0},8:{"contrats-ed":1},9:{"anciennete-a":0,"albums":0},10:{"fragilite-p":0},12:{"reprs-sv":1},25:{"sorties-prod":0},26:{"reprs-sv":0},27:{"sorties-prod":0},28:{"sorties-prod":0},30:{"cachets":0},31:{"cachets":0},32:{"cachets":0},33:{"cachets":1,"albums":0},38:{"sorties-prod":0},39:{"reprs-sv":0},40:{"sorties-prod":0},44:{"droits-ac":0,"catalogue":0},45:{"droits-ac":1,"catalogue":1},46:{"catalogue":0},47:{"droits-ac":0},48:{"cachets":1},49:{"cachets":0},50:{"cachets":1},51:{"salaries-prod":0},52:{"reprs-sv":1},53:{"ca-prod":1},54:{"ca-prod":1}};
+var AIDES_NO_GUSO = [3,10,12,51,52];
+var CRITERE_LABELS = {"cachets":["12+ cachets/24 mois","12-24 cachets","24+ cachets"],"anciennete-a":["3+ ans anciennet\u00e9","3-7 ans","7+ ans"],"albums":["1+ album sorti","1-2 albums","3+ albums"],"export-a":["Projet international"],"droits-ac":["1 000\u20ac+ droits/an","1-5k\u20ac droits","5k\u20ac+ droits"],"catalogue":["5+ oeuvres SACEM","5-20 oeuvres","20+ oeuvres"],"autoprod-ac":["Autoproduction"],"ca-prod":["100K\u20ac+ CA","100-500K\u20ac CA","500K\u20ac+ CA"],"salaries-prod":["1+ salari\u00e9","3-10 salari\u00e9s","10+ salari\u00e9s"],"sorties-prod":["1+ sortie/an","4-10 sorties","10+ sorties"],"export-p":["Activit\u00e9 export"],"fragilite-p":["Structure en difficult\u00e9"],"contrats-ed":["10+ contrats","10-50 contrats","50+ contrats"],"ca-ed":["100K\u20ac+ CA","100-500K\u20ac CA","500K\u20ac+ CA"],"export-e":["Activit\u00e9 export"],"reprs-sv":["10+ repr\u00e9sentations","10-50 repr.","50+ repr."],"artistes-sv":["2+ artistes plateau","4-10 artistes","10+ artistes"],"export-sv":["Tourn\u00e9es internationales"],"fragilite-sv":["Structure en difficult\u00e9"]};
+function getCritereLabel(key, minVal) { var labels = CRITERE_LABELS[key]; if (!labels) return key; return labels[Math.min(minVal, labels.length - 1)]; }
+
     function toggleSingle(el, groupId) {
       var group = document.getElementById(groupId);
       var opts = group.querySelectorAll(".check-option");
@@ -706,6 +712,8 @@ function calculateResults() {
       if (!Array.isArray(projets)) { projets = Object.values(projets); }
       var outremer = answers.outremer || "non";
       var region = answers.region || "province";
+      var genre = answers.genre || "ma";
+      var criteres = answers.criteres || {};
 
       var ogcOrgs = ["adami","spedidam","scpp","sppf","sacem"];
       var ogcParProfil = {artiste:["adami","spedidam"], auteur:["sacem"], producteur:["scpp","sppf"], editeur:["sacem"], spectacle:["spedidam"]};
@@ -801,7 +809,10 @@ function calculateResults() {
         }
 
       if ([67,68,69].indexOf(aide.id) > -1 && region !== "idf") { conditionnel.push({aide:aide, msg:"R\u00e9serv\u00e9 \u00cele-de-France (Paris)"}); continue; }
-        if (!profilOK) {
+              if (AIDE_GENRES[aide.id]) { if (AIDE_GENRES[aide.id].indexOf(genre) === -1) { conditionnel.push({aide:aide, msg:"Genre requis : " + AIDE_GENRES[aide.id].join(", ")}); continue; } }
+      var hasGuso = membres.indexOf("guso") > -1;
+      if (AIDES_NO_GUSO.indexOf(aide.id) > -1 && hasGuso) { conditionnel.push({aide:aide, msg:"Non compatible GUSO (emploi permanent requis)"}); continue; }
+if (!profilOK) {
           if (isOGCOrg && !canProfilSelectOGC(aide.org)) {
             crossProfile.push({aide:aide, msg:"Via votre " + aide.profils[0]});
           } else {
@@ -815,10 +826,25 @@ function calculateResults() {
           continue;
         }
 
-        if (projetOK) {
-          pertinent.push({aide:aide, msg:null});
-        } else {
-          autresEligible.push({aide:aide, msg:null});
+        var criteresManquants = [];
+      if (AIDE_CRITERES[aide.id] && criteres) {
+        var critObj = AIDE_CRITERES[aide.id];
+        for (var cKey in critObj) {
+          if (critObj.hasOwnProperty(cKey)) {
+            var userVal = criteres[cKey];
+            if (typeof userVal !== "undefined" && userVal < critObj[cKey]) {
+              criteresManquants.push(getCritereLabel(cKey, critObj[cKey]));
+            }
+          }
+        }
+      }
+      if (criteresManquants.length > 3) { continue; }
+      if (criteresManquants.length > 0) { conditionnel.push({aide:aide, msg:"Crit\u00e8re(s) manquant(s) : " + criteresManquants.join(", ")}); continue; }
+      if (projetOK) {
+        pertinent.push({aide:aide, msg:null});
+      } else {
+        autresEligible.push({aide:aide, msg:null});
+      });
         }
       }
 
