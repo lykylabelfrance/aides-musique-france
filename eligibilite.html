@@ -384,6 +384,13 @@ function getProfiles(){ return answers.profil || []; }
 function hasProfile(p){ return getProfiles().includes(p); }
 
 function toggleCheck(el, groupId){
+  var group = el.closest(".check-group") || el.parentNode;
+  var isNonMembre = el.getAttribute("data-value") && el.getAttribute("data-value").indexOf("non-membre") > -1;
+  if(isNonMembre){
+    group.querySelectorAll(".check-option").forEach(function(o){ if(o !== el){ o.classList.remove("selected"); var c=o.querySelector(".checkmark"); if(c) c.setAttribute("data-checked","0"); }});
+  } else {
+    group.querySelectorAll(".check-option").forEach(function(o){ if(o !== el && o.getAttribute("data-value") && o.getAttribute("data-value").indexOf("non-membre") > -1){ o.classList.remove("selected"); var c=o.querySelector(".checkmark"); if(c) c.setAttribute("data-checked","0"); }});
+  }
   el.classList.toggle("selected");
   var cm = el.querySelector(".checkmark");
   if(cm) cm.setAttribute("data-checked", el.classList.contains("selected") ? "1" : "0");
@@ -793,6 +800,7 @@ function calculateResults() {
           continue;
         }
 
+      if ([67,68,69].indexOf(aide.id) > -1 && region !== "idf") { conditionnel.push({aide:aide, msg:"R\u00e9serv\u00e9 \u00cele-de-France (Paris)"}); continue; }
         if (!profilOK) {
           if (isOGCOrg && !canProfilSelectOGC(aide.org)) {
             crossProfile.push({aide:aide, msg:"Via votre " + aide.profils[0]});
