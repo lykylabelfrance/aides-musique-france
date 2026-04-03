@@ -1562,21 +1562,74 @@
     <div class="dossier-section" id="section-sacem-autoprod-artiste">
       <div class="section-header">
         <div class="section-badge">SACEM</div>
-        <h2 class="section-title">Aide à l'Autoproduction de Projet Musical</h2>
+        <h2 class="section-title">Aide à l’Autoproduction de Projet Musical (MA05)</h2>
         <div class="section-montant">5 000 € (forfait fixe)</div>
       </div>
       <div class="section-body">
+
         <div class="block-card"><h3 class="block-title">A — Récapitulatif Éligibilité</h3><div class="recap-grid" id="recap-sacem-autoprod-artiste"></div></div>
-        <div class="block-card"><h3 class="block-title">B — Dépôt &amp; Sessions 2026</h3><div class="session-badges"><span class="session-badge">Session 1 : avant 31 janv. 2026</span><span class="session-badge">Session 2 : avant 31 mai 2026</span><span class="session-badge">Session 3 : avant 30 sept. 2026</span></div></div>
-        <div class="block-card"><h3 class="block-title">C — Checklist Pièces Justificatives</h3><div class="progress-bar-wrap"><div class="progress-bar" id="progress-sacem-autoprod-artiste"></div><span class="progress-label" id="progress-label-sacem-autoprod-artiste">0 / 8</span></div><div class="checklist" id="checklist-sacem-autoprod-artiste"></div></div>
-        <div class="block-card"><h3 class="block-title">D — Budget Aide à l'Autoproduction de Projet Musical</h3><table class="budget-table"><thead><tr><th>Poste</th><th>Montant (€)</th></tr></thead><tbody><tr><td>Studio d'enregistrement</td><td><input type="number" class="budget-input" oninput="calcBudget_sacem_autoprod_artiste()" placeholder="0"></td></tr>
-<tr><td>Mixage / mastering</td><td><input type="number" class="budget-input" oninput="calcBudget_sacem_autoprod_artiste()" placeholder="0"></td></tr>
-<tr><td>Distribution numérique</td><td><input type="number" class="budget-input" oninput="calcBudget_sacem_autoprod_artiste()" placeholder="0"></td></tr>
-<tr><td>Promotion / communication</td><td><input type="number" class="budget-input" oninput="calcBudget_sacem_autoprod_artiste()" placeholder="0"></td></tr></tbody><tfoot><tr><td><strong>TOTAL ÉLIGIBLE</strong></td><td id="total-sacem-autoprod-artiste">0 €</td></tr></tfoot></table></div>
-        <div class="block-card"><h3 class="block-title">E — Portail &amp; Soumission</h3><div class="portal-card"><div class="portal-info"><span class="portal-label">SACEM</span><a href="https://www.sacem.fr/aides-musique" target="_blank" class="portal-link">Accéder au portail →</a></div></div><div class="action-btns"><button class="btn-primary" onclick="exportPDF('sacem-autoprod-artiste')">⬇ Exporter PDF</button><button class="btn-secondary" onclick="saveProgress()"> Sauvegarder</button></div></div>
+
+        <div class="block-card"><h3 class="block-title">B — Dépôt &amp; Sessions 2026</h3><p class="section-sub">3 sessions par an sur mesdemandes.sacem.fr</p><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"><span class="status-badge" style="background:#1a7f37;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85rem;">Session 1 : avant 31 janv. 2026</span><span class="status-badge" style="background:#e8001d;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85rem;">Session 2 : avant 31 mai 2026</span><span class="status-badge" style="background:#666;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85rem;">Session 3 : avant 30 sept. 2026</span></div></div>
+
+        <div class="block-card"><h3 class="block-title">C — Checklist Pièces &amp; Formulaire MA05</h3>
+          <p class="section-sub">Cochez au fur et à mesure de votre préparation</p>
+          <div class="progress-bar"><div id="progressbar-sacem-autoprod-artiste" style="width:0%"></div></div>
+          <div class="progress-label" id="progress-label-sacem-autoprod-artiste"><span id="progress-sacem-autoprod-artiste">0</span> / <span id="total-sacem-autoprod-artiste">19</span></div>
+          <div class="checklist" id="checklist-sacem-autoprod-artiste">
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc1"> <strong>⭐ Formulaire MA05 rempli (fichier .xlsx)</strong></label><div class="check-hint">Téléchargez le modèle sur le portail SACEM, remplissez les 4 onglets</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc2"> <strong>⭐ Lettre de recommandation</strong></label><div class="check-hint">Signée par un pro (tourneur, éditeur, programmateur, directeur de salle)</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc3"> <strong>⭐ Note d’intention</strong></label><div class="check-hint">Rédigée par l’artiste : vision artistique, plan promo, ambition du projet</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc4"> <strong>⭐ Biographie artiste / groupe</strong></label><div class="check-hint">Parcours, discographie, faits marquants (PDF ou Word)</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc5"> <strong>EPK / Pièce jointe libre</strong></label><div class="check-hint">Dossier de presse électronique (optionnel mais fortement recommandé)</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc6"> <strong>Autorisation SDRM</strong></label><div class="check-hint">Facultatif — uniquement en cas de pressage CD physique</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-doc7"> <strong>Pièce comptable / facture</strong></label><div class="check-hint">Après validation uniquement — pas à fournir au dépôt</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-eng1"> <strong>Engagements signés (onglet 1 du MA05)</strong></label><div class="check-hint">4 déclarations sur l’honneur : PJ, accord co-créateurs, exactitude, critères</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pp1"> <strong>Identification structure (onglet 2)</strong></label><div class="check-hint">Nom structure, SIRET, forme juridique, adresse fiscale + postale</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pp2"> <strong>Coordonnées gérant/signataire</strong></label><div class="check-hint">Prénom, Nom, Email, Tél portable (obligatoire pour signature électronique)</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pp3"> <strong>Statut sociétaire SACEM</strong></label><div class="check-hint">Adhérent / Confirmé / Professionnel / Définitif</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pp4"> <strong>Présentation structure porteuse</strong></label><div class="check-hint">Catalogue, collections, nb albums, date création, licence spectacle</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pj1"> <strong>Infos projet (onglet 3)</strong></label><div class="check-hint">Nom artiste, nom EP/album, date sortie, genre, volet 1 ou 2</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pj2"> <strong>Tracklist complète</strong></label><div class="check-hint">Jusqu’à 15 titres avec auteurs + compositeurs + 3 titres prioritaires</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pj3"> <strong>Liens streaming obligatoires</strong></label><div class="check-hint">Deezer + Spotify + Apple Music (Soundcloud/Bandcamp en complément)</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-pj4"> <strong>Dates de concerts</strong></label><div class="check-hint">Concerts liés à la sortie : dates, CP, ville, salle</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-bu1"> <strong>Budget dépenses (onglet 4)</strong></label><div class="check-hint">Studio, mixage/mastering, com/promo, fabrication, matériel</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-bu2"> <strong>Budget recettes (onglet 4)</strong></label><div class="check-hint">Fonds propres, crowdfunding, aides/subventions, mécénat, tremplins</div></div>
+            <div class="check-item"><label><input type="checkbox" data-section="sacem-autoprod-artiste" id="chk-saa-bu3"> <strong>Budget équilibré Dépenses = Recettes</strong></label><div class="check-hint">Vérifiez que le total dépenses correspond au total recettes</div></div>
+          </div>
+        </div>
+
+        <div class="block-card"><h3 class="block-title">D — Budget Aide à l’Autoproduction</h3>
+          <p class="section-sub">Reprenez les montants de l’onglet 4 du formulaire MA05</p>
+          <table class="budget-table">
+            <thead><tr><th>Dépenses</th><th>Montant</th><th>Recettes</th><th>Montant</th></tr></thead>
+            <tbody>
+              <tr><td>Studio & Enregistrement</td><td><input type="number" class="budget-input" id="saa-dep-studio" placeholder="0"></td><td>Fonds propres</td><td><input type="number" class="budget-input" id="saa-rec-fonds" placeholder="0"></td></tr>
+              <tr><td>Mixage & Mastering</td><td><input type="number" class="budget-input" id="saa-dep-mix" placeholder="0"></td><td>Crowdfunding / Prévente</td><td><input type="number" class="budget-input" id="saa-rec-crowd" placeholder="0"></td></tr>
+              <tr><td>Communication & Promo</td><td><input type="number" class="budget-input" id="saa-dep-com" placeholder="0"></td><td>Aides & Subventions</td><td><input type="number" class="budget-input" id="saa-rec-aides" placeholder="0"></td></tr>
+              <tr><td>Fabrication (CD/Vinyles)</td><td><input type="number" class="budget-input" id="saa-dep-fab" placeholder="0"></td><td>Mécénat / Autre</td><td><input type="number" class="budget-input" id="saa-rec-mecenat" placeholder="0"></td></tr>
+              <tr><td>Achats matériel</td><td><input type="number" class="budget-input" id="saa-dep-mat" placeholder="0"></td><td>Tremplins / Dispositifs</td><td><input type="number" class="budget-input" id="saa-rec-tremp" placeholder="0"></td></tr>
+              <tr><td>Autres dépenses</td><td><input type="number" class="budget-input" id="saa-dep-autres" placeholder="0"></td><td></td><td></td></tr>
+              <tr style="font-weight:700;border-top:2px solid var(--rouge);"><td>TOTAL DÉPENSES</td><td id="saa-total-dep">0 €</td><td>TOTAL RECETTES</td><td id="saa-total-rec">0 €</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:8px;font-size:.85rem;color:var(--gris-texte);">⚠️ L’aide SACEM est un forfait fixe de 5 000 € — intégrez-le dans la ligne « Aides & Subventions »</p>
+        </div>
+
+        <div class="block-card"><h3 class="block-title">E — Portail &amp; Soumission</h3>
+          <div class="portal-card">
+            <div class="portal-info"><span class="portal-label">Portail</span> <a class="portal-link" href="https://mesdemandes.sacem.fr/aides/demand" target="_blank" rel="noopener">mesdemandes.sacem.fr</a></div>
+            <div class="portal-info"><span class="portal-label">Référence</span> MA05-XXXXXX (attribué automatiquement)</div>
+            <div class="portal-info"><span class="portal-label">Étape 4</span> Upload des 7 documents (formulaire + PJ)</div>
+            <div class="portal-info"><span class="portal-label">Astuce</span> Préparez TOUS les fichiers avant de commencer la saisie en ligne</div>
+          </div>
+          <div class="action-btns" style="margin-top:12px;">
+            <a class="btn-primary" href="https://mesdemandes.sacem.fr/aides/demand" target="_blank" rel="noopener">Déposer mon dossier</a>
+            <a class="btn-secondary" href="https://www.sacem.fr/aides-prix/musique-enregistree/aide-autoproduction" target="_blank" rel="noopener">Critères d’éligibilité</a>
+          </div>
+        </div>
+
       </div>
     </div>
-
     <div class="dossier-section" id="section-sacem-ecriture">
       <div class="section-header">
         <div class="section-badge">SACEM</div>
