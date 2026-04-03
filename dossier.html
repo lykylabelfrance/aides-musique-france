@@ -3428,14 +3428,25 @@
     { id:'sint6', title:'Formulaire SPEDIDAM signé', desc:'Formulaire officiel', required:true, upload:true }
   ],
   'sacem-autoprod-artiste': [
-    { id:'saa1', title:'Attestation adhésion SACEM', desc:'Document affiliation SACEM', required:true, upload:true, autofill:true },
-    { id:'saa2', title:'Devis du projet', desc:'Devis studio, mixage, distribution', required:true, upload:true },
-    { id:'saa3', title:'Budget prévisionnel', desc:'Budget global autoproduction', required:true, upload:true, autofill:true },
-    { id:'saa4', title:'Note artistique du projet', desc:'Description artistique et calendrier', required:true, upload:false },
-    { id:'saa5', title:'Kbis ou justificatif auto-entrepreneur', desc:'Document identité juridique', required:true, upload:true },
-    { id:'saa6', title:'RIB', desc:'RIB du bénéficiaire', required:true, upload:true },
-    { id:'saa7', title:'2 derniers relevés droits SACEM', desc:'Relevés de perception N-1 et N-2', required:false, upload:true },
-    { id:'saa8', title:'Formulaire SACEM signé', desc:'Formulaire officiel', required:true, upload:true }
+    { id:'saa1', title:'Formulaire MA05 rempli (.xlsx)', desc:'4 onglets: Engagements, Porteur de projet, Projet, Budget', required:true, upload:true },
+    { id:'saa2', title:'Lettre de recommandation', desc:'Par un pro: tourneur, éditeur, programmateur, directeur de salle', required:true, upload:true },
+    { id:'saa3', title:'Note d\u2019intention', desc:'Vision artistique, plan promo, ambition du projet', required:true, upload:true },
+    { id:'saa4', title:'Biographie artiste / groupe', desc:'Parcours, discographie, faits marquants (PDF ou Word)', required:true, upload:true },
+    { id:'saa5', title:'EPK / Dossier de presse', desc:'Dossier de presse électronique en PDF', required:false, upload:true },
+    { id:'saa6', title:'Autorisation SDRM', desc:'Facultatif \u2014 uniquement si pressage CD physique', required:false, upload:true },
+    { id:'saa7', title:'Pièce comptable / facture', desc:'Après validation uniquement \u2014 pas au dépôt', required:false, upload:true },
+    { id:'saa8', title:'Engagements signés (onglet 1)', desc:'4 déclarations: PJ, accord co-créateurs, exactitude, critères', required:true },
+    { id:'saa9', title:'Identification structure (onglet 2)', desc:'Nom, SIRET, forme juridique, adresse fiscale + postale', required:true },
+    { id:'saa10', title:'Coordonnées gérant/signataire', desc:'Prénom, Nom, Email, Tél portable (signature électronique)', required:true },
+    { id:'saa11', title:'Statut sociétaire SACEM', desc:'Adhérent / Confirmé / Professionnel / Définitif', required:true },
+    { id:'saa12', title:'Présentation structure porteuse', desc:'Catalogue, collections, nb albums, date création, licence spectacle', required:true },
+    { id:'saa13', title:'Infos projet (onglet 3)', desc:'Nom artiste, nom EP/album, date sortie, genre, volet 1 ou 2', required:true },
+    { id:'saa14', title:'Tracklist complète', desc:'Jusqu\u2019à 15 titres avec auteurs + compositeurs + 3 titres prioritaires', required:true },
+    { id:'saa15', title:'Liens streaming obligatoires', desc:'Deezer + Spotify + Apple Music (Soundcloud/Bandcamp en complément)', required:true },
+    { id:'saa16', title:'Dates de concerts', desc:'Concerts liés à la sortie: dates, CP, ville, salle', required:false },
+    { id:'saa17', title:'Budget dépenses (onglet 4)', desc:'Studio, mixage/mastering, com/promo, fabrication, matériel', required:true },
+    { id:'saa18', title:'Budget recettes (onglet 4)', desc:'Fonds propres, crowdfunding, aides/subventions, mécénat, tremplins', required:true },
+    { id:'saa19', title:'Budget équilibré Dépenses = Recettes', desc:'Vérifiez que le total dépenses correspond au total recettes', required:true }
   ],
   'sacem-ecriture': [
     { id:'se1', title:'Attestation adhésion SACEM', desc:'Document affiliation SACEM', required:true, upload:true, autofill:true },
