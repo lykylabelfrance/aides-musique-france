@@ -586,13 +586,13 @@ function buildStep5(){
     html += critereRow("anciennete-a","Anciennet\u00e9 professionnelle",["Moins de 3 ans","3 \u00e0 7 ans","Plus de 7 ans"]);
     html += critereRow("albums","Albums / EP sortis",["Aucun","1 \u00e0 2","3 ou plus"]);
     html += critereRow("export-a","Projet \u00e0 l international ?",["Oui","Non"]);
-    h+=critereRow("adami-365-remun","R\u00e9mun\u00e9rations ADAMI \u22655000\u20ac sur 5 ans ?",["Non","Oui"]);
-    h+=critereRow("adami-365-salles","\u22655 concerts en salles \u2265600 places sur 3 ans ?",["Non","Oui"]);
-    h+=critereRow("adami-2d3d-catalogue","\u226510 titres ou 40min d\u00e9j\u00e0 distribu\u00e9s ?",["Non","Oui"]);
-    h+=critereRow("adami-2d3d-remun","\u2265300\u20ac droits ADAMI per\u00e7us sur 5 ans ?",["Non","Oui"]);
-    h+=critereRow("adami-1pp-salles","Salles de \u2265250 places ?",["Non","Oui"]);
-    h+=critereRow("adami-promo-master","Exploitez-vous le master (pas de licence tiers) ?",["Non","Oui"]);
-    h+=critereRow("adami-promo-titres5","\u22655 titres sur le projet ?",["Non","Oui"]);
+    html += critereRow("adami-365-remun","R\u00e9mun\u00e9rations ADAMI \u22655000\u20ac sur 5 ans ?",["Non","Oui"]);
+    html += critereRow("adami-365-salles","\u22655 concerts en salles \u2265600 places sur 3 ans ?",["Non","Oui"]);
+    html += critereRow("adami-2d3d-catalogue","\u226510 titres ou 40min d\u00e9j\u00e0 distribu\u00e9s ?",["Non","Oui"]);
+    html += critereRow("adami-2d3d-remun","\u2265300\u20ac droits ADAMI per\u00e7us sur 5 ans ?",["Non","Oui"]);
+    html += critereRow("adami-1pp-salles","Salles de \u2265250 places ?",["Non","Oui"]);
+    html += critereRow("adami-promo-master","Exploitez-vous le master (pas de licence tiers) ?",["Non","Oui"]);
+    html += critereRow("adami-promo-titres5","\u22655 titres sur le projet ?",["Non","Oui"]);
     html += "</div>";
   }
   if(profiles.includes("auteur")){
@@ -602,10 +602,10 @@ function buildStep5(){
     html += critereRow("sacem-ap-rang","Est-ce votre 1er, 2\u00e8me ou 3\u00e8me enregistrement autoproduit ?",["Non (4\u00e8me ou plus)","Oui (1er, 2\u00e8me ou 3\u00e8me)"]);
     html += critereRow("sacem-ap-titres","Votre projet comporte min. 5 titres disponibles (distribu\u00e9s sur Spotify/plateformes ou en physique) ?",["Non","Oui"]);
     html += critereRow("sacem-ap-envpro","B\u00e9n\u00e9ficiez-vous d\u2019un accompagnement pro (\u00e9diteur, manager, producteur spectacle, tourneur, salle ou dispositif) ?",["Non","Oui"]);
-    h+=critereRow("sacem-cs-licence","Licence entrepreneur spectacle cat\u00e9gorie 2 ?",["Non","Oui"]);
-    h+=critereRow("sacem-cs-anciennete","\u22651 an d'activit\u00e9 professionnelle ?",["Non","Oui"]);
-    h+=critereRow("sacem-cs-duree60","Spectacle d'une dur\u00e9e \u226560 minutes ?",["Non","Oui"]);
-    h+=critereRow("sacem-cs-narratif","Spectacle avec fil narratif/dramaturgique ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-licence","Licence entrepreneur spectacle cat\u00e9gorie 2 ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-anciennete","\u22651 an d'activit\u00e9 professionnelle ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-duree60","Spectacle d'une dur\u00e9e \u226560 minutes ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-narratif","Spectacle avec fil narratif/dramaturgique ?",["Non","Oui"]);
     html += '</div>';
     html += "</div>";
   }
@@ -616,15 +616,15 @@ function buildStep5(){
     html += critereRow("sorties-prod","Sorties phonographiques / an",["1 \u00e0 3","4 \u00e0 10","Plus de 10"]);
     html += critereRow("export-p","Activit\u00e9 export ?",["Oui","Non"]);
     html += critereRow("fragilite-p","Structure en difficult\u00e9 ?",["Oui","Non"]);
-    h+=critereRow("scpp-phono-4titres","\u22654 titres in\u00e9dits sur le projet ?",["Non","Oui"]);
-    h+=critereRow("scpp-phono-distrib","Distribution physique pr\u00e9vue (pas uniquement num\u00e9rique) ?",["Non","Oui"]);
-    h+=critereRow("sppf-album-3titres","\u22653 titres in\u00e9dits ?",["Non","Oui"]);
-    h+=critereRow("sppf-album-apport50","Apport producteur \u226550% du budget ?",["Non","Oui"]);
-    h+=critereRow("sppf-video-extrait","Vid\u00e9omusique extraite d'un album/EP ?",["Non","Oui"]);
-    h+=critereRow("sppf-grm-tpe","Votre structure est-elle une TPE ?",["Non","Oui"]);
-    h+=critereRow("fonpeps-apaj-ca5m","CA de votre structure \u22645M\u20ac ?",["Non","Oui"]);
-    h+=critereRow("fonpeps-apaj-1an","Structure cr\u00e9\u00e9e depuis \u22651 an ?",["Non","Oui"]);
-    h+=critereRow("fonpeps-apaj-500pl","Salle de \u2264500 places ?",["Non","Oui"]);
+    html += critereRow("scpp-phono-4titres","\u22654 titres in\u00e9dits sur le projet ?",["Non","Oui"]);
+    html += critereRow("scpp-phono-distrib","Distribution physique pr\u00e9vue (pas uniquement num\u00e9rique) ?",["Non","Oui"]);
+    html += critereRow("sppf-album-3titres","\u22653 titres in\u00e9dits ?",["Non","Oui"]);
+    html += critereRow("sppf-album-apport50","Apport producteur \u226550% du budget ?",["Non","Oui"]);
+    html += critereRow("sppf-video-extrait","Vid\u00e9omusique extraite d'un album/EP ?",["Non","Oui"]);
+    html += critereRow("sppf-grm-tpe","Votre structure est-elle une TPE ?",["Non","Oui"]);
+    html += critereRow("fonpeps-apaj-ca5m","CA de votre structure \u22645M\u20ac ?",["Non","Oui"]);
+    html += critereRow("fonpeps-apaj-1an","Structure cr\u00e9\u00e9e depuis \u22651 an ?",["Non","Oui"]);
+    html += critereRow("fonpeps-apaj-500pl","Salle de \u2264500 places ?",["Non","Oui"]);
     html += "</div>";
   }
   if(profiles.includes("editeur")){
@@ -632,7 +632,7 @@ function buildStep5(){
     html += critereRow("contrats-ed","Nombre de contrats en gestion",["< 10","10 \u00e0 50","> 50"]);
     html += critereRow("ca-ed","Chiffre d affaires annuel",["< 100K \u20ac","100K \u00e0 500K \u20ac","> 500K \u20ac"]);
     html += critereRow("export-e","Activit\u00e9 export ?",["Oui","Non"]);
-    h+=critereRow("sacem-ed-droits5k","\u22655000\u20ac droits d'auteur en moyenne sur 2 ans ?",["Non","Oui"]);
+    html += critereRow("sacem-ed-droits5k","\u22655000\u20ac droits d'auteur en moyenne sur 2 ans ?",["Non","Oui"]);
     html += "</div>";
   }
   if(profiles.includes("spectacle")){
@@ -641,8 +641,8 @@ function buildStep5(){
     html += critereRow("artistes-sv","Artistes sur le plateau",["1 \u00e0 3","4 \u00e0 10","Plus de 10"]);
     html += critereRow("export-sv","Tourn\u00e9es internationales ?",["Oui","Non"]);
     html += critereRow("fragilite-sv","Structure en difficult\u00e9 ?",["Oui","Non"]);
-    h+=critereRow("sppf-showcase-salle","Salle partenaire/conventionn\u00e9e SPPF ?",["Non","Oui"]);
-    h+=critereRow("scpp-showcase-salle","Salle conventionn\u00e9e SCPP ?",["Non","Oui"]);
+    html += critereRow("sppf-showcase-salle","Salle partenaire/conventionn\u00e9e SPPF ?",["Non","Oui"]);
+    html += critereRow("scpp-showcase-salle","Salle conventionn\u00e9e SCPP ?",["Non","Oui"]);
     html += "</div>";
   }
   if(!html) html = '<p style="text-align:center;padding:2rem;">Aucun profil s\u00e9lectionn\u00e9.</p>';
