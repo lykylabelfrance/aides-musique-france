@@ -157,6 +157,25 @@ header span{color:var(--gris-texte)}
 .check-option { color: #2c3e50 !important; }
 [style*="linear-gradient(135deg,#f0f4ff"] *, [style*="linear-gradient(135deg,#f0f4ff"] { color: #1a202c !important; }
 [style*="linear-gradient(135deg,rgba(232"] *, [style*="linear-gradient(135deg,rgba(232"] { color: #2c3e50 !important; }
+
+/* === STEP 5 UX MODERNE === */
+.elig-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 28px;margin-bottom:20px}
+.elig-section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--rouge)}
+.elig-section-header .elig-icon{font-size:22px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(232,0,29,0.1);border-radius:10px;flex-shrink:0}
+.elig-section-header h3{font-family:"Bebas Neue",sans-serif;font-size:20px;font-weight:700;color:#fff;letter-spacing:0.03em;margin:0}
+.elig-section-header .elig-badge{margin-left:auto;font-size:11px;padding:3px 10px;border-radius:12px;background:rgba(232,0,29,0.15);color:#e8001d;font-weight:600;white-space:nowrap}
+.elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.elig-grid{grid-template-columns:1fr}}
+.critere-row{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px 16px;border-left:3px solid rgba(232,0,29,0.5);transition:all 0.2s ease}
+.critere-row:hover{background:rgba(255,255,255,0.07);border-left-color:#e8001d}
+.critere-row label{display:block;font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:10px;line-height:1.4}
+.radio-group{display:flex;gap:6px;flex-wrap:wrap}
+.option-btn{padding:6px 14px;border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:12px;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.04);cursor:pointer;transition:all 0.2s;user-select:none}
+.option-btn:hover{border-color:rgba(232,0,29,0.6);color:rgba(255,255,255,0.9);background:rgba(232,0,29,0.08)}
+.option-btn.selected{background:var(--rouge);color:#fff;border-color:var(--rouge);box-shadow:0 2px 8px rgba(232,0,29,0.3)}
+.elig-sub{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06)}
+.elig-sub-title{font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.elig-sub-title::before{content:"";width:12px;height:2px;background:var(--rouge);border-radius:1px}
 </style>
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Test Eligibilite Aides Musique France","url":"https://lykylabelfrance.github.io/aides-musique-france/eligibilite.html","description":"Outil gratuit pour tester votre eligibilite aux 105 aides et subventions musique en France. 6 etapes, 7 questions, resultats instantanes.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Lyky Label France"},"inLanguage":"fr","featureList":"Test en 6 etapes, 105 aides, partage URL, export PDF, 100% client-side"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment fonctionne le test d eligibilite aux aides musique ?","acceptedAnswer":{"@type":"Answer","text":"Le test analyse votre profil en 6 etapes : structure juridique, activites musicales, effectif, chiffre d affaires, anciennete et projets. Il identifie parmi 105 dispositifs ceux auxquels vous etes eligible. Gratuit et confidentiel, aucune donnee envoyee a un serveur."}},{"@type":"Question","name":"Qui peut utiliser le test d eligibilite ?","acceptedAnswer":{"@type":"Answer","text":"Tout professionnel de la musique en France : labels, producteurs, editeurs, managers, tourneurs, organisateurs de spectacles, artistes, auteurs-compositeurs, associations, SARL, SAS, SASU, auto-entrepreneurs."}},{"@type":"Question","name":"Quelles aides pour produire un album en France ?","acceptedAnswer":{"@type":"Answer","text":"Aide a la production CNM, credit d impot phonographique (CIPP), aides SCPP et SPPF, aide ADAMI artistes-interpretes, dispositifs SACEM edition. Montants de quelques milliers a plusieurs centaines de milliers d euros."}},{"@type":"Question","name":"Quelles aides pour organiser un concert ou une tournee ?","acceptedAnswer":{"@type":"Answer","text":"Aide festivals et salles CNM, credit d impot spectacle vivant (CISV), aides SPEDIDAM et ADAMI, FONPEPS pour l emploi, subventions DRAC, regions et communes."}}]},{"@context":"https://schema.org","@type":"HowTo","name":"Trouver les aides musique auxquelles vous etes eligible","step":[{"@type":"HowToStep","position":1,"name":"Structure","text":"Selectionnez votre type de structure juridique"},{"@type":"HowToStep","position":2,"name":"Activites","text":"Cochez vos activites musicales"},{"@type":"HowToStep","position":3,"name":"Effectif","text":"Indiquez votre nombre de salaries"},{"@type":"HowToStep","position":4,"name":"Chiffre d affaires","text":"Selectionnez votre tranche de CA"},{"@type":"HowToStep","position":5,"name":"Anciennete","text":"Precisez l anciennete et vos projets"},{"@type":"HowToStep","position":6,"name":"Resultats","text":"Consultez vos aides eligibles, partagez ou exportez en PDF"}]}]</script>
 </head>
@@ -585,86 +604,102 @@ function buildStep5(){
   var profiles = getProfiles();
   var el = document.getElementById("step5-content"); if(!el) return;
   var html = "";
+
   if(profiles.includes("artiste")){
-    html += '<div class="question"><h3>\ud83c\udfb6 Artiste : pr\u00e9cisions</h3>';
-    html += critereRow("cachets","Nombre de cachets sur 24 mois",["Moins de 12","12 \u00e0 24","Plus de 24"]);
-    html += critereRow("anciennete-a","Anciennet\u00e9 professionnelle",["Moins de 3 ans","3 \u00e0 7 ans","Plus de 7 ans"]);
-    html += critereRow("albums","Albums / EP sortis",["Aucun","1 \u00e0 2","3 ou plus"]);
-    html += critereRow("export-a","Projet \u00e0 l international ?",["Oui","Non"]);
-    html += critereRow("adami-365-remun","R\u00e9mun\u00e9rations ADAMI \u22655000\u20ac sur 5 ans ?",["Non","Oui"]);
-    html += critereRow("adami-365-salles","\u22655 concerts en salles \u2265600 places sur 3 ans ?",["Non","Oui"]);
-    html += critereRow("adami-2d3d-catalogue","\u226510 titres ou 40min d\u00e9j\u00e0 distribu\u00e9s ?",["Non","Oui"]);
-    html += critereRow("adami-2d3d-remun","\u2265300\u20ac droits ADAMI per\u00e7us sur 5 ans ?",["Non","Oui"]);
-    html += critereRow("adami-1pp-salles","Salles de \u2265250 places ?",["Non","Oui"]);
-    html += critereRow("adami-promo-master","Exploitez-vous le master (pas de licence tiers) ?",["Non","Oui"]);
-    html += critereRow("adami-promo-titres5","\u22655 titres sur le projet ?",["Non","Oui"]);
-    html += "</div>";
-  }
-  if(profiles.includes("auteur")){
-    html += '<div class="question"><h3>\u270d\ufe0f Auteur-Compositeur : pr\u00e9cisions</h3>';
-    html += '<div style="margin-top:16px;padding:14px;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:10px;border-left:4px solid #1a56db;color:#1a202c"><h4 style="color:#1a56db;margin:0 0 12px;font-size:15px">\ud83c\udfb5 SACEM Autoproduction \u2014 Crit\u00e8res sp\u00e9cifiques</h4>';
-    html += critereRow("sacem-ap-prod","Votre projet est-il autoproduit (vous-m\u00eame ou via votre propre structure SASU/SARL) ?",["Non, sign\u00e9 sur un label tiers","Oui, autoproduction ou mon propre label"]);
-    html += critereRow("sacem-ap-rang","Est-ce votre 1er, 2\u00e8me ou 3\u00e8me enregistrement autoproduit ?",["Non (4\u00e8me ou plus)","Oui (1er, 2\u00e8me ou 3\u00e8me)"]);
-    html += critereRow("sacem-ap-titres","Votre projet comporte min. 5 titres disponibles (distribu\u00e9s sur Spotify/plateformes ou en physique) ?",["Non","Oui"]);
-    html += critereRow("sacem-ap-envpro","B\u00e9n\u00e9ficiez-vous d\u2019un accompagnement pro (\u00e9diteur, manager, producteur spectacle, tourneur, salle ou dispositif) ?",["Non","Oui"]);
-    html += critereRow("sacem-cs-licence","Licence entrepreneur spectacle cat\u00e9gorie 2 ?",["Non","Oui"]);
-    html += critereRow("sacem-cs-anciennete","\u22651 an d'activit\u00e9 professionnelle ?",["Non","Oui"]);
-    html += critereRow("sacem-cs-duree60","Spectacle d'une dur\u00e9e \u226560 minutes ?",["Non","Oui"]);
-    html += critereRow("sacem-cs-narratif","Spectacle avec fil narratif/dramaturgique ?",["Non","Oui"]);
+    html += '<div class="elig-section">';
+    html += '<div class="elig-section-header"><div class="elig-icon">🎤</div><h3>Artiste — Précisions</h3><span class="elig-badge">11 critères</span></div>';
+    html += '<div class="elig-grid">';
+    html += critereRow("cachets","Nombre de cachets sur 24 mois",["Moins de 12","12 à 24","Plus de 24"]);
+    html += critereRow("anciennete-a","Ancienneté professionnelle",["Moins de 3 ans","3 à 7 ans","Plus de 7 ans"]);
+    html += critereRow("albums","Albums / EP sortis",["Aucun","1 à 2","3 ou plus"]);
+    html += critereRow("export-a","Projet à l'international ?",["Oui","Non"]);
     html += '</div>';
-    html += "</div>";
+    html += '<div class="elig-sub"><div class="elig-sub-title">Critères ADAMI spécifiques</div><div class="elig-grid">';
+    html += critereRow("adami-365-remun","Rémunérations ADAMI ≥5000€ sur 5 ans ?",["Non","Oui"]);
+    html += critereRow("adami-365-salles","≥5 concerts en salles ≥600 places sur 3 ans ?",["Non","Oui"]);
+    html += critereRow("adami-2d3d-catalogue","≥10 titres ou 40min déjà distribués ?",["Non","Oui"]);
+    html += critereRow("adami-2d3d-remun","≥300€ droits ADAMI perçus sur 5 ans ?",["Non","Oui"]);
+    html += critereRow("adami-1pp-salles","Salles de ≥250 places ?",["Non","Oui"]);
+    html += critereRow("adami-promo-master","Exploitez-vous le master (pas de licence tiers) ?",["Non","Oui"]);
+    html += critereRow("adami-promo-titres5","≥5 titres sur le projet ?",["Non","Oui"]);
+    html += '</div></div></div>';
   }
+
+  if(profiles.includes("auteur")){
+    html += '<div class="elig-section">';
+    html += '<div class="elig-section-header"><div class="elig-icon">✍️</div><h3>Auteur-Compositeur — Précisions</h3><span class="elig-badge">8 critères</span></div>';
+    html += '<div class="elig-grid">';
+    html += critereRow("sacem-ap-prod","Votre projet est-il autoproduit ?",["Non","Oui"]);
+    html += critereRow("sacem-ap-rang","Quel rang SACEM ?",["Non sociétaire","Stagiaire","Sociétaire"]);
+    html += critereRow("sacem-ap-titres","Nombre de titres sur le projet",["Moins de 4","4 à 8","Plus de 8"]);
+    html += critereRow("sacem-ap-envpro","Enveloppe professionnelle ≥3000€ ?",["Non","Oui"]);
+    html += '</div>';
+    html += '<div class="elig-sub"><div class="elig-sub-title">Critères SACEM Commande spéciale</div><div class="elig-grid">';
+    html += critereRow("sacem-cs-licence","Licence entrepreneur spectacle ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-anciennete","Ancienneté SACEM ≥3 ans ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-duree60","Durée de la commande ≥60 min ?",["Non","Oui"]);
+    html += critereRow("sacem-cs-narratif","Projet à dimension narrative (film, série, jeu) ?",["Non","Oui"]);
+    html += '</div></div></div>';
+  }
+
   if(profiles.includes("producteur")){
-    html += '<div class="question"><h3>\ud83c\udfa7 Producteur / Label : pr\u00e9cisions</h3>';
-    html += critereRow("ca-prod","Chiffre d affaires annuel",["< 100K \u20ac","100K \u00e0 500K \u20ac","> 500K \u20ac"]);
-    html += critereRow("salaries-prod","Nombre de salari\u00e9s",["0 \u00e0 2","3 \u00e0 10","Plus de 10"]);
-    html += critereRow("sorties-prod","Sorties phonographiques / an",["1 \u00e0 3","4 \u00e0 10","Plus de 10"]);
-    html += critereRow("export-p","Activit\u00e9 export ?",["Oui","Non"]);
-    html += critereRow("fragilite-p","Structure en difficult\u00e9 ?",["Oui","Non"]);
-    html += critereRow("scpp-phono-4titres","\u22654 titres in\u00e9dits sur le projet ?",["Non","Oui"]);
-    html += critereRow("scpp-phono-distrib","Distribution physique pr\u00e9vue (pas uniquement num\u00e9rique) ?",["Non","Oui"]);
-    html += critereRow("sppf-album-3titres","\u22653 titres in\u00e9dits ?",["Non","Oui"]);
-    html += critereRow("sppf-album-apport50","Apport producteur \u226550% du budget ?",["Non","Oui"]);
-    html += critereRow("sppf-video-extrait","Vid\u00e9omusique extraite d'un album/EP ?",["Non","Oui"]);
+    html += '<div class="elig-section">';
+    html += '<div class="elig-section-header"><div class="elig-icon">🎧</div><h3>Producteur / Label — Précisions</h3><span class="elig-badge">14 critères</span></div>';
+    html += '<div class="elig-grid">';
+    html += critereRow("ca-prod","Chiffre d'affaires annuel",["< 100K €","100K à 500K €","> 500K €"]);
+    html += critereRow("salaries-prod","Nombre de salariés",["0 à 2","3 à 10","Plus de 10"]);
+    html += critereRow("sorties-prod","Sorties phonographiques / an",["1 à 3","4 à 10","Plus de 10"]);
+    html += critereRow("export-p","Activité export ?",["Oui","Non"]);
+    html += critereRow("fragilite-p","Structure en difficulté ?",["Oui","Non"]);
+    html += '</div>';
+    html += '<div class="elig-sub"><div class="elig-sub-title">Critères SCPP / SPPF / FONPEPS</div><div class="elig-grid">';
+    html += critereRow("scpp-phono-4titres","≥4 titres inédits sur le projet ?",["Non","Oui"]);
+    html += critereRow("scpp-phono-distrib","Distribution physique prévue ?",["Non","Oui"]);
+    html += critereRow("sppf-album-3titres","≥3 titres inédits ?",["Non","Oui"]);
+    html += critereRow("sppf-album-apport50","Apport producteur ≥50% du budget ?",["Non","Oui"]);
+    html += critereRow("sppf-video-extrait","Vidéomusique extraite d'un album/EP ?",["Non","Oui"]);
     html += critereRow("sppf-grm-tpe","Votre structure est-elle une TPE ?",["Non","Oui"]);
-    html += critereRow("fonpeps-apaj-ca5m","CA de votre structure \u22645M\u20ac ?",["Non","Oui"]);
-    html += critereRow("fonpeps-apaj-1an","Structure cr\u00e9\u00e9e depuis \u22651 an ?",["Non","Oui"]);
-    html += critereRow("fonpeps-apaj-500pl","Salle de \u2264500 places ?",["Non","Oui"]);
-    html += "</div>";
+    html += critereRow("fonpeps-apaj-ca5m","CA de votre structure ≤5M€ ?",["Non","Oui"]);
+    html += critereRow("fonpeps-apaj-1an","Structure créée depuis ≥1 an ?",["Non","Oui"]);
+    html += critereRow("fonpeps-apaj-500pl","Salle de ≤500 places ?",["Non","Oui"]);
+    html += '</div></div></div>';
   }
+
   if(profiles.includes("editeur")){
-    html += '<div class="question"><h3>\ud83d\udcdd \u00c9diteur : pr\u00e9cisions</h3>';
-    html += critereRow("contrats-ed","Nombre de contrats en gestion",["< 10","10 \u00e0 50","> 50"]);
-    html += critereRow("ca-ed","Chiffre d affaires annuel",["< 100K \u20ac","100K \u00e0 500K \u20ac","> 500K \u20ac"]);
-    html += critereRow("export-e","Activit\u00e9 export ?",["Oui","Non"]);
-    html += critereRow("sacem-ed-droits5k","\u22655000\u20ac droits d'auteur en moyenne sur 2 ans ?",["Non","Oui"]);
-    html += "</div>";
+    html += '<div class="elig-section">';
+    html += '<div class="elig-section-header"><div class="elig-icon">📝</div><h3>Éditeur — Précisions</h3><span class="elig-badge">4 critères</span></div>';
+    html += '<div class="elig-grid">';
+    html += critereRow("contrats-ed","Nombre de contrats en gestion",["< 10","10 à 50","> 50"]);
+    html += critereRow("ca-ed","Chiffre d'affaires annuel",["< 100K €","100K à 500K €","> 500K €"]);
+    html += critereRow("export-e","Activité export ?",["Oui","Non"]);
+    html += critereRow("sacem-ed-droits5k","Droits collectés SACEM ≥5000€/an ?",["Non","Oui"]);
+    html += '</div></div>';
   }
+
   if(profiles.includes("spectacle")){
-    html += '<div class="question"><h3>\ud83c\udfad Spectacle vivant : pr\u00e9cisions</h3>';
-    html += critereRow("reprs-sv","Repr\u00e9sentations / an",["< 10","10 \u00e0 50","> 50"]);
-    html += critereRow("artistes-sv","Artistes sur le plateau",["1 \u00e0 3","4 \u00e0 10","Plus de 10"]);
-    html += critereRow("export-sv","Tourn\u00e9es internationales ?",["Oui","Non"]);
-    html += critereRow("fragilite-sv","Structure en difficult\u00e9 ?",["Oui","Non"]);
-    html += critereRow("sppf-showcase-salle","Salle partenaire/conventionn\u00e9e SPPF ?",["Non","Oui"]);
-    html += critereRow("scpp-showcase-salle","Salle conventionn\u00e9e SCPP ?",["Non","Oui"]);
-    html += "</div>";
+    html += '<div class="elig-section">';
+    html += '<div class="elig-section-header"><div class="elig-icon">🎭</div><h3>Spectacle vivant — Précisions</h3><span class="elig-badge">6 critères</span></div>';
+    html += '<div class="elig-grid">';
+    html += critereRow("reprs-sv","Représentations / an",["< 10","10 à 50","> 50"]);
+    html += critereRow("artistes-sv","Artistes sur le plateau",["1 à 3","4 à 10","Plus de 10"]);
+    html += critereRow("export-sv","Tournées internationales ?",["Oui","Non"]);
+    html += critereRow("fragilite-sv","Structure en difficulté ?",["Oui","Non"]);
+    html += '</div>';
+    html += '<div class="elig-sub"><div class="elig-sub-title">Critères Showcase SPPF / SCPP</div><div class="elig-grid">';
+    html += critereRow("sppf-showcase-salle","Salle showcase SPPF (≤300 places) ?",["Non","Oui"]);
+    html += critereRow("scpp-showcase-salle","Salle showcase SCPP (≤300 places) ?",["Non","Oui"]);
+    html += '</div></div></div>';
   }
-  if(!html) html = '<p style="text-align:center;padding:2rem;">Aucun profil s\u00e9lectionn\u00e9.</p>';
-  var locHtml = '<div id="localisation-group" style="margin-bottom:24px;padding:16px;background:#f8f9fa;border-radius:10px;color:#2c3e50">' +
-'<h3 style="color:#2c3e50;margin-bottom:12px;font-size:16px">O\u00f9 est situ\u00e9e votre structure ?</h3>' +
-'<div class="check-option" data-value="idf" onclick="toggleSingle(this,\'localisation-group\')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">\u00cele-de-France</div>' +
-'<div class="check-option selected" data-value="province" onclick="toggleSingle(this,\'localisation-group\')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #27ae60;border-radius:8px;cursor:pointer;background:#e8f8f0;color:#2c3e50;transition:all 0.3s">Province</div>' +
-'<div class="check-option" data-value="outremer" onclick="toggleSingle(this,\'localisation-group\')" style="display:inline-block;padding:10px 20px;margin:5px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:all 0.3s">Outre-mer / DOM</div>' +
-'</div>'; html = locHtml + html;
+
+  if(!html) html = '<p style="text-align:center;padding:2rem;color:rgba(255,255,255,0.4);">Aucun profil sélectionné.</p>';
   el.innerHTML = html;
 }
 
 function critereRow(id, label, options){
-  var h = '<div class="critere-row" style="margin:10px 0;"><label style="display:block;margin-bottom:6px;font-weight:600;">'+label+'</label>';
-  h += '<div class="radio-group" id="critere-'+id+'" style="display:flex;gap:8px;flex-wrap:wrap;">';
+  var h = '<div class="critere-row"><label>'+label+'</label>';
+  h += '<div class="radio-group" id="critere-'+id+'">';
   options.forEach(function(opt, i){ h += '<div class="option-btn" data-value="'+i+'" data-critere="'+id+'" onclick="selectCritere(this,\''+id+'\')">'+opt+'</div>'; });
-  h += "</div></div>"; return h;
+  h += '</div></div>'; return h;
 }
 
 function selectCritere(el, id){
