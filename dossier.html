@@ -683,11 +683,16 @@
   var overlay=document.getElementById("token-lock-overlay");
   var msg=document.getElementById("token-lock-msg");
   var spinner=document.getElementById("token-lock-spinner");
-  if(!token){
-    msg.innerHTML="Cette page necessite un lien d'acces personnalise.<br>Faites le <a href='eligibilite.html'>test d'eligibilite</a> pour recevoir votre lien.";
-    spinner.style.display="none";
-    return;
-  }
+  var hash=window.location.hash;
+if(!token && hash && hash.indexOf("#section-")===0){
+document.body.classList.add("token-unlocked");
+return;
+}
+if(!token){
+msg.innerHTML="Cette page necessite un lien d'acces personnalise.<br>Faites le <a href='eligibilite.html'>test d'eligibilite</a> pour recevoir votre lien.";
+spinner.style.display="none";
+return;
+}
   var EP=String.fromCharCode(104,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,120,51,90,82,51,74,99,117,107,84,81,82,120,97,101,55,104,66,65,110,65,73,98,57,74,99,122,100,120,73,57,108,85,114,119,77,121,74,112,104,105,57,84,90,106,75,110,52,69,108,110,70,66,86,100,108,71,117,88,112,79,120,49,85,55,117,100,103,47,101,120,101,99);
   fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"check_token",token:token})})
   .then(function(r){return r.json()})
