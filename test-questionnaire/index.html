@@ -457,17 +457,25 @@ const AIDES = {
     organisme: 'SACEM',
     scope: 'vous',
     chip_css: 'ch-sacem',
-    montant_label: 'Variable',
-    source: 'aide-aux-projets.sacem.fr',
+    montant_label: '5 000€',
+    source: 'aide-aux-projets.sacem.fr — mars 2026',
     eligible: a => _ACI(a) && _sacemP(a) && _pAlbum(a),
-    taux: () => ({ label: 'Aide sélective' }),
+    taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
     badges: () => [],
     non_cumul: [],
     alertes: [
-      'Artiste autoproduisant son enregistrement',
+      'Forfait fixe 5 000€ — 1er, 2ème ou 3ème enregistrement autoproduit uniquement',
+      'Minimum 5 titres inédits',
+      'Dépôt APRÈS la sortie intégrale du projet — jamais avant',
+      'Délai maximum : 6 mois après la date de sortie',
+      'Calendrier 2026 : ouverture 2 février → fermeture 30 octobre',
+      'Lettre de recommandation d\'un accompagnateur professionnel OBLIGATOIRE',
+      'Sortie physique seule : 250 exemplaires minimum',
+      'Refus = pas de redépôt possible sur le même projet',
+      'Dossier en ligne uniquement — aucun courrier accepté',
       'Incompatible si la structure IS perçoit déjà le CIPP sur le même projet',
     ],
-    potentiel_min: 2000,
+    potentiel_min: 5000,
   },
 
   SACEM_DEV_EDITORIAL_MA: {
@@ -489,7 +497,7 @@ const AIDES = {
       'Seuil : MOYENNE droits ≥ 5 000€/an sur 2 ans (4 répartitions SACEM ÷ 2)',
       'Distinct du CIEM — ce seuil ne s\'applique PAS au crédit d\'impôt',
     ],
-    potentiel_min: 3000,
+    potentiel_min: 8000,
   },
 
   SACEM_DEV_EDITORIAL_CONTEMP: {
@@ -509,7 +517,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Seuil : ≥ 1 500€ sur au moins 1 des 2 dernières années'],
-    potentiel_min: 2000,
+    potentiel_min: 5000,
   },
 
   SACEM_CREATION_SPECTACLE: {
@@ -527,7 +535,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Œuvres musicales originales requises — pas de reprise exclusive'],
-    potentiel_min: 2000,
+    potentiel_min: 6000,
   },
 
   // SACEM Export MA — FERMÉ (signaler uniquement, ne pas matcher)
@@ -577,7 +585,7 @@ const AIDES = {
       'TuneCore/DistroKid = INÉLIGIBLE — contrat distributeur cosigné requis',
       'Production phono doit représenter ≥ 50% du CA de la structure',
     ],
-    potentiel_min: 5000,
+    potentiel_min: 8000,
   },
 
   CNM_PRODUCTION: {
@@ -625,7 +633,7 @@ const AIDES = {
       'Hors EEE autorisé — avantage unique CNM',
       'Cumul SCPP Vidéo + CNC autorisé',
     ],
-    potentiel_min: 5000,
+    potentiel_min: 6000,
   },
 
   CNM_SPECTACLE_VIVANT: {
@@ -641,7 +649,7 @@ const AIDES = {
     badges: () => [{ c: 'mb-ca', l: '⚠ CNM auto requis' }],
     non_cumul: [],
     alertes: [],
-    potentiel_min: 5000,
+    potentiel_min: 8000,
   },
 
   CNM_CREATION_SPECTACLE: {
@@ -657,7 +665,7 @@ const AIDES = {
     badges: () => [{ c: 'mb-ca', l: '⚠ CNM auto requis' }],
     non_cumul: [],
     alertes: ['Distincte de l\'aide à la diffusion — concerne la création de nouvelles œuvres scéniques'],
-    potentiel_min: 5000,
+    potentiel_min: 8000,
   },
 
   CNM_DROIT_TIRAGE: {
@@ -679,7 +687,7 @@ const AIDES = {
       'Dates prévisionnelles OBLIGATOIREMENT postérieures à la date de dépôt de la demande',
       'Déclarer la taxe dans les 3 mois après chaque représentation',
     ],
-    potentiel_min: 1000,
+    potentiel_min: 3000,
   },
 
   CNM_PROMOTEURS_DIFFUSEURS: {
@@ -795,7 +803,7 @@ const AIDES = {
     badges: () => [{ c: 'mb-ca', l: '⚠ CNM auto requis' }],
     non_cumul: [],
     alertes: [],
-    potentiel_min: 3000,
+    potentiel_min: 5000,
   },
 
   CNM_EDITION_CONTEMPORAINE_JAZZ: {
@@ -814,7 +822,7 @@ const AIDES = {
       'Spécifique jazz et musique contemporaine — article 37 du RGA CNM',
       'Distinct de l\'aide édition MA (art.38)',
     ],
-    potentiel_min: 3000,
+    potentiel_min: 5000,
   },
 
   CNM_ECRITURE_COMPOSITION: {
@@ -831,7 +839,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Profils A et F — auteurs-compositeurs en nom propre', 'Distinct de la Bourse Parcours — pas de condition de revenus'],
-    potentiel_min: 3000,
+    potentiel_min: 5000,
   },
 
   CNM_BOURSE_PARCOURS: {
@@ -920,7 +928,7 @@ const AIDES = {
       'Dépôt AVANT commercialisation de l\'album',
       'Distribution physique nationale OBLIGATOIRE',
     ],
-    potentiel_min: 4000,
+    potentiel_min: 10000,
   },
 
   SPPF_VIDEO: {
@@ -936,7 +944,7 @@ const AIDES = {
     badges: () => [{ c: 'mb-ph', l: '⚠ Titre extrait album requis' }],
     non_cumul: [],
     alertes: ['Titre doit être extrait d\'un album distribué physiquement'],
-    potentiel_min: 2000,
+    potentiel_min: 3000,
   },
 
   SPPF_SHOWCASE: {
@@ -957,7 +965,7 @@ const AIDES = {
       'Fenêtre : 2 mois avant / 6 mois après',
       'Albums live / remixes / compilations exclus',
     ],
-    potentiel_min: 1000,
+    potentiel_min: 1500,
   },
 
   SPPF_GRM: {
@@ -995,7 +1003,7 @@ const AIDES = {
       'Demande EXPLICITE dans le formulaire SPPF — pas automatique',
       'PAS une simple double adhésion',
     ],
-    potentiel_min: 500,
+    potentiel_min: 1000,
   },
 
   // ════════════════════════════════════════════════════════════════
@@ -1022,7 +1030,7 @@ const AIDES = {
       'Licencié exclusif NON éligible à cette aide (voir SCPP_MARKETING)',
       '1 demande/an max si droits < seuils réforme AG 28/06/2023',
     ],
-    potentiel_min: 4000,
+    potentiel_min: 8000,
   },
 
   SCPP_VIDEOMUSIQUE: {
@@ -1038,7 +1046,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Licencié non éligible', 'Cumul CNM Clip + CNC autorisé'],
-    potentiel_min: 3000,
+    potentiel_min: 5000,
   },
 
   SCPP_SHOWCASE: {
@@ -1079,7 +1087,7 @@ const AIDES = {
       'Budget marketing minimum 15 000€ HT',
       'IS obligatoire',
     ],
-    potentiel_min: 5000,
+    potentiel_min: 8000,
   },
 
   SCPP_FORMATION: {
@@ -1098,7 +1106,7 @@ const AIDES = {
       '5 organismes conventionnés SCPP uniquement',
       'Versement total sans acompte — pas de Commission',
     ],
-    potentiel_min: 500,
+    potentiel_min: 800,
   },
 
   // ════════════════════════════════════════════════════════════════
@@ -1111,16 +1119,26 @@ const AIDES = {
     organisme: 'ADAMI',
     scope: 'vous',
     chip_css: 'ch-adami',
-    montant_label: 'Variable',
-    source: 'adami.fr',
+    montant_label: 'Variable (plafond 1/3 par volet)',
+    source: 'adami.fr — oct. 2025',
     eligible: a =>
       _ACI(a) && _adamiP(a) &&
       (_pAlbum(a) || _pClip(a) || _pShowcase(a) || _pTournee(a) || _pExport(a)),
-    taux: () => ({ label: 'Aide sélective' }),
+    taux: () => ({ label: 'Aide très sélective — contact ADAMI OBLIGATOIRE avant dépôt' }),
     badges: () => [],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 2000,
+    alertes: [
+      'Contact ADAMI OBLIGATOIRE avant tout dépôt : actionartistique@adami.fr ou 01 44 63 10 00 (choix 2)',
+      'Artiste très identifié sur la scène musicale — projet exceptionnel dans la carrière',
+      '50% des artistes principaux doivent être associés ADAMI',
+      'Min 2 albums en distribution pro (TuneCore/DistroKid/Bandcamp exclus)',
+      'Min 5 000€ de rémunérations ADAMI sur 5 ans (MA) ou 300€ (classique)',
+      'Min 5 concerts sur 3 ans en salle ≥ 600 places (MA) ou ≥ 300 places (jazz/classique)',
+      'Max 3 aides sélectives ADAMI par structure par année civile',
+      'Plafond : 1/3 des dépenses HT enregistrement · 50% dépenses HT promo · 1/3 dépenses HT image',
+      'Valorisation studio propre uniquement : 250€/titre prises + 250€/titre mix',
+    ],
+    potentiel_min: 4000,
   },
 
   ADAMI_2D3D: {
@@ -1129,15 +1147,22 @@ const AIDES = {
     organisme: 'ADAMI',
     scope: 'vous',
     chip_css: 'ch-adami',
-    montant_label: 'Variable',
-    source: 'adami.fr',
+    montant_label: 'Variable — plafond 1/3 budget enregistrement',
+    source: 'adami.fr — oct. 2025',
     // SACEM + ADAMI requis + projet album ou clip
     eligible: a => _ACI(a) && _sacemP(a) && _adamiP(a) && (_pAlbum(a) || _pClip(a)),
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 2000,
+    alertes: [
+      'Distribution pro obligatoire avec contrat — TuneCore/DistroKid/Bandcamp exclus',
+      'Structure doit être l\'employeur direct de TOUS les artistes (y compris invités)',
+      'Plafond aide enregistrement = 1/3 des dépenses HT production + post-prod (hors fab, droits méca, promo)',
+      'Aide promo = 50% des dépenses HT réalisées dans les 6 mois avant sortie commerciale',
+      'Cumul toutes subventions album ≤ 40% des dépenses totales HT',
+      'Acompte 50% à l\'accord — solde par volet après réalisation',
+    ],
+    potentiel_min: 5000,
   },
 
   ADAMI_PREMIERE_PARTIE: {
@@ -1147,13 +1172,16 @@ const AIDES = {
     scope: 'vous',
     chip_css: 'ch-adami',
     montant_label: 'Variable',
-    source: 'adami.fr',
+    source: 'adami.fr — oct. 2025',
     eligible: a => _ACI(a) && _adamiP(a) && (_pShowcase(a) || _pClip(a)),
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 1000,
+    alertes: [
+      'Concerts en première partie ou showcase dans salle prescriptrice',
+      'Max 3 aides sélectives ADAMI par structure par année civile',
+    ],
+    potentiel_min: 2000,
   },
 
   ADAMI_BOURSE_PARCOURS: {
@@ -1163,14 +1191,17 @@ const AIDES = {
     scope: 'vous',
     chip_css: 'ch-adami',
     montant_label: 'Variable selon grille',
-    source: 'adami.fr',
+    source: 'adami.fr — fév. 2026',
     eligible: a =>
       _ACI(a) && _adamiP(a) && (_pAlbum(a) || _pTournee(a) || _pShowcase(a)),
     taux: () => ({ label: 'Bourse sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: ['Projet artistique ambitieux requis — pas une aide automatique'],
-    potentiel_min: 1500,
+    alertes: [
+      'Projet artistique ambitieux requis — aide aux artistes en développement',
+      'Max 3 aides sélectives ADAMI par structure par année civile',
+    ],
+    potentiel_min: 3000,
   },
 
   ADAMI_SPECTACLE: {
@@ -1187,7 +1218,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Artiste interprète avec droits ADAMI requis — vérifier éligibilité via adami.fr'],
-    potentiel_min: 2000,
+    potentiel_min: 4000,
   },
 
   // ════════════════════════════════════════════════════════════════
@@ -1207,7 +1238,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: ['Maximum 2 aides déplacement par an', 'Cumulable avec aide SV'],
-    potentiel_min: 1000,
+    potentiel_min: 1500,
   },
 
   SPEDIDAM_EPK: {
@@ -1223,7 +1254,7 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: [],
-    potentiel_min: 1000,
+    potentiel_min: 2000,
   },
 
   SPEDIDAM_EAC: {
@@ -1243,7 +1274,7 @@ const AIDES = {
       'Exclus : collectivités, État, communes',
       '1 aide/an maximum — pas de reconduction automatique',
     ],
-    potentiel_min: 1000,
+    potentiel_min: 2000,
   },
 
   SPEDIDAM_GENERATION: {
@@ -1266,7 +1297,7 @@ const AIDES = {
       'Tarifs minima : répétition 120€/jour · représentation 175€/cachet · enregistrement 185€/cachet',
       'Pénalité -20% si logo Génération SPEDIDAM absent sur les supports',
     ],
-    potentiel_min: 5000,
+    potentiel_min: 7000,
   },
 
   // ════════════════════════════════════════════════════════════════
@@ -1292,7 +1323,7 @@ const AIDES = {
       'Cat.1 exploitant de lieu fixe NON éligible',
       'Cumulable avec CISV',
     ],
-    potentiel_min: 1500,
+    potentiel_min: 2500,
   },
 };
 
