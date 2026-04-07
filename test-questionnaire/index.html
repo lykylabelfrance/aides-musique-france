@@ -2126,11 +2126,60 @@ function submitLead() {
   const r = document.getElementById('rgpd').checked;
   const emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   if (!e) { alert('Merci de renseigner votre email.'); return; }
-  if (!emailValide) { alert('L\'adresse email ne semble pas valide. Vérifiez le format (ex: nom@domaine.fr).'); return; }
-  if (!r) { alert('Merci d\'accepter les conditions RGPD pour recevoir votre rapport.'); return; }
-  // Hook Sprint 3 → leads-store.php
-  console.log('LEAD v7', {p, e, profils: getProfils(), ans: S.ans});
-  alert(`Parfait ${p||''} ! Votre rapport PDF est en cours de génération. Vous le recevrez à ${e} dans quelques minutes.`);
+  if (!emailValide) { alert("L'adresse email ne semble pas valide. Vérifiez le format (ex: nom@domaine.fr)."); return; }
+  if (!r) { alert("Merci d'accepter les conditions RGPD pour recevoir votre rapport."); return; }
+
+  const btn = document.querySelector('.cta-btn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  const result = match();
+  const profils = getProfils();
+
+  fetch('backend/leads-store.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      prenom:    p,
+      nom:       '',
+      email:     e,
+      profil:    profils.map(pr => pr.letter).join('+'),
+      potentiel: result.matched.reduce((s,m) => {
+        const ref = AIDES[m.id]; return s + (ref ? (ref.potentiel_min||0) : 0);
+      }, 0),
+      aides:   result.matched.map(m => m.nom),
+      answers: S.ans,
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      btn.textContent = '✅ ENVOYÉ';
+      document.querySelector('.cta-block').innerHTML = `
+        <div style="text-align:center;padding:10px 0">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:1px;margin-bottom:6px">
+            RAPPORT EN COURS D'ENVOI
+          </div>
+          <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:16px">
+            Vous recevrez votre rapport PDF à <strong style="color:#fff">${e}</strong> dans quelques minutes.
+          </p>
+          <a href="mailto:loic@lykylabel.fr?subject=Dossier%20aides%20musicales%20-%20${p}" 
+             style="display:inline-block;background:#e8001d;color:#fff;text-decoration:none;padding:12px 24px;border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px">
+            CONTACTER LOÏC DIRECTEMENT →
+          </a>
+        </div>`;
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'OBTENIR →';
+      alert('Une erreur est survenue. Merci de réessayer ou de contacter loic@lykylabel.fr');
+    }
+  })
+  .catch(() => {
+    // Fallback si backend pas encore déployé
+    btn.disabled = false;
+    btn.textContent = 'OBTENIR →';
+    alert(`Merci ${p} ! Votre rapport sera envoyé à ${e}. (Backend en cours de déploiement)`);
+  });
 }
 
 // INIT
