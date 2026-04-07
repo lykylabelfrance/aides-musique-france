@@ -1559,6 +1559,7 @@ const STEPS = [
     q:'Quels projets avez-vous en cours ou prévus dans les 12 prochains mois ?',
     hint:'Chaque projet active des dispositifs spécifiques — soyez exhaustif.',
     type:'multi', multi_note:'✦ Cochez tout ce que vous prévoyez',
+    cond: a => is('aci','oui') || is('has_struct','oui'),
     opts:[
       {v:'album',         ico:'💽', l:'Enregistrement d\'album / EP',               s:'SPPF, SCPP, CNM Production, CIPP'},
       {v:'clip',          ico:'🎬', l:'Clip vidéo / Vidéomusique',                  s:'CNM Clip (max 15k€), SPPF/SCPP Vidéo, SPEDIDAM EPK'},
@@ -1569,7 +1570,7 @@ const STEPS = [
       {v:'eac',           ico:'🎓', l:'Éducation Artistique et Culturelle',          s:'SPEDIDAM EAC — activité principale obligatoire'},
       {v:'ecriture',      ico:'✍️', l:'Projet d\'écriture / composition musicale',  s:'CNM Écriture & Composition, CNM Bourse Parcours'},
       {v:'promo',         ico:'📣', l:'Campagne promo / Marketing digital',          s:'ADAMI Promo, SCPP Marketing (licencié exclusif)'},
-      {v:'structuration', ico:'📊', l:'Structuration / Développement économique',   s:'CNM Art.84 Dév. Éco ou Art.85 Restructuration'}
+      {v:'structuration', ico:'📊', l:'Structuration / Développement économique',   s:'CNM Art.84 Dév. Éco ou Art.85 Restructuration — structures IS uniquement'}
     ]
   },
 
@@ -1961,10 +1962,13 @@ function carteAide(x) {
 }
 
 function submitLead() {
-  const e = document.getElementById('cta-e').value;
-  const p = document.getElementById('cta-p').value;
+  const e = document.getElementById('cta-e').value.trim();
+  const p = document.getElementById('cta-p').value.trim();
   const r = document.getElementById('rgpd').checked;
-  if (!e || !r) { alert('Merci de renseigner votre email et d\'accepter les conditions RGPD.'); return; }
+  const emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  if (!e) { alert('Merci de renseigner votre email.'); return; }
+  if (!emailValide) { alert('L\'adresse email ne semble pas valide. Vérifiez le format (ex: nom@domaine.fr).'); return; }
+  if (!r) { alert('Merci d\'accepter les conditions RGPD pour recevoir votre rapport.'); return; }
   // Hook Sprint 3 → leads-store.php
   console.log('LEAD v7', {p, e, profils: getProfils(), ans: S.ans});
   alert(`Parfait ${p||''} ! Votre rapport PDF est en cours de génération. Vous le recevrez à ${e} dans quelques minutes.`);
