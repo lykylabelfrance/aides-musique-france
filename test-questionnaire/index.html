@@ -1863,7 +1863,9 @@ function showResults() {
   // Masquer questionnaire + grille, afficher résultats pleine largeur
   document.getElementById('scr-q').classList.add('h');
   document.getElementById('main-grid').style.display = 'none';
-  document.getElementById('scr-r').style.display = 'block';
+  const scrR = document.getElementById('scr-r');
+  scrR.style.display = 'block';
+  scrR.style.flex = '1';  // body est flex-col — scr-r doit prendre toute la hauteur disponible
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('prog-pct').textContent = '100%';
   document.getElementById('prog-lbl').textContent = 'Analyse complète';
