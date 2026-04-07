@@ -122,11 +122,7 @@ body{font-family:var(--fb);background:var(--gris-clair);color:var(--noir);min-he
 .al-txt strong{display:block;margin-bottom:1px;font-weight:600;}
 
 #scr-r{display:none;}
-#scr-r.v{display:block;}
 #scr-q.h{display:none;}
-/* Résultats : pleine largeur — masquer le panel droit */
-.main.results-mode{grid-template-columns:1fr;}
-.main.results-mode .r-panel{display:none;}
 .res{background:var(--blanc);border-radius:6px;border-left:4px solid var(--vert);box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;}
 .res-hd{background:var(--noir);padding:24px 28px;}
 .res-hd h2{font-family:var(--fd);font-size:28px;color:#fff;letter-spacing:1px;}
@@ -220,7 +216,8 @@ footer p{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.22);line-h
   </div>
 </div>
 
-<div class="main">
+<!-- MODE QUESTIONNAIRE : grille 2 colonnes -->
+<div class="main" id="main-grid">
   <div id="scr-q">
     <div class="q-panel" id="q-panel">
       <div class="q-head">
@@ -237,32 +234,6 @@ footer p{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.22);line-h
     </div>
   </div>
 
-  <div id="scr-r">
-    <div class="res">
-      <div class="res-hd">
-        <h2>RAPPORT <span>D'ÉLIGIBILITÉ</span></h2>
-        <p id="res-sub"></p>
-      </div>
-      <div id="res-profil" class="res-sec"></div>
-      <div id="res-aides" class="res-sec"></div>
-      <div id="res-conf" class="res-sec"></div>
-      <div id="res-dl" class="res-sec"></div>
-      <div class="cta-block">
-        <h3>RAPPORT <span>PDF COMPLET</span> GRATUIT</h3>
-        <p>Montants estimés · Procédures · Plan d'action · Deadlines</p>
-        <div class="cta-form">
-          <input class="cta-inp" type="text" placeholder="Prénom" id="cta-p" style="max-width:130px">
-          <input class="cta-inp" type="email" placeholder="votre@email.fr" id="cta-e">
-          <button class="cta-btn" onclick="submitLead()">OBTENIR →</button>
-        </div>
-        <div class="cta-rgpd">
-          <input type="checkbox" id="rgpd">
-          <label for="rgpd">Vos données sont utilisées uniquement par Lyky Label France pour vous informer des aides musicales disponibles.</label>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="r-panel">
     <div class="r-box" id="rb-p">
       <div class="r-bh"><span class="r-bt">Profil(s) identifié(s)</span></div>
@@ -275,6 +246,33 @@ footer p{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.22);line-h
     <div class="r-box" id="rb-al" style="display:none">
       <div class="r-bh"><span class="r-bt">Points d'attention</span></div>
       <div class="r-bd" id="rb-al-bd"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODE RÉSULTATS : pleine largeur, hors grille -->
+<div id="scr-r" style="display:none;max-width:1100px;margin:0 auto;padding:26px 40px;">
+  <div class="res">
+    <div class="res-hd">
+      <h2>RAPPORT <span>D'ÉLIGIBILITÉ</span></h2>
+      <p id="res-sub"></p>
+    </div>
+    <div id="res-profil" class="res-sec"></div>
+    <div id="res-aides" class="res-sec"></div>
+    <div id="res-conf" class="res-sec"></div>
+    <div id="res-dl" class="res-sec"></div>
+    <div class="cta-block">
+      <h3>RAPPORT <span>PDF COMPLET</span> GRATUIT</h3>
+      <p>Montants estimés · Procédures · Plan d'action · Deadlines</p>
+      <div class="cta-form">
+        <input class="cta-inp" type="text" placeholder="Prénom" id="cta-p" style="max-width:130px">
+        <input class="cta-inp" type="email" placeholder="votre@email.fr" id="cta-e">
+        <button class="cta-btn" onclick="submitLead()">OBTENIR →</button>
+      </div>
+      <div class="cta-rgpd">
+        <input type="checkbox" id="rgpd">
+        <label for="rgpd">Vos données sont utilisées uniquement par Lyky Label France pour vous informer des aides musicales disponibles.</label>
+      </div>
     </div>
   </div>
 </div>
@@ -1862,13 +1860,13 @@ function getProfils() {
 // RÉSULTATS FINAUX
 // ══════════════════════════════════════════════════════════════
 function showResults() {
+  // Masquer questionnaire + grille, afficher résultats pleine largeur
   document.getElementById('scr-q').classList.add('h');
-  document.getElementById('scr-r').classList.add('v');
-  document.querySelector('.main').classList.add('results-mode');
+  document.getElementById('main-grid').style.display = 'none';
+  document.getElementById('scr-r').style.display = 'block';
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('prog-pct').textContent = '100%';
   document.getElementById('prog-lbl').textContent = 'Analyse complète';
-  // Scroll en haut pour afficher le rapport depuis le début
   window.scrollTo({top: 0, behavior: 'smooth'});
 
   const {matched, conflicts} = match();
