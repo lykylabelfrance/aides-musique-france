@@ -459,7 +459,10 @@ const AIDES = {
     chip_css: 'ch-sacem',
     montant_label: '5 000€',
     source: 'aide-aux-projets.sacem.fr — mars 2026',
-    eligible: a => _ACI(a) && _sacemP(a) && _pAlbum(a),
+    eligible: a =>
+      _ACI(a) && _sacemP(a) && _pAlbum(a) &&
+      // Fenêtre : pas sorti depuis > 6 mois (album_timing absent = pas encore sorti = éligible)
+      !_is(a, 'album_timing', 'sorti_plus_6mois'),
     taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
     badges: () => [],
     non_cumul: [],
@@ -600,7 +603,13 @@ const AIDES = {
     montant_label: 'Max 15 000€ (MA) · 20 000€ (classique)',
     source: 'cnm.fr — RGA art.46-52',
     eligible: a =>
-      _struct(a) && _phono(a) && _phyC(a) && _nt_cnm(a) && _caphono(a),
+      _struct(a) && _phono(a) && _phyC(a) && _nt_cnm(a) && _caphono(a) &&
+      // Ancienneté ≥ 1 an (absent = non renseigné = on laisse passer, alerte dans notes)
+      !_is(a, 'anciennete_struct', 'moins_1an') &&
+      // Catalogue ≥ 3 références (absent = non renseigné = on laisse passer)
+      !_is(a, 'nb_albums_produits', 'aucun') && !_is(a, 'nb_albums_produits', '1_ou_2') &&
+      // CA ≥ 30k€
+      !_is(a, 'ca_struct', 'inf30k'),
     taux: () => ({ label: '30% dépenses éligibles' }),
     badges: () => [
       { c: 'mb-ca', l: '⚠ CNM auto requis avant' },
@@ -1159,7 +1168,9 @@ const AIDES = {
     source: 'adami.fr — oct. 2025',
     eligible: a =>
       _ACI(a) && _adamiP(a) &&
-      (_pAlbum(a) || _pClip(a) || _pShowcase(a) || _pTournee(a) || _pExport(a)),
+      (_pAlbum(a) || _pClip(a) || _pShowcase(a) || _pTournee(a) || _pExport(a)) &&
+      // Min 2 albums en distribution pro (aucun ou 1 = inéligible si renseigné)
+      !_is(a, 'nb_albums_produits', 'aucun') && !_is(a, 'nb_albums_produits', '1_ou_2'),
     taux: () => ({ label: 'Aide très sélective — contact ADAMI OBLIGATOIRE avant dépôt' }),
     badges: () => [],
     non_cumul: [],
@@ -1605,7 +1616,67 @@ const STEPS = [
     ]
   },
 
-  // ── 16. GENRE MUSICAL
+  // ── 16. ANCIENNETÉ STRUCTURE
+  // Bloquant pour CNM Production sélective (< 1 an = refus)
+  {
+    id:'anciennete_struct', scope:'struct',
+    q:'Depuis combien de temps votre structure existe-t-elle ?',
+    hint:'CNM Production Sélective exige 1 an d\'ancienneté minimum. Une structure récente peut toujours accéder au Compte Automatique CNM et aux autres aides.',
+    type:'single',
+    cond: a => is('has_struct','oui') && has('activites','prod_phono') && is('forme','IS'),
+    opts:[
+      {v:'moins_1an', ico:'🆕', l:'Moins d\'un an', s:'CNM Production Sélective inaccessible — Compte Auto CNM OK'},
+      {v:'1an_3ans',  ico:'📅', l:'Entre 1 et 3 ans', s:'Toutes les aides CNM accessibles'},
+      {v:'plus_3ans', ico:'✅', l:'Plus de 3 ans', s:'Accès maximal — catalogue justifiable'}
+    ]
+  },
+
+  // ── 17. CATALOGUE EXISTANT
+  // Qualifie pour CNM Production Sélective (≥ 3 réf.) et ADAMI 365 (≥ 2 albums distrib pro)
+  {
+    id:'nb_albums_produits', scope:'struct',
+    q:'Combien d\'albums / EP avez-vous déjà produits et distribués professionnellement ?',
+    hint:'CNM Production Sélective requiert ≥ 3 références distribuées. ADAMI 365 requiert ≥ 2 albums en distribution pro. Le Compte Automatique CNM n\'a pas de condition de catalogue.',
+    type:'single',
+    cond: a => is('has_struct','oui') && has('activites','prod_phono') && is('forme','IS'),
+    opts:[
+      {v:'aucun',   ico:'🎵', l:'C\'est mon premier projet',           s:'Compte Auto CNM + SPPF + CIPP accessibles — CNM Production Sélective non'},
+      {v:'1_ou_2',  ico:'💿', l:'1 ou 2 albums / EP distribués',       s:'CNM Production Sélective inaccessible (< 3 réf.) — ADAMI 365 inaccessible'},
+      {v:'3_ou_plus',ico:'✅', l:'3 albums / EP ou plus',              s:'CNM Production Sélective + ADAMI 365 accessibles'}
+    ]
+  },
+
+  // ── 18. CA STRUCTURE
+  // Qualifie pour CNM Production Sélective (CA ≥ 30k€) et évalue le potentiel CIPP
+  {
+    id:'ca_struct', scope:'struct',
+    q:'Quel est le chiffre d\'affaires annuel de votre structure ?',
+    hint:'CNM Production Sélective requiert un CA ≥ 30 000€. Ce seuil n\'affecte pas le Compte Automatique CNM, le CIPP, ni les aides SPPF/SCPP.',
+    type:'single',
+    cond: a => is('has_struct','oui') && has('activites','prod_phono') && is('forme','IS'),
+    opts:[
+      {v:'inf30k',   ico:'—',  l:'< 30 000€',              s:'CNM Production Sélective inaccessible — autres aides OK'},
+      {v:'30k_100k', ico:'📈', l:'Entre 30 000€ et 100 000€', s:'CNM Production Sélective accessible'},
+      {v:'sup100k',  ico:'✅', l:'> 100 000€',              s:'Accès maximal — CIPP potentiel élevé'}
+    ]
+  },
+
+  // ── 19. TIMING ALBUM (si SACEM affilié + projet album)
+  // Bloquant pour SACEM Autoproduction : fenêtre 6 mois post-sortie
+  {
+    id:'album_timing', scope:'struct',
+    q:'Quelle est la situation de votre prochain album ?',
+    hint:'SACEM Autoproduction : dépôt obligatoirement APRÈS la sortie intégrale, dans un délai maximum de 6 mois. Un album sorti il y a plus de 6 mois ne peut plus faire l\'objet d\'une demande.',
+    type:'single',
+    cond: a => (is('aci','oui') || is('has_struct','oui')) && has('projets','album') && (has('affiliations_vous','sacem') || is('sacem_struct','oui')),
+    opts:[
+      {v:'pas_encore_sorti', ico:'🎵', l:'Pas encore sorti — en production',         s:'SACEM Autoproduction accessible après la sortie (fenêtre 6 mois)'},
+      {v:'sorti_moins_6mois',ico:'✅', l:'Sorti il y a moins de 6 mois',             s:'SACEM Autoproduction accessible — déposer maintenant'},
+      {v:'sorti_plus_6mois', ico:'⛔', l:'Sorti il y a plus de 6 mois',             s:'SACEM Autoproduction inaccessible — fenêtre fermée'}
+    ]
+  },
+
+  // ── 20. GENRE MUSICAL
   {
     id:'genre', scope:'struct',
     q:'Genre(s) musical(aux) principal(aux) de votre activité ?',
@@ -1621,7 +1692,7 @@ const STEPS = [
     ]
   },
 
-  // ── 17. PROJETS EN COURS [A14 — export_gros implique export]
+  // ── 21. PROJETS EN COURS [A14 — export_gros implique export]
   {
     id:'projets', scope:'projets',
     q:'Quels projets avez-vous en cours ou prévus dans les 12 prochains mois ?',
@@ -1642,7 +1713,7 @@ const STEPS = [
     ]
   },
 
-  // ── 18. SPEDIDAM GÉNÉRATION [A08]
+  // ── 22. SPEDIDAM GÉNÉRATION [A08]
   // Question spécifique : a-t-on été sélectionné préalablement par le programme Génération SPEDIDAM ?
   {
     id:'generation_spedidam', scope:'vous',
