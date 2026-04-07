@@ -1,0 +1,38 @@
+# .htaccess — aides.lykylabel.com
+# OVH Pro cluster028 — PHP 8.x
+
+Options -Indexes
+
+# Forcer HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Protéger le dossier engine (tests Node.js — pas accès web)
+<IfModule mod_rewrite.c>
+  RewriteRule ^engine/.*$ - [F,L]
+</IfModule>
+
+# Headers sécurité
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options SAMEORIGIN
+  Header always set Referrer-Policy strict-origin-when-cross-origin
+</IfModule>
+
+# Cache ressources statiques
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# PHP 8.x
+<IfModule mod_php8.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 10M
+  php_value max_execution_time 60
+  php_flag display_errors Off
+  php_flag log_errors On
+</IfModule>
