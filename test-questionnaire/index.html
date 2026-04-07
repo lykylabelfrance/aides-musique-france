@@ -124,6 +124,9 @@ body{font-family:var(--fb);background:var(--gris-clair);color:var(--noir);min-he
 #scr-r{display:none;}
 #scr-r.v{display:block;}
 #scr-q.h{display:none;}
+/* Résultats : pleine largeur — masquer le panel droit */
+.main.results-mode{grid-template-columns:1fr;}
+.main.results-mode .r-panel{display:none;}
 .res{background:var(--blanc);border-radius:6px;border-left:4px solid var(--vert);box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;}
 .res-hd{background:var(--noir);padding:24px 28px;}
 .res-hd h2{font-family:var(--fd);font-size:28px;color:#fff;letter-spacing:1px;}
@@ -1861,9 +1864,12 @@ function getProfils() {
 function showResults() {
   document.getElementById('scr-q').classList.add('h');
   document.getElementById('scr-r').classList.add('v');
+  document.querySelector('.main').classList.add('results-mode');
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('prog-pct').textContent = '100%';
   document.getElementById('prog-lbl').textContent = 'Analyse complète';
+  // Scroll en haut pour afficher le rapport depuis le début
+  window.scrollTo({top: 0, behavior: 'smooth'});
 
   const {matched, conflicts} = match();
   const profils = getProfils();
