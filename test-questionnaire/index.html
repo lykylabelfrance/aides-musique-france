@@ -1863,9 +1863,12 @@ function showResults() {
   // Masquer questionnaire + grille, afficher résultats pleine largeur
   document.getElementById('scr-q').classList.add('h');
   document.getElementById('main-grid').style.display = 'none';
+  // Masquer explicitement le panel droit (sécurité supplémentaire)
+  const rPanel = document.querySelector('.r-panel');
+  if (rPanel) rPanel.style.display = 'none';
   const scrR = document.getElementById('scr-r');
   scrR.style.display = 'block';
-  scrR.style.flex = '1';  // body est flex-col — scr-r doit prendre toute la hauteur disponible
+  scrR.style.flex = '1';
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('prog-pct').textContent = '100%';
   document.getElementById('prog-lbl').textContent = 'Analyse complète';
@@ -1917,6 +1920,18 @@ function showResults() {
   }
   if (!matched.length)
     aidesHtml += '<div class="r-empty"><div class="r-empty-ico">🔍</div>Aucune aide détectée — vérifiez vos affiliations ou contactez Lyky Label France</div>';
+
+  // Conseil si ACI avec peu d'aides et affiliations incomplètes
+  const affiliations = S.ans.affiliations_vous || [];
+  const manqueAdami   = is('aci','oui') && !affiliations.includes('adami');
+  const manqueSpedi   = is('aci','oui') && !affiliations.includes('spedidam');
+  if (is('aci','oui') && matched.length <= 2 && (manqueAdami || manqueSpedi)) {
+    const manquantes = [manqueAdami ? 'ADAMI' : null, manqueSpedi ? 'SPEDIDAM' : null].filter(Boolean).join(' et ');
+    aidesHtml += `<div class="al al-i" style="margin-top:12px">
+      <span class="al-ico">💡</span>
+      <span class="al-txt"><strong>Multipliez vos aides</strong>En vous affiliant à ${manquantes}, vous débloquez des aides supplémentaires : aides à la production, clips, export, spectacle. Démarche gratuite pour les artistes.</span>
+    </div>`;
+  }
   document.getElementById('res-aides').innerHTML = aidesHtml;
 
   // [A09] Alerte SACEM Export fermé dans les résultats
