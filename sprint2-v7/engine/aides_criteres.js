@@ -175,9 +175,9 @@ const AIDES = {
     source: 'aide-aux-projets.sacem.fr — mars 2026',
     eligible: a =>
       _ACI(a) && _sacemP(a) && _pAlbum(a) &&
-      // Minimum 5 titres inédits (si renseigné — sinon on laisse passer)
-      !_is(a, 'nb_titres_album', 'moins_5') &&
-      // Fenêtre : pas sorti depuis > 6 mois (album_timing absent = pas encore sorti = éligible)
+      // Minimum 5 titres inédits (bloqué si < 5)
+      !_is(a, 'nb_titres_album', 'moins_3') && !_is(a, 'nb_titres_album', '3_ou_4') &&
+      // Fenêtre : pas sorti depuis > 6 mois
       !_is(a, 'album_timing', 'sorti_plus_6mois'),
     taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
     badges: () => [],
@@ -662,7 +662,9 @@ const AIDES = {
     montant_label: '40% cadre de subvention',
     source: 'sppf.com — avril 2026',
     eligible: a =>
-      _IS(a) && _struct(a) && _SPPF(a) && _hasPhys(a) && _pAlbum(a),
+      _IS(a) && _struct(a) && _SPPF(a) && _hasPhys(a) && _pAlbum(a) &&
+      // Minimum 3 titres inédits (SPPF)
+      !_is(a, 'nb_titres_album', 'moins_3'),
     taux: () => ({ label: '40% cadre de subvention' }),
     badges: () => [{ c: 'mb-ph', l: '⚠ Distrib physique obligatoire' }],
     non_cumul: ['SCPP_PHONOGRAMME'],
@@ -780,7 +782,9 @@ const AIDES = {
     source: 'scpp.fr',
     // PRODUCTEUR UNIQUEMENT (pas licencié exclusif) + distrib physique + album
     eligible: a =>
-      _struct(a) && _SCPP_p(a) && _hasPhys(a) && _pAlbum(a),
+      _struct(a) && _SCPP_p(a) && _hasPhys(a) && _pAlbum(a) &&
+      // Minimum 4 titres inédits OU ≥ 30 min (on bloque si < 3 ou si 3_ou_4 sans la durée — option B : alerte dans les notes pour le cas 3_ou_4)
+      !_is(a, 'nb_titres_album', 'moins_3'),
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [{ c: 'mb-ph', l: '⚠ Distrib physique obligatoire' }],
     non_cumul: ['SPPF_ALBUM'],
@@ -788,6 +792,7 @@ const AIDES = {
       'Distribution physique nationale OBLIGATOIRE — numérique seul = rejet',
       'GUSO non accepté — Audiens obligatoire',
       'Licencié exclusif NON éligible à cette aide (voir SCPP_MARKETING)',
+      'Minimum 4 titres inédits — OU durée cumulée ≥ 30 minutes si EP de 3 titres',
       '1 demande/an max si droits < seuils réforme AG 28/06/2023',
     ],
     potentiel_min: 8000,
