@@ -175,6 +175,8 @@ const AIDES = {
     source: 'aide-aux-projets.sacem.fr — mars 2026',
     eligible: a =>
       _ACI(a) && _sacemP(a) && _pAlbum(a) &&
+      // Minimum 5 titres inédits (si renseigné — sinon on laisse passer)
+      !_is(a, 'nb_titres_album', 'moins_5') &&
       // Fenêtre : pas sorti depuis > 6 mois (album_timing absent = pas encore sorti = éligible)
       !_is(a, 'album_timing', 'sorti_plus_6mois'),
     taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
@@ -182,7 +184,6 @@ const AIDES = {
     non_cumul: [],
     alertes: [
       'Forfait fixe 5 000€ — 1er, 2ème ou 3ème enregistrement autoproduit uniquement',
-      'Minimum 5 titres inédits',
       'Dépôt APRÈS la sortie intégrale du projet — jamais avant',
       'Délai maximum : 6 mois après la date de sortie',
       'Calendrier 2026 : ouverture 2 février → fermeture 30 octobre',

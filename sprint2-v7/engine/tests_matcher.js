@@ -706,3 +706,25 @@ test('T33 — ADAMI 365 / 3+ albums / accessible', {
   doit_matcher: ['ADAMI_365'],
   conflits: [],
 });
+
+// ── T34 : SACEM Auto bloquée si < 5 titres ───────────────────────────────────
+test('T34 — SACEM Autoproduction / moins de 5 titres / BLOQUÉE', {
+  aci:'oui', affiliations_vous:['sacem'], has_struct:'non',
+  genre:['ma'], projets:['album'],
+  nb_titres_album:'moins_5',
+  album_timing:'pas_encore_sorti',
+}, {
+  ne_doit_pas: ['SACEM_AUTOPRODUCTION'],
+  conflits: [],
+});
+
+// ── T35 : SACEM Auto OK si 5 titres ou plus ──────────────────────────────────
+test('T35 — SACEM Autoproduction / 5 titres ou plus / accessible', {
+  aci:'oui', affiliations_vous:['sacem'], has_struct:'non',
+  genre:['ma'], projets:['album'],
+  nb_titres_album:'5_ou_plus',
+  album_timing:'pas_encore_sorti',
+}, {
+  doit_matcher: ['SACEM_AUTOPRODUCTION'],
+  conflits: [],
+});

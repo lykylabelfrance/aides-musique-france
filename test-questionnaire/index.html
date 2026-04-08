@@ -461,6 +461,8 @@ const AIDES = {
     source: 'aide-aux-projets.sacem.fr — mars 2026',
     eligible: a =>
       _ACI(a) && _sacemP(a) && _pAlbum(a) &&
+      // Minimum 5 titres inédits (si renseigné — sinon on laisse passer)
+      !_is(a, 'nb_titres_album', 'moins_5') &&
       // Fenêtre : pas sorti depuis > 6 mois (album_timing absent = pas encore sorti = éligible)
       !_is(a, 'album_timing', 'sorti_plus_6mois'),
     taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
@@ -468,7 +470,6 @@ const AIDES = {
     non_cumul: [],
     alertes: [
       'Forfait fixe 5 000€ — 1er, 2ème ou 3ème enregistrement autoproduit uniquement',
-      'Minimum 5 titres inédits',
       'Dépôt APRÈS la sortie intégrale du projet — jamais avant',
       'Délai maximum : 6 mois après la date de sortie',
       'Calendrier 2026 : ouverture 2 février → fermeture 30 octobre',
@@ -1661,7 +1662,21 @@ const STEPS = [
     ]
   },
 
-  // ── 19. TIMING ALBUM (si SACEM affilié + projet album)
+  // ── 19. NB TITRES ALBUM (si SACEM affilié + projet album)
+  // Bloquant pour SACEM Autoproduction : minimum 5 titres inédits
+  {
+    id:'nb_titres_album', scope:'projets',
+    q:'Combien de titres inédits comprend votre projet d\'album / EP ?',
+    hint:'SACEM Autoproduction exige un minimum de 5 titres inédits. En dessous de ce seuil, la demande est irrecevable.',
+    type:'single',
+    cond: a => has('projets','album') && (has('affiliations_vous','sacem') || is('sacem_struct','oui')),
+    opts:[
+      {v:'moins_5',  ico:'—',  l:'Moins de 5 titres',       s:'SACEM Autoproduction inaccessible — minimum 5 titres inédits requis'},
+      {v:'5_ou_plus',ico:'✅', l:'5 titres ou plus',         s:'SACEM Autoproduction accessible sur ce critère'},
+    ]
+  },
+
+  // ── 20. TIMING ALBUM (si SACEM affilié + projet album)
   // Bloquant pour SACEM Autoproduction : fenêtre 6 mois post-sortie
   {
     id:'album_timing', scope:'struct',
@@ -1676,7 +1691,7 @@ const STEPS = [
     ]
   },
 
-  // ── 20. GENRE MUSICAL
+  // ── 21. GENRE MUSICAL
   {
     id:'genre', scope:'struct',
     q:'Genre(s) musical(aux) principal(aux) de votre activité ?',
@@ -1692,7 +1707,7 @@ const STEPS = [
     ]
   },
 
-  // ── 21. PROJETS EN COURS [A14 — export_gros implique export]
+  // ── 22. PROJETS EN COURS [A14 — export_gros implique export]
   {
     id:'projets', scope:'projets',
     q:'Quels projets avez-vous en cours ou prévus dans les 12 prochains mois ?',
@@ -1713,7 +1728,7 @@ const STEPS = [
     ]
   },
 
-  // ── 22. SPEDIDAM GÉNÉRATION [A08]
+  // ── 23. SPEDIDAM GÉNÉRATION [A08]
   // Question spécifique : a-t-on été sélectionné préalablement par le programme Génération SPEDIDAM ?
   {
     id:'generation_spedidam', scope:'vous',
@@ -2067,7 +2082,7 @@ function showResults() {
     const manquantes = [manqueAdami ? 'ADAMI' : null, manqueSpedi ? 'SPEDIDAM' : null].filter(Boolean).join(' et ');
     aidesHtml += `<div class="al al-i" style="margin-top:12px">
       <span class="al-ico">💡</span>
-      <span class="al-txt"><strong>Multipliez vos aides</strong>En vous affiliant à ${manquantes}, vous débloquez des aides supplémentaires : aides à la production, clips, export, spectacle. Démarche gratuite pour les artistes.</span>
+      <span class="al-txt"><strong>Multipliez vos aides</strong>En vous affiliant à ${manquantes}, vous débloquez des aides supplémentaires : aides à la production, clips, export, spectacle. Renseignez-vous sur les conditions d'adhésion auprès de chaque organisme.</span>
     </div>`;
   }
   document.getElementById('res-aides').innerHTML = aidesHtml;
