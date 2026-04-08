@@ -498,8 +498,10 @@ const AIDES = {
     badges: () => [],
     non_cumul: [],
     alertes: [
+      'Réservé aux éditeurs musicaux membres SACEM — pas aux producteurs phonographiques seuls',
       'Seuil : MOYENNE droits ≥ 5 000€/an sur 2 ans (4 répartitions SACEM ÷ 2)',
-      'Distinct du CIEM — ce seuil ne s\'applique PAS au crédit d\'impôt',
+      'Catalogue actif géré obligatoire — droits d\'édition en cours d\'exploitation',
+      'Distinct du CIEM — ce seuil droits ne s\'applique PAS au crédit d\'impôt',
     ],
     potentiel_min: 8000,
   },
@@ -538,7 +540,12 @@ const AIDES = {
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: ['Œuvres musicales originales requises — pas de reprise exclusive'],
+    alertes: [
+      'Œuvres musicales originales requises — reprises exclusives non éligibles',
+      'Spectacle vivant musical uniquement — pas un concert de diffusion standard',
+      'Affilié SACEM en tant qu\'auteur-compositeur ou éditeur requis',
+      'Dossier à soumettre avant la première représentation',
+    ],
     potentiel_min: 6000,
   },
 
@@ -736,11 +743,12 @@ const AIDES = {
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 20000,
-  },
-
-  CNM_EXPORT_MA1: {
+    alertes: [
+      'Licence ESV cat.3 (diffuseur/promoteur) OBLIGATOIRE — cat.1 et cat.2 non éligibles',
+      'Déclaration taxe spectacles variétés obligatoire — SIBIL à jour',
+      'Aide INDIRECTE — le diffuseur dépose, pas le producteur directement',
+      'Plafond : 75 000€/projet · 300 000€/bénéficiaire/an',
+    ], {
     id: 'CNM_EXPORT_MA1',
     nom: 'Aide DI Musiques Actuelles 1 (D1) CNM',
     organisme: 'CNM',
@@ -800,7 +808,7 @@ const AIDES = {
       'Sessions 2026 : 27 mai et 29 juin',
       'Tous genres musicaux sauf jazz (voir CNM_MOBILITE_JAZZ)',
     ],
-    potentiel_min: 2000,
+    potentiel_min: 4000,
   },
 
   CNM_MOBILITE_JAZZ: {
@@ -819,7 +827,7 @@ const AIDES = {
       'Sessions 2026 : 30 avril (URGENT — IMMINENT) puis 4 septembre',
       'Exclusivement pour projets jazz',
     ],
-    potentiel_min: 2000,
+    potentiel_min: 4000,
   },
 
   CNM_EDITION: {
@@ -835,11 +843,11 @@ const AIDES = {
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [{ c: 'mb-ca', l: '⚠ CNM auto requis' }],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 5000,
-  },
-
-  CNM_EDITION_CONTEMPORAINE_JAZZ: {
+    alertes: [
+      'Réservé aux éditeurs musicaux — droits d\'édition administrés obligatoires',
+      'Catalogue actif en production et gestion requis',
+      'Musiques actuelles uniquement — jazz/contemporain → voir CNM_EDITION_CONTEMPORAINE_JAZZ (art.37)',
+    ], {
     id: 'CNM_EDITION_CONTEMPORAINE_JAZZ',
     nom: 'Aide Édition Contemporaine & Jazz CNM (Art.37)',
     organisme: 'CNM',
@@ -1168,12 +1176,12 @@ const AIDES = {
     id: 'ADAMI_365',
     nom: 'ADAMI 365 — Projet Musical Global',
     organisme: 'ADAMI',
-    scope: 'vous',
+    scope: 'struct',
     chip_css: 'ch-adami',
     montant_label: 'Variable (plafond 1/3 par volet)',
     source: 'adami.fr — oct. 2025',
     eligible: a =>
-      _ACI(a) && _adamiP(a) &&
+      _struct(a) && _adamiP(a) &&
       (_pAlbum(a) || _pClip(a) || _pShowcase(a) || _pTournee(a) || _pExport(a)) &&
       // Min 2 albums en distribution pro (aucun ou 1 = inéligible si renseigné)
       !_is(a, 'nb_albums_produits', 'aucun') && !_is(a, 'nb_albums_produits', '1_ou_2'),
@@ -1306,11 +1314,12 @@ const AIDES = {
     taux: () => ({ label: 'Aide sélective' }),
     badges: () => [],
     non_cumul: [],
-    alertes: [],
-    potentiel_min: 2000,
-  },
-
-  SPEDIDAM_EAC: {
+    alertes: [
+      '1 seul dossier par structure et par an',
+      'Hors clips (≠ SCPP/SPPF Vidéomusique) — vise EPK et contenus promo uniquement',
+      'Hors captations intégrales de spectacles',
+      'Commissions plus espacées en 2026 — anticiper les délais',
+    ], {
     id: 'SPEDIDAM_EAC',
     nom: 'Aide Éducation Artistique et Culturelle SPEDIDAM',
     organisme: 'SPEDIDAM',
