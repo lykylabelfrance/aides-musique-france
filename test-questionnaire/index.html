@@ -461,9 +461,7 @@ const AIDES = {
     source: 'aide-aux-projets.sacem.fr — mars 2026',
     eligible: a =>
       _ACI(a) && _sacemP(a) && _pAlbum(a) &&
-      // Minimum 5 titres inédits (bloqué si < 5)
       !_is(a, 'nb_titres_album', 'moins_3') && !_is(a, 'nb_titres_album', '3_ou_4') &&
-      // Fenêtre : pas sorti depuis > 6 mois
       !_is(a, 'album_timing', 'sorti_plus_6mois'),
     taux: () => ({ label: '5 000€ forfait fixe — 1er/2ème/3ème enregistrement' }),
     badges: () => [],
